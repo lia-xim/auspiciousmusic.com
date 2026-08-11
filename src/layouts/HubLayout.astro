@@ -1,0 +1,50 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface ArticleLink { title: string; href: string; description: string; meta: string; label?: string; }
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  kicker: string;
+  intro: string;
+  articles: ArticleLink[];
+  principles: { title: string; text: string }[];
+}
+const { title, description, canonicalPath, kicker, intro, articles, principles } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang="en">
+  <Fragment slot="head">
+    <style is:global>
+      @layer components {
+        .hub-head { padding-block: clamp(2.5rem, 6vw, 5.5rem); border-bottom: 1px solid var(--line); }
+        .hub-head h1 { max-width: 16ch; margin-top: 1.2rem; }
+        .hub-head .lede { max-width: 58ch; margin-top: 1.5rem; }
+        .hub-intro { display: grid; gap: 2rem 5rem; align-items: start; }
+        @media (min-width: 900px) { .hub-intro { grid-template-columns: minmax(0, 1.1fr) minmax(18rem, .9fr); } }
+        .hub-intro > p { color: var(--ink-soft); font-size: clamp(1.15rem, 1rem + .45vw, 1.35rem); max-width: 52ch; }
+        .principles { border-top: 1px solid var(--line); }
+        .principles li { display: grid; gap: .35rem; padding-block: 1rem; border-bottom: 1px solid var(--line); }
+        .principles strong { font-size: 1rem; }
+        .principles span { color: var(--muted); font-size: .95rem; line-height: 1.55; }
+        .article-list { border-top: 1px solid var(--line-strong); }
+        .article-list li { border-bottom: 1px solid var(--line); }
+        .article-list a { display: grid; gap: .55rem 2.5rem; padding-block: clamp(1.4rem, 3vw, 2.1rem); text-decoration: none; }
+        .article-list a:hover { background: var(--surface); }
+        .article-list h2 { font-size: clamp(1.35rem, 1.12rem + .75vw, 1.9rem); }
+        .article-list p { color: var(--muted); max-width: 58ch; font-size: 1rem; line-height: 1.55; }
+        .article-list .meta { align-self: start; }
+        @media (min-width: 900px) { .article-list a { grid-template-columns: minmax(15rem, 1fr) minmax(20rem, 1.4fr) 9rem; align-items: start; } .article-list .meta { justify-self: end; text-align: right; } }
+        .hub-note { max-width: 60rem; padding: 1.5rem; border-left: 2px solid var(--ember-bright); background: var(--surface); }
+        .hub-note p { color: var(--ink-soft); }
+      }
+    </style>
+  </Fragment>
+  <main id="content">
+    <header class="hub-head"><div class="shell"><p class="kicker">{kicker}</p><h1>{title}</h1><p class="lede">{description}</p></div></header>
+    <section class="band"><div class="shell hub-intro"><p>{intro}</p><ul class="principles">{principles.map((item) => <li><strong>{item.title}</strong><span>{item.text}</span></li>)}</ul></div></section>
+    <section class="band band-surface"><div class="shell"><div class="section-head"><div><p class="kicker">Published guides</p><h2>Start with a real decision</h2></div><p>Every page below is live, source-labelled and written for a specific task. There are no roadmap links presented as finished articles.</p></div><ul class="article-list">{articles.map((article) => <li><a href={article.href}><h2>{article.title}</h2><p>{article.description}</p><span class="meta">{article.label ?? 'Guide'} · {article.meta}</span></a></li>)}</ul></div></section>
+    <section class="band"><div class="shell"><div class="hub-note"><p><strong>Editorial boundary.</strong> These pages distinguish documented guidance from first-hand testing. When Auspicious Music has not run a product or recorded an example, it says so instead of manufacturing evidence.</p></div></div></section>
+  </main>
+</BaseLayout>

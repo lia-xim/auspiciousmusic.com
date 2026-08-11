@@ -1,231 +1,31 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import InfoLayout from '../../layouts/InfoLayout.astro';
 ---
+<InfoLayout title="Impressum" description="Anbieterkennzeichnung für Auspicious Music nach § 5 DDG." canonicalPath="/legal/" lang="de" kicker="Rechtliche Angaben" lede="Anbieterkennzeichnung und redaktionell verantwortliche Person für dieses Angebot.">
+  <h2 style="margin-top:0">Angaben nach § 5 DDG</h2>
+  <address>
+    <strong>Matthias Ramahi</strong><br>
+    Kempener Straße 44<br>
+    40699 Erkrath<br>
+    Deutschland
+  </address>
+  <dl class="facts">
+    <div><dt>E-Mail</dt><dd><a href="mailto:info@matthiasramahi.de">info@matthiasramahi.de</a></dd></div>
+    <div><dt>Telefon</dt><dd><a href="tel:+4917642449858">+49 176 42 44 98 58</a></dd></div>
+  </dl>
 
-<BaseLayout
-  title={"Impressum — Auspicious Music"}
-  description={"Anbieterkennzeichnung nach § 5 DDG und Angabe des Verantwortlichen nach § 18 Abs. 2 MStV."}
-  canonicalPath={"/legal/"}
-  lang={"de"}
-  noindex={false}
-  loadStringField={false}
->
-<Fragment slot="head">
-<style is:global>
-@layer components {
-  .pg-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem); }
-  .pg-head h1 { max-width: 20ch; margin-top: 1.25rem; }
-  .pg-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+  <h2>Verantwortlich für journalistisch-redaktionelle Inhalte</h2>
+  <p>Verantwortlich im Sinne von § 18 Abs. 2 MStV:</p>
+  <address>Matthias Ramahi<br>Kempener Straße 44<br>40699 Erkrath</address>
 
-  .prose { max-width: var(--measure); }
-  .prose > * + * { margin-top: 1.375rem; }
-  .prose h2 { font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem); letter-spacing: -0.014em; margin-top: clamp(2.5rem, 4.5vw, 3.25rem); }
-  .prose h3 { font-size: 1.125rem; margin-top: 1.75rem; letter-spacing: -0.01em; }
-  .prose p, .prose li { color: var(--ink-soft); }
-  .prose a:not(.link):not(.btn) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-  .prose ul.bullets { display: grid; gap: 0.5rem; margin-top: 0.875rem; }
-  .prose ul.bullets li { padding-left: 1.25rem; position: relative; line-height: 1.6; }
-  .prose ul.bullets li::before {
-    content: ""; position: absolute; left: 0; top: 0.72em;
-    inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--line-strong);
-  }
+  <h2>Verbraucherstreitbeilegung</h2>
+  <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
 
-  /* Operator fields that must be filled before launch. Marked rather than
-     invented — an impressum with made-up details is worse than none. */
-  .fields { display: grid; border-top: 1px solid var(--line); margin-top: 1.5rem; }
-  .fields > div {
-    display: grid; grid-template-columns: minmax(9rem, 14rem) minmax(0, 1fr);
-    gap: 0.5rem 1.5rem; padding-block: 0.8125rem;
-    border-bottom: 1px solid var(--line);
-    font-size: var(--t-ui-sm); line-height: 1.6;
-  }
-  .fields dt { color: var(--muted); font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); }
-  .fields dd { color: var(--ink); }
-  .req {
-    display: inline-block;
-    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
-    color: var(--ember); padding-left: 0.625rem; border-left: 2px solid var(--ember-bright);
-    line-height: 1.5;
-  }
-  @media (max-width: 620px) { .fields > div { grid-template-columns: 1fr; gap: 0.25rem; } }
+  <h2>Urheberrecht und frühere Domaininhalte</h2>
+  <p>Die vom aktuellen Betreiber erstellten Inhalte dieser Website unterliegen dem deutschen Urheberrecht. Inhalte Dritter werden als solche gekennzeichnet. Der Erwerb der Domain hat keine Rechte an früher auf dieser Domain veröffentlichten Texten, Bildern, Audiodateien oder Software übertragen. Historische Inhalte werden deshalb nur dokumentiert oder verlinkt, soweit dies rechtlich und redaktionell vertretbar ist.</p>
 
-  .callout { border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; }
-  .callout strong { display: block; margin-bottom: 0.375rem; }
-  .callout p { color: var(--ink); }
+  <h2>Hinweise zu externen Links</h2>
+  <p>Für Inhalte externer Websites sind deren jeweilige Anbieter verantwortlich. Hinweise auf rechtswidrige oder nicht mehr zutreffende Ziele senden Sie bitte an <a href="mailto:info@matthiasramahi.de?subject=Auspicious%20Music%20Linkhinweis">info@matthiasramahi.de</a>; entsprechende Links werden geprüft.</p>
 
-  /* English summary block under each German document */
-  .en-summary {
-    margin-top: clamp(3rem, 6vw, 4.5rem);
-    padding-top: 2rem;
-    border-top: 1px solid var(--line-strong);
-  }
-  .en-summary h2 { margin-top: 0; }
-  .en-summary p, .en-summary li { color: var(--muted); }
-
-  .listing li { border-top: 1px solid var(--line); }
-  .listing li:last-child { border-bottom: 1px solid var(--line); }
-  .listing a {
-    display: grid; gap: 0.25rem 2.5rem; padding-block: 1rem;
-    text-decoration: none; align-items: baseline;
-    transition: background-color var(--dur-fast) var(--ease);
-  }
-  .listing a:hover { background: var(--surface); }
-  .listing h3 { font-size: 1.0625rem; font-weight: 550; letter-spacing: -0.011em; }
-  .listing p { color: var(--muted); font-size: 0.9375rem; line-height: 1.5; max-width: 60ch; }
-  .listing__tail { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
-  @media (min-width: 900px) {
-    .listing a { grid-template-columns: minmax(0, 18rem) minmax(0, 1fr) minmax(0, 10rem); align-items: start; }
-    .listing__tail { text-align: right; }
-  }
-
-  .sitemap-group { margin-top: clamp(2rem, 4vw, 3rem); }
-  .sitemap-group > h2 {
-    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
-    letter-spacing: var(--tr-meta); color: var(--muted); margin: 0 0 0.5rem;
-  }
-
-  /* Contact form — real controls, clearly stated as not yet wired up */
-  .form { display: grid; gap: 1.25rem; max-width: 34rem; margin-top: 2rem; }
-  .form label { display: block; font-size: var(--t-ui-sm); font-weight: 550; margin-bottom: 0.4375rem; }
-  .form input, .form textarea, .form select {
-    inline-size: 100%; min-block-size: 48px; padding: 0.75rem 0.875rem;
-    border: 1px solid var(--line-strong); border-radius: var(--r-sm);
-    background: var(--surface); color: var(--ink); font-size: var(--t-ui);
-    transition: border-color var(--dur-fast) var(--ease);
-  }
-  .form textarea { min-block-size: 9rem; resize: vertical; line-height: 1.6; }
-  .form input:hover, .form textarea:hover, .form select:hover { border-color: var(--ink-soft); }
-  .form .hint { font-size: var(--t-meta); color: var(--muted); margin-top: 0.4375rem; line-height: 1.5; }
-}
-</style>
-</Fragment>
-
-<main id="content">
-
-  <section class="pg-head" data-od-id="page-head">
-    <div class="shell">
-      <nav class="crumbs" aria-label="Brotkrumennavigation">
-        <ol>
-          <li><a href="/">Startseite</a></li>
-          <li>Impressum</li>
-        </ol>
-      </nav>
-      <h1>Impressum</h1>
-      <p class="lede">Anbieterkennzeichnung nach § 5 Digitale-Dienste-Gesetz (DDG) und Angabe des inhaltlich Verantwortlichen nach § 18 Abs. 2 Medienstaatsvertrag (MStV).</p>
-    </div>
-  </section>
-
-
-  <section class="band" data-od-id="impressum-body">
-    <div class="shell">
-      <div class="prose">
-
-        <h2 style="margin-top:0">Diensteanbieter</h2>
-        <p>
-          Angaben gemäß § 5 DDG. Die Felder werden mit den endgültigen
-          Betreiberdaten belegt, bevor die Website öffentlich erreichbar ist.
-        </p>
-        <dl class="fields">
-          <div><dt>Name / Firma</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-          <div><dt>Rechtsform</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-          <div><dt>Anschrift</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span><br><span style="color:var(--muted);font-size:var(--t-meta)">Ladungsfähige Anschrift, kein Postfach</span></dd></div>
-          <div><dt>Vertreten durch</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span><br><span style="color:var(--muted);font-size:var(--t-meta)">Nur bei juristischen Personen</span></dd></div>
-          <div><dt>E-Mail</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-          <div><dt>Telefon</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span><br><span style="color:var(--muted);font-size:var(--t-meta)">Oder ein gleichwertiger, unmittelbarer Kontaktweg</span></dd></div>
-          <div><dt>Registergericht</dt><dd>Sofern eine Eintragung besteht</dd></div>
-          <div><dt>Registernummer</dt><dd>Sofern eine Eintragung besteht</dd></div>
-          <div><dt>USt-IdNr.</dt><dd>Sofern vorhanden, nach § 27a UStG</dd></div>
-        </dl>
-
-        <h2>Verantwortlich für redaktionelle Inhalte</h2>
-        <p>
-          Auspicious Music ist ein journalistisch-redaktionell gestaltetes Angebot.
-          Nach § 18 Abs. 2 MStV wird die verantwortliche Person mit Namen und
-          ladungsfähiger Anschrift benannt.
-        </p>
-        <dl class="fields">
-          <div><dt>Name</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-          <div><dt>Anschrift</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-        </dl>
-
-        <h2>Verbraucherstreitbeilegung</h2>
-        <p>
-          Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren
-          vor einer Verbraucherschlichtungsstelle teilzunehmen (§ 36 Abs. 1 Nr. 1
-          Verbraucherstreitbeilegungsgesetz).
-        </p>
-        <div class="callout">
-          <p>
-            <strong>Hinweis zur früheren OS-Plattform.</strong>
-            Die Online-Streitbeilegungsplattform der Europäischen Kommission wurde
-            zum 20. Juli 2025 eingestellt. Ein Link darauf ist nicht mehr vorgesehen
-            und wird hier bewusst nicht geführt.
-          </p>
-        </div>
-
-        <h2>Haftung für Inhalte</h2>
-        <p>
-          Für eigene Inhalte auf diesen Seiten sind wir nach den allgemeinen Gesetzen
-          verantwortlich. Nach §§ 7 ff. DDG sind wir als Diensteanbieter jedoch nicht
-          verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
-          überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
-          Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung
-          von Informationen nach den allgemeinen Gesetzen bleiben davon unberührt. Eine
-          diesbezügliche Haftung ist erst ab dem Zeitpunkt der Kenntnis einer konkreten
-          Rechtsverletzung möglich. Bei Bekanntwerden entsprechender Rechtsverletzungen
-          werden wir diese Inhalte umgehend entfernen.
-        </p>
-
-        <h2>Haftung für Links</h2>
-        <p>
-          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte
-          wir keinen Einfluss haben. Für diese fremden Inhalte kann keine Gewähr
-          übernommen werden. Für die Inhalte der verlinkten Seiten ist stets der
-          jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Seiten
-          wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft;
-          rechtswidrige Inhalte waren nicht erkennbar. Eine permanente inhaltliche
-          Kontrolle ohne konkrete Anhaltspunkte einer Rechtsverletzung ist nicht
-          zumutbar. Bei Bekanntwerden von Rechtsverletzungen entfernen wir solche
-          Links umgehend.
-        </p>
-
-        <h2>Urheberrecht</h2>
-        <p>
-          Die durch die Betreiber erstellten Inhalte und Werke auf diesen Seiten
-          unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche
-          gekennzeichnet. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der
-          Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen
-          Zustimmung des jeweiligen Autors beziehungsweise Erstellers.
-        </p>
-
-        <h2>Historische Inhalte dieser Domain</h2>
-        <p>
-          Diese Domain wurde vor dem Relaunch von einem anderen Betreiber genutzt.
-          Auspicious Music ist seit 2026 eine unabhängige Publikation unter neuer
-          Eigentümerschaft und macht keine Rechte an den Werken des früheren Betreibers
-          geltend. Historische Ressourcen werden ausschließlich dokumentarisch
-          eingeordnet; Einzelheiten dazu stehen unter
-          <a href="/about/history-and-relaunch/">History &amp; relaunch</a>.
-        </p>
-
-        <div class="en-summary" lang="en">
-          <h2>Provider identification (English summary)</h2>
-          <p>
-            This page is the provider identification required of German websites by
-            § 5 DDG, together with the person responsible for editorial content under
-            § 18 (2) MStV. The German text above is the legally binding version.
-          </p>
-          <p>
-            Auspicious Music is an independent publication relaunched under new
-            ownership in 2026. It claims no rights in the work of this domain's former
-            operator. We are not obliged and not willing to take part in dispute
-            resolution proceedings before a consumer arbitration board.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-</main>
-</BaseLayout>
+  <div class="note"><p><strong>Stand</strong>11. August 2026. Diese Angaben wurden für den noindex Pre-Launch eingetragen und sind vor Freischaltung der Produktionsdomain erneut zu prüfen. Diese Seite ersetzt keine individuelle Rechtsberatung.</p></div>
+</InfoLayout>

@@ -197,7 +197,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   /* ══ 3 · start here ═════════════════════════════════════════════════ */
-  .start { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+  .start { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2.5rem, 5vw, 4rem); }
   @media (min-width: 1000px) { .start { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 4.5rem; } }
   .start__lead h3 { font-size: clamp(1.625rem, 1.15rem + 1.7vw, 2.375rem); letter-spacing: -0.019em; margin-top: 1.25rem; }
   .start__lead p { color: var(--ink-soft); margin-top: 0.875rem; font-size: 1.0625rem; line-height: 1.6; max-width: 48ch; }
@@ -301,7 +301,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <p class="hero__note">
         Practical guides for music production, Ableton, recording, sound design,
-        and music for media. Independent, and tested before it is published.
+        and music for media. Every guide states whether it is tested, source-based, or archival.
       </p>
 
       <div class="hero__stage">
@@ -327,325 +327,97 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- 2 ────────────────────────────────────────────── topic portals -->
-  <section class="band band--tight" data-od-id="portals" aria-labelledby="portals-title">
+  <!-- 2 · topic portals -->
+  <section class="band band--tight" aria-labelledby="portals-title">
     <div class="shell" style="position:relative">
       <span class="rail" data-rail style="left:calc(var(--gutter) * -0.55)" aria-hidden="true"></span>
       <h2 id="portals-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Where to start by topic</h2>
       <ul class="portals" data-reveal-group>
-        <li class="portal" data-reveal>
-          <a href="/ableton/">
-            <span class="portal__n">01</span>
-            <h3>Ableton</h3>
-            <p>Live and Max for Live, from a first session to a project that still opens
-               in two years. Device chains, controller mapping, and the parts of Max
-               that repay the learning curve.</p>
-            <span class="portal__go">Open hub
-              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </a>
-        </li>
-        <li class="portal" data-reveal>
-          <a href="/recording/">
-            <span class="portal__n">02</span>
-            <h3>Recording</h3>
-            <p>Microphones, rooms, and acoustic instruments — including the string parts
-               most production writing skips. Placement, gain staging, and what a
-               domestic room will and will not give you.</p>
-            <span class="portal__go">Open hub
-              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </a>
-        </li>
-        <li class="portal" data-reveal>
-          <a href="/sound-design/">
-            <span class="portal__n">03</span>
-            <h3>Sound Design</h3>
-            <p>Sampling, synthesis, and building instruments that play the way you
-               expect them to. Every technique documented together with the audio
-               it actually produced.</p>
-            <span class="portal__go">Open hub
-              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </a>
-        </li>
+        <li class="portal" data-reveal><a href="/ableton/"><span class="portal__n">01</span><h3>Ableton</h3><p>File management, Sampler and controller systems grounded in official behavior — with test limits stated where hardware experience is missing.</p><span class="portal__go">Open hub →</span></a></li>
+        <li class="portal" data-reveal><a href="/recording/"><span class="portal__n">02</span><h3>Recording</h3><p>Repeatable room and microphone decisions for acoustic instruments, beginning with viola and domestic spaces.</p><span class="portal__go">Open hub →</span></a></li>
+        <li class="portal" data-reveal><a href="/sound-design/"><span class="portal__n">03</span><h3>Sound Design</h3><p>Sampling workflows that keep source recordings, edits and mappings understandable instead of hiding them behind a preset.</p><span class="portal__go">Open hub →</span></a></li>
+        <li class="portal" data-reveal><a href="/music-for-media/"><span class="portal__n">04</span><h3>Music for Media</h3><p>Briefing, rights and live-performance planning for films, ceremonies and projects governed by a larger timeline.</p><span class="portal__go">Open hub →</span></a></li>
       </ul>
     </div>
   </section>
 
-  <!-- 3 ─────────────────────────────────────────────────── start here -->
-  <section class="band" data-od-id="start-here" aria-labelledby="start-title">
+  <!-- 3 · start here -->
+  <section class="band" aria-labelledby="start-title">
     <div class="shell">
-      <div class="section-head">
-        <h2 id="start-title">Start here</h2>
-        <p>Six guides that everything else on the site assumes you have read.</p>
-      </div>
-
+      <div class="section-head"><h2 id="start-title">Start with the work in front of you</h2><p>Six published guides. Each one names its method, sources and limits.</p></div>
       <div class="start">
         <article class="start__lead" data-reveal>
-          <a href="/publishing-roadmap/">
-            <div class="ph">
-              <span class="ph__label"><strong>Photograph</strong> — project folder and drive layout<br>to be shot at 2400 × 1500</span>
-            </div>
-            <h3>DAW Project Guidelines for Reliable Music Production</h3>
-            <p>A project that reopens cleanly in two years is worth more than one that
-               sounds good today. Naming, sample collection, freezing, and the exact
-               folder structure behind every guide on this site.</p>
-            <p class="meta"><span>Music Production</span><span>14 min</span><span>Ableton Live 12</span></p>
+          <a href="/music-production/ableton-project-handoff/">
+            <div class="ph" aria-hidden="true"><span class="ph__label"><strong>Project map</strong><br>Set · collected media · dependency note · reference mix · stems</span></div>
+            <h3>An Ableton project handoff another computer can actually open</h3>
+            <p>Collect media, expose plug-in dependencies, print safety stems and make the next decision obvious.</p>
+            <p class="meta"><span>Music Production</span><span>8 min</span><span>Source-based guide</span></p>
           </a>
         </article>
-
         <ol class="numbered" data-reveal-group>
-          <li data-reveal><a href="/publishing-roadmap/">
-            <span class="numbered__n">01</span><h4>What Is Max for Live? A Practical Starting Guide</h4>
-            <p class="meta"><span>Ableton</span><span>11 min</span></p>
-          </a></li>
-          <li data-reveal><a href="/recording/acoustic-instruments/recording-viola-at-home/">
-            <span class="numbered__n">02</span><h4>How to Record Viola at Home</h4>
-            <p class="meta"><span>Recording</span><span>16 min</span></p>
-          </a></li>
-          <li data-reveal><a href="/publishing-roadmap/">
-            <span class="numbered__n">03</span><h4>Live Strings vs Sample Libraries: When Each Works</h4>
-            <p class="meta"><span>Recording</span><span>12 min</span></p>
-          </a></li>
-          <li data-reveal><a href="/publishing-roadmap/">
-            <span class="numbered__n">04</span><h4>Production Music Licensing: A Practical Introduction</h4>
-            <p class="meta"><span>Music for Media</span><span>18 min</span></p>
-          </a></li>
-          <li data-reveal><a href="/ableton/midi-fighter-twister-review/">
-            <span class="numbered__n">05</span><h4>MIDI Fighter Twister Review and Ableton Workflow</h4>
-            <p class="meta"><span>Ableton</span><span>13 min</span></p>
-          </a></li>
+          <li data-reveal><a href="/recording/acoustic-instruments/viola-microphone-placement/"><span class="numbered__n">01</span><h4>Viola microphone placement: three useful starting positions</h4><p class="meta"><span>Recording</span><span>9 min</span></p></a></li>
+          <li data-reveal><a href="/sound-design/when-to-record-strings-instead-of-using-a-library/"><span class="numbered__n">02</span><h4>When to record a string part instead of using a library</h4><p class="meta"><span>Sound Design</span><span>8 min</span></p></a></li>
+          <li data-reveal><a href="/music-for-media/music-clearance-for-small-film-projects/"><span class="numbered__n">03</span><h4>Music clearance for a small film before edit lock</h4><p class="meta"><span>Music for Media</span><span>8 min</span></p></a></li>
+          <li data-reveal><a href="/music-for-media/planning-live-viola-for-a-wedding-ceremony/"><span class="numbered__n">04</span><h4>Planning live viola for a wedding ceremony</h4><p class="meta"><span>Events</span><span>7 min</span></p></a></li>
+          <li data-reveal><a href="/ableton/midi-fighter-twister-review/"><span class="numbered__n">05</span><h4>Design a controller mapping before the knobs</h4><p class="meta"><span>Ableton</span><span>8 min</span></p></a></li>
         </ol>
       </div>
     </div>
   </section>
 
-  <!-- 4 ─────────────────────────────────────────────── featured lab -->
-  <section class="band band--wide band-dark lab" data-od-id="featured-lab" aria-labelledby="lab-title">
+  <!-- 4 · featured method -->
+  <section class="band band--wide band-dark lab" aria-labelledby="lab-title">
     <div class="shell lab__inner">
-      <figure class="lab__art" data-reveal>
-        <img src="/assets/hero-portrait.png" width="928" height="1152" loading="lazy" decoding="async"
-             alt="A machined aluminium block on black glass with a single steel string stretched above it, lit by one narrow beam.">
-      </figure>
-      <div data-reveal data-reveal-delay="120">
-        <p class="kicker">Lab — tested build</p>
-        <h2 id="lab-title" style="margin-top:0.875rem">How to Build a Sampled Instrument in Ableton Live</h2>
-        <p>We recorded a viola across three dynamic layers, trimmed and looped the
-           sustains, then mapped the result into Sampler. This is the whole chain,
-           including the two points where round-robin stopped behaving and what
-           fixed it.</p>
-        <p class="meta">
-          <span>Ableton Live 12</span><span>Sampler</span><span>Three velocity layers</span><span>Round-robin</span>
-        </p>
-        <a class="link" href="/sound-design/sampled-instruments/building-a-sampled-instrument/">Read the build
-          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
+      <figure class="lab__art" data-reveal><img src="/assets/hero-portrait.png" width="928" height="1152" loading="lazy" decoding="async" alt="Abstract editorial image of a metal block and a tensioned string."><figcaption class="kicker" style="padding:1rem">Editorial illustration — not a test photograph</figcaption></figure>
+      <div data-reveal data-reveal-delay="120"><p class="kicker">Method guide</p><h2 id="lab-title" style="margin-top:.875rem">Build a small sampled instrument without losing the source</h2><p>Define the range, keep source and edits separate, map one dimension at a time and package the Project so the samples travel with it. No invented instrument or audio demo is presented.</p><p class="meta"><span>Ableton Live 12 documentation</span><span>Sampler</span><span>10 min</span></p><a class="link" href="/sound-design/sampled-instruments/building-a-sampled-instrument/">Read the workflow →</a></div>
     </div>
   </section>
 
-  <!-- 5 ─────────────────────────────────────────────────────── tools -->
-  <section class="band tools-band" data-od-id="tools" aria-labelledby="tools-title">
+  <!-- 5 · tools -->
+  <section class="band tools-band" aria-labelledby="tools-title">
     <div class="shell">
-      <div class="section-head">
-        <h2 id="tools-title">Tools</h2>
-        <p>Small calculators that answer a question faster than a search does. No sign-up, no export, nothing stored.</p>
-      </div>
-
+      <div class="section-head"><h2 id="tools-title">Small tools, local answers</h2><p>No account, tracking or server round-trip. These calculators run in the browser.</p></div>
       <ul class="tools-list" data-reveal-group>
-        <li class="tool-row" data-reveal><a href="/resources/tools/delay-and-reverb/">
-          <h3>Delay &amp; Reverb Time</h3>
-          <p>Every note division in milliseconds and hertz for a given tempo, straight,
-             dotted and triplet — plus a pre-delay and decay starting point.</p>
-          <span class="tool-row__io">BPM → ms · Hz</span>
-        </a></li>
-        <li class="tool-row" data-reveal><a href="/resources/tools/note-frequency/">
-          <h3>Note &amp; Frequency</h3>
-          <p>Note names, MIDI numbers and frequencies across the full range, with an
-             adjustable concert pitch and the cents deviation to any frequency you enter.</p>
-          <span class="tool-row__io">Note ⇄ Hz ⇄ MIDI</span>
-        </a></li>
-        <li class="tool-row" data-reveal><a href="/resources/tools/sample-pitch/">
-          <h3>Sample Pitch &amp; Rate</h3>
-          <p>What transposing a sample does to its playback rate, its length and its
-             tempo — the arithmetic behind every repitched loop.</p>
-          <span class="tool-row__io">Semitones → rate · length</span>
-        </a></li>
+        <li class="tool-row" data-reveal><a href="/resources/tools/delay-and-reverb/"><h3>Delay &amp; Reverb Time</h3><p>Convert tempo and note divisions into milliseconds and hertz.</p><span class="tool-row__io">BPM → ms · Hz</span></a></li>
+        <li class="tool-row" data-reveal><a href="/resources/tools/note-frequency/"><h3>Note &amp; Frequency</h3><p>Move between note names, MIDI numbers, frequencies and cents.</p><span class="tool-row__io">Note ⇄ Hz ⇄ MIDI</span></a></li>
+        <li class="tool-row" data-reveal><a href="/resources/tools/sample-pitch/"><h3>Sample Pitch &amp; Rate</h3><p>See how transposition changes playback rate, duration and loop tempo.</p><span class="tool-row__io">Semitones → rate · length</span></a></li>
       </ul>
-
-      <p style="margin-top:2rem">
-        <a class="link" href="/resources/tools/">All tools
-          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </p>
+      <p style="margin-top:2rem"><a class="link" href="/resources/tools/">All tools →</a></p>
     </div>
   </section>
 
-  <!-- 6 ─────────────────────────────────────────── legacy resources -->
-  <section class="band" data-od-id="legacy" aria-labelledby="legacy-title">
+  <!-- 6 · archive -->
+  <section class="band" aria-labelledby="legacy-title">
     <div class="shell">
-      <div class="section-head">
-        <h2 id="legacy-title">The archive</h2>
-        <p>Resources published on this domain before the relaunch, documented as
-           history rather than reissued as current work.</p>
-      </div>
-
-      <article class="record" data-reveal>
-        <div class="record__grid">
-          <div>
-            <span class="flag">Historical resource</span>
-            <h3>The Spy Guitar</h3>
-          </div>
-          <div>
-            <p>An Ableton sampler instrument published on this domain between 2013 and
-               2017 by the former operator. External archives still link to it, which is
-               why the address stays alive — this page explains what the instrument was,
-               what remains verifiable, and how the same result is built today.</p>
-            <dl class="record__facts">
-              <div class="fact"><dt>Archived</dt><dd>2013 – 2017</dd></div>
-              <div class="fact"><dt>Rights</dt><dd>Unverified — original files not redistributed</dd></div>
-              <div class="fact"><dt>Download</dt><dd><span class="status" data-state="unavailable">Unavailable</span></dd></div>
-            </dl>
-            <a class="link" href="/legacy/the-spy-guitar/">History, compatibility and a modern rebuild
-              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="record" data-reveal>
-        <div class="record__grid">
-          <div>
-            <span class="flag">Historical resource</span>
-            <h3>Bang My Twister</h3>
-          </div>
-          <div>
-            <p>A Max for Live device for switching banks on the DJ TechTools MIDI Fighter
-               Twister. The original mapping is still published and maintained by DJ
-               TechTools, so this page points there rather than rehosting it, and
-               documents how the same workflow is set up in current Live.</p>
-            <dl class="record__facts">
-              <div class="fact"><dt>Archived</dt><dd>2014</dd></div>
-              <div class="fact"><dt>Rights</dt><dd>Mapping remains with DJ TechTools</dd></div>
-              <div class="fact"><dt>Download</dt><dd><span class="status" data-state="external">External source</span></dd></div>
-            </dl>
-            <a class="link" href="/legacy/bang-my-twister/">Historic device and current setup
-              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <p style="margin-top:2rem">
-        <a class="link" href="/download/">All legacy downloads and their current status
-          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </p>
+      <div class="section-head"><h2 id="legacy-title">The archive is context, not borrowed identity</h2><p>Old addresses stay useful where the historic intent can be verified. Former files and authorship are not claimed by the new publisher.</p></div>
+      <article class="record" data-reveal><div class="record__grid"><div><span class="flag">Historical resource</span><h3>The Spy Guitar</h3></div><div><p>A documented former Ableton sampler instrument. The current page explains what can be verified and why no unlicensed file is redistributed.</p><dl class="record__facts"><div class="fact"><dt>Rights</dt><dd>Not transferred with the domain</dd></div><div class="fact"><dt>Status</dt><dd><span class="status" data-state="unavailable">Documentation only</span></dd></div></dl><a class="link" href="/legacy/the-spy-guitar/">Read the archive record →</a></div></div></article>
+      <article class="record" data-reveal><div class="record__grid"><div><span class="flag">Historical resource</span><h3>Bang My Twister</h3></div><div><p>A former Max for Live/Twister project documented without claiming the previous operator’s work. External records are linked at their source.</p><dl class="record__facts"><div class="fact"><dt>Rights</dt><dd>Remain with their respective owners</dd></div><div class="fact"><dt>Status</dt><dd><span class="status" data-state="external">External records</span></dd></div></dl><a class="link" href="/legacy/bang-my-twister/">Read the archive record →</a></div></div></article>
     </div>
   </section>
 
-  <!-- 7 ────────────────────────────── acoustic + music for media -->
-  <section class="band band--wide story" data-od-id="acoustic-story" aria-labelledby="story-title">
+  <!-- 7 · strings and applications -->
+  <section class="band band--wide story" aria-labelledby="story-title">
     <div class="shell">
-      <figure class="story__media" data-reveal>
-        <img src="/assets/story-viola-back.png" width="1376" height="774" loading="lazy" decoding="async"
-             alt="A viola leaning back-outward against a plaster wall in a bare wooden room, a condenser microphone on a stand a short distance away.">
-      </figure>
-      <div class="story__body">
-        <h2 id="story-title">Where the string section meets the session file</h2>
-        <div>
-          <p>Most production writing stops at the plug-in. A viola in a small room behaves
-             nothing like a sample library, and the arrangement that carries a wedding film
-             is not the one that carries a trailer. This is the part of the publication
-             where recorded instruments, arrangement, and delivery for film and video are
-             treated as one subject rather than three.</p>
-          <div class="story__links">
-            <a class="link" href="/recording/">Recording
-              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a class="link" href="/music-for-media/">Music for Media
-              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
+      <figure class="story__media" data-reveal><img src="/assets/story-viola-back.png" width="1376" height="774" loading="lazy" decoding="async" alt="Editorial illustration of a viola and microphone in a quiet room."><figcaption class="kicker" style="margin-top:.75rem">Editorial illustration — not a documented session</figcaption></figure>
+      <div class="story__body"><h2 id="story-title">One instrument, three different jobs</h2><div><p>A viola can be a live ceremonial voice, an exposed recording or source material for a playable instrument. The useful workflow changes with the job — and so do timing, microphone, rights and delivery decisions.</p><div class="story__links"><a class="link" href="/recording/">Recording →</a><a class="link" href="/music-for-media/">Music for Media →</a><a class="link" href="/sound-design/">Sound Design →</a></div></div></div>
     </div>
   </section>
 
-  <!-- 8 ──────────────────────────────────────────── latest articles -->
-  <section class="band band-surface" data-od-id="latest" aria-labelledby="latest-title">
+  <!-- 8 · latest -->
+  <section class="band band-surface" aria-labelledby="latest-title">
     <div class="shell">
-      <div class="section-head">
-        <h2 id="latest-title">Latest</h2>
-        <p><a class="link" href="/resources/">Full index
-          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a></p>
-      </div>
-
+      <div class="section-head"><h2 id="latest-title">Published for the relaunch</h2><p><a class="link" href="/journal/">Open the journal →</a></p></div>
       <ul class="index" data-reveal-group>
-        <li data-reveal><a href="/sound-design/sampled-instruments/building-a-sampled-instrument/">
-          <time class="index__date" datetime="2026-08-04">04 Aug 2026</time>
-          <div>
-            <h3>How to Build a Sampled Instrument in Ableton Live</h3>
-            <p>Recording, trimming, looping and mapping a viola into Sampler — with the round-robin problems left in.</p>
-          </div>
-          <div class="index__tail"><span class="index__topic">Sound Design · 22 min</span></div>
-        </a></li>
-        <li data-reveal><a href="/publishing-roadmap/">
-          <time class="index__date" datetime="2026-07-28">28 Jul 2026</time>
-          <div>
-            <h3>Live Strings vs Sample Libraries: When Each Works</h3>
-            <p>Four passages, played and programmed, with the audio to compare and the cost of each route.</p>
-          </div>
-          <div class="index__tail"><span class="index__topic">Recording · 12 min</span></div>
-        </a></li>
-        <li data-reveal><a href="/publishing-roadmap/">
-          <time class="index__date" datetime="2026-07-19">19 Jul 2026</time>
-          <div>
-            <h3>Production Music Licensing: A Practical Introduction</h3>
-            <p>What the terms mean, who holds which right, and the questions to settle before a track is delivered.</p>
-          </div>
-          <div class="index__tail"><span class="index__topic">Music for Media · 18 min</span></div>
-        </a></li>
-        <li data-reveal><a href="/recording/acoustic-instruments/recording-viola-at-home/">
-          <time class="index__date" datetime="2026-07-11">11 Jul 2026</time>
-          <div>
-            <h3>How to Record Viola at Home</h3>
-            <p>Placement, room treatment you can actually do in a flat, and the three positions worth trying first.</p>
-          </div>
-          <div class="index__tail"><span class="index__topic">Recording · 16 min</span></div>
-        </a></li>
-        <li data-reveal><a href="/ableton/midi-fighter-twister-review/">
-          <time class="index__date" datetime="2026-07-02">02 Jul 2026</time>
-          <div>
-            <h3>MIDI Fighter Twister Review and Ableton Workflow</h3>
-            <p>A decade-old controller tested against current Live, including where the mapping still breaks.</p>
-          </div>
-          <div class="index__tail"><span class="index__topic">Ableton · 13 min</span></div>
-        </a></li>
-        <li data-reveal><a href="/publishing-roadmap/">
-          <time class="index__date" datetime="2026-06-24">24 Jun 2026</time>
-          <div>
-            <h3>DAW Project Guidelines for Reliable Music Production</h3>
-            <p>The folder structure, naming and collect-all discipline behind every project file on this site.</p>
-          </div>
-          <div class="index__tail"><span class="index__topic">Music Production · 14 min</span></div>
-        </a></li>
+        <li data-reveal><a href="/music-production/ableton-project-handoff/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>An Ableton project handoff another computer can open</h3><p>A delivery checklist for media, dependencies, stems and the next decision.</p></div><div class="index__tail"><span class="index__topic">Production · 8 min</span></div></a></li>
+        <li data-reveal><a href="/recording/acoustic-instruments/viola-microphone-placement/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>Viola microphone placement: three useful starting positions</h3><p>Compare distance and angle before trying to repair the room with EQ.</p></div><div class="index__tail"><span class="index__topic">Recording · 9 min</span></div></a></li>
+        <li data-reveal><a href="/music-for-media/planning-live-viola-for-a-wedding-ceremony/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>Planning live viola for a wedding ceremony</h3><p>Musical moments, timing ranges, cue ownership and practical conditions.</p></div><div class="index__tail"><span class="index__topic">Events · 7 min</span></div></a></li>
+        <li data-reveal><a href="/sound-design/when-to-record-strings-instead-of-using-a-library/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>When to record strings instead of using a library</h3><p>Choose live, sampled or hybrid by musical function.</p></div><div class="index__tail"><span class="index__topic">Sound Design · 8 min</span></div></a></li>
       </ul>
     </div>
   </section>
 
-  <!-- 9 ───────────────────────────────────────────── relaunch notice -->
-  <section data-od-id="relaunch-notice">
-    <div class="shell relaunch">
-      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
-         references are preserved for context.</p>
-      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
-        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </section>
+  <!-- 9 · relaunch -->
+  <section><div class="shell relaunch"><p>Auspicious Music is being prepared as a new, independent publication. The domain’s former operator is not affiliated with this relaunch.</p><a class="link" href="/about/history-and-relaunch/">How the archive and relaunch are handled →</a></div></section>
 
 </main>
 </BaseLayout>

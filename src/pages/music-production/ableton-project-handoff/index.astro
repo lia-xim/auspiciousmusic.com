@@ -1,0 +1,70 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const sources = [
+  { label: 'Ableton: Collect All and Save', href: 'https://help.ableton.com/hc/en-us/articles/209775645-Collect-All-and-Save', note: 'what Live copies into a Project and what it cannot copy' },
+  { label: 'Ableton Live 12 Manual: Managing Files and Sets', href: 'https://www.ableton.com/en/manual/managing-files-and-sets/', note: 'project folders, missing media and file management' },
+];
+const related = [
+  { title: 'Build a sampled instrument without losing the source recordings', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'A small-instrument workflow that keeps recordings, edits and mappings separate.' },
+  { title: 'MIDI controller mapping as a system, not a screenshot', href: '/ableton/midi-fighter-twister-review/', description: 'How to design and document a controller layout before calling it a workflow.' },
+];
+---
+
+<ArticleLayout
+  title="An Ableton project handoff that another computer can actually open"
+  description="A compact delivery checklist for Live projects: collect media, expose plug-in dependencies, print safety stems and make the next decision obvious."
+  canonicalPath="/music-production/ableton-project-handoff/"
+  section="Music Production"
+  sectionPath="/music-production/"
+  readingTime="8 min read"
+  method="This guide translates Ableton’s official file-management documentation into a handoff procedure. It does not claim that every third-party plug-in or operating-system combination was tested."
+  sources={sources}
+  related={related}
+>
+  <p>A Live Set that opens on your own computer is not yet a deliverable. It may refer to samples on a desktop folder, a plug-in the recipient does not own, a Max for Live device stored outside the Project, or an unnamed track whose purpose exists only in your memory.</p>
+  <p>A handoff has one job: remove avoidable questions without flattening the project into an unusable pile of audio. The safest package contains both the editable Set and enough rendered material to survive missing dependencies.</p>
+
+  <h2>Start with a dedicated Project folder</h2>
+  <p>Save the Set into its own Ableton Project before collecting anything. A folder containing several unrelated projects creates ambiguous media ownership and makes later cleanup risky. Use a plain name with a version marker that describes a decision, not your mood: <code>film-title_score-v07_picture-lock</code> is more useful than <code>final-final-new</code>.</p>
+  <p>Inside the Project, keep a small delivery note. Plain text is enough. State the Live version, operating system, sample rate, frame rate if picture is involved, and what you expect the recipient to do next.</p>
+
+  <h2>Collect media, then verify the collection</h2>
+  <p>Ableton’s “Collect All and Save” copies referenced audio and video into the Project and can collect files from Packs. It does not install third-party plug-ins on another machine. Run it only after the Set lives in a dedicated Project folder.</p>
+  <ol>
+    <li>Save a new handoff version of the Set.</li>
+    <li>Run <strong>File → Collect All and Save</strong>.</li>
+    <li>Include external and Pack media needed by the recipient.</li>
+    <li>Open Live’s file manager and check for missing files.</li>
+    <li>Close the Set, temporarily move the original external source folder, and reopen the collected copy. If media goes missing, the package is not self-contained.</li>
+  </ol>
+
+  <h2>Make dependencies visible</h2>
+  <p>Create a short dependency table in the delivery note. List third-party instruments and effects, their versions if known, and whether they are essential or replaceable. Do not make the recipient discover a critical plug-in from a warning dialog.</p>
+  <table>
+    <thead><tr><th>Dependency</th><th>Role</th><th>Fallback</th></tr></thead>
+    <tbody>
+      <tr><td>Instrument plug-in</td><td>Generates the musical part</td><td>Freeze/flatten duplicate or printed stem</td></tr>
+      <tr><td>Mix effect</td><td>Creative or corrective processing</td><td>Wet and dry prints if the effect defines the sound</td></tr>
+      <tr><td>Max for Live device</td><td>Modulation, control or generation</td><td>Record the result and note the device</td></tr>
+      <tr><td>External hardware</td><td>Sound source or insert</td><td>Print the return and document latency/routing</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Print three levels of safety</h2>
+  <p>You do not need to flatten everything. Print what would otherwise block progress.</p>
+  <ul>
+    <li><strong>Reference mix:</strong> one stereo file from a common start point.</li>
+    <li><strong>Stems:</strong> musical groups or deliverable groups, aligned to the same start.</li>
+    <li><strong>Critical dry parts:</strong> unprocessed recordings that cannot be recreated easily.</li>
+  </ul>
+  <p>Name files with project, role and version. Put the sample rate and bit depth in the delivery note rather than making filenames unreadable. If picture is involved, include the exact timecode or count-in relationship.</p>
+
+  <h2>Prepare the Set for a person who was not in the room</h2>
+  <p>Delete only obvious debris. Keep alternatives that represent unresolved decisions, but group and label them. Place locators at structural points. Rename tracks by sound and function: “viola long close” communicates more than “Audio 37”.</p>
+  <p>Color is helpful, but it cannot carry meaning alone. Someone working with different theme settings or reduced color perception still needs readable names and groups.</p>
+
+  <h2>The two-minute acceptance test</h2>
+  <p>Before sending, unzip the exact archive you plan to deliver into a new folder and open that copy. Confirm that the reference mix, start point and first unresolved decision are easy to find. If you need to explain the folder live over a call, the package is not finished.</p>
+  <blockquote>A good handoff is not the largest possible archive. It is the smallest package that preserves the next person’s ability to make the intended decisions.</blockquote>
+</ArticleLayout>

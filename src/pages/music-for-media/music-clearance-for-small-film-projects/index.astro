@@ -1,0 +1,68 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const sources = [
+  { label: 'Creative Commons: About CC Licenses', href: 'https://creativecommons.org/share-your-work/cclicenses/', note: 'official explanation of attribution, noncommercial, no-derivatives and share-alike conditions' },
+  { label: 'Creative Commons: Reusing CC-licensed content', href: 'https://creativecommons.org/reusing-cc-licensed-content/', note: 'practical attribution guidance' },
+  { label: 'U.S. Copyright Office: Copyright and the Music Marketplace', href: 'https://www.copyright.gov/policy/musiclicensingstudy/copyright-and-the-music-marketplace.pdf', note: 'background on composition, recording and synchronization rights; local law still varies' },
+];
+const related = [
+  { title: 'An Ableton project handoff another computer can open', href: '/music-production/ableton-project-handoff/', description: 'Keep source media, dependencies and delivery notes together.' },
+  { title: 'Planning live viola for a wedding ceremony', href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', description: 'A practical brief for live music, timings and cues.' },
+];
+---
+
+<ArticleLayout
+  title="Music clearance for a small film: the questions to answer before edit lock"
+  description="A production checklist for identifying the composition, recording, territory, term and media before a temporary track becomes an expensive problem."
+  canonicalPath="/music-for-media/music-clearance-for-small-film-projects/"
+  section="Music for Media & Events"
+  sectionPath="/music-for-media/"
+  readingTime="8 min read"
+  method="This is a production-organizing guide, not legal advice. Licensing rules vary by country, platform and agreement. Verify rights with the relevant rightsholders or qualified counsel before release."
+  sources={sources}
+  related={related}
+>
+  <p>The cheapest time to solve a music-rights problem is before the editor builds the cut around a track. Once timing, emotion and client approval depend on that recording, replacing it becomes a creative and commercial negotiation at the same time.</p>
+  <p>A clearance sheet does not grant rights. It reveals what you still need to prove.</p>
+
+  <h2>Identify both layers of a released song</h2>
+  <p>A commercially released track commonly involves at least the underlying musical work and the specific sound recording. Owning a download or paying for a streaming subscription does not grant permission to synchronize that music to a film. A cover version may remove the need to license the original master, but it does not make the underlying composition free to use.</p>
+  <p>Record the exact title, writer/composer, performer, label, publisher and source of the file. If any field is unknown, mark it unknown. Do not replace missing ownership information with a guess.</p>
+
+  <h2>Describe the intended use precisely</h2>
+  <table>
+    <thead><tr><th>Question</th><th>Why it changes the request</th></tr></thead>
+    <tbody>
+      <tr><td>Which media?</td><td>Festival screening, social ads, broadcast, cinema and an internal presentation are different uses.</td></tr>
+      <tr><td>Which territory?</td><td>A local event and worldwide online availability do not create the same exposure.</td></tr>
+      <tr><td>For how long?</td><td>A three-month campaign differs from perpetual use.</td></tr>
+      <tr><td>What edit?</td><td>Duration, lyrics, prominence, title use and association can matter.</td></tr>
+      <tr><td>Paid media?</td><td>Organic publication and advertising may be licensed differently.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>“Royalty-free” is not “rights-free”</h2>
+  <p>Production libraries usually grant a defined license under their own terms. Save the invoice, license text, track ID and a copy of the terms that applied on the purchase date. A marketplace can change its website later; your production file should still show what you relied on.</p>
+  <p>Check client work, broadcast, paid advertising, podcast, app and template restrictions separately. If a plan is described as “personal” or “creator”, do not assume it covers work made for another company.</p>
+
+  <h2>Creative Commons still has conditions</h2>
+  <p>Creative Commons offers several licenses, not one universal permission. All main CC licenses require attribution. “NC” limits use to noncommercial contexts, “ND” restricts adaptations, and “SA” requires adaptations to be shared under the same terms. Whether a particular edit counts as an adaptation can be legally significant.</p>
+  <p>Capture the work title, creator, source URL, exact license version and attribution requested. Link to the license. If the project cannot satisfy those conditions, choose different music or seek separate permission.</p>
+
+  <h2>Keep the evidence with the film</h2>
+  <ul>
+    <li>clearance request and response</li>
+    <li>signed agreement or license certificate</li>
+    <li>invoice and payment record</li>
+    <li>cue sheet with time in/out and use description</li>
+    <li>credit wording</li>
+    <li>territory, term and media limitations</li>
+    <li>renewal or expiry reminder</li>
+  </ul>
+  <p>Name the folder by production and keep it with the locked master, not in one producer’s inbox. If a platform questions the use two years later, the evidence must survive staff changes.</p>
+
+  <h2>Give temporary tracks an expiry date</h2>
+  <p>Mark every unlicensed edit track with a visible status in the project and review. Do not export a client master from a sequence containing “TEMP” audio without an explicit check. A simple delivery gate — every cue has a source and permission record — prevents the most avoidable mistakes.</p>
+  <blockquote>If nobody on the project can point to the permission and describe its limits, treat the music as uncleared.</blockquote>
+</ArticleLayout>

@@ -1,273 +1,39 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import InfoLayout from '../../layouts/InfoLayout.astro';
 ---
+<InfoLayout title="Datenschutzerklärung" description="Informationen zur Verarbeitung personenbezogener Daten beim Besuch von Auspicious Music." canonicalPath="/privacy/" lang="de" kicker="Datenschutz" lede="Die Website ist derzeit eine statische Lesepublikation ohne Nutzerkonten, Analyse-Tracking oder Kontaktformular.">
+  <h2 style="margin-top:0">1. Verantwortlicher</h2>
+  <address>Matthias Ramahi<br>Kempener Straße 44<br>40699 Erkrath<br>Deutschland</address>
+  <p>E-Mail: <a href="mailto:info@matthiasramahi.de">info@matthiasramahi.de</a><br>Telefon: <a href="tel:+4917642449858">+49 176 42 44 98 58</a></p>
 
-<BaseLayout
-  title={"Datenschutzerklärung — Auspicious Music"}
-  description={"Informationen zur Verarbeitung personenbezogener Daten nach Art. 13 DSGVO."}
-  canonicalPath={"/privacy/"}
-  lang={"de"}
-  noindex={false}
-  loadStringField={false}
->
-<Fragment slot="head">
-<style is:global>
-@layer components {
-  .pg-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem); }
-  .pg-head h1 { max-width: 20ch; margin-top: 1.25rem; }
-  .pg-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+  <h2>2. Hosting und Server-Protokolle</h2>
+  <p>Die Website wird über Vercel bereitgestellt. Beim Abruf verarbeitet die Hosting-Infrastruktur technisch erforderliche Verbindungsdaten. Dazu können insbesondere IP-Adresse, Datum und Uhrzeit, angeforderte URL, HTTP-Status, übertragene Datenmenge, Referrer sowie Browser- und Betriebssystemangaben gehören.</p>
+  <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt in der sicheren, stabilen und fehlerfreien Bereitstellung der Website sowie in der Abwehr missbräuchlicher Zugriffe.</p>
+  <dl class="facts">
+    <div><dt>Dienstleister</dt><dd>Vercel Inc., USA</dd></div>
+    <div><dt>Informationen</dt><dd><a href="https://vercel.com/legal/privacy-notice" rel="noopener">Vercel Privacy Notice</a></dd></div>
+    <div><dt>Auftragsverarbeitung</dt><dd><a href="https://vercel.com/legal/dpa" rel="noopener">Vercel Data Processing Addendum</a></dd></div>
+    <div><dt>Drittlandtransfer</dt><dd>Vercel beschreibt im DPA EU-Standardvertragsklauseln und weitere Schutzmechanismen für einschlägige Übermittlungen.</dd></div>
+  </dl>
+  <p>Eine konkrete, vom Betreiber selbst eingestellte Speicherfrist für Plattform-Protokolle wird hier nicht behauptet. Maßgeblich sind die eingesetzte Vercel-Konfiguration, der Vertrag und die jeweils aktuellen Anbieterinformationen. Sicherheitsrelevante Daten können länger verarbeitet werden, soweit dies zur Untersuchung eines Vorfalls oder zur Erfüllung gesetzlicher Pflichten erforderlich ist.</p>
 
-  .prose { max-width: var(--measure); }
-  .prose > * + * { margin-top: 1.375rem; }
-  .prose h2 { font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem); letter-spacing: -0.014em; margin-top: clamp(2.5rem, 4.5vw, 3.25rem); }
-  .prose h3 { font-size: 1.125rem; margin-top: 1.75rem; letter-spacing: -0.01em; }
-  .prose p, .prose li { color: var(--ink-soft); }
-  .prose a:not(.link):not(.btn) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-  .prose ul.bullets { display: grid; gap: 0.5rem; margin-top: 0.875rem; }
-  .prose ul.bullets li { padding-left: 1.25rem; position: relative; line-height: 1.6; }
-  .prose ul.bullets li::before {
-    content: ""; position: absolute; left: 0; top: 0.72em;
-    inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--line-strong);
-  }
+  <h2>3. Lokal bereitgestellte Schriften und Skripte</h2>
+  <p>Schriftdateien, Stylesheets und die für Navigation, Suche und Rechner notwendigen Skripte werden von dieser Website selbst ausgeliefert. Beim Seitenaufbau wird hierfür keine Verbindung zu Google Fonts oder einem vergleichbaren Schriftanbieter hergestellt.</p>
 
-  /* Operator fields that must be filled before launch. Marked rather than
-     invented — an impressum with made-up details is worse than none. */
-  .fields { display: grid; border-top: 1px solid var(--line); margin-top: 1.5rem; }
-  .fields > div {
-    display: grid; grid-template-columns: minmax(9rem, 14rem) minmax(0, 1fr);
-    gap: 0.5rem 1.5rem; padding-block: 0.8125rem;
-    border-bottom: 1px solid var(--line);
-    font-size: var(--t-ui-sm); line-height: 1.6;
-  }
-  .fields dt { color: var(--muted); font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); }
-  .fields dd { color: var(--ink); }
-  .req {
-    display: inline-block;
-    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
-    color: var(--ember); padding-left: 0.625rem; border-left: 2px solid var(--ember-bright);
-    line-height: 1.5;
-  }
-  @media (max-width: 620px) { .fields > div { grid-template-columns: 1fr; gap: 0.25rem; } }
+  <h2>4. Cookies, Local Storage und Reichweitenmessung</h2>
+  <p>Die aktuelle Website setzt keine Analyse-, Marketing- oder Personalisierungs-Cookies und verwendet keine Webanalyse. Es findet keine profilbildende Reichweitenmessung statt. Die Seitensuche lädt einen statischen Suchindex und wertet die Eingabe im Browser aus; der Suchbegriff wird nicht an einen Suchdienst übertragen.</p>
 
-  .callout { border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; }
-  .callout strong { display: block; margin-bottom: 0.375rem; }
-  .callout p { color: var(--ink); }
+  <h2>5. Kontakt per E-Mail oder Telefon</h2>
+  <p>Wenn Sie Kontakt aufnehmen, verarbeiten wir die übermittelten Kontakt- und Inhaltsdaten, um die Anfrage zu bearbeiten. Rechtsgrundlage ist je nach Inhalt Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. Die Daten werden gelöscht, wenn die Anfrage abgeschlossen ist und keine gesetzlichen Aufbewahrungspflichten oder berechtigten Nachweisinteressen entgegenstehen.</p>
 
-  /* English summary block under each German document */
-  .en-summary {
-    margin-top: clamp(3rem, 6vw, 4.5rem);
-    padding-top: 2rem;
-    border-top: 1px solid var(--line-strong);
-  }
-  .en-summary h2 { margin-top: 0; }
-  .en-summary p, .en-summary li { color: var(--muted); }
+  <h2>6. Externe Links</h2>
+  <p>Beim Anklicken eines externen Links verlassen Sie diese Website. Der jeweilige externe Anbieter verarbeitet den anschließenden Abruf eigenverantwortlich. Auspicious Music bindet derzeit keine externen Video-, Audio- oder Social-Media-Player automatisch ein.</p>
 
-  .listing li { border-top: 1px solid var(--line); }
-  .listing li:last-child { border-bottom: 1px solid var(--line); }
-  .listing a {
-    display: grid; gap: 0.25rem 2.5rem; padding-block: 1rem;
-    text-decoration: none; align-items: baseline;
-    transition: background-color var(--dur-fast) var(--ease);
-  }
-  .listing a:hover { background: var(--surface); }
-  .listing h3 { font-size: 1.0625rem; font-weight: 550; letter-spacing: -0.011em; }
-  .listing p { color: var(--muted); font-size: 0.9375rem; line-height: 1.5; max-width: 60ch; }
-  .listing__tail { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
-  @media (min-width: 900px) {
-    .listing a { grid-template-columns: minmax(0, 18rem) minmax(0, 1fr) minmax(0, 10rem); align-items: start; }
-    .listing__tail { text-align: right; }
-  }
+  <h2>7. Ihre Rechte</h2>
+  <p>Nach Maßgabe der gesetzlichen Voraussetzungen bestehen insbesondere Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Eine erteilte Einwilligung kann mit Wirkung für die Zukunft widerrufen werden.</p>
+  <p>Beschwerden können an eine Datenschutzaufsichtsbehörde gerichtet werden. Zuständig für den Sitz des Verantwortlichen ist insbesondere die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213 Düsseldorf, <a href="mailto:poststelle@ldi.nrw.de">poststelle@ldi.nrw.de</a>.</p>
 
-  .sitemap-group { margin-top: clamp(2rem, 4vw, 3rem); }
-  .sitemap-group > h2 {
-    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
-    letter-spacing: var(--tr-meta); color: var(--muted); margin: 0 0 0.5rem;
-  }
-
-  /* Contact form — real controls, clearly stated as not yet wired up */
-  .form { display: grid; gap: 1.25rem; max-width: 34rem; margin-top: 2rem; }
-  .form label { display: block; font-size: var(--t-ui-sm); font-weight: 550; margin-bottom: 0.4375rem; }
-  .form input, .form textarea, .form select {
-    inline-size: 100%; min-block-size: 48px; padding: 0.75rem 0.875rem;
-    border: 1px solid var(--line-strong); border-radius: var(--r-sm);
-    background: var(--surface); color: var(--ink); font-size: var(--t-ui);
-    transition: border-color var(--dur-fast) var(--ease);
-  }
-  .form textarea { min-block-size: 9rem; resize: vertical; line-height: 1.6; }
-  .form input:hover, .form textarea:hover, .form select:hover { border-color: var(--ink-soft); }
-  .form .hint { font-size: var(--t-meta); color: var(--muted); margin-top: 0.4375rem; line-height: 1.5; }
-}
-</style>
-</Fragment>
-
-<main id="content">
-
-  <section class="pg-head" data-od-id="page-head">
-    <div class="shell">
-      <nav class="crumbs" aria-label="Brotkrumennavigation">
-        <ol>
-          <li><a href="/">Startseite</a></li>
-          <li>Datenschutz</li>
-        </ol>
-      </nav>
-      <h1>Datenschutzerklärung</h1>
-      <p class="lede">Informationen über die Verarbeitung personenbezogener Daten beim Besuch dieser Website nach Art. 13 DSGVO sowie zum Endgerätezugriff nach § 25 TDDDG.</p>
-    </div>
-  </section>
-
-
-  <section class="band" data-od-id="datenschutz-body">
-    <div class="shell">
-      <div class="prose">
-
-        <h2 style="margin-top:0">Verantwortlicher</h2>
-        <p>
-          Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der
-          Datenschutz-Grundverordnung ist:
-        </p>
-        <dl class="fields">
-          <div><dt>Verantwortlicher</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-          <div><dt>Anschrift</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-          <div><dt>E-Mail</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-          <div><dt>Datenschutzbeauftragte/r</dt><dd>Nur zu benennen, sofern die Voraussetzungen des Art. 37 DSGVO / § 38 BDSG vorliegen</dd></div>
-        </dl>
-
-        <h2>Grundsatz</h2>
-        <p>
-          Diese Website ist als reine Lesepublikation angelegt. Es gibt keine
-          Benutzerkonten, keinen Warenkorb und keine Anmeldung. Personenbezogene
-          Daten werden nur verarbeitet, soweit dies für den Betrieb technisch
-          erforderlich ist oder Sie uns aktiv kontaktieren.
-        </p>
-
-        <h2>Aufruf der Website: Server-Logfiles</h2>
-        <p>
-          Beim Aufruf werden vom Hosting-Anbieter automatisch Informationen erfasst,
-          die Ihr Browser übermittelt. Dies sind in der Regel:
-        </p>
-        <ul class="bullets">
-          <li>IP-Adresse des anfragenden Endgeräts</li>
-          <li>Datum und Uhrzeit des Zugriffs</li>
-          <li>Name und URL der abgerufenen Datei</li>
-          <li>übertragene Datenmenge und Meldung über den Abruferfolg</li>
-          <li>verwendeter Browsertyp und dessen Version sowie Betriebssystem</li>
-          <li>Referrer-URL, sofern übermittelt</li>
-        </ul>
-        <p>
-          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse
-          liegt im technisch fehlerfreien Betrieb, in der Auslieferung der Inhalte und
-          in der Abwehr von Angriffen. Die Logfiles werden nach spätestens
-          <strong>sieben Tagen</strong> gelöscht oder gekürzt, sofern sie nicht zur
-          Aufklärung eines konkreten Sicherheitsvorfalls benötigt werden.
-        </p>
-
-        <h2>Hosting</h2>
-        <p>
-          Die Website wird bei einem Dienstleister gehostet, der die Daten in unserem
-          Auftrag verarbeitet. Mit diesem besteht ein Vertrag zur Auftragsverarbeitung
-          nach Art. 28 DSGVO.
-        </p>
-        <dl class="fields">
-          <div><dt>Hosting-Anbieter</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-          <div><dt>Serverstandort</dt><dd><span class="req">Pflichtangabe — vor Veröffentlichung eintragen</span></dd></div>
-        </dl>
-
-        <h2>Schriften (Webfonts)</h2>
-        <div class="callout">
-          <p>
-            <strong>Zu klären vor dem Livegang.</strong>
-            Die Schriftart wird im aktuellen Entwurf von einem externen Anbieter
-            geladen. Dabei wird Ihre IP-Adresse an dessen Server übermittelt, unter
-            Umständen in ein Drittland. Für den Produktivbetrieb ist vorgesehen, die
-            Schriftdateien lokal auszuliefern, sodass diese Übermittlung vollständig
-            entfällt und an dieser Stelle keine Einwilligung erforderlich wird.
-          </p>
-        </div>
-
-        <h2>Cookies und Zugriff auf Endgeräte</h2>
-        <p>
-          Diese Website setzt derzeit <strong>keine Cookies</strong> und speichert
-          keine Informationen auf Ihrem Endgerät, die nicht für die Darstellung der
-          Seite unbedingt erforderlich sind. Eine Einwilligung nach § 25 Abs. 1 TDDDG
-          ist daher nicht einzuholen. Sollten künftig nicht erforderliche Cookies oder
-          vergleichbare Techniken eingesetzt werden, geschieht dies erst nach Ihrer
-          ausdrücklichen Einwilligung über einen entsprechenden Hinweis.
-        </p>
-
-        <h2>Reichweitenmessung</h2>
-        <p>
-          Es findet derzeit keine Webanalyse und kein Tracking statt. Es werden keine
-          Profile gebildet und keine Daten an Werbenetzwerke übermittelt.
-        </p>
-
-        <h2>Kontaktaufnahme</h2>
-        <p>
-          Wenn Sie uns per E-Mail oder über ein Kontaktformular schreiben, verarbeiten
-          wir die von Ihnen mitgeteilten Daten zur Bearbeitung Ihres Anliegens.
-          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, bei vertragsbezogenen
-          Anfragen Art. 6 Abs. 1 lit. b DSGVO. Die Daten werden gelöscht, sobald das
-          Anliegen abschließend bearbeitet ist und keine gesetzlichen
-          Aufbewahrungspflichten entgegenstehen.
-        </p>
-
-        <h2>Empfänger und Drittlandübermittlung</h2>
-        <p>
-          Eine Weitergabe Ihrer Daten erfolgt nur an Auftragsverarbeiter, die für den
-          Betrieb der Website erforderlich sind, sowie an Stellen, gegenüber denen eine
-          gesetzliche Pflicht zur Herausgabe besteht. Eine Übermittlung in Drittländer
-          findet über die oben genannte Schriftenauslieferung hinaus nicht statt.
-        </p>
-
-        <h2>Ihre Rechte</h2>
-        <p>Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:</p>
-        <ul class="bullets">
-          <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
-          <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
-          <li>Recht auf Löschung (Art. 17 DSGVO)</li>
-          <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
-          <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
-          <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
-          <li>Recht auf Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
-        </ul>
-        <p>
-          Unabhängig davon steht Ihnen ein Beschwerderecht bei einer
-          Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO), insbesondere bei der
-          Behörde Ihres Aufenthaltsorts oder der für den Verantwortlichen zuständigen
-          Aufsichtsbehörde.
-        </p>
-
-        <h2>Änderungen dieser Erklärung</h2>
-        <p>
-          Wir passen diese Datenschutzerklärung an, sobald sich die
-          Datenverarbeitung auf dieser Website ändert. Es gilt jeweils die hier
-          abrufbare Fassung.
-        </p>
-        <p style="font-family:var(--font-mono);font-size:var(--t-meta);letter-spacing:var(--tr-meta);color:var(--muted)">
-          Stand dieser Fassung: Entwurf, noch nicht in Kraft
-        </p>
-
-        <div class="en-summary" lang="en">
-          <h2>Privacy notice (English summary)</h2>
-          <p>
-            This site is a read-only publication. There are no accounts, no shopping
-            basket and no login. It sets no cookies and runs no analytics or tracking
-            of any kind.
-          </p>
-          <p>
-            The only routine processing is the server log your browser generates on
-            request — IP address, timestamp, file requested, browser and referrer —
-            kept for at most seven days on the basis of legitimate interest
-            (Art. 6 (1)(f) GDPR) for secure and correct delivery. If you write to us,
-            we process what you send only to answer you. You have rights of access,
-            rectification, erasure, restriction, portability and objection, and may
-            complain to a supervisory authority. The German text above is the legally
-            binding version.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-</main>
-</BaseLayout>
+  <h2>8. Stand und Änderungen</h2>
+  <p>Stand: 11. August 2026. Die Erklärung wird angepasst, wenn zusätzliche Formulare, Analysewerkzeuge, eingebettete Medien oder andere Verarbeitungen hinzukommen.</p>
+  <div class="note"><p><strong>Pre-Launch-Prüfung</strong>Vor Aktivierung der Produktionsdomain sind Vercel-Projektkonfiguration, Log-Einstellungen und sämtliche eingebundenen Dienste nochmals mit dieser Erklärung abzugleichen. Diese Seite ist keine individuelle Rechtsberatung.</p></div>
+</InfoLayout>

@@ -1,0 +1,61 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const sources = [
+  { label: 'Ableton Live 12 Manual: Sampler and multisampling', href: 'https://www.ableton.com/en/live-manual/12/live-instrument-reference/#sampler', note: 'official description of multisampling across pitch and dynamics' },
+  { label: 'DPA Microphones: How to mic a violin', href: 'https://www.dpamicrophones.com/mic-university/how-to-mic/how-to-mic-a-violin/', note: 'why placement and distance change the captured string sound' },
+];
+const related = [
+  { title: 'Build a small sampled instrument in Ableton Live', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'A conservative workflow for recordings, edits, mappings and round robins.' },
+  { title: 'Viola microphone placement: three useful starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Compare distance and angle before reaching for corrective EQ.' },
+];
+---
+
+<ArticleLayout
+  title="When to record a string part instead of using a library"
+  description="Decide by musical function: which details need a performer, which need repeatable control, and where a hybrid part is the more honest answer."
+  canonicalPath="/sound-design/when-to-record-strings-instead-of-using-a-library/"
+  section="Sound Design"
+  sectionPath="/sound-design/"
+  readingTime="8 min read"
+  method="This is a decision framework grounded in how multisampling works and what live recording adds. It is not a comparison of named commercial libraries, and it makes no claim that one approach is universally more realistic."
+  sources={sources}
+  related={related}
+>
+  <p>A sample library is not a failed live performance, and a live recording is not automatically more expressive. They solve different control problems. Libraries give repeatability, editing speed and access to ensembles you may not be able to record. A performer gives continuous phrasing, responsive timing and the physical transitions that are expensive to reproduce with isolated samples.</p>
+  <p>Choose per part, not per project. A cue can use a library for the harmonic bed, one recorded viola for the exposed line and a designed texture made from the same session.</p>
+
+  <h2>Record the part when the transition is the music</h2>
+  <p>Libraries are strongest when a note or articulation can be selected cleanly. They become harder to steer when the important information lives between states: a swell whose peak follows picture, a portamento with a specific emotional weight, a phrase that must lean around spoken words, or a repeated figure whose bowing changes as tension grows.</p>
+  <p>If you keep drawing automation to imitate a performer’s continuous decision, the arrangement is asking for a performer. Record at least the exposed layer.</p>
+
+  <h2>Use a library when repeatability is the requirement</h2>
+  <p>A library is often the practical choice for revisions, dense orchestration, very wide ranges and arrangements that must remain editable until late. Multisampling captures multiple pitches and dynamics so that a single recording does not have to be stretched across the whole instrument. The trade-off is that the available transitions and articulations are fixed by what was recorded and how the instrument was programmed.</p>
+  <p>Choose the library route when the client is still changing structure, when tempo may move, or when the string part functions primarily as harmonic mass rather than a foreground voice.</p>
+
+  <h2>The hybrid is not a compromise</h2>
+  <p>One live line can provide the timing and surface variation that a larger sampled section lacks. A library can provide width and low support that one performer cannot. The two layers need different jobs.</p>
+  <ul>
+    <li>Write the live part around exposed entrances, phrase peaks and audible transitions.</li>
+    <li>Keep the sampled section simpler and darker so it supports instead of doubling every imperfection.</li>
+    <li>Do not quantize the live take into the same grid that made the library feel rigid.</li>
+    <li>Use shared room or reverb decisions after the balance works dry.</li>
+  </ul>
+
+  <h2>Budget the recording by uncertainty</h2>
+  <p>Recording becomes expensive when the musical question is unresolved. Before the session, prepare notation or a clear reference, define the tempo map, decide where picture is stable and mark the passages where you genuinely want interpretation. Leave space for two or three alternatives there instead of recording ten full versions of everything.</p>
+  <p>For remote sessions, send a count-in, a reference mix without the placeholder string, and one with it. State sample rate, bit depth, bar numbers and whether you need dry mono, stereo room or both.</p>
+
+  <h2>A five-question decision</h2>
+  <ol>
+    <li>Is the string part exposed enough that listeners will follow its phrasing?</li>
+    <li>Does the cue depend on transitions that the library does not contain?</li>
+    <li>Is the timing stable enough to record?</li>
+    <li>Can the room, player and microphone chain produce a cleaner result than the placeholder?</li>
+    <li>Would one live layer solve the problem without replacing the whole arrangement?</li>
+  </ol>
+  <p>Three “yes” answers do not create a rule, but they identify where a session is likely to buy musical information rather than merely a different timbre.</p>
+
+  <h2>Keep the live asset useful</h2>
+  <p>Archive the full takes, comped take, clean edits and tuning/processing version separately. Keep the performer credit and usage agreement with the Project. If you later turn fragments into a playable instrument, document the permitted use; a recording made for one film cue is not automatically a reusable commercial sample library.</p>
+</ArticleLayout>

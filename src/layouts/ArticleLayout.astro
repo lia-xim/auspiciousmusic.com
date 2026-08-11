@@ -1,0 +1,135 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  section: string;
+  sectionPath: string;
+  published?: string;
+  updated?: string;
+  readingTime: string;
+  method: string;
+  sources?: { label: string; href: string; note?: string }[];
+  related?: { title: string; href: string; description: string }[];
+  disclosure?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  section,
+  sectionPath,
+  published = '2026-08-11',
+  updated = published,
+  readingTime,
+  method,
+  sources = [],
+  related = [],
+  disclosure,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://www.auspiciousmusic.com/');
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: published,
+  dateModified: updated,
+  mainEntityOfPage: new URL(canonicalPath, site).href,
+  author: { '@type': 'Person', name: 'Matthias Ramahi', url: new URL('/authors/', site).href },
+  publisher: { '@type': 'Organization', name: 'Auspicious Music', url: site.href },
+  articleSection: section,
+};
+---
+
+<BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang="en">
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <style is:global>
+      @layer components {
+        .article-head { padding-block: clamp(2.25rem, 5vw, 4.5rem); border-bottom: 1px solid var(--line); }
+        .article-head__inner { max-width: 62rem; }
+        .article-head h1 { max-width: 19ch; margin-top: 1.25rem; }
+        .article-head .lede { max-width: 55ch; margin-top: 1.5rem; }
+        .article-meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 1.75rem; font: 500 var(--t-meta)/1.5 var(--font-mono); letter-spacing: var(--tr-meta); color: var(--muted); }
+        .article-meta > * + *::before { content: ""; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: currentColor; vertical-align: .25em; margin-right: 1rem; opacity: .55; }
+        .article-grid { display: grid; gap: 3rem 5rem; align-items: start; }
+        @media (min-width: 1040px) { .article-grid { grid-template-columns: minmax(0, 48rem) minmax(13rem, 18rem); } }
+        .article { max-width: var(--measure); }
+        .article > * + * { margin-top: 1.45rem; }
+        .article h2 { font-size: clamp(1.65rem, 1.2rem + 1.35vw, 2.35rem); margin-top: clamp(3rem, 6vw, 4.75rem); }
+        .article h3 { font-size: clamp(1.2rem, 1.1rem + .4vw, 1.5rem); margin-top: 2.25rem; }
+        .article p, .article li { color: var(--ink-soft); }
+        .article a { color: var(--accent); text-underline-offset: 3px; }
+        .article ul, .article ol { display: grid; gap: .7rem; padding-left: 1.35rem; }
+        .article ul { list-style: disc; }
+        .article ol { list-style: decimal; }
+        .article li { padding-left: .25rem; }
+        .article blockquote { border-left: 2px solid var(--ember-bright); padding: .25rem 0 .25rem 1.5rem; color: var(--ink); }
+        .article table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+        .article th, .article td { padding: .8rem .7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+        .article th { font-size: var(--t-meta); font-family: var(--font-mono); color: var(--muted); }
+        .method-box, .disclosure-box { padding: 1.2rem 1.35rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); }
+        .method-box strong, .disclosure-box strong { display: block; margin-bottom: .35rem; color: var(--ink); }
+        .method-box p, .disclosure-box p { font-size: 1rem; line-height: 1.6; color: var(--ink-soft); }
+        .article-aside { position: sticky; top: calc(var(--header-h) + 2rem); display: grid; gap: 2rem; font-size: .95rem; }
+        .article-aside h2 { font: 500 var(--t-meta)/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: var(--tr-caps); color: var(--muted); }
+        .article-aside ul { display: grid; gap: .65rem; margin-top: .8rem; }
+        .article-aside a { text-decoration: none; }
+        .article-aside a:hover { text-decoration: underline; text-underline-offset: 3px; }
+        .sources { border-top: 1px solid var(--line); padding-top: 2rem; margin-top: 4rem; }
+        .sources h2 { margin-top: 0; }
+        .sources li { font-size: 1rem; }
+        .related-list { display: grid; border-top: 1px solid var(--line); }
+        .related-list li { border-bottom: 1px solid var(--line); }
+        .related-list a { display: grid; gap: .3rem; padding-block: 1.25rem; text-decoration: none; }
+        .related-list a:hover h3 { text-decoration: underline; text-underline-offset: 3px; }
+        .related-list h3 { font-size: 1.15rem; }
+        .related-list p { color: var(--muted); font-size: .95rem; line-height: 1.55; }
+      }
+    </style>
+  </Fragment>
+
+  <main id="content">
+    <header class="article-head">
+      <div class="shell article-head__inner">
+        <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href={sectionPath}>{section}</a></li><li>{title}</li></ol></nav>
+        <p class="kicker" style="margin-top:2rem">{section}</p>
+        <h1>{title}</h1>
+        <p class="lede">{description}</p>
+        <div class="article-meta">
+          <span>By <a href="/authors/">Matthias Ramahi</a></span>
+          <time datetime={published}>Published 11 August 2026</time>
+          {updated !== published && <time datetime={updated}>Updated 11 August 2026</time>}
+          <span>{readingTime}</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="band">
+      <div class="shell article-grid">
+        <article class="article">
+          <div class="method-box"><p><strong>How this guide was made</strong>{method}</p></div>
+          {disclosure && <div class="disclosure-box"><p><strong>Relationship disclosure</strong>{disclosure}</p></div>}
+          <slot />
+          {sources.length > 0 && (
+            <section class="sources" aria-labelledby="sources-title">
+              <h2 id="sources-title">Sources and further reading</h2>
+              <ol>{sources.map((source) => <li><a href={source.href} rel="noopener">{source.label}</a>{source.note ? ` — ${source.note}` : ''}</li>)}</ol>
+            </section>
+          )}
+        </article>
+        <aside class="article-aside" aria-label="Article information">
+          <section><h2>Editorial status</h2><ul><li>Source-based guide</li><li>No paid placement</li><li>Corrections: <a href="mailto:info@matthiasramahi.de">info@matthiasramahi.de</a></li></ul></section>
+          <section><h2>Continue reading</h2><ul>{related.map((item) => <li><a href={item.href}>{item.title}</a></li>)}</ul></section>
+        </aside>
+      </div>
+    </section>
+
+    {related.length > 0 && <section class="band band-surface"><div class="shell"><div class="section-head"><div><p class="kicker">Next</p><h2>Related guides</h2></div></div><ul class="related-list">{related.map((item) => <li><a href={item.href}><h3>{item.title}</h3><p>{item.description}</p></a></li>)}</ul></div></section>}
+  </main>
+</BaseLayout>

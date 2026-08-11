@@ -11,8 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "migrate:design": "node scripts/migrate-design.mjs",
-    "check": "astro check && node scripts/validate-built-site.mjs",
-    "validate:dist": "node scripts/validate-built-site.mjs"
+    "check": "astro check && astro build && node scripts/validate-built-site.mjs",
+    "validate:dist": "node scripts/validate-built-site.mjs",
+    "sync:content": "node scripts/sync-content-indexes.mjs"
   },
   "dependencies": {
     "astro": "^7.2.1"

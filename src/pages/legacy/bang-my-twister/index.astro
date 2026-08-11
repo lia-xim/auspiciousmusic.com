@@ -1,220 +1,26 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import InfoLayout from '../../../layouts/InfoLayout.astro';
 ---
+<InfoLayout title="Bang My Twister — archive record" description="A rights-aware record of a former Max for Live and controller project associated with this domain." canonicalPath="/legacy/bang-my-twister/" kicker="Historical resource" lede="An old controller-project reference, documented without presenting the current publisher as its creator.">
+  <h2 style="margin-top:0">What can be checked</h2>
+  <p>A DJ TechTools mapping record remains available for mapping ID 2929 and links the historic controller context to this domain. That external record is the appropriate place to inspect its current availability. Auspicious Music does not mirror the mapping or former Max for Live files.</p>
+  <p><a class="btn btn--quiet" href="https://maps.djtechtools.com/mappings/2929" rel="noopener">Open the DJ TechTools record</a></p>
+  <dl class="facts">
+    <div><dt>External record</dt><dd>DJ TechTools mapping 2929</dd></div>
+    <div><dt>Former authorship</dt><dd>Not claimed by the current publisher</dd></div>
+    <div><dt>Local download</dt><dd>Not offered</dd></div>
+    <div><dt>Compatibility</dt><dd>Not tested by the current publisher</dd></div>
+  </dl>
 
-<BaseLayout
-  title={"Bang My Twister — Historic Max for Live Device and Current Setup — Auspicious Music"}
-  description={"A Max for Live device for the MIDI Fighter Twister published here in 2014, documented with its verified external source and a current equivalent."}
-  canonicalPath={"/legacy/bang-my-twister/"}
-  lang={"en"}
-  noindex={false}
-  loadStringField={false}
->
-<Fragment slot="head">
-<style is:global>
-@layer components {
-  .pg-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem); }
-  .pg-head h1 { max-width: 17ch; margin-top: 1.25rem; }
-  .pg-head .lede { margin-top: 1.5rem; max-width: 58ch; }
-  .pg-head--dark { background: var(--dark); color: var(--dark-text); padding-block: clamp(2.5rem, 5vw, 4rem); }
-  .pg-head--dark .crumbs { color: var(--dark-muted); }
-  .pg-head--dark .crumbs a:hover { color: var(--dark-text); }
-  .pg-head--dark .lede { color: var(--dark-muted); }
+  <h2>Why the old URL remains useful</h2>
+  <p>A person following an old music-technology reference receives an explanation and the strongest surviving external source. They are not redirected to a generic homepage and are not told that an untested device is current.</p>
 
-  .prose { max-width: var(--measure); }
-  .prose > * + * { margin-top: 1.5rem; }
-  .prose h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); letter-spacing: -0.016em; margin-top: clamp(2.75rem, 5vw, 3.75rem); }
-  .prose h3 { font-size: 1.25rem; margin-top: 2rem; letter-spacing: -0.012em; }
-  .prose p { color: var(--ink-soft); }
-  .prose a:not(.link):not(.btn) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  <h2>A current, original guide</h2>
+  <p>The article <a href="/ableton/midi-fighter-twister-review/">Design the mapping before the knobs</a> offers a controller-agnostic method for building and documenting an Ableton mapping. It explicitly does not claim to be a completed Twister hardware review.</p>
 
-  .rule-list li {
-    padding-block: 1rem; border-top: 1px solid var(--line);
-    display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.75rem;
-    color: var(--ink-soft); line-height: 1.65;
-  }
-  .rule-list li:last-child { border-bottom: 1px solid var(--line); }
-  .rule-list li::before {
-    content: ""; inline-size: 7px; block-size: 7px; border-radius: 50%;
-    background: transparent; box-shadow: inset 0 0 0 2px var(--line-strong); margin-top: 0.62rem;
-  }
-  .rule-list strong { color: var(--ink); display: block; margin-bottom: 0.25rem; }
-
-  .callout { border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; }
-  .callout strong { display: block; margin-bottom: 0.375rem; }
-  .callout p { color: var(--ink); }
-
-  .facts { display: grid; gap: 0; border-top: 1px solid var(--dark-line); margin-top: clamp(2rem, 4vw, 3rem); }
-  .facts > div {
-    display: grid; grid-template-columns: minmax(8rem, 12rem) minmax(0, 1fr);
-    gap: 0.5rem 1.5rem; padding-block: 0.875rem;
-    border-bottom: 1px solid var(--dark-line-soft);
-    font-family: var(--font-mono); font-size: var(--t-meta);
-    letter-spacing: var(--tr-meta); line-height: 1.6;
-  }
-  .facts dt { color: var(--dark-muted); }
-  .facts dd { color: var(--dark-text); }
-  @media (max-width: 560px) { .facts > div { grid-template-columns: 1fr; gap: 0.1875rem; } }
-
-  .timeline { position: relative; padding-left: 2rem; }
-  .timeline::before { content: ""; position: absolute; left: 3px; top: 1.2rem; bottom: 1.2rem; width: 1px; background: var(--line-strong); }
-  .timeline li { position: relative; padding-block: 1.125rem; }
-  .timeline li + li { border-top: 1px solid var(--line); }
-  .timeline li::before {
-    content: ""; position: absolute; left: -2rem; top: 1.7rem;
-    inline-size: 7px; block-size: 7px; border-radius: 50%;
-    background: var(--canvas); box-shadow: inset 0 0 0 2px var(--line-strong);
-  }
-  .timeline li:last-child::before { background: var(--ember-bright); box-shadow: none; }
-  .timeline time { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); display: block; margin-bottom: 0.375rem; }
-  .timeline h3 { font-size: 1.125rem; letter-spacing: -0.011em; margin: 0 0 0.375rem; }
-  .timeline p { color: var(--ink-soft); font-size: 1rem; line-height: 1.6; max-width: 58ch; }
-
-  .listing li { border-top: 1px solid var(--line); }
-  .listing li:last-child { border-bottom: 1px solid var(--line); }
-  .listing a {
-    display: grid; gap: 0.375rem 2.5rem; padding-block: 1.375rem;
-    text-decoration: none; align-items: baseline;
-    transition: background-color var(--dur-fast) var(--ease);
-  }
-  .listing a:hover { background: var(--surface); }
-  .listing h3 { font-size: 1.25rem; letter-spacing: -0.014em; }
-  .listing p { color: var(--muted); font-size: 1rem; line-height: 1.55; max-width: 58ch; }
-  .listing__tail { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
-  @media (min-width: 900px) {
-    .listing a { grid-template-columns: minmax(0, 16rem) minmax(0, 1fr) minmax(0, 9rem); align-items: start; }
-    .listing__tail { text-align: right; padding-top: 0.3rem; }
-  }
-
-  .glossary > div { padding-block: 1.125rem; border-top: 1px solid var(--line); }
-  .glossary > div:last-child { border-bottom: 1px solid var(--line); }
-  .glossary dt { font-weight: 550; font-size: 1.0625rem; letter-spacing: -0.01em; }
-  .glossary dd { color: var(--muted); font-size: 1rem; line-height: 1.6; margin-top: 0.25rem; max-width: 60ch; }
-
-  .sources { margin-top: clamp(2.5rem, 5vw, 3.5rem); padding-top: 2rem; border-top: 1px solid var(--line); }
-  .sources h2 { font-size: var(--t-h3); margin: 0 0 1.25rem; }
-  .sources ol { display: grid; gap: 0.875rem; counter-reset: src; }
-  .sources li { counter-increment: src; padding-left: 2rem; position: relative; font-size: 1rem; line-height: 1.6; color: var(--muted); }
-  .sources li::before { content: counter(src); position: absolute; left: 0; font-family: var(--font-mono); font-size: var(--t-meta); }
-  .sources a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-}
-</style>
-</Fragment>
-
-<main id="content">
-
-  <section class="pg-head pg-head--dark" data-od-id="page-head">
-    <div class="shell">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <ol>
-          <li><a href="/">Home</a></li>
-          <li><a href="/download/">Archive</a></li>
-          <li>Bang My Twister</li>
-        </ol>
-      </nav>
-      <p class="flag" style="margin-top:1.5rem">Historical resource<br>Independent relaunch under new ownership</p>
-      <h1>Bang My Twister</h1>
-      <p class="lede">A Max for Live device for switching banks on the DJ TechTools MIDI Fighter Twister, published on this domain in 2014 by the former operator. The original mapping is still maintained by DJ TechTools, so this page points there rather than rehosting a copy.</p>
-      
-      <dl class="facts">
-        <div><dt>Historical period</dt><dd>2014</dd></div>
-        <div><dt>Former operator</dt><dd>Previous owner of this domain</dd></div>
-        <div><dt>Original format</dt><dd>Max for Live device · controller mapping</dd></div>
-        <div><dt>Rights status</dt><dd>Mapping remains with DJ TechTools</dd></div>
-        <div><dt>Verified externally</dt><dd>Yes — mapping still published</dd></div>
-        <div><dt>Page reviewed</dt><dd>August 2026</dd></div>
-      </dl>
-      <p style="margin-top:2rem"><a class="btn btn--quiet" href="https://maps.djtechtools.com/mappings/2929" rel="noopener">Open the mapping at DJ TechTools</a></p>
-    </div>
-  </section>
-
-
-  <section class="band" data-od-id="legacy-body">
-    <div class="shell">
-      <div class="prose">
-        <h2 style="margin-top:0">What the original project was</h2>
-        <p>
-          The MIDI Fighter Twister has sixteen encoders. A Live set almost always has more
-          than sixteen parameters worth reaching, which is the problem bank switching
-          exists to solve: each encoder addresses a different parameter depending on which
-          page is active.
-        </p>
-        <p>
-          Bang My Twister was a small Max for Live device that handled that switching from
-          inside the Live set rather than from the controller's own configuration utility.
-          It was published here alongside a visualiser project and circulated through the
-          controller community of the period.
-        </p>
-
-        <h2>Why external sources still point here</h2>
-        <p>
-          The device was listed in the DJ TechTools mapping archive, which is still online
-          and still maintained. That is a live, verifiable reference rather than an
-          archived one — the reason this address returns a page instead of a redirect, and
-          the reason the download status here reads as external rather than unavailable.
-        </p>
-
-        <h2>Current status</h2>
-        <p>
-          The mapping is available from DJ TechTools, who publish and maintain it. This
-          publication does not host a copy: a rehosted mapping goes stale the moment the
-          original is updated, and the version here would quietly become the wrong one.
-        </p>
-        <div class="callout">
-          <p>
-            <strong>Compatibility has not been re-tested by us.</strong>
-            The device dates from 2014 and Live has had several major versions since. A
-            current compatibility test is planned; until it has been run, this page does
-            not claim the device still works.
-          </p>
-        </div>
-
-        <h2>Rights and attribution</h2>
-        <p>
-          The device was created and published by the former operator of this domain; the
-          controller and its mapping archive belong to DJ TechTools. Auspicious Music is
-          an independent publication under new ownership since 2026 and claims no part of
-          either. Nothing here should be read as a continuation of, or endorsement by,
-          the former operator.
-        </p>
-
-        <h2>How the same thing is done now</h2>
-        <p>
-          Bank switching no longer needs a bespoke device in most cases. The controller's
-          own configuration utility handles multiple banks natively, and Live's mapping
-          has improved considerably since 2014. Where a set genuinely needs switching
-          driven from inside Live, a small Max device remains the way to do it — the
-          approach is covered in the <a href="/ableton/">Ableton hub</a>.
-        </p>
-
-        <h2>Change log</h2>
-        <ul class="timeline" data-reveal-group>
-          <li data-reveal><time datetime="2014">2014</time><p>Device announced and published by the former operator, and listed in the DJ TechTools mapping archive.</p></li>
-          <li data-reveal><time datetime="2017">2017</time><p>Last archived capture of the original page. The site stops being maintained shortly afterwards.</p></li>
-          <li data-reveal><time datetime="2026-02">February 2026</time><p>Domain acquired by the current publisher. External reference confirmed still live.</p></li>
-          <li data-reveal><time datetime="2026-08">August 2026</time><p>This page published. Download status recorded as external; compatibility test outstanding.</p></li>
-        </ul>
-
-        <div class="sources">
-          <h2>Sources and original references</h2>
-          <ol>
-            <li><a href="https://maps.djtechtools.com/mappings/2929" rel="noopener">DJ TechTools mapping archive</a> — the original mapping, still published and maintained.</li>
-            <li>Internet Archive Wayback Machine — captures of this domain, 2014 to 2017.</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section data-od-id="relaunch-notice">
-    <div class="shell relaunch">
-      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
-         references are preserved for context.</p>
-      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
-        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </section>
-
-</main>
-</BaseLayout>
+  <h2>Sources used for this record</h2>
+  <ul>
+    <li><a href="https://maps.djtechtools.com/mappings/2929" rel="noopener">DJ TechTools mapping archive</a></li>
+    <li><a href="https://web.archive.org/web/*/http://auspiciousmusic.com/" rel="noopener">Internet Archive capture index for the former domain</a></li>
+  </ul>
+</InfoLayout>

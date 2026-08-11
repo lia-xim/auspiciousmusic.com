@@ -1,0 +1,42 @@
+---
+import BaseLayout from './BaseLayout.astro';
+interface Props { title: string; description: string; canonicalPath: string; kicker?: string; lede: string; lang?: string; noindex?: boolean; }
+const { title, description, canonicalPath, kicker = 'Publication', lede, lang = 'en', noindex = false } = Astro.props;
+---
+<BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang={lang} noindex={noindex}>
+  <Fragment slot="head"><style is:global>
+    @layer components {
+      .info-head { padding-block: clamp(2.5rem, 6vw, 5rem); border-bottom: 1px solid var(--line); }
+      .info-head h1 { max-width: 20ch; margin-top: 1.2rem; }
+      .info-head .lede { max-width: 58ch; margin-top: 1.45rem; }
+      .info-grid { display: grid; gap: 3rem 5rem; align-items: start; }
+      @media (min-width: 1000px) { .info-grid { grid-template-columns: minmax(0, var(--measure)) minmax(14rem, 18rem); } }
+      .info-prose > * + * { margin-top: 1.4rem; }
+      .info-prose h2 { font-size: clamp(1.5rem, 1.15rem + 1vw, 2rem); margin-top: clamp(2.8rem, 5vw, 4rem); }
+      .info-prose h3 { font-size: 1.2rem; margin-top: 2rem; }
+      .info-prose p, .info-prose li { color: var(--ink-soft); }
+      .info-prose a { color: var(--accent); text-underline-offset: 3px; }
+      .info-prose ul, .info-prose ol { display: grid; gap: .65rem; padding-left: 1.3rem; }
+      .info-prose ul { list-style: disc; } .info-prose ol { list-style: decimal; }
+      .info-prose .plain { list-style: none; padding-left: 0; }
+      .facts { border-top: 1px solid var(--line-strong); }
+      .facts > div { display: grid; grid-template-columns: minmax(9rem, 14rem) minmax(0, 1fr); gap: .4rem 1.5rem; padding-block: .85rem; border-bottom: 1px solid var(--line); }
+      .facts dt { font: 500 var(--t-meta)/1.5 var(--font-mono); color: var(--muted); }
+      .facts dd { color: var(--ink-soft); font-size: 1rem; line-height: 1.55; }
+      @media (max-width: 620px) { .facts > div { grid-template-columns: 1fr; } }
+      .note { padding: 1.2rem 1.35rem; border-left: 2px solid var(--ember-bright); background: var(--surface); }
+      .note strong { display: block; margin-bottom: .35rem; color: var(--ink); }
+      .note p { font-size: 1rem; }
+      .info-aside { position: sticky; top: calc(var(--header-h) + 2rem); font-size: .95rem; }
+      .info-aside h2 { font: 500 var(--t-meta)/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: var(--tr-caps); color: var(--muted); }
+      .info-aside ul { display: grid; gap: .7rem; margin-top: .9rem; }
+      .info-aside a { text-decoration: none; }
+      .info-aside a:hover { text-decoration: underline; text-underline-offset: 3px; }
+      address { font-style: normal; }
+    }
+  </style></Fragment>
+  <main id="content">
+    <header class="info-head"><div class="shell"><p class="kicker">{kicker}</p><h1>{title}</h1><p class="lede">{lede}</p></div></header>
+    <section class="band"><div class="shell info-grid"><div class="info-prose"><slot /></div><aside class="info-aside" aria-label="Publication links"><h2>Auspicious Music</h2><ul><li><a href="/about/">About</a></li><li><a href="/authors/">Author</a></li><li><a href="/about/editorial-policy/">Editorial policy</a></li><li><a href="/about/history-and-relaunch/">History &amp; relaunch</a></li><li><a href="/contact/">Contact</a></li></ul></aside></div></section>
+  </main>
+</BaseLayout>

@@ -1,8 +1,8 @@
 {
   "implementation": "http://127.0.0.1:4321",
   "reference": "http://127.0.0.1:4171/index.html",
-  "checkedAt": "2026-08-11T20:05:20.739Z",
-  "routesChecked": 33,
+  "checkedAt": "2026-08-11T21:23:47.682Z",
+  "routesChecked": 39,
   "observations": [
     {
       "route": "/",
@@ -13,31 +13,31 @@
     {
       "route": "/music-production/",
       "status": 200,
-      "title": "Music Production Workflows — Auspicious Music",
+      "title": "Music Production — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/ableton/",
       "status": 200,
-      "title": "Ableton Live and Max for Live — Auspicious Music",
+      "title": "Ableton Live — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/sound-design/",
       "status": 200,
-      "title": "Sound Design and Sampling — Auspicious Music",
+      "title": "Sound Design — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/recording/",
       "status": 200,
-      "title": "Recording Acoustic Instruments and Strings — Auspicious Music",
+      "title": "Recording — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/music-for-media/",
       "status": 200,
-      "title": "Music for Film, Video and Media — Auspicious Music",
+      "title": "Music for Media & Events — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -61,61 +61,61 @@
     {
       "route": "/download/",
       "status": 200,
-      "title": "Legacy Downloads & Current Music Production Resources — Auspicious Music",
+      "title": "Archive & download status — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/legacy/the-spy-guitar/",
       "status": 200,
-      "title": "The Spy Guitar — History, Compatibility and a Modern Rebuild — Auspicious Music",
+      "title": "The Spy Guitar — archive record — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/legacy/bang-my-twister/",
       "status": 200,
-      "title": "Bang My Twister — Historic Max for Live Device and Current Setup — Auspicious Music",
+      "title": "Bang My Twister — archive record — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/ableton/midi-fighter-twister-review/",
       "status": 200,
-      "title": "MIDI Fighter Twister Review and Ableton Workflow — Auspicious Music",
+      "title": "MIDI Fighter Twister in Ableton: design the mapping before the knobs — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/sound-design/sampled-instruments/building-a-sampled-instrument/",
       "status": 200,
-      "title": "How to Build a Sampled Instrument in Ableton Live — Auspicious Music",
+      "title": "Build a small sampled instrument in Ableton Live without losing the source — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/recording/acoustic-instruments/recording-viola-at-home/",
       "status": 200,
-      "title": "How to Record Viola at Home — Auspicious Music",
+      "title": "A repeatable plan for recording viola at home — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/about/",
       "status": 200,
-      "title": "About — Auspicious Music",
+      "title": "About Auspicious Music — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/about/history-and-relaunch/",
       "status": 200,
-      "title": "History and Relaunch — Auspicious Music",
+      "title": "History & relaunch — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/about/editorial-policy/",
       "status": 200,
-      "title": "Editorial Policy — Auspicious Music",
+      "title": "Editorial policy — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/authors/",
       "status": 200,
-      "title": "Authors — Auspicious Music",
+      "title": "Author & publisher — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -139,7 +139,7 @@
     {
       "route": "/accessibility/",
       "status": 200,
-      "title": "Erklärung zur Barrierefreiheit — Auspicious Music",
+      "title": "Barrierefreiheit — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -191,6 +191,42 @@
       "viewport": "1440x900"
     },
     {
+      "route": "/journal/",
+      "status": 200,
+      "title": "Journal — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/music-production/ableton-project-handoff/",
+      "status": 200,
+      "title": "An Ableton project handoff that another computer can actually open — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/recording/acoustic-instruments/viola-microphone-placement/",
+      "status": 200,
+      "title": "Viola microphone placement: three useful starting positions — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/sound-design/when-to-record-strings-instead-of-using-a-library/",
+      "status": 200,
+      "title": "When to record a string part instead of using a library — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/music-for-media/planning-live-viola-for-a-wedding-ceremony/",
+      "status": 200,
+      "title": "Planning live viola for a wedding ceremony — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/music-for-media/music-clearance-for-small-film-projects/",
+      "status": 200,
+      "title": "Music clearance for a small film: the questions to answer before edit lock — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
       "route": "/search/",
       "status": 200,
       "title": "Search — Auspicious Music",
@@ -199,7 +235,7 @@
     {
       "route": "/publishing-roadmap/",
       "status": 200,
-      "title": "Publishing roadmap — Auspicious Music",
+      "title": "Draft route retired — Auspicious Music",
       "viewport": "1440x900"
     }
   ],

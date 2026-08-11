@@ -2,6 +2,10 @@ import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+if (process.env.ALLOW_DESTRUCTIVE_DESIGN_MIGRATION !== 'true') {
+  throw new Error('This one-time design migration overwrites hand-edited editorial pages. Set ALLOW_DESTRUCTIVE_DESIGN_MIGRATION=true only when intentionally rebuilding from design-source.');
+}
+
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sourceRoot = process.env.DESIGN_SOURCE
   ? path.resolve(process.env.DESIGN_SOURCE)
