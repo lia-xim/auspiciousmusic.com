@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design concept — Auspicious Music</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<style>
+@layer components {
+  .idx-head { padding-block: clamp(3rem, 6vw, 5rem) clamp(2.5rem, 5vw, 3.5rem); }
+  .idx-head h1 { max-width: 16ch; margin-top: 1.25rem; font-size: var(--t-h2); }
+  .idx-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+  .idea { margin-top: clamp(2rem, 4vw, 3rem); border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; max-width: 60ch; }
+  .idea p { font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem); line-height: 1.5; letter-spacing: -0.011em; }
+
+  .group { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+  .group > h3 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .screens li { border-top: 1px solid var(--line); }
+  .screens li:last-child { border-bottom: 1px solid var(--line); }
+  .screens a {
+    display: grid; gap: 0.375rem 2.5rem; padding-block: 1.125rem;
+    text-decoration: none; align-items: baseline;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .screens a:hover { background: var(--surface); }
+  .screens h4 { font-size: 1.125rem; letter-spacing: -0.012em; }
+  .screens p { color: var(--muted); font-size: 0.9375rem; line-height: 1.55; max-width: 60ch; }
+  .screens__path { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
+  @media (min-width: 900px) {
+    .screens a { grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 11rem; align-items: start; }
+    .screens__path { text-align: right; padding-top: 0.2rem; }
+  }
+
+  .brand-row {
+    display: flex; flex-wrap: wrap; align-items: center; gap: clamp(2rem, 5vw, 4rem);
+    padding-block: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .brand-row figure { display: grid; gap: 0.75rem; justify-items: start; }
+  .brand-row figcaption { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
+  .mark-lg { width: 72px; height: 72px; } .mark-md { width: 32px; height: 32px; } .mark-sm { width: 20px; height: 20px; }
+  .wordmark { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); font-weight: 600; letter-spacing: -0.021em; }
+  .fav { width: 44px; height: 44px; border-radius: 10px; }
+
+  .swatches { display: grid; border-top: 1px solid var(--line); }
+  .sw {
+    display: grid; grid-template-columns: 2.75rem minmax(0, 10rem) minmax(0, 1fr) auto;
+    gap: 0.5rem 1.25rem; align-items: center; padding-block: 0.6875rem;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
+  }
+  .sw i { inline-size: 2.25rem; block-size: 1.5rem; border-radius: 4px; border: 1px solid var(--line); }
+  .sw b { color: var(--ink); font-weight: 500; }
+  .sw span { color: var(--muted); }
+  .sw em { font-style: normal; color: var(--ink-soft); text-align: right; }
+  @media (max-width: 700px) {
+    .sw { grid-template-columns: 2.75rem minmax(0, 1fr); row-gap: 0.125rem; align-items: start; }
+    .sw i { grid-row: span 3; }
+    .sw span, .sw em { grid-column: 2; text-align: left; }
+  }
+
+  .cols { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+  @media (min-width: 900px) { .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4.5rem; } }
+  .cols h3 { font-size: var(--t-h3); margin-bottom: 1.25rem; }
+  .plain li { padding-block: 0.75rem; border-top: 1px solid var(--line); font-size: 1rem; line-height: 1.6; color: var(--ink-soft); }
+  .plain li:last-child { border-bottom: 1px solid var(--line); }
+  .plain b { color: var(--ink); font-weight: 550; }
+
+  .changed li {
+    padding-block: 1rem; border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.75rem;
+    font-size: 1.0625rem; line-height: 1.6; color: var(--ink-soft);
+  }
+  .changed li:last-child { border-bottom: 1px solid var(--line); }
+  .changed li::before {
+    content: ""; inline-size: 7px; block-size: 7px; border-radius: 50%;
+    background: var(--ember-bright); margin-top: 0.6rem;
+  }
+  .changed strong { color: var(--ink); display: block; margin-bottom: 0.25rem; }
+
+  .open li {
+    padding-block: 1rem; border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.75rem;
+    font-size: 1.0625rem; line-height: 1.6; color: var(--ink-soft);
+  }
+  .open li:last-child { border-bottom: 1px solid var(--line); }
+  .open li::before {
+    content: ""; inline-size: 7px; block-size: 7px; border-radius: 50%;
+    background: transparent; box-shadow: inset 0 0 0 2px var(--accent); margin-top: 0.6rem;
+  }
+  .open strong { color: var(--ink); display: block; margin-bottom: 0.25rem; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="shell site-header__inner">
+    <span class="brand">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music — concept
+    </span>
+    <div class="header-tools">
+      <a class="link" href="index.html" style="font-size:var(--t-ui-sm)">Open the site
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+
+  <section class="idx-head">
+    <div class="shell">
+      <p class="kicker">Design concept · revision 2 · for approval</p>
+      <h1>A measuring instrument, published as a magazine</h1>
+      <p class="lede">
+        This page is the reviewer's index. It is not part of the site — the publication
+        itself starts at <a href="index.html" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px">index.html</a>,
+        which is where the wordmark leads from every page.
+      </p>
+      <div class="idea">
+        <p>
+          The site opens on graphite at full bleed, then runs on paper neutral. One
+          spectral line threads the opening sections; the archive and the lab are the
+          only places material returns. Indigo means action, ember means archive, and
+          nothing uses both.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight" aria-labelledby="changed-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="changed-title" style="font-size:var(--t-h3)">What changed in revision 2</h2>
+        <p>Four things, in response to the first review.</p>
+      </div>
+      <ul class="changed" style="max-width:60rem">
+        <li><div><strong>The hero — now at revision 4</strong>Revisions 2 and 3 both put the argument in a photograph — first a full-bleed 21:9 band that cropped the object into an anonymous strip, then a portrait frame beside the type. Revision 4 drops photography from the masthead entirely: a full-viewport scene carried by two lines of block type, with one taut string across the headline that answers the pointer and rings down on real wave physics. The object photograph moved to the lab band, where it belongs.</div></li>
+        <li><div><strong>Full-viewport masthead</strong>The hero is now <span style="font-family:var(--font-mono);font-size:0.9em">calc(100svh − header)</span>, which deliberately reverses the earlier rule about keeping the next section in view. The Latest row sits as the closing line inside the viewport so the scene still reads as continuing rather than ending.</div></li>
+        <li><div><strong>German legal layer</strong>Impressum (§ 5 DDG, § 18 Abs. 2 MStV), Datenschutzerklärung (Art. 13 DSGVO, § 25 TDDDG) and an accessibility statement, in German with English summaries. Operator fields are marked as required rather than invented.</div></li>
+        <li><div><strong>Touch layer</strong>A final cascade layer that fixes what a desktop-first stylesheet gets wrong on a phone: 16px form fields so iOS stops zooming on focus, safe-area insets for notched devices in landscape, hover tints moved to <span style="font-family:var(--font-mono);font-size:0.9em">:active</span> on hover-less pointers so rows do not stay highlighted after a tap, and 44px targets in the dense footer and breadcrumb stacks.</div></li>
+        <li><div><strong>The palette</strong>The canvas moved from #f5f5f7 to a paper neutral, and a second accent axis was added with a strict split of meaning — indigo for action, ember for archive and material. That is what removes the clinical feel; a single accent on a bright neutral had nothing to push against.</div></li>
+        <li><div><strong>The entry point</strong>index.html is now the homepage, so the wordmark behaves the way a wordmark must. This concept index moved to concept.html.</div></li>
+        <li><div><strong>Depth</strong>Every hub in the navigation now exists, the trust pages are written, and a tools section has been added with three working calculators.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band--tight band-surface" aria-labelledby="screens-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="screens-title" style="font-size:var(--t-h3)">All surfaces</h2>
+        <p>Live pages — inspect type, spacing, states and interaction directly.</p>
+      </div>
+
+      <div class="group">
+        <h3>Publication</h3>
+        <ul class="screens">
+          <li><a href="index.html"><h4>Homepage</h4><p>Ten sections: graphite masthead, topic portals, start here, lab, tools, archive, acoustic story, latest, relaunch notice, footer.</p><span class="screens__path">/</span></a></li>
+          <li><a href="article-sampled-instrument.html"><h4>Long-form article</h4><p>Byline and tested-with block, sticky contents, settings extract, honest audio slot, callout, sources.</p><span class="screens__path">/sound-design/…</span></a></li>
+          <li><a href="article-record-viola.html"><h4>How to Record Viola at Home</h4><p>Second long-form piece. Room before microphone, three positions, and the measured data marked outstanding.</p><span class="screens__path">/recording/…</span></a></li>
+          <li><a href="article-midi-fighter-twister.html"><h4>MIDI Fighter Twister review</h4><p>Full review structure with a standing notice that the measured sections are not yet earned. No verdict without a test.</p><span class="screens__path">/ableton/…</span></a></li>
+          <li><a href="glossary.html"><h4>Glossary</h4><p>23 terms with the discipline noted on each, linked from every hub.</p><span class="screens__path">/glossary/</span></a></li>
+          <li><a href="mobile.html"><h4>Mobile — three surfaces</h4><p>Homepage, full-screen menu and article at 390 px, with what was re-composed rather than stacked.</p><span class="screens__path">390 px</span></a></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>Topic hubs</h3>
+        <ul class="screens">
+          <li><a href="hub-production.html"><h4>Production</h4><p>Workflow, project discipline, arrangement, production music.</p><span class="screens__path">/music-production/</span></a></li>
+          <li><a href="hub-ableton.html"><h4>Ableton</h4><p>Live, Max for Live, controllers, reviews.</p><span class="screens__path">/ableton/</span></a></li>
+          <li><a href="hub-sound-design.html"><h4>Sound Design</h4><p>Sampling, sampled instruments, synthesis, transitions.</p><span class="screens__path">/sound-design/</span></a></li>
+          <li><a href="hub-recording.html"><h4>Recording</h4><p>Home studio, acoustic instruments, strings, live versus sampled.</p><span class="screens__path">/recording/</span></a></li>
+          <li><a href="hub-music-for-media.html"><h4>Music for Media</h4><p>Licensing, film and video, events, delivery.</p><span class="screens__path">/music-for-media/</span></a></li>
+          <li><a href="resources.html"><h4>Resources</h4><p>Tools, templates, glossary and the archive in one place.</p><span class="screens__path">/resources/</span></a></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>Tools — all three calculate for real</h3>
+        <ul class="screens">
+          <li><a href="tools.html"><h4>Tools index</h4><p>Three live calculators, the principles behind them, and what is planned.</p><span class="screens__path">/resources/tools/</span></a></li>
+          <li><a href="tool-delay-calculator.html"><h4>Delay &amp; Reverb Time</h4><p>Tempo to milliseconds and hertz across every division, with tap tempo and copy-on-click.</p><span class="screens__path">BPM → ms</span></a></li>
+          <li><a href="tool-note-frequency.html"><h4>Note &amp; Frequency</h4><p>Notes, MIDI and frequency both ways, settable concert pitch, cents deviation, wavelength.</p><span class="screens__path">Note ⇄ Hz</span></a></li>
+          <li><a href="tool-sample-pitch.html"><h4>Sample Pitch &amp; Rate</h4><p>Transposition against rate, length and tempo, plus sample-rate mismatch in semitones.</p><span class="screens__path">st → rate</span></a></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>Archive and trust</h3>
+        <ul class="screens">
+          <li><a href="download.html"><h4>Download hub</h4><p>Six historic resources, working status filters, an informative empty state, the field schema.</p><span class="screens__path">/download/</span></a></li>
+          <li><a href="legacy-spy-guitar.html"><h4>Legacy — The Spy Guitar</h4><p>Graphite header, historical flag, rights notice, modern alternative, change log.</p><span class="screens__path">/legacy/the-spy-guitar/</span></a></li>
+          <li><a href="legacy-bang-my-twister.html"><h4>Legacy — Bang My Twister</h4><p>The one entry with a live external source, so its status reads external rather than unavailable.</p><span class="screens__path">/legacy/bang-my-twister/</span></a></li>
+          <li><a href="about.html"><h4>About</h4><p>What the publication does, who it is for, authors, disclosure, contact.</p><span class="screens__path">/about/</span></a></li>
+          <li><a href="editorial-policy.html"><h4>Editorial policy</h4><p>Testing, sourcing, AI assistance, commercial relationships, corrections.</p><span class="screens__path">/about/editorial-policy/</span></a></li>
+          <li><a href="history-relaunch.html"><h4>History &amp; relaunch</h4><p>Ownership disclosure on graphite, the three rules, timeline, corrections route.</p><span class="screens__path">/about/history-and-relaunch/</span></a></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>Legal — German, and legally authoritative in German</h3>
+        <ul class="screens">
+          <li><a href="impressum.html"><h4>Impressum</h4><p>§ 5 DDG plus the content-responsible person under § 18 (2) MStV. Operator fields are marked as statutory blanks rather than filled with invented data.</p><span class="screens__path">/impressum/</span></a></li>
+          <li><a href="datenschutz.html"><h4>Datenschutzerklärung</h4><p>Art. 13 GDPR and § 25 TDDDG. No cookies, no analytics; the outstanding Google Fonts connection is named as the one thing to fix before launch.</p><span class="screens__path">/datenschutz/</span></a></li>
+          <li><a href="barrierefreiheit.html"><h4>Erklärung zur Barrierefreiheit</h4><p>Voluntary — an editorial site without commerce falls outside the BFSG. Targets WCAG 2.2 AA and lists the known gaps.</p><span class="screens__path">/barrierefreiheit/</span></a></li>
+          <li><a href="kontakt.html"><h4>Contact</h4><p>Corrections, rights questions on archived material, accessibility reports, and what will not be answered.</p><span class="screens__path">/contact/</span></a></li>
+          <li><a href="authors.html"><h4>Authors</h4><p>The byline rule and what an author page will contain. Short on purpose — invented authors are not used.</p><span class="screens__path">/authors/</span></a></li>
+          <li><a href="sitemap.html"><h4>Sitemap</h4><p>Every published page grouped by section, with the 404/410 exclusion explained.</p><span class="screens__path">/sitemap/</span></a></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>Rechtliches — German legal layer</h3>
+        <ul class="screens">
+          <li><a href="impressum.html"><h4>Impressum</h4><p>Provider identification under § 5 DDG plus the editorially responsible person under § 18 (2) MStV. Notes that the EU ODR platform closed in July 2025 rather than linking to it.</p><span class="screens__path">DE</span></a></li>
+          <li><a href="datenschutz.html"><h4>Datenschutzerklärung</h4><p>Art. 13 GDPR information, § 25 TDDDG device access, seven-day log retention, no cookies and no analytics. Flags the webfont transfer as the one item to resolve before launch.</p><span class="screens__path">DE</span></a></li>
+          <li><a href="barrierefreiheit.html"><h4>Erklärung zur Barrierefreiheit</h4><p>Honest BFSG scope assessment, WCAG 2.2 AA target, what is implemented and the four limitations that are not.</p><span class="screens__path">DE</span></a></li>
+          <li><a href="kontakt.html"><h4>Contact</h4><p>Real form controls, disabled until there is a named recipient, plus how corrections are handled.</p><span class="screens__path">/contact/</span></a></li>
+          <li><a href="authors.html"><h4>Authors</h4><p>The byline rule and why this page is currently short.</p><span class="screens__path">/authors/</span></a></li>
+          <li><a href="sitemap.html"><h4>Sitemap</h4><p>All 28 pages grouped as the site is structured.</p><span class="screens__path">/sitemap/</span></a></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>System states</h3>
+        <ul class="screens">
+          <li><a href="error-404.html"><h4>404 — not found</h4><p>Light, left-aligned, working search field, six topic routes. No automatic redirect.</p><span class="screens__path">404</span></a></li>
+          <li><a href="error-410.html"><h4>410 — gone</h4><p>Inverted to graphite so a deliberate removal never reads as an ordinary miss.</p><span class="screens__path">410</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight" aria-labelledby="brand-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="brand-title" style="font-size:var(--t-h3)">Brand mark</h2>
+        <p>One driving wave, one phase-inverted response damped to half amplitude. Resonance, not a note.</p>
+      </div>
+      <div class="brand-row">
+        <figure>
+          <svg class="mark-lg" viewBox="0 0 24 24" fill="none" aria-label="Auspicious Music symbol">
+            <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+          </svg>
+          <figcaption>Symbol · 72 px</figcaption>
+        </figure>
+        <figure>
+          <svg class="mark-md" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+          </svg>
+          <figcaption>32 px</figcaption>
+        </figure>
+        <figure>
+          <svg class="mark-sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+          </svg>
+          <figcaption>20 px · navigation</figcaption>
+        </figure>
+        <figure>
+          <img class="fav" src="assets/favicon.svg" width="44" height="44" alt="Favicon: the mark reversed out of ink black.">
+          <figcaption>Favicon · avatar</figcaption>
+        </figure>
+        <figure>
+          <span class="wordmark">Auspicious Music</span>
+          <figcaption>Wordmark · Inter 600 · −0.021em</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight band-surface" aria-labelledby="palette-title">
+    <div class="shell cols">
+      <div>
+        <h3 id="palette-title">Palette · revision 2</h3>
+        <div class="swatches">
+          <div class="sw"><i style="background:var(--canvas)"></i><b>--canvas</b><span>#edece8</span><em>paper</em></div>
+          <div class="sw"><i style="background:var(--surface)"></i><b>--surface</b><span>#f8f7f4</span><em>lifted</em></div>
+          <div class="sw"><i style="background:var(--ink)"></i><b>--ink</b><span>#16161a</span><em>15.3:1</em></div>
+          <div class="sw"><i style="background:var(--ink-soft)"></i><b>--ink-soft</b><span>#35353c</span><em>body</em></div>
+          <div class="sw"><i style="background:var(--muted)"></i><b>--muted</b><span>#67676d</span><em>4.75:1</em></div>
+          <div class="sw"><i style="background:var(--accent)"></i><b>--accent</b><span>#4a45d6</span><em>action · 5.7:1</em></div>
+          <div class="sw"><i style="background:var(--ember)"></i><b>--ember</b><span>#a3441a</span><em>archive · 5.2:1</em></div>
+          <div class="sw"><i style="background:var(--ember-bright)"></i><b>--ember-bright</b><span>#c05621</span><em>markers</em></div>
+          <div class="sw"><i style="background:var(--dark)"></i><b>--dark</b><span>#0b0b0d</span><em>graphite</em></div>
+          <div class="sw"><i style="background:var(--accent-on-dark)"></i><b>--accent-on-dark</b><span>#9698ee</span><em>7.5:1 on dark</em></div>
+          <div class="sw"><i style="background:var(--ember-on-dark)"></i><b>--ember-on-dark</b><span>#e07a3c</span><em>6.6:1 on dark</em></div>
+        </div>
+        <p style="margin-top:1.5rem;color:var(--muted);font-size:1rem;line-height:1.6;max-width:52ch">
+          Two axes, one meaning each. No element uses both. If a colour cannot be
+          assigned to action or to material, it stays neutral.
+        </p>
+      </div>
+
+      <div>
+        <h3>Motion</h3>
+        <ul class="plain">
+          <li><b>Hero lines</b> — mask reveal, 620 ms, 80 ms stagger</li>
+          <li><b>Hero image</b> — settles from scale 1.04, 1400 ms, opacity never below 1</li>
+          <li><b>Spectral rail</b> — ember node tracks scroll through the first bands</li>
+          <li><b>Index rows</b> — 16 px rise, 60 ms stagger, capped at six</li>
+          <li><b>Timelines</b> — same reveal, per entry</li>
+          <li><b>Header</b> — border and surface resolve past 64 px</li>
+        </ul>
+        <p style="margin-top:1.5rem;color:var(--muted);font-size:1rem;line-height:1.6;max-width:52ch">
+          No pinning, no scroll-jacking, no smooth-scroll library, no loops. Elements are
+          only hidden if they start below the fold, and a 2.5-second failsafe releases
+          anything the observer misses — so content never depends on a callback arriving.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight" aria-labelledby="open-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="open-title" style="font-size:var(--t-h3)">Open decisions</h2>
+        <p>Unchanged from revision 1, plus one new item.</p>
+      </div>
+      <ul class="open" style="max-width:64rem">
+        <li><div><strong>Placeholder media</strong>Screenshot and photograph slots are labelled grey placeholders stating what to capture and at what size. The three photographs that exist were generated for this concept and should be replaced with real studio shots.</div></li>
+        <li><div><strong>Version and date values</strong>“Ableton Live 12” and the 2026 dates are realistic placeholders. Each must be replaced with an actual tested version and test date before publication.</div></li>
+        <li><div><strong>Byline</strong>Articles are credited to the editorial desk because the spec bars invented authors. Real author records are needed before launch.</div></li>
+        <li><div><strong>Search</strong>The header control and the 404 field are designed but inert. Pagefind is the intended backing once enough content exists.</div></li>
+        <li><div><strong>Inter licence and hosting</strong>Loaded from Google Fonts in the concept; self-host as a variable subset for production.</div></li>
+        <li><div><strong>Tools and the navigation</strong>Tools sit under Resources, because the brief fixes the seven navigation items. If the section performs, it may deserve its own position — that is a decision to take on data, not now.</div></li>
+        <li><div><strong>Hub topic counts</strong>The hubs carried a “7 guides” column in the first generated pass. It asserted volume that does not exist, so it was removed. The column returns in Astro as a figure derived from the content collection, where it will be true by construction.</div></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-base" style="margin-top:0;padding-top:0;border-top:0">
+      <span>Auspicious Music — design concept, revision 2</span>
+      <span><a href="index.html" style="text-decoration:none">Open the site</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/motion.js" defer></script>
+</body>
+</html>

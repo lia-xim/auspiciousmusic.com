@@ -1,0 +1,251 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Music Production Workflows — Auspicious Music"}
+  description={"Practical guides for arrangement, project discipline and a production process you can repeat."}
+  canonicalPath={"/music-production/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .hub-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4rem); }
+  .hub-head h1 { max-width: 17ch; margin-top: 1.25rem; }
+  .hub-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+
+  /* ---- hub signature ----
+     Each hub opens on a diagram of its own discipline, so the five main
+     sections stop reading as one template with different words. Line work
+     only, one ember mark per figure, and hidden below 820px where the head
+     needs its full width for type. */
+  .hub-head__inner { display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: center; }
+  @media (min-width: 820px) {
+    .hub-head__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr); }
+  }
+  .sig { display: none; }
+  @media (min-width: 820px) {
+    .sig { display: grid; gap: 0.875rem; justify-items: end; }
+    .sig svg { inline-size: 100%; max-inline-size: 320px; height: auto; }
+    .sig rect, .sig circle { fill: var(--line-strong); }
+    .sig path, .sig line { stroke: var(--line-strong); stroke-width: 1.25; }
+    .sig .sig-empty { fill: none; stroke: var(--line); stroke-width: 1; }
+    .sig .sig-solid { fill: var(--ink-soft); }
+    .sig .sig-mark { fill: var(--ember-bright); }
+    circle.sig-mark { fill: none; stroke: var(--ember-bright); stroke-width: 2; }
+    .sig .sig-play { stroke: var(--ember-bright); stroke-width: 1.25; }
+    .sig figcaption {
+      font-family: var(--font-mono); font-size: var(--t-meta);
+      letter-spacing: var(--tr-meta); color: var(--muted);
+    }
+  }
+
+  .topics { border-top: 1px solid var(--line); }
+  .topics li { border-bottom: 1px solid var(--line); }
+  .topics a {
+    display: grid; gap: 0.375rem 2.5rem; padding-block: 1.5rem;
+    text-decoration: none; align-items: baseline;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .topics a:hover { background: var(--surface); }
+  .topics h3 { font-size: clamp(1.25rem, 1.05rem + 0.75vw, 1.625rem); letter-spacing: -0.015em; }
+  .topics p { color: var(--muted); font-size: 1rem; line-height: 1.6; max-width: 58ch; }
+  @media (min-width: 900px) {
+    .topics a { grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); align-items: start; }
+  }
+
+  .feature__inner { display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: center; }
+  @media (min-width: 940px) { .feature__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); } }
+  .feature h2 { font-size: clamp(1.75rem, 1.15rem + 2.1vw, 2.75rem); max-width: 20ch; margin-top: 0.875rem; }
+  .feature p { color: var(--dark-muted); margin-top: 1.125rem; max-width: 46ch; font-size: 1.0625rem; line-height: 1.65; }
+  .feature .meta { margin-top: 1.5rem; }
+  .feature .link { margin-top: 1.75rem; }
+  .feature .ph { aspect-ratio: 4 / 3; }
+
+  .tail { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+  @media (min-width: 900px) { .tail { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 4.5rem; } }
+  .glossary > div { padding-block: 1.125rem; border-top: 1px solid var(--line); }
+  .glossary > div:last-child { border-bottom: 1px solid var(--line); }
+  .glossary dt { font-weight: 550; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .glossary dd { color: var(--muted); font-size: 1rem; line-height: 1.6; margin-top: 0.25rem; max-width: 54ch; }
+  .related li { border-top: 1px solid var(--line); }
+  .related li:last-child { border-bottom: 1px solid var(--line); }
+  .related a {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+    padding-block: 1.125rem; text-decoration: none; font-size: 1.0625rem; font-weight: 500;
+  }
+  .related a:hover { color: var(--accent); }
+  .related svg { width: 14px; height: 14px; flex: none; }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <section class="hub-head" data-od-id="hub-head">
+    <div class="shell">
+      <div class="hub-head__inner">
+        <div>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li>Production</li>
+          </ol>
+        </nav>
+        <h1>Music production workflows</h1>
+        <p class="lede">The part of production that survives a change of software: how a project is organised, how an arrangement is built, and how a piece gets finished rather than abandoned. Every guide states the tools it was written against, but the method outlives them.</p>
+      </div>
+        <figure class="sig" aria-hidden="true">
+          <svg viewBox="0 0 200 120" fill="none" role="presentation"><rect x="0" y="0" width="96" height="7" rx="1.5"/><rect x="0" y="15" width="58" height="7" rx="1.5"/><rect x="24" y="30" width="132" height="7" rx="1.5"/><rect x="12" y="45" width="44" height="7" rx="1.5"/><rect x="48" y="60" width="108" height="7" rx="1.5" class="sig-mark"/><rect x="0" y="75" width="76" height="7" rx="1.5"/><rect x="64" y="90" width="96" height="7" rx="1.5"/><rect x="8" y="105" width="150" height="7" rx="1.5"/></svg>
+          <figcaption>Arrangement</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section data-od-id="hub-topics" aria-labelledby="topics-title">
+    <div class="shell">
+      <h2 id="topics-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Topics in this hub</h2>
+      <ul class="topics" data-reveal-group>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <h3>Workflow</h3>
+          <p>Building a process that gets a track from an idea to a delivered file without stalling in the middle.</p>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <h3>Project discipline</h3>
+          <p>Naming, collecting, freezing and folder structure — the unglamorous work that keeps a session openable.</p>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <h3>Arrangement</h3>
+          <p>Structure, transitions and the arithmetic of running time when a piece has to fit a slot.</p>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <h3>Production music</h3>
+          <p>Writing for libraries and catalogues, and what that market expects a delivery to contain.</p>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band-dark feature" data-od-id="hub-feature" aria-labelledby="feature-title">
+    <div class="shell feature__inner">
+      <div class="ph" data-reveal>
+        <span class="ph__label"><strong>Photograph</strong> — project folder and drive layout<br>to be captured at 2400 × 1500</span>
+      </div>
+      <div data-reveal data-reveal-delay="120">
+        <p class="kicker">Start here</p>
+        <h2 id="feature-title">DAW Project Guidelines for Reliable Music Production</h2>
+        <p>A project that reopens cleanly in two years is worth more than one that sounds good today. Naming, sample collection, freezing, and the exact folder structure behind every guide on this site.</p>
+        <p class="meta"><span>Ableton Live 12</span><span>14 min</span><span>Updated Jun 2026</span></p>
+        <a class="link" href="/publishing-roadmap/">Read the guide
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" data-od-id="hub-latest" aria-labelledby="latest-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="latest-title">Latest in Production</h2>
+        <p>Newest first. Method-led rather than tool-led, so most of it survives a DAW change.</p>
+      </div>
+      <ul class="index" data-reveal-group>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <time class="index__date" datetime="2026-06-24">24 Jun 2026</time>
+          <div>
+            <h3>DAW Project Guidelines for Reliable Music Production</h3>
+            <p>The folder structure, naming and collect-all discipline behind every project file on this site.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Live 12 · 14 min</span></div>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <time class="index__date" datetime="2026-06-10">10 Jun 2026</time>
+          <div>
+            <h3>How to Organise Samples Without Breaking Old Projects</h3>
+            <p>A library that grows for years without orphaning the sessions that referenced it three moves ago.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Any DAW · 11 min</span></div>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <time class="index__date" datetime="2026-05-26">26 May 2026</time>
+          <div>
+            <h3>A Repeatable Workflow From Idea to Delivery</h3>
+            <p>The five stages a track passes through here, and the decision that closes each one.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Method · 16 min</span></div>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <time class="index__date" datetime="2026-05-12">12 May 2026</time>
+          <div>
+            <h3>Arranging to a Fixed Running Time</h3>
+            <p>When the brief specifies ninety seconds, structure stops being taste and starts being arithmetic.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Arrangement · 9 min</span></div>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <time class="index__date" datetime="2026-04-28">28 Apr 2026</time>
+          <div>
+            <h3>Arranging Modern Ceremony Music for Strings</h3>
+            <p>Writing parts real players can sight-read in a room with no monitoring and one rehearsal.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Arrangement · 13 min</span></div>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band--tight band-surface" data-od-id="hub-tail">
+    <div class="shell tail">
+      <div>
+        <h2 style="font-size:var(--t-h3);margin-bottom:1.5rem">Terms used across this hub</h2>
+        <dl class="glossary">
+          <div>
+            <dt>Collect All and Save</dt>
+            <dd>The command that copies every referenced sample into the project folder — the single step that makes a session portable.</dd>
+          </div>
+          <div>
+            <dt>Freezing</dt>
+            <dd>Rendering a track to audio in place so its plug-ins stop consuming CPU while remaining reversible.</dd>
+          </div>
+          <div>
+            <dt>Stem</dt>
+            <dd>A submix of one element or group, delivered separately so it can be balanced again downstream.</dd>
+          </div>
+          <div>
+            <dt>Production music</dt>
+            <dd>Music written for licensing into media rather than for release, usually delivered with alternate lengths and mixes.</dd>
+          </div>
+        </dl>
+      </div>
+      <div>
+        <h2 style="font-size:var(--t-h3);margin-bottom:1.5rem">Related</h2>
+        <ul class="related">
+          <li><a href="/ableton/">Ableton
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="/music-for-media/">Music for Media
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="/resources/tools/">Tools and calculators
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="/resources/">Templates
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+</BaseLayout>

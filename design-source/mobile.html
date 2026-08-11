@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile concepts — Auspicious Music</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<style>
+@layer components {
+  .sheet-note { padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2rem); }
+  .sheet-note h1 { max-width: 18ch; margin-top: 1rem; }
+  .sheet-note .lede { margin-top: 1.25rem; max-width: 60ch; }
+
+  .frames {
+    display: grid; gap: clamp(2.5rem, 5vw, 4rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    justify-content: start;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 390px), 390px));
+  }
+
+  /* A browser shell, not a phone shell: this is one responsive web product
+     at a 390px viewport, not a native app. */
+  .frame { display: grid; gap: 0.875rem; }
+  .frame__chrome {
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: var(--shadow-media);
+  }
+  /* The iframe is pinned to a true 390px viewport, so on a narrower screen
+     the shell scrolls internally rather than the page scrolling sideways —
+     the measurement stays honest either way. */
+  @media (max-width: 460px) { .frame__chrome { overflow-x: auto; } }
+  .frame__bar {
+    display: flex; align-items: center; gap: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--ink) 4%, var(--surface));
+  }
+  .frame__dots { display: flex; gap: 5px; flex: none; }
+  .frame__dots i { inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--line-strong); }
+  .frame__url {
+    flex: 1; min-width: 0;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.01em;
+    color: var(--muted); background: var(--canvas);
+    padding: 0.3125rem 0.625rem; border-radius: 6px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .frame iframe { display: block; width: 390px; height: 760px; border: 0; background: var(--canvas); }
+  .frame__cap {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted); line-height: 1.6;
+  }
+  .frame__cap strong { color: var(--ink); font-weight: 550; display: block; margin-bottom: 0.25rem; }
+
+  .checks { max-width: var(--measure); }
+  .checks li {
+    padding-block: 0.875rem; border-top: 1px solid var(--line);
+    font-size: 1.0625rem; line-height: 1.6; color: var(--ink-soft);
+    display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.75rem;
+  }
+  .checks li:last-child { border-bottom: 1px solid var(--line); }
+  .checks li::before {
+    content: ""; inline-size: 7px; block-size: 7px; border-radius: 50%;
+    background: var(--status-ok); margin-top: 0.6rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="shell site-header__inner">
+    <a class="brand" href="concept.html" aria-label="Auspicious Music — concept index">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </a>
+    <div class="header-tools">
+      <a class="link" href="concept.html" style="font-size:var(--t-ui-sm)">All concepts
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+  <section class="sheet-note">
+    <div class="shell">
+      <p class="kicker">Concept — mobile</p>
+      <h1>The same pages at 390 px</h1>
+      <p class="lede">
+        These are the live concept pages rendered at a 390 px viewport, not separate
+        mobile mock-ups. The shell is a browser rather than a phone on purpose: this is
+        one responsive web publication, not a native app.
+      </p>
+    </div>
+  </section>
+
+  <div class="shell">
+    <div class="frames">
+
+      <figure class="frame">
+        <div class="frame__chrome">
+          <div class="frame__bar">
+            <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="frame__url">auspiciousmusic.com</span>
+          </div>
+          <iframe src="index.html" title="Homepage at 390 pixels wide" loading="lazy"></iframe>
+        </div>
+        <figcaption class="frame__cap">
+          <strong>Homepage</strong>
+          Brand, menu, H1, supporting copy, primary action and the top of the artwork
+          all land in the first viewport without clipping.
+        </figcaption>
+      </figure>
+
+      <figure class="frame">
+        <div class="frame__chrome">
+          <div class="frame__bar">
+            <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="frame__url">auspiciousmusic.com/#menu</span>
+          </div>
+          <iframe src="index.html#menu" title="Full-screen menu at 390 pixels wide" loading="lazy"></iframe>
+        </div>
+        <figcaption class="frame__cap">
+          <strong>Menu</strong>
+          Full-screen sheet, seven destinations at display size, no nested accordion.
+          Escape and the close control both dismiss it.
+        </figcaption>
+      </figure>
+
+      <figure class="frame">
+        <div class="frame__chrome">
+          <div class="frame__bar">
+            <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="frame__url">auspiciousmusic.com/sound-design/…</span>
+          </div>
+          <iframe src="article-sampled-instrument.html" title="Long-form article at 390 pixels wide" loading="lazy"></iframe>
+        </div>
+        <figcaption class="frame__cap">
+          <strong>Long-form article</strong>
+          Contents collapse to an inline disclosure, the requirements table reflows to
+          two columns, and the settings block scrolls horizontally rather than shrinking.
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+
+  <section class="band band--tight band-surface">
+    <div class="shell">
+      <h2 style="font-size:var(--t-h3);margin-bottom:1.5rem">What was re-composed rather than stacked</h2>
+      <ul class="checks">
+        <li>Navigation becomes a full-screen sheet with display-scale type, not a shrunken bar.</li>
+        <li>The masthead keeps its full-viewport height, but the headline centres in the free row instead of sitting at the bottom — bottom-weighting left a dead field above it on a short screen.</li>
+        <li>The string drops to the baseline of the headline. Running through the middle of a short word, a full-width line reads as a strikethrough rather than a string.</li>
+        <li>The two hero actions go full width and stack below 400px, rather than sitting as two half-width buttons on one cramped row.</li>
+        <li>Topic portals lose their four-column rail and become title-first blocks with the description underneath.</li>
+        <li>The editorial index drops its date and topic columns into the row body, keeping one tap target per article.</li>
+        <li>Article contents collapse from a sticky side rail into an inline disclosure at the top of the piece.</li>
+        <li>The settings block and the calculator tables keep their monospace alignment and scroll sideways instead of reflowing into nonsense — and the caption says so, because a table that scrolls silently reads as a table with missing columns.</li>
+        <li>Legacy fact tables and article metadata switch from two columns to stacked label-and-value pairs below 560px.</li>
+        <li>Form fields are lifted to 16px on touch, because anything smaller makes iOS zoom the viewport on focus and leave the page scrolled sideways.</li>
+        <li>Row highlights move from <span style="font-family:var(--font-mono);font-size:0.9em">:hover</span> to <span style="font-family:var(--font-mono);font-size:0.9em">:active</span> where there is no pointer, so a tapped row does not stay highlighted after you have moved on.</li>
+        <li>The gutter becomes a floor against the display cutout, and the menu sheet and footer clear the home indicator.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-base" style="margin-top:0;padding-top:0;border-top:0">
+      <span>© 2026 Auspicious Music</span>
+      <span>Concept — phase 1</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

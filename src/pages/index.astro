@@ -1,0 +1,651 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Auspicious Music — Practical guides for music production and creative audio"}
+  description={"An independent publication for music production, Ableton, recording, sound design, and music for media."}
+  canonicalPath={"/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={true}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+
+  /* ══ Hero ═══════════════════════════════════════════════════════════
+     Revision 4 — the masthead is the type, and the string is playable.
+
+     Earlier passes leaned on photography: first a framed object, then a
+     full-bleed band, then a portrait. Each put the argument in a picture.
+     This one puts it in the typography and gives the reader one thing to
+     do — a taut string across the headline that answers the pointer and
+     rings down on its own physics.
+
+     That is not ornament. The brand mark is a driving wave and its damped
+     response; this is the same idea made operable, on a publication about
+     how sound behaves. It is also the only motion above the fold, it
+     never loops, and it stops dead once the string is at rest.          */
+  /* Full-viewport masthead. svh rather than vh so a mobile browser's
+     collapsing address bar cannot push the footer row out of frame.
+     min-block-size, not height: on a short laptop window the scene grows
+     with its contents instead of clipping them. */
+  .hero {
+    background: var(--canvas);
+    color: var(--ink);
+    position: relative;
+    overflow: clip;
+    min-block-size: calc(100svh - var(--header-h));
+    display: flex;
+  }
+  .hero > .shell {
+    position: relative;
+    z-index: 1;                /* type sits above the string field */
+    inline-size: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto auto;
+    padding-block: clamp(1.25rem, 2.5vh, 2rem) 0;
+  }
+
+  .hero__note {
+    margin-left: auto;
+    max-width: 34ch;
+    font-size: var(--t-ui-sm);
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  @media (min-width: 860px) { .hero__note { text-align: right; } }
+
+  /* The stage holds the headline and the string on the same layer, so the
+     string crosses the letterforms rather than sitting under them. It
+     takes the free row and centres within it. */
+  /* Weighted to the bottom of the free row, so the open space collects
+     above the headline rather than splitting either side of it. */
+  .hero__stage {
+    display: grid;
+    align-content: end;
+    padding-block: clamp(2rem, 6vh, 5rem) clamp(1.5rem, 3vh, 2.5rem);
+  }
+  /* On a phone the headline is only two short lines, so bottom-weighting
+     the free row leaves a dead field above it. Centred instead, the space
+     splits and the scene reads as composed rather than bottom-heavy. */
+  @media (max-width: 700px) {
+    .hero__stage { align-content: center; padding-block: clamp(1rem, 3vh, 2rem); }
+  }
+
+  /* Two long lines rather than three uneven ones: "Make" on its own left a
+     third of the measure empty. Set at a size where the second line very
+     nearly spans the container, which is what gives the block its weight. */
+  .hero__title {
+    font-size: clamp(2.75rem, 0.5rem + 11.4vw, 10.5rem);   /* 44 → 168 */
+    line-height: 0.85;
+    letter-spacing: -0.048em;
+    font-weight: 600;
+    text-wrap: nowrap;
+  }
+  .hero__title span { display: block; }
+  .hero__title span:nth-child(2) { margin-left: 9%; }
+  @media (max-width: 700px) {
+    .hero__title span:nth-child(2) { margin-left: 5%; }
+  }
+  /* Short windows: a 168px headline plus the footer rows does not fit a
+     600px-tall viewport, so the display scale gives way rather than the
+     scene overflowing. */
+  @media (min-width: 900px) and (max-height: 760px) {
+    .hero__title { font-size: clamp(2.75rem, 0.5rem + 7.4vw, 6.75rem); }
+    .hero__string { block-size: 170px; }
+  }
+
+  /* The string field occupies the whole masthead rather than a single
+     band. Six strings distributed across the upper two thirds — which is
+     precisely the region that was previously empty. Transparent to clicks
+     so the type, the actions and the selection behaviour underneath are
+     untouched; the pointer is read from .hero itself. */
+  .hero__string {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Scroll cue — replaces the Latest row. A masthead at full viewport
+     height needs to say that something follows; it does not need to
+     advertise an article to do it. */
+  .hero__scroll {
+    position: relative;
+    padding-block: 1rem clamp(1.25rem, 2.5vh, 1.75rem);
+    border-top: 1px solid var(--line);
+  }
+  .hero__scroll::before {
+    content: "";
+    position: absolute; top: -4px; left: 0;
+    inline-size: 7px; block-size: 7px; border-radius: 50%;
+    background: var(--ember-bright);
+  }
+  .hero__scroll span {
+    font-family: var(--font-mono);
+    font-size: var(--t-meta);
+    letter-spacing: var(--tr-caps);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem 2rem;
+    padding-bottom: clamp(1.5rem, 3vh, 2.25rem);
+  }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  .hero__hint {
+    font-family: var(--font-mono);
+    font-size: var(--t-meta);
+    letter-spacing: var(--tr-caps);
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .hero__hint button {
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 1px;
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  .hero__hint button:hover { border-bottom-color: var(--ink); }
+
+
+  .line-mask { display: block; overflow: hidden; padding-bottom: 0.06em; }
+  .line-mask > span { display: block; }
+  @media (prefers-reduced-motion: no-preference) {
+    .line-mask > span { animation: line-in 620ms var(--ease-out) both; }
+    .line-mask:nth-of-type(2) > span { animation-delay: 80ms; }
+  }
+  @keyframes line-in { from { transform: translateY(102%); } }
+
+  /* ══ 2 · topic portals ══════════════════════════════════════════════ */
+  .portal { border-top: 1px solid var(--line); }
+  .portals > li:last-child { border-bottom: 1px solid var(--line); }
+  .portal a {
+    display: grid; gap: 0.5rem 2.5rem;
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+    text-decoration: none; align-items: baseline;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .portal a:hover { background: var(--surface); }
+  .portal__n {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    color: var(--muted); letter-spacing: var(--tr-meta);
+    font-variant-numeric: tabular-nums;
+  }
+  .portal h3 { font-size: clamp(1.75rem, 1.2rem + 2.1vw, 3rem); letter-spacing: -0.021em; }
+  .portal p { color: var(--muted); font-size: 1.0625rem; line-height: 1.6; max-width: 52ch; }
+  .portal__go { display: inline-flex; align-items: center; gap: 0.4375rem; font-size: var(--t-ui-sm); font-weight: 550; }
+  .portal a:hover .portal__go { gap: 0.6875rem; }
+  .portal__go svg { width: 14px; height: 14px; }
+  @media (min-width: 900px) {
+    .portal a { grid-template-columns: 3.5rem minmax(0, 15rem) minmax(0, 1fr) auto; align-items: start; }
+    .portal__n, .portal__go { padding-top: 0.65rem; }
+  }
+
+  /* ══ 3 · start here ═════════════════════════════════════════════════ */
+  .start { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+  @media (min-width: 1000px) { .start { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 4.5rem; } }
+  .start__lead h3 { font-size: clamp(1.625rem, 1.15rem + 1.7vw, 2.375rem); letter-spacing: -0.019em; margin-top: 1.25rem; }
+  .start__lead p { color: var(--ink-soft); margin-top: 0.875rem; font-size: 1.0625rem; line-height: 1.6; max-width: 48ch; }
+  .start__lead .meta { margin-top: 1.25rem; }
+  .start__lead a { text-decoration: none; display: block; }
+  .start__lead a:hover h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .start__lead .ph { aspect-ratio: 16 / 10; }
+
+  .numbered li { border-top: 1px solid var(--line); }
+  .numbered li:last-child { border-bottom: 1px solid var(--line); }
+  .numbered a {
+    display: grid; grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 0.375rem 1rem; padding-block: 1.375rem; text-decoration: none;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .numbered a:hover { background: var(--surface); }
+  .numbered__n {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    color: var(--muted); padding-top: 0.28rem; font-variant-numeric: tabular-nums;
+  }
+  .numbered h4 { font-size: 1.125rem; letter-spacing: -0.012em; }
+  .numbered .meta { grid-column: 2; margin-top: 0.375rem; }
+
+  /* ══ 4 · featured lab ═══════════════════════════════════════════════ */
+  .lab__inner { display: grid; gap: clamp(2.5rem, 5vw, 4rem); align-items: center; }
+  @media (min-width: 1000px) { .lab__inner { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); } }
+  .lab h2 { font-size: clamp(2rem, 1.15rem + 2.6vw, 3.25rem); max-width: 18ch; }
+  .lab p { color: var(--dark-muted); margin-top: 1.25rem; max-width: 46ch; font-size: 1.0625rem; line-height: 1.65; }
+  .lab .meta { margin-top: 1.75rem; }
+  .lab .link { margin-top: 2rem; }
+  .lab__art { border-radius: var(--r-media); overflow: hidden; background: var(--dark-surface); }
+  .lab__art img {
+    inline-size: 100%;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    object-position: 55% 62%;
+  }
+
+  /* ══ 5 · tools ══════════════════════════════════════════════════════
+     Deliberately the densest block on the page. A calculator row should
+     look like something you use, not something you are sold.          */
+  .tools-band { background: var(--surface); }
+  .tool-row { border-top: 1px solid var(--line); }
+  .tools-list > li:last-child { border-bottom: 1px solid var(--line); }
+  .tool-row a {
+    display: grid; gap: 0.5rem 2.5rem; padding-block: 1.5rem;
+    text-decoration: none; align-items: baseline;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .tool-row a:hover { background: var(--surface-bright); }
+  .tool-row h3 { font-size: 1.375rem; letter-spacing: -0.015em; }
+  .tool-row p { color: var(--muted); font-size: 1rem; line-height: 1.55; max-width: 56ch; }
+  .tool-row__io {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--ink-soft);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  @media (min-width: 900px) {
+    .tool-row a { grid-template-columns: minmax(0, 16rem) minmax(0, 1fr) minmax(0, 11rem); align-items: start; }
+    .tool-row__io { text-align: right; padding-top: 0.3rem; }
+  }
+
+  /* ══ 6 · archive ════════════════════════════════════════════════════ */
+  .record { border-top: 1px solid var(--line-strong); padding-block: clamp(2rem, 4vw, 3rem); }
+  .record:last-of-type { border-bottom: 1px solid var(--line-strong); }
+  .record__grid { display: grid; gap: 1.25rem 3rem; }
+  @media (min-width: 900px) { .record__grid { grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); } }
+  .record h3 { font-size: clamp(1.5rem, 1.15rem + 1.1vw, 2rem); letter-spacing: -0.017em; margin-top: 0.625rem; }
+  .record p { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.65; max-width: 60ch; }
+  .record__facts { display: grid; gap: 0.625rem; margin-top: 1.5rem; }
+  .record .link { margin-top: 1.5rem; }
+  .fact {
+    display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0.75rem;
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); padding-block: 0.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .fact dt { color: var(--muted); }
+  .fact dd { color: var(--ink-soft); }
+  @media (max-width: 560px) { .fact { grid-template-columns: 1fr; gap: 0.1875rem; } }
+
+  /* ══ 7 · acoustic story ═════════════════════════════════════════════ */
+  .story__media { position: relative; border-radius: var(--r-media); overflow: hidden; }
+  .story__media img { aspect-ratio: 16 / 9; object-fit: cover; }
+  .story__body { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: clamp(2rem, 4vw, 3rem); }
+  @media (min-width: 900px) { .story__body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; } }
+  .story h2 { max-width: 16ch; }
+  .story p { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.7; max-width: 56ch; }
+  .story__links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-top: 1.75rem; }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <!-- 1 ─────────────────────────────────────────────────────── hero -->
+  <section class="hero" data-od-id="hero" aria-labelledby="hero-title">
+    <canvas class="hero__string" data-string aria-hidden="true"></canvas>
+
+    <div class="shell">
+
+      <p class="hero__note">
+        Practical guides for music production, Ableton, recording, sound design,
+        and music for media. Independent, and tested before it is published.
+      </p>
+
+      <div class="hero__stage">
+        <h1 id="hero-title" class="hero__title">
+          <span>Make sound</span>
+          <span>with intent.</span>
+        </h1>
+      </div>
+
+      <div class="hero__foot">
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/ableton/">Explore the guides</a>
+          <a class="btn btn--quiet" href="/download/">Browse legacy resources</a>
+        </div>
+        <p class="hero__hint">
+          <button type="button" data-string-pluck>Play the strings</button> — drag one and the others answer.
+        </p>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Scroll</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 ────────────────────────────────────────────── topic portals -->
+  <section class="band band--tight" data-od-id="portals" aria-labelledby="portals-title">
+    <div class="shell" style="position:relative">
+      <span class="rail" data-rail style="left:calc(var(--gutter) * -0.55)" aria-hidden="true"></span>
+      <h2 id="portals-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Where to start by topic</h2>
+      <ul class="portals" data-reveal-group>
+        <li class="portal" data-reveal>
+          <a href="/ableton/">
+            <span class="portal__n">01</span>
+            <h3>Ableton</h3>
+            <p>Live and Max for Live, from a first session to a project that still opens
+               in two years. Device chains, controller mapping, and the parts of Max
+               that repay the learning curve.</p>
+            <span class="portal__go">Open hub
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </li>
+        <li class="portal" data-reveal>
+          <a href="/recording/">
+            <span class="portal__n">02</span>
+            <h3>Recording</h3>
+            <p>Microphones, rooms, and acoustic instruments — including the string parts
+               most production writing skips. Placement, gain staging, and what a
+               domestic room will and will not give you.</p>
+            <span class="portal__go">Open hub
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </li>
+        <li class="portal" data-reveal>
+          <a href="/sound-design/">
+            <span class="portal__n">03</span>
+            <h3>Sound Design</h3>
+            <p>Sampling, synthesis, and building instruments that play the way you
+               expect them to. Every technique documented together with the audio
+               it actually produced.</p>
+            <span class="portal__go">Open hub
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3 ─────────────────────────────────────────────────── start here -->
+  <section class="band" data-od-id="start-here" aria-labelledby="start-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="start-title">Start here</h2>
+        <p>Six guides that everything else on the site assumes you have read.</p>
+      </div>
+
+      <div class="start">
+        <article class="start__lead" data-reveal>
+          <a href="/publishing-roadmap/">
+            <div class="ph">
+              <span class="ph__label"><strong>Photograph</strong> — project folder and drive layout<br>to be shot at 2400 × 1500</span>
+            </div>
+            <h3>DAW Project Guidelines for Reliable Music Production</h3>
+            <p>A project that reopens cleanly in two years is worth more than one that
+               sounds good today. Naming, sample collection, freezing, and the exact
+               folder structure behind every guide on this site.</p>
+            <p class="meta"><span>Music Production</span><span>14 min</span><span>Ableton Live 12</span></p>
+          </a>
+        </article>
+
+        <ol class="numbered" data-reveal-group>
+          <li data-reveal><a href="/publishing-roadmap/">
+            <span class="numbered__n">01</span><h4>What Is Max for Live? A Practical Starting Guide</h4>
+            <p class="meta"><span>Ableton</span><span>11 min</span></p>
+          </a></li>
+          <li data-reveal><a href="/recording/acoustic-instruments/recording-viola-at-home/">
+            <span class="numbered__n">02</span><h4>How to Record Viola at Home</h4>
+            <p class="meta"><span>Recording</span><span>16 min</span></p>
+          </a></li>
+          <li data-reveal><a href="/publishing-roadmap/">
+            <span class="numbered__n">03</span><h4>Live Strings vs Sample Libraries: When Each Works</h4>
+            <p class="meta"><span>Recording</span><span>12 min</span></p>
+          </a></li>
+          <li data-reveal><a href="/publishing-roadmap/">
+            <span class="numbered__n">04</span><h4>Production Music Licensing: A Practical Introduction</h4>
+            <p class="meta"><span>Music for Media</span><span>18 min</span></p>
+          </a></li>
+          <li data-reveal><a href="/ableton/midi-fighter-twister-review/">
+            <span class="numbered__n">05</span><h4>MIDI Fighter Twister Review and Ableton Workflow</h4>
+            <p class="meta"><span>Ableton</span><span>13 min</span></p>
+          </a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 ─────────────────────────────────────────────── featured lab -->
+  <section class="band band--wide band-dark lab" data-od-id="featured-lab" aria-labelledby="lab-title">
+    <div class="shell lab__inner">
+      <figure class="lab__art" data-reveal>
+        <img src="/assets/hero-portrait.png" width="928" height="1152" loading="lazy" decoding="async"
+             alt="A machined aluminium block on black glass with a single steel string stretched above it, lit by one narrow beam.">
+      </figure>
+      <div data-reveal data-reveal-delay="120">
+        <p class="kicker">Lab — tested build</p>
+        <h2 id="lab-title" style="margin-top:0.875rem">How to Build a Sampled Instrument in Ableton Live</h2>
+        <p>We recorded a viola across three dynamic layers, trimmed and looped the
+           sustains, then mapped the result into Sampler. This is the whole chain,
+           including the two points where round-robin stopped behaving and what
+           fixed it.</p>
+        <p class="meta">
+          <span>Ableton Live 12</span><span>Sampler</span><span>Three velocity layers</span><span>Round-robin</span>
+        </p>
+        <a class="link" href="/sound-design/sampled-instruments/building-a-sampled-instrument/">Read the build
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 ─────────────────────────────────────────────────────── tools -->
+  <section class="band tools-band" data-od-id="tools" aria-labelledby="tools-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="tools-title">Tools</h2>
+        <p>Small calculators that answer a question faster than a search does. No sign-up, no export, nothing stored.</p>
+      </div>
+
+      <ul class="tools-list" data-reveal-group>
+        <li class="tool-row" data-reveal><a href="/resources/tools/delay-and-reverb/">
+          <h3>Delay &amp; Reverb Time</h3>
+          <p>Every note division in milliseconds and hertz for a given tempo, straight,
+             dotted and triplet — plus a pre-delay and decay starting point.</p>
+          <span class="tool-row__io">BPM → ms · Hz</span>
+        </a></li>
+        <li class="tool-row" data-reveal><a href="/resources/tools/note-frequency/">
+          <h3>Note &amp; Frequency</h3>
+          <p>Note names, MIDI numbers and frequencies across the full range, with an
+             adjustable concert pitch and the cents deviation to any frequency you enter.</p>
+          <span class="tool-row__io">Note ⇄ Hz ⇄ MIDI</span>
+        </a></li>
+        <li class="tool-row" data-reveal><a href="/resources/tools/sample-pitch/">
+          <h3>Sample Pitch &amp; Rate</h3>
+          <p>What transposing a sample does to its playback rate, its length and its
+             tempo — the arithmetic behind every repitched loop.</p>
+          <span class="tool-row__io">Semitones → rate · length</span>
+        </a></li>
+      </ul>
+
+      <p style="margin-top:2rem">
+        <a class="link" href="/resources/tools/">All tools
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 6 ─────────────────────────────────────────── legacy resources -->
+  <section class="band" data-od-id="legacy" aria-labelledby="legacy-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="legacy-title">The archive</h2>
+        <p>Resources published on this domain before the relaunch, documented as
+           history rather than reissued as current work.</p>
+      </div>
+
+      <article class="record" data-reveal>
+        <div class="record__grid">
+          <div>
+            <span class="flag">Historical resource</span>
+            <h3>The Spy Guitar</h3>
+          </div>
+          <div>
+            <p>An Ableton sampler instrument published on this domain between 2013 and
+               2017 by the former operator. External archives still link to it, which is
+               why the address stays alive — this page explains what the instrument was,
+               what remains verifiable, and how the same result is built today.</p>
+            <dl class="record__facts">
+              <div class="fact"><dt>Archived</dt><dd>2013 – 2017</dd></div>
+              <div class="fact"><dt>Rights</dt><dd>Unverified — original files not redistributed</dd></div>
+              <div class="fact"><dt>Download</dt><dd><span class="status" data-state="unavailable">Unavailable</span></dd></div>
+            </dl>
+            <a class="link" href="/legacy/the-spy-guitar/">History, compatibility and a modern rebuild
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="record" data-reveal>
+        <div class="record__grid">
+          <div>
+            <span class="flag">Historical resource</span>
+            <h3>Bang My Twister</h3>
+          </div>
+          <div>
+            <p>A Max for Live device for switching banks on the DJ TechTools MIDI Fighter
+               Twister. The original mapping is still published and maintained by DJ
+               TechTools, so this page points there rather than rehosting it, and
+               documents how the same workflow is set up in current Live.</p>
+            <dl class="record__facts">
+              <div class="fact"><dt>Archived</dt><dd>2014</dd></div>
+              <div class="fact"><dt>Rights</dt><dd>Mapping remains with DJ TechTools</dd></div>
+              <div class="fact"><dt>Download</dt><dd><span class="status" data-state="external">External source</span></dd></div>
+            </dl>
+            <a class="link" href="/legacy/bang-my-twister/">Historic device and current setup
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <p style="margin-top:2rem">
+        <a class="link" href="/download/">All legacy downloads and their current status
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 7 ────────────────────────────── acoustic + music for media -->
+  <section class="band band--wide story" data-od-id="acoustic-story" aria-labelledby="story-title">
+    <div class="shell">
+      <figure class="story__media" data-reveal>
+        <img src="/assets/story-viola-back.png" width="1376" height="774" loading="lazy" decoding="async"
+             alt="A viola leaning back-outward against a plaster wall in a bare wooden room, a condenser microphone on a stand a short distance away.">
+      </figure>
+      <div class="story__body">
+        <h2 id="story-title">Where the string section meets the session file</h2>
+        <div>
+          <p>Most production writing stops at the plug-in. A viola in a small room behaves
+             nothing like a sample library, and the arrangement that carries a wedding film
+             is not the one that carries a trailer. This is the part of the publication
+             where recorded instruments, arrangement, and delivery for film and video are
+             treated as one subject rather than three.</p>
+          <div class="story__links">
+            <a class="link" href="/recording/">Recording
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="link" href="/music-for-media/">Music for Media
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 ──────────────────────────────────────────── latest articles -->
+  <section class="band band-surface" data-od-id="latest" aria-labelledby="latest-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="latest-title">Latest</h2>
+        <p><a class="link" href="/resources/">Full index
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></p>
+      </div>
+
+      <ul class="index" data-reveal-group>
+        <li data-reveal><a href="/sound-design/sampled-instruments/building-a-sampled-instrument/">
+          <time class="index__date" datetime="2026-08-04">04 Aug 2026</time>
+          <div>
+            <h3>How to Build a Sampled Instrument in Ableton Live</h3>
+            <p>Recording, trimming, looping and mapping a viola into Sampler — with the round-robin problems left in.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Sound Design · 22 min</span></div>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <time class="index__date" datetime="2026-07-28">28 Jul 2026</time>
+          <div>
+            <h3>Live Strings vs Sample Libraries: When Each Works</h3>
+            <p>Four passages, played and programmed, with the audio to compare and the cost of each route.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Recording · 12 min</span></div>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <time class="index__date" datetime="2026-07-19">19 Jul 2026</time>
+          <div>
+            <h3>Production Music Licensing: A Practical Introduction</h3>
+            <p>What the terms mean, who holds which right, and the questions to settle before a track is delivered.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Music for Media · 18 min</span></div>
+        </a></li>
+        <li data-reveal><a href="/recording/acoustic-instruments/recording-viola-at-home/">
+          <time class="index__date" datetime="2026-07-11">11 Jul 2026</time>
+          <div>
+            <h3>How to Record Viola at Home</h3>
+            <p>Placement, room treatment you can actually do in a flat, and the three positions worth trying first.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Recording · 16 min</span></div>
+        </a></li>
+        <li data-reveal><a href="/ableton/midi-fighter-twister-review/">
+          <time class="index__date" datetime="2026-07-02">02 Jul 2026</time>
+          <div>
+            <h3>MIDI Fighter Twister Review and Ableton Workflow</h3>
+            <p>A decade-old controller tested against current Live, including where the mapping still breaks.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Ableton · 13 min</span></div>
+        </a></li>
+        <li data-reveal><a href="/publishing-roadmap/">
+          <time class="index__date" datetime="2026-06-24">24 Jun 2026</time>
+          <div>
+            <h3>DAW Project Guidelines for Reliable Music Production</h3>
+            <p>The folder structure, naming and collect-all discipline behind every project file on this site.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Music Production · 14 min</span></div>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 9 ───────────────────────────────────────────── relaunch notice -->
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+</BaseLayout>

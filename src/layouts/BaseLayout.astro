@@ -1,0 +1,62 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  lang?: string;
+  noindex?: boolean;
+  loadStringField?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  lang = 'en',
+  noindex = false,
+  loadStringField = false,
+} = Astro.props;
+
+const siteIndexable = import.meta.env.SITE_INDEXABLE === 'true';
+const robots = siteIndexable && !noindex ? 'index,follow,max-image-preview:large' : 'noindex,nofollow,noarchive';
+const canonical = new URL(canonicalPath, Astro.site ?? 'https://www.auspiciousmusic.com/');
+const image = new URL('/assets/hero-portrait.png', Astro.site ?? canonical);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/inter.css" />
+    <link rel="stylesheet" href="/assets/system.css" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Auspicious Music" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <slot name="head" />
+  </head>
+  <body>
+    <SiteHeader currentPath={Astro.url.pathname} />
+    <slot />
+    <SiteFooter />
+    <script is:inline src="/assets/motion.js" defer></script>
+    {loadStringField && <script is:inline src="/assets/string.js" defer></script>}
+    <slot name="scripts" />
+  </body>
+</html>

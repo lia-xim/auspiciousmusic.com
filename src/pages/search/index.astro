@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Search — Auspicious Music"
+  description="Search the guides, tools, archive notes, and publication pages on Auspicious Music."
+  canonicalPath="/search/"
+  noindex={true}
+>
+  <main id="content">
+    <section class="pg-head">
+      <div class="shell">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <ol><li><a href="/">Home</a></li><li>Search</li></ol>
+        </nav>
+        <h1>Search the publication</h1>
+        <p class="lede">Find guides, calculators, archive notes, and publication information. Search runs locally in your browser.</p>
+      </div>
+    </section>
+
+    <section class="band band--tight">
+      <div class="shell search-shell">
+        <form class="search-form" role="search" data-site-search>
+          <label for="site-search">Search</label>
+          <div class="search-row">
+            <input id="site-search" name="q" type="search" autocomplete="off" placeholder="Sampler, viola, Max for Live…" />
+            <button class="btn btn--primary" type="submit">Search</button>
+          </div>
+        </form>
+        <p class="search-status" data-search-status role="status" aria-live="polite">Type a word or phrase to search.</p>
+        <ol class="search-results" data-search-results></ol>
+      </div>
+    </section>
+  </main>
+  <Fragment slot="scripts"><script is:inline src="/scripts/search.js" defer></script></Fragment>
+</BaseLayout>
+
+<style is:global>
+  .search-shell { max-width: 58rem; }
+  .search-form label { display: block; font-weight: 650; margin-bottom: .625rem; }
+  .search-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .75rem; }
+  .search-row input { min-height: 3.25rem; border: 1px solid var(--line-strong); border-radius: var(--r-control); padding: .75rem 1rem; background: var(--surface-bright); color: var(--ink); font: inherit; }
+  .search-row input:focus { outline: 3px solid color-mix(in srgb, var(--accent) 26%, transparent); outline-offset: 2px; }
+  .search-status { margin-top: 1.25rem; color: var(--muted); }
+  .search-results { margin-top: 2rem; border-top: 1px solid var(--line); }
+  .search-results li { border-bottom: 1px solid var(--line); }
+  .search-results a { display: block; padding-block: 1.25rem; text-decoration: none; }
+  .search-results a:hover h2 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .search-results h2 { font-size: 1.25rem; }
+  .search-results p { margin-top: .375rem; color: var(--muted); line-height: 1.55; }
+  .search-results code { display: inline-block; margin-top: .625rem; color: var(--ink-soft); font-family: var(--font-mono); font-size: var(--t-meta); }
+  @media (max-width: 560px) { .search-row { grid-template-columns: 1fr; } .search-row .btn { justify-content: center; } }
+</style>

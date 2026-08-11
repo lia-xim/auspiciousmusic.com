@@ -1,0 +1,45 @@
+priority,legacy_path,historical_intent,evidence,current_action,target_or_page,status_code,rights_status,launch_state,notes
+P0,/,Former Auspicious Music homepage,"Wayback 2013-2017; current Ableton profile links here",publish current independent homepage,/,200,new current content,draft,"Prominent relaunch disclosure; never claim former clients or identity"
+P0,/download/,Historic download hub; later casino spam target,"Ahrefs spam anchors plus Wayback legitimate download hub",publish clean legacy download and resource hub,/download/,200,mixed; verify every asset,draft,"No open redirect; no unverified binaries"
+P0,/download,Historic download hub,Wayback,exact redirect,/download/,301,n/a,planned,Preserve path only
+P0,/download.html,Historic download hub,Wayback,exact redirect,/download/,301,n/a,planned,Preserve path only
+P0,/2/post/2014/03/the-spy-guitar.html,Spy Guitar Ableton instrument,"Live BeatProduction backlink",exact redirect,/legacy/the-spy-guitar/,301,old asset unavailable unless licensed,planned,"Highest known legitimate linked deep URL"
+P0,/download/the-spy-guitar,Spy Guitar download,Wayback,exact redirect,/legacy/the-spy-guitar/,301,old asset unavailable unless licensed,planned,Legacy page must explain download status
+P0,/news/introducing-the-spy-guitar,Spy Guitar announcement,Wayback,exact redirect,/legacy/the-spy-guitar/,301,old text/media not reusable by default,planned,Preserve historical context and current alternatives
+P0,/download/bang-my-twister-new-m4l-device-for-changing-banks-on-midi-fighter-twister,Bang My Twister Max for Live device,"Wayback; live DJ TechTools mapping",exact redirect,/legacy/bang-my-twister/,301,external mapping remains available,planned,Link to DJ TechTools as verified source
+P0,/2/post/2013/12/daw-guidelines-for-music-production.html,DAW workflow guide,Wayback,exact redirect,/music-production/daw-project-guidelines/,301,new original guide required,planned,Do not reuse old text without rights
+P0,/download/daw-guidelines-for-music-production,DAW workflow guide,Wayback,exact redirect,/music-production/daw-project-guidelines/,301,new original guide required,planned,Intent can be fully recreated
+P0,/news/midi-fighter-twister-product-review,MIDI Fighter Twister review,Wayback,exact redirect,/ableton/midi-fighter-twister-review/,301,new tested review required,planned,State current hardware/software version and test date
+P0,/about.html,Former operator about page,Wayback,exact redirect,/about/history-and-relaunch/,301,new current content,draft,"Separate former operator from current publisher"
+P0,/connect.html,Former contact page,Wayback,exact redirect,/contact/,301,new current content,planned,Do not collect mail intended for former operator
+P0,/the-workflow,Music production workflow section,Wayback,exact redirect,/music-production/workflow/,301,new original guide,planned,Equivalent current intent
+P0,/the-workflow.html,Music production workflow section,Wayback,exact redirect,/music-production/workflow/,301,new original guide,planned,Equivalent current intent
+P1,/download/fender-vi-ableton-sampler-live-pack,Fender VI sampled instrument,Wayback,exact redirect,/legacy/fender-vi-sampler-pack/,301,do not distribute without rights,planned,"Useful legacy explanation and modern build tutorial"
+P1,/download/sylenth-wood-panels-skin,Sylenth skin download,Wayback,exact redirect,/legacy/sylenth-skins/,301,do not distribute without rights,planned,Show compatibility and safe alternatives only
+P1,/download/the-sylenth-black-skin,Sylenth skin download,Wayback,exact redirect,/legacy/sylenth-skins/,301,do not distribute without rights,planned,Show compatibility and safe alternatives only
+P1,/news/noisr-max-for-live-device-is-coming,NoisR Max for Live announcement,Wayback,exact redirect,/legacy/noisr-max-for-live/,301,permission or neutral history only,planned,Do not imply product ownership or support
+P1,/news/bring-on-the-noisr,NoisR development update,Wayback,exact redirect,/legacy/noisr-max-for-live/,301,permission or neutral history only,planned,Merge equivalent historical intent
+P1,/news/today-audio-outlaw-unveils-its-new-max4live-device-noisr-noise-designer-instrument-device,NoisR launch,Wayback,exact redirect,/legacy/noisr-max-for-live/,301,permission or neutral history only,planned,Link verified external sources where available
+P1,/news/announcing-chicago-hous-mod-new-max-4-live-drum-sequencer,Chicago Hous Mod announcement,Wayback,exact redirect,/legacy/chicago-hous-mod/,301,permission or neutral history only,planned,Do not host old device without rights
+P1,/news/chicago-hous-mod-at-chicago-ableton-user-group,Chicago Hous Mod event,Wayback,exact redirect,/legacy/chicago-hous-mod/,301,permission or neutral history only,planned,Historical event context only
+P1,/news/vsts-and-aus-in-push-browser-window-video-walkthough,Ableton Push workflow video,Wayback,exact redirect,/ableton/plugins-in-ableton-push-browser/,301,new original walkthrough,planned,Correct historical typo only in destination
+P1,/news/get-up-close-and-personal-with-abletons-new-hardware-instrument,Ableton hardware article,Wayback,exact redirect,/ableton/ableton-hardware-history/,301,new original article,planned,Use only if target has backlinks or content is useful
+P1,/news/30-thirty-minute-tracks-in-30-days,Music production challenge,Wayback,exact redirect,/music-production/30-tracks-in-30-days/,301,new original challenge guide,planned,Good repeatable community format
+P1,/music.html,Former music catalog,Wayback,exact redirect,/legacy/music-catalog/,301,old audio unavailable unless licensed,planned,Neutral catalog/history page
+P2,/video.html,Former video index,Wayback,conditional redirect,/legacy/media/,301,old media unavailable unless licensed,hold,Only create if backlinks or usable references exist
+P2,/photo.html,Former photo index,Wayback,conditional redirect,/legacy/media/,301,old media unavailable unless licensed,hold,Otherwise return 410
+P2,/news/december-06th-2013,Production music release note,Wayback,conditional redirect,/legacy/music-catalog/,301,old claims/audio need verification,hold,Do not repeat Warner Chappell claims as current
+P2,/news/happy-auspicious-thanksgiving,Seasonal announcement,Wayback,remove if no backlinks,,410,n/a,hold,No durable intent
+P2,/news/archives/01-2014,Month archive,Wayback,redirect only if backlinks,/legacy/archive/,301,n/a,hold,Otherwise 410
+P2,/news/archives/03-2014,Month archive,Wayback,redirect only if backlinks,/legacy/archive/,301,n/a,hold,Otherwise 410
+P2,/news/category/ableton,Historic category,Wayback,exact redirect,/ableton/,301,n/a,planned,Equivalent topic hub
+P2,/news/category/ableton%20push,Historic category,Wayback,exact redirect,/ableton/,301,n/a,planned,Normalize encoded and decoded variants
+P2,/news/category/ableton%20sound%20packs,Historic category,Wayback,exact redirect,/sound-design/sampled-instruments/,301,n/a,planned,Equivalent topic hub
+P2,/news/category/product-reviews,Historic category,Wayback,exact redirect,/resources/tools/,301,n/a,planned,Only if current tools hub contains reviews
+P2,/news/category/spy-guitar,Historic category,Wayback,exact redirect,/legacy/the-spy-guitar/,301,n/a,planned,Equivalent resource
+P2,/news/category/the-workflow,Historic category,Wayback,exact redirect,/music-production/workflow/,301,n/a,planned,Equivalent topic
+P2,/download/category/ableton%20live,Historic download category,Wayback,exact redirect,/ableton/,301,n/a,planned,Equivalent topic hub
+P2,/download/category/sylenth%20skins,Historic download category,Wayback,exact redirect,/legacy/sylenth-skins/,301,n/a,planned,Equivalent resource hub
+P2,/download/category/the-spy-guitar,Historic download category,Wayback,exact redirect,/legacy/the-spy-guitar/,301,n/a,planned,Equivalent resource
+P0,/download/hc/en-us/articles/41383541904281-Envato-Market-Terms,Injected fake support path,Wayback spam-era evidence,remove permanently,,410,n/a,planned,Do not redirect
+P0,/[unknown-casino-or-hacked-path],Unknown injected path,"Search Console and backlink export after handover",return default not found,,404,n/a,planned,"Never use blanket homepage redirect; promote confirmed spam paths to explicit 410"

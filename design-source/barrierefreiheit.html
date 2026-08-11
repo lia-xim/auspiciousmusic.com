@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erklärung zur Barrierefreiheit — Auspicious Music</title>
+<meta name="description" content="Stand der Barrierefreiheit dieser Website, bekannte Einschränkungen und Rückmeldemöglichkeit.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<style>
+@layer components {
+  .pg-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem); }
+  .pg-head h1 { max-width: 20ch; margin-top: 1.25rem; }
+  .pg-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+
+  .prose { max-width: var(--measure); }
+  .prose > * + * { margin-top: 1.375rem; }
+  .prose h2 { font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem); letter-spacing: -0.014em; margin-top: clamp(2.5rem, 4.5vw, 3.25rem); }
+  .prose h3 { font-size: 1.125rem; margin-top: 1.75rem; letter-spacing: -0.01em; }
+  .prose p, .prose li { color: var(--ink-soft); }
+  .prose a:not(.link):not(.btn) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .prose ul.bullets { display: grid; gap: 0.5rem; margin-top: 0.875rem; }
+  .prose ul.bullets li { padding-left: 1.25rem; position: relative; line-height: 1.6; }
+  .prose ul.bullets li::before {
+    content: ""; position: absolute; left: 0; top: 0.72em;
+    inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--line-strong);
+  }
+
+  /* Operator fields that must be filled before launch. Marked rather than
+     invented — an impressum with made-up details is worse than none. */
+  .fields { display: grid; border-top: 1px solid var(--line); margin-top: 1.5rem; }
+  .fields > div {
+    display: grid; grid-template-columns: minmax(9rem, 14rem) minmax(0, 1fr);
+    gap: 0.5rem 1.5rem; padding-block: 0.8125rem;
+    border-bottom: 1px solid var(--line);
+    font-size: var(--t-ui-sm); line-height: 1.6;
+  }
+  .fields dt { color: var(--muted); font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); }
+  .fields dd { color: var(--ink); }
+  .req {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
+    color: var(--ember); padding-left: 0.625rem; border-left: 2px solid var(--ember-bright);
+    line-height: 1.5;
+  }
+  @media (max-width: 620px) { .fields > div { grid-template-columns: 1fr; gap: 0.25rem; } }
+
+  .callout { border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; }
+  .callout strong { display: block; margin-bottom: 0.375rem; }
+  .callout p { color: var(--ink); }
+
+  /* English summary block under each German document */
+  .en-summary {
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+    padding-top: 2rem;
+    border-top: 1px solid var(--line-strong);
+  }
+  .en-summary h2 { margin-top: 0; }
+  .en-summary p, .en-summary li { color: var(--muted); }
+
+  .listing li { border-top: 1px solid var(--line); }
+  .listing li:last-child { border-bottom: 1px solid var(--line); }
+  .listing a {
+    display: grid; gap: 0.25rem 2.5rem; padding-block: 1rem;
+    text-decoration: none; align-items: baseline;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .listing a:hover { background: var(--surface); }
+  .listing h3 { font-size: 1.0625rem; font-weight: 550; letter-spacing: -0.011em; }
+  .listing p { color: var(--muted); font-size: 0.9375rem; line-height: 1.5; max-width: 60ch; }
+  .listing__tail { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
+  @media (min-width: 900px) {
+    .listing a { grid-template-columns: minmax(0, 18rem) minmax(0, 1fr) minmax(0, 10rem); align-items: start; }
+    .listing__tail { text-align: right; }
+  }
+
+  .sitemap-group { margin-top: clamp(2rem, 4vw, 3rem); }
+  .sitemap-group > h2 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin: 0 0 0.5rem;
+  }
+
+  /* Contact form — real controls, clearly stated as not yet wired up */
+  .form { display: grid; gap: 1.25rem; max-width: 34rem; margin-top: 2rem; }
+  .form label { display: block; font-size: var(--t-ui-sm); font-weight: 550; margin-bottom: 0.4375rem; }
+  .form input, .form textarea, .form select {
+    inline-size: 100%; min-block-size: 48px; padding: 0.75rem 0.875rem;
+    border: 1px solid var(--line-strong); border-radius: var(--r-sm);
+    background: var(--surface); color: var(--ink); font-size: var(--t-ui);
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  .form textarea { min-block-size: 9rem; resize: vertical; line-height: 1.6; }
+  .form input:hover, .form textarea:hover, .form select:hover { border-color: var(--ink-soft); }
+  .form .hint { font-size: var(--t-meta); color: var(--muted); margin-top: 0.4375rem; line-height: 1.5; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#content">Zum Inhalt springen</a>
+
+<header class="site-header" data-header>
+  <div class="shell site-header__inner">
+    <a class="brand" href="index.html" aria-label="Auspicious Music — home">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="hub-production.html">Production</a></li>
+        <li><a href="hub-ableton.html">Ableton</a></li>
+        <li><a href="hub-sound-design.html">Sound Design</a></li>
+        <li><a href="hub-recording.html">Recording</a></li>
+        <li><a href="hub-music-for-media.html">Music for Media</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-tools">
+      <button class="icon-btn" type="button" aria-label="Search">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="9" cy="9" r="5.75" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M13.2 13.2 17 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" data-sheet-open>
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" id="menu" data-sheet data-open="false" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="shell sheet__head">
+    <span class="brand">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </span>
+    <button class="icon-btn" type="button" aria-label="Close menu" data-sheet-close>
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="shell" aria-label="Menu">
+    <ul>
+      <li><a href="hub-production.html">Production</a></li>
+      <li><a href="hub-ableton.html">Ableton</a></li>
+      <li><a href="hub-sound-design.html">Sound Design</a></li>
+      <li><a href="hub-recording.html">Recording</a></li>
+      <li><a href="hub-music-for-media.html">Music for Media</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <div class="shell sheet__foot">
+    <a href="tools.html" style="text-decoration:none">Tools and calculators</a>
+  </div>
+</div>
+
+<main id="content">
+
+  <section class="pg-head" data-od-id="page-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Brotkrumennavigation">
+        <ol>
+          <li><a href="index.html">Startseite</a></li>
+          <li>Barrierefreiheit</li>
+        </ol>
+      </nav>
+      <h1>Erklärung zur Barrierefreiheit</h1>
+      <p class="lede">Was diese Website in Sachen Barrierefreiheit erreicht, wo sie es noch nicht tut, und wie Sie uns auf Probleme hinweisen können.</p>
+    </div>
+  </section>
+
+
+  <section class="band" data-od-id="barrierefreiheit-body">
+    <div class="shell">
+      <div class="prose">
+
+        <h2 style="margin-top:0">Geltungsbereich und Einordnung</h2>
+        <p>
+          Diese Erklärung gilt für die Website unter dieser Domain. Sie wird
+          freiwillig abgegeben.
+        </p>
+        <p>
+          Das Barrierefreiheitsstärkungsgesetz (BFSG) gilt seit dem 28. Juni 2025 und
+          erfasst insbesondere Dienstleistungen im elektronischen Geschäftsverkehr
+          gegenüber Verbraucherinnen und Verbrauchern. Auspicious Music ist eine
+          redaktionelle Publikation ohne Verkauf, ohne Buchungsfunktion und ohne
+          Vertragsschluss über die Website; nach unserer Einschätzung fällt sie damit
+          nicht in den Anwendungsbereich. Unabhängig von dieser Einordnung halten wir
+          uns an den nachstehenden Standard, weil er die Publikation für mehr Menschen
+          nutzbar macht.
+        </p>
+
+        <h2>Angestrebter Standard</h2>
+        <p>
+          Ziel ist die Konformitätsstufe <strong>AA der WCAG 2.2</strong>, die den in
+          EN 301 549 referenzierten Anforderungen entspricht und diese in einzelnen
+          Punkten übertrifft.
+        </p>
+
+        <h2>Was umgesetzt ist</h2>
+        <ul class="bullets">
+          <li>Vollständige Tastaturbedienbarkeit einschließlich Sprunglink zum Inhalt</li>
+          <li>Sichtbare Fokusanzeige auf allen interaktiven Elementen</li>
+          <li>Kontrastwerte von mindestens 4,5:1 für Fließtext, auch in den dunklen Abschnitten</li>
+          <li>Semantische Überschriftenstruktur und Landmarken auf jeder Seite</li>
+          <li>Textalternativen für inhaltstragende Bilder; dekorative Grafiken sind ausgezeichnet</li>
+          <li>Bedienelemente mit ausreichender Zielgröße</li>
+          <li>Inhalte sind ohne JavaScript vollständig lesbar</li>
+          <li>Bewegung wird bei aktivierter Systemeinstellung „Bewegung reduzieren“ abgeschaltet; es gibt keine Endlosanimationen und kein Blinken</li>
+          <li>Keine Information wird allein über Farbe oder Bewegung vermittelt</li>
+        </ul>
+
+        <h2>Bekannte Einschränkungen</h2>
+        <p>
+          Wir benennen offene Punkte, statt sie zu übergehen:
+        </p>
+        <ul class="bullets">
+          <li>Die Suchfunktion ist gestaltet, aber noch nicht in Betrieb.</li>
+          <li>Die Rechner im Werkzeugbereich geben ihre Ergebnisse in Tabellenform aus. Die Bedienung ist getestet, eine vollständige Prüfung mit Screenreadern steht noch aus.</li>
+          <li>Für Audiobeispiele werden Transkripte beziehungsweise beschreibende Texte ergänzt, sobald die Beispiele vorliegen.</li>
+          <li>Eine unabhängige externe Prüfung hat noch nicht stattgefunden.</li>
+        </ul>
+
+        <h2>Rückmeldung und Kontakt</h2>
+        <p>
+          Wenn Ihnen eine Barriere auffällt, schreiben Sie uns. Wir nehmen Hinweise
+          ernst und melden uns zurück. Bitte nennen Sie nach Möglichkeit die
+          betroffene Seite, das verwendete Gerät und die eingesetzte Hilfstechnik.
+        </p>
+        <p><a class="link" href="kontakt.html">Zum Kontakt <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+
+        <p style="font-family:var(--font-mono);font-size:var(--t-meta);letter-spacing:var(--tr-meta);color:var(--muted);margin-top:2rem">
+          Stand dieser Erklärung: Entwurf, noch nicht in Kraft · Erstellt auf Grundlage einer Selbstbewertung
+        </p>
+
+        <div class="en-summary" lang="en">
+          <h2>Accessibility statement (English summary)</h2>
+          <p>
+            We target WCAG 2.2 level AA. Keyboard operation, visible focus, contrast
+            ratios, heading structure, text alternatives and reduced-motion support
+            are in place; the search function is not yet live, the calculators await a
+            full screen-reader pass, audio examples still need transcripts, and no
+            independent audit has been carried out. If you hit a barrier, tell us —
+            the German text above is the binding version.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" data-od-id="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+          Auspicious Music
+        </a>
+        <p style="font-size:var(--t-ui-sm);color:var(--muted);margin-top:1rem;max-width:26ch;line-height:1.6">
+          An independent publication for music production and creative audio.
+        </p>
+      </div>
+      <div>
+        <h4>Topics</h4>
+        <ul>
+          <li><a href="hub-production.html">Production</a></li>
+          <li><a href="hub-ableton.html">Ableton</a></li>
+          <li><a href="hub-sound-design.html">Sound Design</a></li>
+          <li><a href="hub-recording.html">Recording</a></li>
+          <li><a href="hub-music-for-media.html">Music for Media</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Publication</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="history-relaunch.html">History &amp; relaunch</a></li>
+          <li><a href="editorial-policy.html">Editorial policy</a></li>
+          <li><a href="authors.html">Authors</a></li>
+          <li><a href="kontakt.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="resources.html">Templates</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="download.html">Downloads</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html" lang="de">Impressum</a></li>
+          <li><a href="datenschutz.html" lang="de">Datenschutz</a></li>
+          <li><a href="barrierefreiheit.html" lang="de">Barrierefreiheit</a></li>
+          <li><a href="#">RSS feed</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© 2026 Auspicious Music</span>
+      <span>Relaunched under new ownership in 2026. Not affiliated with the former operator.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/motion.js" defer></script>
+</body>
+</html>

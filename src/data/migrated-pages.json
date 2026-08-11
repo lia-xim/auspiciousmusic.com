@@ -1,0 +1,219 @@
+[
+  {
+    "route": "/",
+    "title": "Auspicious Music — Practical guides for music production and creative audio",
+    "description": "An independent publication for music production, Ableton, recording, sound design, and music for media.",
+    "h1": "Make sound with intent.",
+    "internal": false
+  },
+  {
+    "route": "/music-production/",
+    "title": "Music Production Workflows — Auspicious Music",
+    "description": "Practical guides for arrangement, project discipline and a production process you can repeat.",
+    "h1": "Music production workflows",
+    "internal": false
+  },
+  {
+    "route": "/ableton/",
+    "title": "Ableton Live and Max for Live — Auspicious Music",
+    "description": "Practical guides for Ableton Live, Max for Live, controller mapping and tested hardware.",
+    "h1": "Ableton Live and Max for Live",
+    "internal": false
+  },
+  {
+    "route": "/sound-design/",
+    "title": "Sound Design and Sampling — Auspicious Music",
+    "description": "Sampling, synthesis and building playable instruments, documented with the audio each technique produced.",
+    "h1": "Sound design and sampling",
+    "internal": false
+  },
+  {
+    "route": "/recording/",
+    "title": "Recording Acoustic Instruments and Strings — Auspicious Music",
+    "description": "Microphones, rooms and acoustic instruments — including the string parts most production writing skips.",
+    "h1": "Recording acoustic instruments",
+    "internal": false
+  },
+  {
+    "route": "/music-for-media/",
+    "title": "Music for Film, Video and Media — Auspicious Music",
+    "description": "Composing, licensing and delivering music for film, video, events and ceremonies.",
+    "h1": "Music for film, video and media",
+    "internal": false
+  },
+  {
+    "route": "/resources/",
+    "title": "Music Production Resources — Auspicious Music",
+    "description": "Calculators, templates, a working glossary and the archive of everything once published at this address.",
+    "h1": "Resources",
+    "internal": false
+  },
+  {
+    "route": "/resources/tools/",
+    "title": "Music Production Tools and Calculators — Auspicious Music",
+    "description": "Free calculators for delay and reverb times, note frequencies and sample transposition. No sign-up, nothing stored, nothing sent anywhere.",
+    "h1": "Tools",
+    "internal": false
+  },
+  {
+    "route": "/resources/glossary/",
+    "title": "Glossary — Auspicious Music",
+    "description": "Terms as this publication uses them, across production, Ableton, sound design, recording and music for media.",
+    "h1": "Glossary",
+    "internal": false
+  },
+  {
+    "route": "/download/",
+    "title": "Legacy Downloads & Current Music Production Resources — Auspicious Music",
+    "description": "The status of every download once published on this domain, and the current resources that replace them.",
+    "h1": "Legacy Downloads &amp; Current Music Production Resources",
+    "internal": false
+  },
+  {
+    "route": "/legacy/the-spy-guitar/",
+    "title": "The Spy Guitar — History, Compatibility and a Modern Rebuild — Auspicious Music",
+    "description": "A historical resource published on this domain between 2013 and 2017, documented with its current status, rights position and a tested modern alternative.",
+    "h1": "The Spy Guitar",
+    "internal": false
+  },
+  {
+    "route": "/legacy/bang-my-twister/",
+    "title": "Bang My Twister — Historic Max for Live Device and Current Setup — Auspicious Music",
+    "description": "A Max for Live device for the MIDI Fighter Twister published here in 2014, documented with its verified external source and a current equivalent.",
+    "h1": "Bang My Twister",
+    "internal": false
+  },
+  {
+    "route": "/ableton/midi-fighter-twister-review/",
+    "title": "MIDI Fighter Twister Review and Ableton Workflow — Auspicious Music",
+    "description": "What the MIDI Fighter Twister does, how it maps into Ableton Live, and where a decade-old controller still shows its age.",
+    "h1": "MIDI Fighter Twister Review and Ableton Workflow",
+    "internal": false
+  },
+  {
+    "route": "/sound-design/sampled-instruments/building-a-sampled-instrument/",
+    "title": "How to Build a Sampled Instrument in Ableton Live — Auspicious Music",
+    "description": "Recording, trimming, looping and mapping a viola into Ableton Sampler, with the round-robin problems left in.",
+    "h1": "How to Build a Sampled Instrument in Ableton Live",
+    "internal": false
+  },
+  {
+    "route": "/recording/acoustic-instruments/recording-viola-at-home/",
+    "title": "How to Record Viola at Home — Auspicious Music",
+    "description": "Microphone placement, room treatment you can do in a rented flat, and the three positions worth trying before anything else.",
+    "h1": "How to Record Viola at Home",
+    "internal": false
+  },
+  {
+    "route": "/about/",
+    "title": "About — Auspicious Music",
+    "description": "What Auspicious Music publishes, who writes it, and how to reach the publication.",
+    "h1": "About Auspicious Music",
+    "internal": false
+  },
+  {
+    "route": "/about/history-and-relaunch/",
+    "title": "History and Relaunch — Auspicious Music",
+    "description": "What Auspicious Music is today, what was published at this address before 2026, and where the line between the two runs.",
+    "h1": "History and relaunch",
+    "internal": false
+  },
+  {
+    "route": "/about/editorial-policy/",
+    "title": "Editorial Policy — Auspicious Music",
+    "description": "How this publication tests, sources, discloses and corrects — including its position on AI assistance.",
+    "h1": "Editorial policy",
+    "internal": false
+  },
+  {
+    "route": "/authors/",
+    "title": "Authors — Auspicious Music",
+    "description": "Who writes and reviews here, and the rule this publication applies to bylines.",
+    "h1": "Authors",
+    "internal": false
+  },
+  {
+    "route": "/contact/",
+    "title": "Contact — Auspicious Music",
+    "description": "How to reach the editorial desk, report a correction, or raise a rights question.",
+    "h1": "Contact",
+    "internal": false
+  },
+  {
+    "route": "/legal/",
+    "title": "Impressum — Auspicious Music",
+    "description": "Anbieterkennzeichnung nach § 5 DDG und Angabe des Verantwortlichen nach § 18 Abs. 2 MStV.",
+    "h1": "Impressum",
+    "internal": false
+  },
+  {
+    "route": "/privacy/",
+    "title": "Datenschutzerklärung — Auspicious Music",
+    "description": "Informationen zur Verarbeitung personenbezogener Daten nach Art. 13 DSGVO.",
+    "h1": "Datenschutzerklärung",
+    "internal": false
+  },
+  {
+    "route": "/accessibility/",
+    "title": "Erklärung zur Barrierefreiheit — Auspicious Music",
+    "description": "Stand der Barrierefreiheit dieser Website, bekannte Einschränkungen und Rückmeldemöglichkeit.",
+    "h1": "Erklärung zur Barrierefreiheit",
+    "internal": false
+  },
+  {
+    "route": "/sitemap/",
+    "title": "Sitemap — Auspicious Music",
+    "description": "Every page on this site in one list.",
+    "h1": "Sitemap",
+    "internal": false
+  },
+  {
+    "route": "/resources/tools/delay-and-reverb/",
+    "title": "Delay and Reverb Time Calculator — Auspicious Music",
+    "description": "Delay times in milliseconds and hertz for every note division at any tempo, straight, dotted and triplet, plus reverb pre-delay and decay starting points.",
+    "h1": "Delay and Reverb Time Calculator",
+    "internal": false
+  },
+  {
+    "route": "/resources/tools/note-frequency/",
+    "title": "Note and Frequency Calculator — Auspicious Music",
+    "description": "Convert between note names, MIDI numbers and frequencies at any concert pitch, and read the cents deviation of any frequency you enter.",
+    "h1": "Note and Frequency Calculator",
+    "internal": false
+  },
+  {
+    "route": "/resources/tools/sample-pitch/",
+    "title": "Sample Pitch and Rate Calculator — Auspicious Music",
+    "description": "What transposing a sample does to its playback rate, its length and its tempo, including sample-rate mismatch in semitones.",
+    "h1": "Sample Pitch and Rate Calculator",
+    "internal": false
+  },
+  {
+    "route": "/404/",
+    "title": "Page not found — Auspicious Music",
+    "description": "Independent music production and creative audio publication.",
+    "h1": "That address does not exist here",
+    "internal": false
+  },
+  {
+    "route": "/410/",
+    "title": "This address was removed — Auspicious Music",
+    "description": "Independent music production and creative audio publication.",
+    "h1": "This address was removed on purpose",
+    "internal": false
+  },
+  {
+    "route": "/internal/design-concept/",
+    "title": "Design concept — Auspicious Music",
+    "description": "Independent music production and creative audio publication.",
+    "h1": "A measuring instrument, published as a magazine",
+    "internal": true
+  },
+  {
+    "route": "/internal/mobile-matrix/",
+    "title": "Mobile concepts — Auspicious Music",
+    "description": "Independent music production and creative audio publication.",
+    "h1": "The same pages at 390 px",
+    "internal": true
+  }
+]

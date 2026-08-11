@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Auspicious Music</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<style>
+@layer components {
+  /* Error pages: one column, left-aligned, no hero. The status code is stated
+     as fact in mono rather than dramatised as display type. */
+  .err { padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 6vw, 5rem); }
+  .err__code {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted);
+    padding-left: 0.875rem; border-left: 2px solid var(--line-strong);
+    display: inline-block; line-height: 1.5;
+  }
+  .err h1 { font-size: clamp(2.25rem, 1.4rem + 3vw, 3.75rem); max-width: 16ch; margin-top: 1.5rem; }
+  .err__lede { margin-top: 1.25rem; max-width: 52ch; }
+
+  .search { margin-top: clamp(2.5rem, 5vw, 3.5rem); max-width: 32rem; }
+  .search label {
+    display: block; font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted); margin-bottom: 0.625rem;
+  }
+  .search__row { display: flex; gap: 0.625rem; }
+  .search input {
+    flex: 1; min-width: 0; min-height: 48px;
+    padding: 0 1rem; border-radius: var(--r-sm);
+    border: 1px solid var(--line-strong); background: var(--surface);
+    font-size: var(--t-ui); color: var(--ink);
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  .search input::placeholder { color: var(--muted); }
+  .search input:hover { border-color: var(--ink-soft); }
+  .search__help { margin-top: 0.75rem; font-size: var(--t-ui-sm); color: var(--muted); line-height: 1.55; }
+
+  .paths { margin-top: clamp(3rem, 6vw, 4.5rem); }
+  .paths h2 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .paths ul { border-top: 1px solid var(--line); max-width: 44rem; }
+  .paths li { border-bottom: 1px solid var(--line); }
+  .paths a {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+    padding-block: 1rem; text-decoration: none;
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .paths a:hover { color: var(--accent); }
+  .paths strong { font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.011em; }
+  .paths span { font-size: var(--t-ui-sm); color: var(--muted); text-align: right; }
+  .paths a:hover span { color: inherit; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="shell site-header__inner">
+    <a class="brand" href="index.html" aria-label="Auspicious Music — home">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="hub-production.html">Production</a></li>
+        <li><a href="hub-ableton.html">Ableton</a></li>
+        <li><a href="hub-sound-design.html">Sound Design</a></li>
+        <li><a href="hub-recording.html">Recording</a></li>
+        <li><a href="hub-music-for-media.html">Music for Media</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-tools">
+      <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" data-sheet-open>
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" data-sheet data-open="false" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="shell sheet__head">
+    <span class="brand">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </span>
+    <button class="icon-btn" type="button" aria-label="Close menu" data-sheet-close>
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="shell" aria-label="Menu">
+    <ul>
+      <li><a href="hub-production.html">Production</a></li>
+      <li><a href="hub-ableton.html">Ableton</a></li>
+      <li><a href="hub-sound-design.html">Sound Design</a></li>
+      <li><a href="hub-recording.html">Recording</a></li>
+      <li><a href="hub-music-for-media.html">Music for Media</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <div class="shell sheet__foot">
+    <a href="tools.html" style="text-decoration:none">Tools and calculators</a>
+  </div>
+</div>
+
+<main id="content">
+  <section class="err" data-od-id="error-404">
+    <div class="shell">
+      <p class="err__code">HTTP 404<br>Not found</p>
+
+      <h1>That address does not exist here</h1>
+
+      <p class="lede err__lede">
+        It may have been a page on the previous site that was not carried over, or the
+        link may simply be wrong. Either way, you are not being redirected somewhere
+        you did not ask for.
+      </p>
+
+      <form class="search" role="search" action="#" method="get">
+        <label for="q">Search the publication</label>
+        <div class="search__row">
+          <input id="q" name="q" type="search" placeholder="Sampler, viola, Max for Live…"
+                 aria-describedby="q-help" autocomplete="off">
+          <button class="btn btn--primary" type="submit">Search</button>
+        </div>
+        <p class="search__help" id="q-help">
+          Searches titles and body text across guides, hub pages and archive entries.
+        </p>
+      </form>
+
+      <nav class="paths" aria-labelledby="paths-title">
+        <h2 id="paths-title">Or start from a topic</h2>
+        <ul>
+          <li><a href="hub-production.html"><strong>Production</strong><span>Workflow, arrangement, project discipline</span></a></li>
+          <li><a href="hub-ableton.html"><strong>Ableton</strong><span>Live, Max for Live, controllers</span></a></li>
+          <li><a href="hub-sound-design.html"><strong>Sound Design</strong><span>Sampling, synthesis, sampled instruments</span></a></li>
+          <li><a href="hub-recording.html"><strong>Recording</strong><span>Home studio, acoustic instruments, strings</span></a></li>
+          <li><a href="hub-music-for-media.html"><strong>Music for Media</strong><span>Licensing, film and video, ceremonies</span></a></li>
+          <li><a href="tools.html"><strong>Tools</strong><span>Delay times, note frequencies, sample transposition</span></a></li>
+          <li><a href="download.html"><strong>Archive and downloads</strong><span>Historic resources and their status</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-od-id="footer">
+  <div class="shell">
+    <div class="footer-base" style="margin-top:0;padding-top:0;border-top:0">
+      <span>© 2026 Auspicious Music</span>
+      <span>Relaunched under new ownership in 2026. Not affiliated with the former operator.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/motion.js" defer></script>
+</body>
+</html>

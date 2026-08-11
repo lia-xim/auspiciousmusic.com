@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Build a Sampled Instrument in Ableton Live — Auspicious Music</title>
+<meta name="description" content="Recording, trimming, looping and mapping a viola into Ableton Sampler, with the round-robin problems left in.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<style>
+@layer components {
+  /* ---- article header ---- */
+  .art-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem); }
+  .art-head h1 { max-width: 20ch; margin-top: 1.25rem; }
+  .art-head .lede { margin-top: 1.5rem; max-width: 54ch; }
+
+  .byline {
+    display: flex; flex-wrap: wrap; gap: 0.75rem 2rem;
+    margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+    font-size: var(--t-ui-sm);
+  }
+  .byline div { display: grid; gap: 0.125rem; }
+  .byline dt, .byline__k {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted);
+  }
+  .byline__v { color: var(--ink); font-weight: 500; }
+
+  /* ---- requirements: technical, tabular, never decorative ---- */
+  .requires {
+    margin-top: 2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    background: var(--surface);
+    padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+  .requires h2 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin-bottom: 1rem;
+  }
+  .requires dl { display: grid; gap: 0.5rem; }
+  .requires > dl > div {
+    display: grid; grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr);
+    gap: 0.5rem 1.25rem; padding-block: 0.4375rem;
+    font-size: var(--t-ui-sm); line-height: 1.5;
+  }
+  .requires > dl > div + div { border-top: 1px solid var(--line); }
+  .requires dt { color: var(--muted); }
+  .requires dd { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  /* Below 560px a fixed label column leaves the value ~145px and every entry
+     breaks to four lines. Stack instead — the value gets the full measure. */
+  @media (max-width: 560px) {
+    .requires > dl > div { grid-template-columns: 1fr; gap: 0.1875rem; }
+  }
+
+  /* ---- body grid: sticky rail + reading column ---- */
+  .art-grid { display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+  @media (min-width: 1080px) {
+    .art-grid { grid-template-columns: 15rem minmax(0, 1fr); gap: 4.5rem; }
+    .toc { position: sticky; top: 92px; }
+  }
+
+  .toc summary {
+    cursor: pointer; list-style: none;
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted);
+    padding-block: 0.75rem; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .toc summary::-webkit-details-marker { display: none; }
+  .toc summary::after { content: "−"; font-family: var(--font-mono); }
+  .toc:not([open]) summary::after { content: "+"; }
+  .toc ol { display: grid; gap: 0.125rem; padding-top: 0.75rem; counter-reset: toc; }
+  .toc a {
+    display: block; text-decoration: none; font-size: var(--t-ui-sm);
+    line-height: 1.45; color: var(--muted); padding: 0.4375rem 0 0.4375rem 1.75rem;
+    position: relative; transition: color var(--dur-fast) var(--ease);
+  }
+  .toc li { counter-increment: toc; }
+  .toc a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute; left: 0; font-family: var(--font-mono);
+    font-size: var(--t-meta); opacity: 0.7;
+  }
+  .toc a:hover { color: var(--ink); }
+
+  /* ---- prose ---- */
+  .prose { max-width: var(--measure); }
+  .prose > * + * { margin-top: 1.5rem; }
+  .prose h2 {
+    font-size: clamp(1.625rem, 1.2rem + 1.5vw, 2.25rem);
+    letter-spacing: -0.018em; margin-top: clamp(3rem, 5vw, 4rem);
+    scroll-margin-top: 100px;
+  }
+  .prose h3 { font-size: 1.3125rem; margin-top: 2.25rem; letter-spacing: -0.012em; }
+  .prose p { color: var(--ink-soft); }
+  .prose a:not(.link) {
+    color: var(--accent); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+  }
+  .prose a:not(.link):hover { color: var(--accent-hover); }
+  .prose ol.steps { counter-reset: step; display: grid; gap: 1.125rem; }
+  .prose ol.steps li {
+    counter-increment: step; position: relative; padding-left: 2.5rem;
+    color: var(--ink-soft);
+  }
+  .prose ol.steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute; left: 0; top: 0.15em;
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    color: var(--muted);
+  }
+
+  /* ---- settings block: a real configuration extract, mono, scrollable ---- */
+  .settings {
+    background: var(--dark); color: var(--dark-text);
+    border-radius: var(--r-md); padding: clamp(1.125rem, 2.5vw, 1.5rem);
+    overflow-x: auto;
+  }
+  .settings figcaption {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--dark-muted);
+    margin-bottom: 0.875rem;
+  }
+  .settings pre {
+    font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.7;
+    white-space: pre; margin: 0;
+  }
+  .settings b { color: var(--accent-on-dark); font-weight: 500; }
+
+  /* ---- media figures ---- */
+  .fig figcaption {
+    margin-top: 0.75rem; font-size: var(--t-ui-sm);
+    color: var(--muted); line-height: 1.55; max-width: 58ch;
+  }
+  .fig .ph { aspect-ratio: 16 / 10; }
+
+  /* Audio example — presented as an honest unrecorded slot, never a dead
+     player pretending to work. */
+  .audio {
+    border: 1px solid var(--line); border-radius: var(--r-md);
+    padding: 1.125rem 1.25rem; background: var(--surface);
+    display: grid; gap: 0.75rem;
+  }
+  .audio__row { display: flex; align-items: center; gap: 0.875rem; }
+  .audio__wave {
+    flex: 1; height: 34px; border-radius: 4px;
+    background-image: repeating-linear-gradient(to right,
+      var(--line-strong) 0 2px, transparent 2px 6px);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+  .audio__btn {
+    inline-size: 40px; block-size: 40px; border-radius: 50%;
+    border: 1px solid var(--line-strong); display: grid; place-items: center;
+    color: var(--muted); flex: none;
+  }
+  .audio__btn[disabled] { cursor: not-allowed; opacity: 0.55; }
+  .audio__meta {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted); line-height: 1.5;
+  }
+
+  /* ---- callout: a rule, not a tinted rounded box ---- */
+  .callout {
+    border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem;
+  }
+  .callout p { color: var(--ink); }
+  .callout strong { display: block; margin-bottom: 0.375rem; }
+
+  /* ---- sources ---- */
+  .sources { margin-top: clamp(3rem, 5vw, 4rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+  .sources h2 { font-size: var(--t-h3); margin-bottom: 1.25rem; }
+  .sources ol { display: grid; gap: 0.875rem; counter-reset: src; }
+  .sources li {
+    counter-increment: src; padding-left: 2rem; position: relative;
+    font-size: 1rem; line-height: 1.6; color: var(--muted);
+  }
+  .sources li::before {
+    content: counter(src); position: absolute; left: 0;
+    font-family: var(--font-mono); font-size: var(--t-meta);
+  }
+  .sources a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="shell site-header__inner">
+    <a class="brand" href="index.html" aria-label="Auspicious Music — home">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="hub-production.html">Production</a></li>
+        <li><a href="hub-ableton.html">Ableton</a></li>
+        <li><a href="hub-sound-design.html" aria-current="page">Sound Design</a></li>
+        <li><a href="hub-recording.html">Recording</a></li>
+        <li><a href="hub-music-for-media.html">Music for Media</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-tools">
+      <button class="icon-btn" type="button" aria-label="Search">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="9" cy="9" r="5.75" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M13.2 13.2 17 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" data-sheet-open>
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" data-sheet data-open="false" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="shell sheet__head">
+    <span class="brand">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </span>
+    <button class="icon-btn" type="button" aria-label="Close menu" data-sheet-close>
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="shell" aria-label="Menu">
+    <ul>
+      <li><a href="hub-production.html">Production</a></li>
+      <li><a href="hub-ableton.html">Ableton</a></li>
+      <li><a href="hub-sound-design.html">Sound Design</a></li>
+      <li><a href="hub-recording.html">Recording</a></li>
+      <li><a href="hub-music-for-media.html">Music for Media</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <div class="shell sheet__foot">
+    <a href="tools.html" style="text-decoration:none">Tools and calculators</a>
+  </div>
+</div>
+
+<main id="content">
+
+  <article>
+    <header class="art-head" data-od-id="article-head">
+      <div class="shell">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hub-sound-design.html">Sound Design</a></li>
+            <li>Sampled instruments</li>
+          </ol>
+        </nav>
+
+        <h1>How to Build a Sampled Instrument in Ableton Live</h1>
+
+        <p class="lede">
+          Recording a viola across three dynamic layers, trimming and looping the
+          sustains, and mapping the result into Sampler — including the two points
+          where round-robin stopped behaving and what fixed it.
+        </p>
+
+        <dl class="byline">
+          <div><dt>Written by</dt><dd class="byline__v">Auspicious Music editorial</dd></div>
+          <div><dt>Published</dt><dd class="byline__v"><time datetime="2026-08-04">4 August 2026</time></dd></div>
+          <div><dt>Last updated</dt><dd class="byline__v"><time datetime="2026-08-04">4 August 2026</time></dd></div>
+          <div><dt>Reading time</dt><dd class="byline__v">22 min</dd></div>
+        </dl>
+
+        <section class="requires measure">
+          <h2>Tested with</h2>
+          <dl>
+            <div><dt>Software</dt><dd>Ableton Live 12 Suite · Sampler</dd></div>
+            <div><dt>Interface</dt><dd>2-in audio interface, 48 kHz / 24-bit</dd></div>
+            <div><dt>Microphones</dt><dd>One large-diaphragm condenser, one small-diaphragm pair</dd></div>
+            <div><dt>Source</dt><dd>Viola, three dynamic layers, chromatic every minor third</dd></div>
+            <div><dt>Time needed</dt><dd>One recording session plus roughly three hours of editing</dd></div>
+          </dl>
+        </section>
+      </div>
+    </header>
+
+    <div class="shell band band--tight">
+      <div class="art-grid">
+
+        <details class="toc" open>
+          <summary>Contents</summary>
+          <nav aria-label="Table of contents">
+            <ol>
+              <li><a href="#plan">Decide the instrument before you record</a></li>
+              <li><a href="#record">Recording the layers</a></li>
+              <li><a href="#edit">Trimming and looping</a></li>
+              <li><a href="#map">Mapping into Sampler</a></li>
+              <li><a href="#roundrobin">Where round-robin broke</a></li>
+              <li><a href="#ship">Making it portable</a></li>
+            </ol>
+          </nav>
+        </details>
+
+        <div class="prose" data-od-id="article-body">
+
+          <h2 id="plan">Decide the instrument before you record</h2>
+          <p>
+            The most expensive mistake in sampling is recording first. Every decision
+            downstream — how many velocity layers, how far apart the sampled pitches sit,
+            whether the release tail is captured separately — changes what you need to
+            play into the microphone, and none of it can be added afterwards without
+            going back to the room.
+          </p>
+          <p>
+            For this build the target was narrow on purpose: a sustained viola patch that
+            holds up under a slow legato line, not a full articulation set. That single
+            constraint removed spiccato, pizzicato and the entire question of transition
+            samples, and brought the session down from two days to one afternoon.
+          </p>
+
+          <figure class="fig">
+            <div class="ph">
+              <span class="ph__label"><strong>Screenshot</strong> — the planning sheet: pitches, layers, takes<br>to be captured at 2560 × 1600</span>
+            </div>
+            <figcaption>
+              The sheet the session was run from. Anything not on it was not recorded,
+              which is the point.
+            </figcaption>
+          </figure>
+
+          <h2 id="record">Recording the layers</h2>
+          <p>
+            Three dynamic layers is the smallest number that still reads as an instrument
+            rather than a sample. Two layers produce an audible step at the crossover;
+            four rarely earns its editing time for a sustain-only patch.
+          </p>
+          <ol class="steps">
+            <li>Record one full chromatic pass per dynamic, rather than all dynamics per note. Players hold a dynamic far more consistently across pitches than across repeats.</li>
+            <li>Sample every minor third and let Sampler stretch the two semitones between. Beyond a minor third the formant shift starts to sound like a detuned copy.</li>
+            <li>Leave four seconds of tail running after each note. The release is the part you cannot synthesise.</li>
+            <li>Record a slate before each pass. Three hours later it is the only reliable way to tell layer two from layer three.</li>
+          </ol>
+
+          <figure class="audio" aria-label="Audio example, not yet recorded">
+            <div class="audio__row">
+              <button class="audio__btn" type="button" disabled aria-label="Play example — not yet available">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true">
+                  <path d="M5 3.5l7 4.5-7 4.5V3.5z" fill="currentColor"/>
+                </svg>
+              </button>
+              <div class="audio__wave" aria-hidden="true"></div>
+            </div>
+            <p class="audio__meta">
+              Audio example — dry viola sustain, C3, layer 2 of 3.
+              Not yet recorded; this slot stays empty until the session audio exists.
+            </p>
+          </figure>
+
+          <h2 id="edit">Trimming and looping</h2>
+          <p>
+            A sustain loop that breathes is worth more than a loop that is technically
+            seamless. Zero-crossing alignment removes the click; it does not remove the
+            sense that the same second of bow is repeating. Crossfading a longer window
+            across a slightly irregular section is what makes it stop sounding looped.
+          </p>
+
+          <figure class="settings">
+            <figcaption>Sampler → Zone editor, final state</figcaption>
+<pre><b>Velocity zones</b>    3      1–42 · 43–96 · 97–127
+<b>Zone fade</b>         6      velocity steps, both edges
+<b>Loop mode</b>         Forward, crossfade 40 ms
+<b>Loop window</b>       1.4 s starting 0.9 s after attack
+<b>Root key</b>          from filename, chromatic every 3 st
+<b>Release</b>           1.8 s, sample tail retained
+<b>Interpolation</b>     Good  (Best only on the render)</pre>
+          </figure>
+
+          <div class="callout">
+            <p>
+              <strong>The 40 ms crossfade is not a default worth keeping.</strong>
+              On the lowest layer it smeared the bow change badly enough to hear. Layer
+              one ended up at 90 ms while layers two and three stayed at 40 — Sampler
+              allows the value per zone, and there is no reason to keep it uniform.
+            </p>
+          </div>
+
+          <h2 id="map">Mapping into Sampler</h2>
+          <p>
+            Sampler reads root keys from filenames if the naming is consistent, which is
+            the entire argument for deciding the naming scheme before the session rather
+            than during the import. Files named
+            <code style="font-family:var(--font-mono);font-size:0.9em">vla_C3_v2_t1.wav</code>
+            dropped into the zone editor in one pass; the earlier take, named by date,
+            took twenty minutes to sort by hand.
+          </p>
+
+          <h2 id="roundrobin">Where round-robin broke</h2>
+          <p>
+            Two problems, both worth stating because neither is documented clearly
+            anywhere we could find.
+          </p>
+          <p>
+            The first: with round-robin selection set to random, repeated notes
+            occasionally drew the same take twice, which defeats the purpose. Cycling
+            through takes in order sounds less clever and behaves better — the ear notices
+            a repeat far more readily than it notices a pattern.
+          </p>
+          <p>
+            The second: the round-robin index resets when the device is reloaded, so the
+            first note of every session came from the same take. Audible only when the
+            patch opens a piece. Recording the takes at marginally different bow positions
+            made the reset inaudible without touching the mapping at all.
+          </p>
+
+          <h2 id="ship">Making it portable</h2>
+          <p>
+            Sampler references the sample files by path. Without
+            <strong>Collect All and Save</strong> the instrument works perfectly on the
+            machine it was built on and nowhere else — the failure this publication's
+            <a href="#">DAW project guidelines</a> exist to prevent.
+          </p>
+
+          <section class="sources">
+            <h2>Sources</h2>
+            <ol>
+              <li>Ableton, <a href="https://www.ableton.com/en/live-manual/12/sampler/" rel="noopener">Live 12 manual — Sampler</a>. Consulted August 2026.</li>
+              <li>Session notes and recordings from the build described above. Raw takes retained, not published.</li>
+            </ol>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <section class="band band--tight band-surface" data-od-id="article-related" aria-labelledby="rel-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="rel-title" style="font-size:var(--t-h3)">Related guides</h2>
+      </div>
+      <ul class="index" data-reveal-group>
+        <li data-reveal><a href="article-record-viola.html">
+          <time class="index__date" datetime="2026-07-11">11 Jul 2026</time>
+          <div>
+            <h3>How to Record Viola at Home</h3>
+            <p>The session that produced the samples used here — placement, room, and three positions worth trying first.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Recording · 16 min</span></div>
+        </a></li>
+        <li data-reveal><a href="#">
+          <time class="index__date" datetime="2026-06-24">24 Jun 2026</time>
+          <div>
+            <h3>DAW Project Guidelines for Reliable Music Production</h3>
+            <p>Naming, collecting and the folder structure that keeps a sampled instrument working on a second machine.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Music Production · 14 min</span></div>
+        </a></li>
+        <li data-reveal><a href="legacy-spy-guitar.html">
+          <time class="index__date" datetime="2026-05-30">30 May 2026</time>
+          <div>
+            <h3>The Spy Guitar — History, Compatibility and a Modern Rebuild</h3>
+            <p>The archived instrument this technique descends from, and how the same result is built in current Live.</p>
+          </div>
+          <div class="index__tail"><span class="index__topic">Archive · 15 min</span></div>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="history-relaunch.html">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" data-od-id="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+          </svg>
+          Auspicious Music
+        </a>
+        <p style="font-size:var(--t-ui-sm);color:var(--muted);margin-top:1rem;max-width:26ch;line-height:1.6">
+          An independent publication for music production and creative audio.
+        </p>
+      </div>
+      <div>
+        <h4>Topics</h4>
+        <ul>
+          <li><a href="hub-production.html">Production</a></li>
+          <li><a href="hub-ableton.html">Ableton</a></li>
+          <li><a href="hub-sound-design.html">Sound Design</a></li>
+          <li><a href="hub-recording.html">Recording</a></li>
+          <li><a href="hub-music-for-media.html">Music for Media</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Publication</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="history-relaunch.html">History &amp; relaunch</a></li>
+          <li><a href="editorial-policy.html">Editorial policy</a></li>
+          <li><a href="authors.html">Authors</a></li>
+          <li><a href="kontakt.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="resources.html">Templates</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="download.html">Downloads</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="barrierefreiheit.html">Barrierefreiheit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© 2026 Auspicious Music</span>
+      <span>Relaunched under new ownership in 2026. Not affiliated with the former operator.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/motion.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+{
+  "implementation": "http://127.0.0.1:4321",
+  "reference": "http://127.0.0.1:4171/index.html",
+  "checkedAt": "2026-08-11T20:05:20.739Z",
+  "routesChecked": 33,
+  "observations": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Auspicious Music — Practical guides for music production and creative audio",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/music-production/",
+      "status": 200,
+      "title": "Music Production Workflows — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/ableton/",
+      "status": 200,
+      "title": "Ableton Live and Max for Live — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/sound-design/",
+      "status": 200,
+      "title": "Sound Design and Sampling — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/recording/",
+      "status": 200,
+      "title": "Recording Acoustic Instruments and Strings — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/music-for-media/",
+      "status": 200,
+      "title": "Music for Film, Video and Media — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/resources/",
+      "status": 200,
+      "title": "Music Production Resources — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/resources/tools/",
+      "status": 200,
+      "title": "Music Production Tools and Calculators — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/resources/glossary/",
+      "status": 200,
+      "title": "Glossary — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/download/",
+      "status": 200,
+      "title": "Legacy Downloads & Current Music Production Resources — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/legacy/the-spy-guitar/",
+      "status": 200,
+      "title": "The Spy Guitar — History, Compatibility and a Modern Rebuild — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/legacy/bang-my-twister/",
+      "status": 200,
+      "title": "Bang My Twister — Historic Max for Live Device and Current Setup — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/ableton/midi-fighter-twister-review/",
+      "status": 200,
+      "title": "MIDI Fighter Twister Review and Ableton Workflow — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/sound-design/sampled-instruments/building-a-sampled-instrument/",
+      "status": 200,
+      "title": "How to Build a Sampled Instrument in Ableton Live — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/recording/acoustic-instruments/recording-viola-at-home/",
+      "status": 200,
+      "title": "How to Record Viola at Home — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "title": "About — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/about/history-and-relaunch/",
+      "status": 200,
+      "title": "History and Relaunch — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/about/editorial-policy/",
+      "status": 200,
+      "title": "Editorial Policy — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/authors/",
+      "status": 200,
+      "title": "Authors — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/contact/",
+      "status": 200,
+      "title": "Contact — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/legal/",
+      "status": 200,
+      "title": "Impressum — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/privacy/",
+      "status": 200,
+      "title": "Datenschutzerklärung — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/accessibility/",
+      "status": 200,
+      "title": "Erklärung zur Barrierefreiheit — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/sitemap/",
+      "status": 200,
+      "title": "Sitemap — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/resources/tools/delay-and-reverb/",
+      "status": 200,
+      "title": "Delay and Reverb Time Calculator — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/resources/tools/note-frequency/",
+      "status": 200,
+      "title": "Note and Frequency Calculator — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/resources/tools/sample-pitch/",
+      "status": 200,
+      "title": "Sample Pitch and Rate Calculator — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/definitely-not-a-real-page/",
+      "status": 404,
+      "title": "Page not found — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/410/",
+      "status": 200,
+      "title": "This address was removed — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/internal/design-concept/",
+      "status": 200,
+      "title": "Design concept — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/internal/mobile-matrix/",
+      "status": 200,
+      "title": "Mobile concepts — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/search/",
+      "status": 200,
+      "title": "Search — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/publishing-roadmap/",
+      "status": 200,
+      "title": "Publishing roadmap — Auspicious Music",
+      "viewport": "1440x900"
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>This address was removed — Auspicious Music</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<style>
+@layer components {
+  /* 410 inverts to graphite. It is the one page on the site that reports a
+     deliberate act rather than an absence, and it should not be mistaken
+     for an ordinary not-found. */
+  .err { padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 6vw, 5rem); min-height: 60vh; }
+  .err__code {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--dark-text);
+    padding-left: 0.875rem; border-left: 2px solid var(--accent-on-dark);
+    display: inline-block; line-height: 1.5;
+  }
+  .err h1 { font-size: clamp(2.25rem, 1.4rem + 3vw, 3.75rem); max-width: 17ch; margin-top: 1.5rem; }
+  .err__lede { margin-top: 1.25rem; max-width: 54ch; }
+  .err__body { margin-top: 1.5rem; max-width: 56ch; }
+  .err__body p { color: var(--dark-muted); font-size: 1.0625rem; line-height: 1.7; }
+  .err__body p + p { margin-top: 1rem; }
+  .err__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: clamp(2.25rem, 4vw, 3rem); }
+}
+</style>
+</head>
+<body class="band-dark" style="background:var(--dark);color:var(--dark-text)">
+
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header" data-header
+        style="background:color-mix(in srgb, var(--dark) 82%, transparent)">
+  <div class="shell site-header__inner">
+    <a class="brand" href="index.html" aria-label="Auspicious Music — home" style="color:var(--dark-text)">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </a>
+    <div class="header-tools">
+      <a class="link" href="index.html" style="font-size:var(--t-ui-sm)">Home
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+  <section class="err" data-od-id="error-410">
+    <div class="shell">
+      <p class="err__code">HTTP 410<br>Gone — permanently removed</p>
+
+      <h1>This address was removed on purpose</h1>
+
+      <p class="lede err__lede" style="color:var(--dark-muted)">
+        You have reached a path that once existed on this domain and has been
+        deliberately taken out of service.
+      </p>
+
+      <div class="err__body">
+        <p>
+          Between the previous site going quiet and this domain changing hands, a
+          number of addresses here were used for injected pages that had nothing to do
+          with music — gambling spam, fake support articles, and redirect chains
+          pointing at unrelated sites.
+        </p>
+        <p>
+          Those paths are not repaired, reused or redirected. They return this response
+          so that search engines and archives record them as permanently gone, rather
+          than passing that history into the current publication. The same applies to a
+          small number of genuine old pages that carried no lasting value.
+        </p>
+        <p>
+          If you followed a link expecting a real music-technology resource, the archive
+          below lists every historic item from this domain together with its actual
+          status.
+        </p>
+      </div>
+
+      <div class="err__actions">
+        <a class="btn btn--primary" href="download.html">Open the archive</a>
+        <a class="btn btn--quiet" href="history-relaunch.html">Why this domain changed</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="border-top:1px solid var(--dark-line);padding-block:2rem;margin-top:auto">
+  <div class="shell">
+    <div class="footer-base" style="margin-top:0;padding-top:0;border-top:0;color:var(--dark-muted)">
+      <span>© 2026 Auspicious Music</span>
+      <span>Relaunched under new ownership in 2026. Not affiliated with the former operator.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/motion.js" defer></script>
+</body>
+</html>

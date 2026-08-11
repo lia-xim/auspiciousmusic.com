@@ -1,0 +1,305 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Note and Frequency Calculator — Auspicious Music"}
+  description={"Convert between note names, MIDI numbers and frequencies at any concert pitch, and read the cents deviation of any frequency you enter."}
+  canonicalPath={"/resources/tools/note-frequency/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .tool-body { max-width: var(--measure); }
+  .tool-body > * + * { margin-top: 1.5rem; }
+  .tool-body h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); letter-spacing: -0.016em; margin-top: clamp(2.75rem, 5vw, 3.5rem); }
+  .tool-body p { color: var(--ink-soft); }
+  .tool-body a:not(.link) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .field--note select { inline-size: 6.5rem; }
+  .field--freq input { inline-size: 10rem; }
+  .related-tools li { border-top: 1px solid var(--line); }
+  .related-tools li:last-child { border-bottom: 1px solid var(--line); }
+  .related-tools a {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+    padding-block: 1.125rem; text-decoration: none; font-size: 1.0625rem; font-weight: 500;
+  }
+  .related-tools a:hover { color: var(--accent); }
+  .related-tools svg { width: 14px; height: 14px; flex: none; }
+  /* Octave separators keep a 100-row table readable */
+  .tool-table tr[data-octave-start="true"] th { border-top: 1px solid var(--line-strong); }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <section class="tool-head" data-od-id="tool-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/resources/tools/">Tools</a></li>
+          <li>Note &amp; frequency</li>
+        </ol>
+      </nav>
+      <h1>Note and Frequency Calculator</h1>
+      <p class="lede">
+        Note names, MIDI numbers and frequencies in both directions, at whatever
+        concert pitch you are working to. Enter a frequency and it tells you the
+        nearest note and how far off it sits in cents.
+      </p>
+    </div>
+  </section>
+
+  <section data-od-id="tool-console">
+    <div class="shell">
+      <div class="console">
+        <div class="console__row">
+          <div class="field field--note">
+            <label for="note">Note</label>
+            <select id="note"></select>
+          </div>
+          <div class="field field--sm field--note">
+            <label for="octave">Octave</label>
+            <select id="octave"></select>
+          </div>
+          <div class="field field--freq">
+            <label for="freq">Or a frequency · Hz</label>
+            <input id="freq" type="number" value="440" min="8" max="20000" step="0.01"
+                   inputmode="decimal" autocomplete="off">
+          </div>
+          <div class="field field--sm">
+            <label for="a4">Concert pitch · A4</label>
+            <select id="a4">
+              <option value="415">415 Hz — baroque</option>
+              <option value="432">432 Hz</option>
+              <option value="440" selected>440 Hz — standard</option>
+              <option value="442">442 Hz</option>
+              <option value="443">443 Hz</option>
+            </select>
+          </div>
+        </div>
+        <p class="console__note">
+          Equal temperament. Middle C is C4 and MIDI 60, the convention Ableton Live and
+          most DAWs use — some hardware labels the same note C3.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight" data-od-id="tool-readouts">
+    <div class="shell">
+      <dl class="readouts">
+        <div class="readout">
+          <dt>Frequency</dt>
+          <dd><span id="ro-freq">440.00</span><small>Hz</small></dd>
+        </div>
+        <div class="readout">
+          <dt>MIDI note</dt>
+          <dd><span id="ro-midi">69</span><small id="ro-name">A4</small></dd>
+        </div>
+        <div class="readout">
+          <dt>Deviation</dt>
+          <dd><span id="ro-cents">0.0</span><small>cents</small></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section data-od-id="tool-table">
+    <div class="shell">
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <caption>Full range at A4 = <span id="cap-a4">440</span> Hz · click a value to copy</caption>
+          <thead>
+            <tr>
+              <th scope="col">Note</th>
+              <th scope="col">MIDI</th>
+              <th scope="col">Frequency</th>
+              <th scope="col">Wavelength · 20 °C</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <section class="band band--tight" data-od-id="tool-body">
+    <div class="shell">
+      <div class="tool-body">
+
+        <h2 style="margin-top:0">What it is for</h2>
+        <p>
+          Two jobs come up constantly. The first is setting a filter, a resonant peak or
+          a notch to a musical pitch rather than a round number — tuning a kick's body to
+          the key of the track, or finding the frequency of a resonance you want out.
+          The second is checking that a sample is where you think it is: enter the
+          frequency your analyser reports and read the cents deviation.
+        </p>
+
+        <h2>Reading the cents column</h2>
+        <p>
+          A cent is one hundredth of a semitone. Under about five cents most listeners
+          hear a single pitch; past roughly fifteen, two sounds together start to beat
+          audibly. If a sample reads twenty cents flat, that is a tuning problem, not a
+          character trait — the
+          <a href="/resources/tools/sample-pitch/">sample pitch calculator</a> converts the
+          correction into a playback rate.
+        </p>
+
+        <h2>Wavelength</h2>
+        <p>
+          The last column is the wavelength in air at 20 °C, using a speed of sound of
+          343 m/s. It is the number worth knowing when a room mode is fighting you:
+          a standing wave sits where a dimension of the room matches a half wavelength,
+          which is why a 3.4 m wall and a 50 Hz problem tend to arrive together.
+        </p>
+
+        <h2>Related</h2>
+        <ul class="related-tools">
+          <li><a href="/resources/tools/delay-and-reverb/">Delay &amp; Reverb Time
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="/resources/tools/sample-pitch/">Sample Pitch &amp; Rate
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="/recording/">Recording guides
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+<Fragment slot="scripts">
+<script is:inline>
+/* ── Note & frequency ─────────────────────────────────────────────────
+   Equal temperament against a settable A4. MIDI 69 is A4 by definition;
+   every other note follows from f = a4 * 2^((n - 69) / 12).            */
+(function () {
+  "use strict";
+
+  var NAMES = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"];
+  var SPEED_OF_SOUND = 343; /* m/s at 20 °C */
+
+  var noteSel = document.getElementById("note");
+  var octSel = document.getElementById("octave");
+  var freqInput = document.getElementById("freq");
+  var a4Sel = document.getElementById("a4");
+  var rows = document.getElementById("rows");
+  var status = document.getElementById("copy-status");
+
+  NAMES.forEach(function (n, i) {
+    noteSel.insertAdjacentHTML("beforeend", "<option value='" + i + "'>" + n + "</option>");
+  });
+  for (var o = -1; o <= 9; o++) {
+    octSel.insertAdjacentHTML("beforeend", "<option value='" + o + "'>" + o + "</option>");
+  }
+  noteSel.value = "9";   /* A  */
+  octSel.value = "4";    /* A4 */
+
+  function a4() { return parseFloat(a4Sel.value); }
+  function midiToFreq(m) { return a4() * Math.pow(2, (m - 69) / 12); }
+  function midiName(m) { return NAMES[((m % 12) + 12) % 12] + (Math.floor(m / 12) - 1); }
+
+  function setFromNote() {
+    var midi = (parseInt(octSel.value, 10) + 1) * 12 + parseInt(noteSel.value, 10);
+    var f = midiToFreq(midi);
+    freqInput.value = String(Math.round(f * 100) / 100);
+    show(midi, f, 0);
+  }
+
+  function setFromFreq() {
+    var f = parseFloat(freqInput.value);
+    if (!isFinite(f) || f <= 0) {
+      status.textContent = "Enter a frequency above zero";
+      return;
+    }
+    status.textContent = "";
+    var exact = 69 + 12 * Math.log2(f / a4());
+    var midi = Math.round(exact);
+    var cents = (exact - midi) * 100;
+
+    noteSel.value = String(((midi % 12) + 12) % 12);
+    var oct = Math.floor(midi / 12) - 1;
+    if (oct >= -1 && oct <= 9) octSel.value = String(oct);
+
+    show(midi, f, cents);
+  }
+
+  function show(midi, freq, cents) {
+    document.getElementById("ro-freq").textContent = freq.toFixed(2);
+    document.getElementById("ro-midi").textContent = String(midi);
+    document.getElementById("ro-name").textContent = midiName(midi);
+    var c = Math.round(cents * 10) / 10;
+    document.getElementById("ro-cents").textContent = (c > 0 ? "+" : "") + c.toFixed(1);
+  }
+
+  function copy(text, btn) {
+    if (!navigator.clipboard || !navigator.clipboard.writeText) {
+      status.textContent = "Clipboard unavailable — select the value manually";
+      return;
+    }
+    navigator.clipboard.writeText(text).then(function () {
+      btn.dataset.copied = "true";
+      status.textContent = text + " copied to the clipboard";
+      window.setTimeout(function () { btn.dataset.copied = "false"; }, 900);
+    }, function () {
+      status.textContent = "Could not copy — select the value manually";
+    });
+  }
+
+  function renderTable() {
+    document.getElementById("cap-a4").textContent = String(a4());
+    var html = "";
+    /* C0 (MIDI 12) to B8 (MIDI 119) — the range that covers every
+       instrument anyone is likely to be tuning against. */
+    for (var m = 12; m <= 119; m++) {
+      var f = midiToFreq(m);
+      var wl = SPEED_OF_SOUND / f;
+      var isC = (m % 12) === 0;
+      html += "<tr" + (isC ? " data-octave-start='true'" : "") + ">" +
+        "<th scope='row'>" + midiName(m) + "</th>" +
+        "<td>" + m + "</td>" +
+        cell(f.toFixed(2) + " Hz") +
+        cell(wl >= 1 ? wl.toFixed(2) + " m" : (wl * 100).toFixed(1) + " cm") +
+        "</tr>";
+    }
+    rows.innerHTML = html;
+  }
+
+  function cell(value) {
+    return "<td><button type='button' data-value=\"" + value + "\" title='Copy'>" + value + "</button></td>";
+  }
+
+  rows.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-value]");
+    if (btn) copy(btn.dataset.value, btn);
+  });
+
+  noteSel.addEventListener("change", setFromNote);
+  octSel.addEventListener("change", setFromNote);
+  freqInput.addEventListener("input", setFromFreq);
+  a4Sel.addEventListener("change", function () { setFromNote(); renderTable(); });
+
+  setFromNote();
+  renderTable();
+})();
+</script>
+</Fragment>
+</BaseLayout>

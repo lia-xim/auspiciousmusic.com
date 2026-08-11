@@ -1,0 +1,366 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"How to Record Viola at Home — Auspicious Music"}
+  description={"Microphone placement, room treatment you can do in a rented flat, and the three positions worth trying before anything else."}
+  canonicalPath={"/recording/acoustic-instruments/recording-viola-at-home/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .art-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem); }
+  .art-head h1 { max-width: 20ch; margin-top: 1.25rem; }
+  .art-head .lede { margin-top: 1.5rem; max-width: 54ch; }
+
+  .byline {
+    display: flex; flex-wrap: wrap; gap: 0.75rem 2rem;
+    margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+    font-size: var(--t-ui-sm);
+  }
+  .byline div { display: grid; gap: 0.125rem; }
+  .byline dt { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
+  .byline__v { color: var(--ink); font-weight: 500; }
+
+  .requires {
+    margin-top: 2rem; border: 1px solid var(--line); border-radius: var(--r-md);
+    background: var(--surface); padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+  .requires h2 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin: 0 0 1rem;
+  }
+  .requires dl { display: grid; gap: 0.5rem; }
+  .requires > dl > div {
+    display: grid; grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr);
+    gap: 0.5rem 1.25rem; padding-block: 0.4375rem;
+    font-size: var(--t-ui-sm); line-height: 1.5;
+  }
+  .requires > dl > div + div { border-top: 1px solid var(--line); }
+  .requires dt { color: var(--muted); }
+  .requires dd { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  @media (max-width: 560px) { .requires > dl > div { grid-template-columns: 1fr; gap: 0.1875rem; } }
+
+  .art-grid { display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+  @media (min-width: 1080px) {
+    .art-grid { grid-template-columns: 15rem minmax(0, 1fr); gap: 4.5rem; }
+    .toc { position: sticky; top: calc(var(--header-h) + 24px); }
+  }
+  .toc summary {
+    cursor: pointer; list-style: none;
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted);
+    padding-block: 0.75rem; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    min-block-size: 44px;
+  }
+  .toc summary::-webkit-details-marker { display: none; }
+  .toc summary::after { content: "−"; font-family: var(--font-mono); }
+  .toc:not([open]) summary::after { content: "+"; }
+  .toc ol { display: grid; gap: 0.125rem; padding-top: 0.75rem; counter-reset: toc; }
+  .toc a {
+    display: block; text-decoration: none; font-size: var(--t-ui-sm);
+    line-height: 1.45; color: var(--muted); padding: 0.5rem 0 0.5rem 1.75rem;
+    position: relative; transition: color var(--dur-fast) var(--ease);
+  }
+  .toc li { counter-increment: toc; }
+  .toc a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute; left: 0; font-family: var(--font-mono);
+    font-size: var(--t-meta); opacity: 0.7;
+  }
+  .toc a:hover { color: var(--ink); }
+
+  .prose { max-width: var(--measure); }
+  .prose > * + * { margin-top: 1.5rem; }
+  .prose h2 {
+    font-size: clamp(1.625rem, 1.2rem + 1.5vw, 2.25rem); letter-spacing: -0.018em;
+    margin-top: clamp(3rem, 5vw, 4rem); scroll-margin-top: calc(var(--header-h) + 32px);
+  }
+  .prose h3 { font-size: 1.3125rem; margin-top: 2.25rem; letter-spacing: -0.012em; }
+  .prose p { color: var(--ink-soft); }
+  .prose a:not(.link) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .prose ol.steps { counter-reset: step; display: grid; gap: 1.125rem; }
+  .prose ol.steps li { counter-increment: step; position: relative; padding-left: 2.5rem; color: var(--ink-soft); }
+  .prose ol.steps li::before {
+    content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 0.15em;
+    font-family: var(--font-mono); font-size: var(--t-meta); color: var(--muted);
+  }
+  .prose ul.bullets { display: grid; gap: 0.625rem; }
+  .prose ul.bullets li { padding-left: 1.25rem; position: relative; color: var(--ink-soft); line-height: 1.6; }
+  .prose ul.bullets li::before {
+    content: ""; position: absolute; left: 0; top: 0.72em;
+    inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--line-strong);
+  }
+
+  .settings {
+    background: var(--dark); color: var(--dark-text);
+    border-radius: var(--r-md); padding: clamp(1.125rem, 2.5vw, 1.5rem); overflow-x: auto;
+  }
+  .settings figcaption {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--dark-muted); margin-bottom: 0.875rem;
+  }
+  .settings pre { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.7; white-space: pre; margin: 0; }
+  .settings b { color: var(--accent-on-dark); font-weight: 500; }
+
+  .fig figcaption { margin-top: 0.75rem; font-size: var(--t-ui-sm); color: var(--muted); line-height: 1.55; max-width: 58ch; }
+  .fig .ph { aspect-ratio: 16 / 10; }
+
+  .callout { border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; }
+  .callout strong { display: block; margin-bottom: 0.375rem; }
+  .callout p { color: var(--ink); }
+
+  /* Outstanding-test marker — the material axis, never dressed as a result */
+  .pending {
+    border-left: 2px solid var(--ember-bright);
+    padding: 0.25rem 0 0.25rem 1.5rem;
+  }
+  .pending strong { display: block; margin-bottom: 0.375rem; color: var(--ember); }
+  .pending p { color: var(--ink-soft); }
+
+  .verdict { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: 1.75rem; }
+  @media (min-width: 760px) { .verdict { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .verdict > div > h3 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin: 0 0 0.875rem;
+  }
+
+  .sources { margin-top: clamp(3rem, 5vw, 4rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+  .sources h2 { font-size: var(--t-h3); margin: 0 0 1.25rem; }
+  .sources ol { display: grid; gap: 0.875rem; counter-reset: src; }
+  .sources li { counter-increment: src; padding-left: 2rem; position: relative; font-size: 1rem; line-height: 1.6; color: var(--muted); }
+  .sources li::before { content: counter(src); position: absolute; left: 0; font-family: var(--font-mono); font-size: var(--t-meta); }
+  .sources a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  .glossary-index { display: grid; gap: 0; }
+  .glossary-index > div { padding-block: 1.25rem; border-top: 1px solid var(--line); }
+  .glossary-index > div:last-child { border-bottom: 1px solid var(--line); }
+  .glossary-index dt { font-size: 1.1875rem; font-weight: 550; letter-spacing: -0.012em; }
+  .glossary-index dd { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.6; margin-top: 0.375rem; max-width: 64ch; }
+  .glossary-index .tag {
+    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
+    color: var(--muted); display: block; margin-top: 0.5rem;
+  }
+  .alpha { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; margin-top: 1.5rem; }
+  .alpha a {
+    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
+    text-decoration: none; color: var(--muted);
+    min-inline-size: 44px; min-block-size: 44px;
+    display: grid; place-items: center;
+    border: 1px solid var(--line); border-radius: var(--r-sm);
+  }
+  .alpha a:hover { color: var(--ink); border-color: var(--line-strong); }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <article>
+    <header class="art-head" data-od-id="article-head">
+      <div class="shell">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/recording/">Recording</a></li>
+            <li>Strings</li>
+          </ol>
+        </nav>
+        <h1>How to Record Viola at Home</h1>
+        <p class="lede">
+          A viola in a small room is mostly a room problem. Placement, the treatment
+          you can actually do in a rented flat, and the three microphone positions
+          worth trying before you change anything else.
+        </p>
+        <dl class="byline">
+          <div><dt>Written by</dt><dd class="byline__v">Auspicious Music editorial</dd></div>
+          <div><dt>Published</dt><dd class="byline__v"><time datetime="2026-07-11">11 July 2026</time></dd></div>
+          <div><dt>Reading time</dt><dd class="byline__v">16 min</dd></div>
+        </dl>
+
+        <section class="requires measure">
+          <h2>What this assumes</h2>
+          <dl>
+            <div><dt>Instrument</dt><dd>Viola — the same method applies to violin at a shorter distance</dd></div>
+            <div><dt>Microphones</dt><dd>One large-diaphragm condenser, or a small-diaphragm pair</dd></div>
+            <div><dt>Interface</dt><dd>Any interface with clean gain, 48 kHz / 24-bit</dd></div>
+            <div><dt>Room</dt><dd>An ordinary domestic room, untreated or lightly treated</dd></div>
+            <div><dt>Measured data</dt><dd>Outstanding — A/B recordings to follow</dd></div>
+          </dl>
+        </section>
+      </div>
+    </header>
+
+    <div class="shell band band--tight">
+      <div class="art-grid">
+        <details class="toc" open>
+          <summary>Contents</summary>
+          <nav aria-label="Table of contents">
+            <ol>
+              <li><a href="#room">Start with the room, not the microphone</a></li>
+              <li><a href="#where">Where the instrument actually radiates</a></li>
+              <li><a href="#positions">Three positions worth trying</a></li>
+              <li><a href="#gain">Gain and headroom</a></li>
+              <li><a href="#player">What the player needs</a></li>
+              <li><a href="#after">What to fix afterwards, and what not to</a></li>
+            </ol>
+          </nav>
+        </details>
+
+        <div class="prose" data-od-id="article-body">
+
+          <h2 id="room" style="margin-top:0">Start with the room, not the microphone</h2>
+          <p>
+            Almost every disappointing string recording made at home is a room
+            recording with an instrument in it. A viola projects in every direction and
+            keeps sounding for as long as the room lets it; a microphone a metre away
+            picks up far more wall than most people expect.
+          </p>
+          <p>
+            Before changing a microphone, change where you stand. Playing towards the
+            middle of a room rather than into a corner removes more problems than any
+            preamp will. Where a wall cannot be avoided, something soft on it at ear
+            height — a duvet on a clothes rail is not a joke — will do more than a
+            single foam tile.
+          </p>
+
+          <div class="callout">
+            <p>
+              <strong>Standing waves are a matter of dimensions, not decoration.</strong>
+              A room reinforces frequencies whose half-wavelength matches one of its
+              dimensions. The
+              <a href="/resources/tools/note-frequency/">note and frequency tool</a> lists
+              wavelength beside every pitch — if a particular note booms in one spot and
+              vanishes in another, that is what you are hearing.
+            </p>
+          </div>
+
+          <h2 id="where">Where the instrument actually radiates</h2>
+          <p>
+            The viola is not a point source. Low registers radiate broadly from the body,
+            while the upper strings become increasingly directional and project up and
+            forward from the bridge area. Close-miking one f-hole gets you a bright,
+            boxy version of one part of the instrument rather than the whole of it.
+          </p>
+          <p>
+            Distance is what mixes the instrument together. Somewhere around a metre is
+            where the parts start to blend into what a listener in the room would hear;
+            closer than that and you are recording a component, further and you are
+            recording the room.
+          </p>
+
+          <figure class="fig">
+            <div class="ph">
+              <span class="ph__label"><strong>Photograph</strong> — the three positions, marked distances<br>to be shot at 2400 × 1600</span>
+            </div>
+            <figcaption>The same instrument, the same take, three positions. Measured distances to follow.</figcaption>
+          </figure>
+
+          <h2 id="positions">Three positions worth trying</h2>
+          <ol class="steps">
+            <li><strong>Above and forward.</strong> Roughly a metre out, raised above the instrument and angled down towards the bridge. The most reliable starting point: it catches the blend without the bow noise sitting on top.</li>
+            <li><strong>Level, off the shoulder.</strong> Same distance, microphone at instrument height and slightly to the player's left. Warmer, more body, less bow detail. Useful when the part sits under other material.</li>
+            <li><strong>Further back, higher.</strong> Two metres and well above head height. Only works in a room worth recording, but when the room is decent this is the one that sounds like a viola in a space rather than a viola in a microphone.</li>
+          </ol>
+          <p>
+            Record the same eight bars in all three before deciding. Position changes
+            the sound far more than any processing you will apply afterwards, and it is
+            the one decision that cannot be undone later.
+          </p>
+
+          <h2 id="gain">Gain and headroom</h2>
+          <p>
+            Strings have a wider dynamic range than most sources people record at home,
+            and a forte passage can arrive fifteen decibels above where the player was
+            warming up. Set the level from the loudest thing in the piece, not from the
+            first phrase.
+          </p>
+          <p>
+            At 24-bit there is no reason to push it. Peaks landing around −12 dBFS leave
+            room for a surprise without costing anything audible in noise.
+          </p>
+
+          <h2 id="player">What the player needs</h2>
+          <ul class="bullets">
+            <li>A headphone mix with little or no reverb on their own signal — added reverb encourages under-playing.</li>
+            <li>Enough light to read from, and a stand at the right height. Both affect posture, and posture affects tone.</li>
+            <li>Fewer, longer takes rather than many short ones. Intonation drifts when a player is stopped every four bars.</li>
+            <li>Silence between takes. Talkback that stays open is exhausting to play under.</li>
+          </ul>
+
+          <h2 id="after">What to fix afterwards, and what not to</h2>
+          <p>
+            Worth fixing: a narrow resonance the room added, usually somewhere in the
+            low mids and usually audible as one note louder than its neighbours. A
+            narrow cut at the offending frequency is a repair.
+          </p>
+          <p>
+            Not worth fixing: a dull recording. Broad top-end lift on a string source
+            brings up bow noise and room together, and the result sounds thin rather than
+            bright. That one is a placement problem, and the only real fix is to record
+            it again.
+          </p>
+
+          <div class="pending">
+            <strong>Audio comparison outstanding.</strong>
+            <p>
+              A/B recordings of the three positions, and the measured distances used,
+              will be published with this guide once the session audio exists. No
+              figures are quoted here that have not been measured.
+            </p>
+          </div>
+
+          <!-- Reference video. The id goes in data-embed; until one is set the
+               frame stays a labelled placeholder rather than a dead player. -->
+          <figure class="embed" data-embed="" data-embed-title="Reference recording">
+            <div class="embed__frame">
+              <div class="embed__prompt">
+                <p>Reference video — no source selected yet</p>
+                <button class="btn btn--quiet" type="button" data-embed-play disabled>Load video</button>
+              </div>
+            </div>
+            <figcaption class="embed__note">
+              External media loads only when you press the button. Until then nothing
+              is requested from the platform, no cookie is set and your IP address is
+              not transmitted — see the
+              <a href="/privacy/" lang="de">Datenschutzerklärung</a>.
+            </figcaption>
+          </figure>
+
+          <h2>Related</h2>
+          <p>
+            The samples used in
+            <a href="/sound-design/sampled-instruments/building-a-sampled-instrument/">the sampled-instrument build</a>
+            came from a session run exactly this way. Whether a part is better played or
+            programmed at all is the subject of
+            <a href="/recording/">live strings versus sample libraries</a>.
+          </p>
+
+          <section class="sources">
+            <h2>Sources</h2>
+            <ol>
+              <li>Session notes from the recordings described above. Raw takes retained, not published.</li>
+              <li>Speed of sound taken as 343 m/s at 20 °C for the wavelength figures referenced in the tool.</li>
+            </ol>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+</main>
+</BaseLayout>

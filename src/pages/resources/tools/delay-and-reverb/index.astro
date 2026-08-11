@@ -1,0 +1,339 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Delay and Reverb Time Calculator — Auspicious Music"}
+  description={"Delay times in milliseconds and hertz for every note division at any tempo, straight, dotted and triplet, plus reverb pre-delay and decay starting points."}
+  canonicalPath={"/resources/tools/delay-and-reverb/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .tool-body { max-width: var(--measure); }
+  .tool-body > * + * { margin-top: 1.5rem; }
+  .tool-body h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); letter-spacing: -0.016em; margin-top: clamp(2.75rem, 5vw, 3.5rem); }
+  .tool-body p { color: var(--ink-soft); }
+  .tool-body a:not(.link) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .tap { display: grid; gap: 0.5rem; }
+  .tap > span { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--dark-muted); }
+  .tap button {
+    min-block-size: 52px; padding-inline: 1.5rem; border-radius: var(--r-sm);
+    border: 1px solid var(--dark-line); color: var(--dark-text);
+    font-size: var(--t-ui); font-weight: 550;
+    transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  }
+  .tap button:hover { background: var(--dark-surface); border-color: var(--dark-muted); }
+  .tap button:active { transform: translateY(1px); }
+  .related-tools li { border-top: 1px solid var(--line); }
+  .related-tools li:last-child { border-bottom: 1px solid var(--line); }
+  .related-tools a {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+    padding-block: 1.125rem; text-decoration: none; font-size: 1.0625rem; font-weight: 500;
+  }
+  .related-tools a:hover { color: var(--accent); }
+  .related-tools svg { width: 14px; height: 14px; flex: none; }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <section class="tool-head" data-od-id="tool-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/resources/tools/">Tools</a></li>
+          <li>Delay &amp; reverb time</li>
+        </ol>
+      </nav>
+      <h1>Delay and Reverb Time Calculator</h1>
+      <p class="lede">
+        Every note division in milliseconds and hertz for your tempo — straight,
+        dotted and triplet — plus a starting point for reverb pre-delay and decay.
+        Click any value to copy it.
+      </p>
+    </div>
+  </section>
+
+  <section data-od-id="tool-console">
+    <div class="shell">
+      <div class="console">
+        <div class="console__row">
+          <div class="field field--bpm">
+            <label for="bpm">Tempo · BPM</label>
+            <div class="stepper">
+              <button type="button" data-bpm-step="-1" aria-label="Decrease tempo by one">−</button>
+              <input id="bpm" type="number" value="120" min="20" max="300" step="1"
+                     inputmode="decimal" autocomplete="off">
+              <button type="button" data-bpm-step="1" aria-label="Increase tempo by one">+</button>
+            </div>
+          </div>
+
+          <div class="tap">
+            <span>Or find it</span>
+            <button type="button" id="tap">Tap tempo</button>
+          </div>
+
+          <div class="field field--sm">
+            <label for="round">Rounding</label>
+            <select id="round">
+              <option value="2">0.01 ms</option>
+              <option value="1" selected>0.1 ms</option>
+              <option value="0">1 ms</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="console__note" id="tap-note">
+          Tap at least four times in time with the track. Nothing is stored or sent anywhere.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight" data-od-id="tool-readouts">
+    <div class="shell">
+      <dl class="readouts">
+        <div class="readout">
+          <dt>Quarter note</dt>
+          <dd><span id="ro-quarter">500.0</span><small>ms</small></dd>
+        </div>
+        <div class="readout">
+          <dt>Reverb pre-delay · 1/64</dt>
+          <dd><span id="ro-predelay">31.3</span><small>ms</small></dd>
+        </div>
+        <div class="readout">
+          <dt>Decay to the next bar</dt>
+          <dd><span id="ro-decay">2000.0</span><small>ms</small></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section data-od-id="tool-table">
+    <div class="shell">
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <caption>Delay times at <span id="cap-bpm">120</span> BPM · click a value to copy</caption>
+          <thead>
+            <tr>
+              <th scope="col">Division</th>
+              <th scope="col">Straight</th>
+              <th scope="col">Dotted</th>
+              <th scope="col">Triplet</th>
+              <th scope="col">Straight Hz</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <section class="band band--tight" data-od-id="tool-body">
+    <div class="shell">
+      <div class="tool-body">
+
+        <h2 style="margin-top:0">How to use it</h2>
+        <p>
+          Set the tempo, then take the value for the division you want. A 1/8 delay on a
+          rhythmic part usually wants the straight column; a delay that should sit
+          slightly behind the groove without landing on the next note is what the dotted
+          column is for — dotted 1/8 is the reason a great many records sound the way
+          they do.
+        </p>
+        <p>
+          The hertz column is for anything that takes a rate rather than a time: LFOs,
+          tremolo, auto-pan, and any modulation you want locked to the grid in a plug-in
+          that has no tempo sync.
+        </p>
+
+        <h2>Reverb pre-delay and decay</h2>
+        <p>
+          The two reverb read-outs are starting points, not rules. Pre-delay at a
+          1/64 note keeps the early reflections clear of the transient without
+          drifting audibly late. The decay figure is the length of one bar in 4/4 —
+          set the tail near it and the reverb clears before the next downbeat rather
+          than smearing across it.
+        </p>
+        <p>
+          Both need adjusting by ear against the actual material. A dense arrangement
+          usually wants a shorter tail than the arithmetic suggests.
+        </p>
+
+        <h2>The arithmetic</h2>
+        <p>
+          One quarter note lasts <code style="font-family:var(--font-mono);font-size:0.92em">60000 ÷ BPM</code>
+          milliseconds. Every other division is that value multiplied or divided by
+          powers of two. A dotted note is one and a half times its straight length; a
+          triplet is two thirds. Frequency in hertz is
+          <code style="font-family:var(--font-mono);font-size:0.92em">1000 ÷ ms</code>.
+        </p>
+
+        <h2>Related</h2>
+        <ul class="related-tools">
+          <li><a href="/resources/tools/note-frequency/">Note &amp; Frequency
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="/resources/tools/sample-pitch/">Sample Pitch &amp; Rate
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="/music-production/">Music production guides
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+<Fragment slot="scripts">
+<script is:inline>
+/* ── Delay & reverb calculator ────────────────────────────────────────
+   Plain arithmetic, no dependencies, no storage, no network. In Astro
+   this becomes one island; the maths moves to lib/ and is unit-tested. */
+(function () {
+  "use strict";
+
+  var DIVISIONS = [
+    { label: "1/1",  beats: 4 },
+    { label: "1/2",  beats: 2 },
+    { label: "1/4",  beats: 1 },
+    { label: "1/8",  beats: 0.5 },
+    { label: "1/16", beats: 0.25 },
+    { label: "1/32", beats: 0.125 },
+    { label: "1/64", beats: 0.0625 }
+  ];
+
+  var bpmInput = document.getElementById("bpm");
+  var roundSel = document.getElementById("round");
+  var rows = document.getElementById("rows");
+  var status = document.getElementById("copy-status");
+  var capBpm = document.getElementById("cap-bpm");
+
+  function fmt(ms, digits) {
+    return ms.toFixed(digits);
+  }
+
+  function currentBpm() {
+    var v = parseFloat(bpmInput.value);
+    if (!isFinite(v) || v <= 0) return null;
+    return Math.min(300, Math.max(20, v));
+  }
+
+  function copy(text, btn) {
+    var done = function () {
+      btn.dataset.copied = "true";
+      status.textContent = text + " copied to the clipboard";
+      window.setTimeout(function () { btn.dataset.copied = "false"; }, 900);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () {
+        status.textContent = "Could not copy — select the value manually";
+      });
+    } else {
+      status.textContent = "Clipboard unavailable — select the value manually";
+    }
+  }
+
+  function render() {
+    var bpm = currentBpm();
+    var digits = parseInt(roundSel.value, 10);
+
+    if (bpm === null) {
+      rows.innerHTML = "";
+      status.textContent = "Enter a tempo between 20 and 300 BPM";
+      return;
+    }
+    status.textContent = "";
+    capBpm.textContent = String(Math.round(bpm * 100) / 100);
+
+    var quarter = 60000 / bpm;
+
+    document.getElementById("ro-quarter").textContent = fmt(quarter, digits);
+    document.getElementById("ro-predelay").textContent = fmt(quarter * 0.0625, digits);
+    document.getElementById("ro-decay").textContent = fmt(quarter * 4, digits);
+
+    var html = "";
+    DIVISIONS.forEach(function (d) {
+      var straight = quarter * d.beats;
+      var dotted = straight * 1.5;
+      var triplet = straight * (2 / 3);
+      var hz = 1000 / straight;
+
+      html += "<tr>" +
+        "<th scope='row'>" + d.label + "</th>" +
+        cell(fmt(straight, digits) + " ms") +
+        cell(fmt(dotted, digits) + " ms") +
+        cell(fmt(triplet, digits) + " ms") +
+        cell(hz.toFixed(hz < 10 ? 3 : 2) + " Hz") +
+        "</tr>";
+    });
+    rows.innerHTML = html;
+  }
+
+  function cell(value) {
+    return "<td><button type='button' data-value=\"" + value +
+           "\" title='Copy'>" + value + "</button></td>";
+  }
+
+  rows.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-value]");
+    if (btn) copy(btn.dataset.value, btn);
+  });
+
+  bpmInput.addEventListener("input", render);
+  roundSel.addEventListener("change", render);
+
+  document.querySelectorAll("[data-bpm-step]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var bpm = currentBpm() || 120;
+      bpmInput.value = String(Math.min(300, Math.max(20, Math.round(bpm) + Number(btn.dataset.bpmStep))));
+      render();
+    });
+  });
+
+  /* Tap tempo — averages the gaps between the last eight taps and drops
+     the series if more than two seconds pass, so a stale tap never skews
+     the result. */
+  var taps = [];
+  var tapNote = document.getElementById("tap-note");
+  document.getElementById("tap").addEventListener("click", function () {
+    var now = performance.now();
+    if (taps.length && now - taps[taps.length - 1] > 2000) taps = [];
+    taps.push(now);
+    if (taps.length > 8) taps.shift();
+
+    if (taps.length < 4) {
+      tapNote.textContent = "Keep tapping — " + (4 - taps.length) + " more to go.";
+      return;
+    }
+    var gaps = 0;
+    for (var i = 1; i < taps.length; i++) gaps += taps[i] - taps[i - 1];
+    var avg = gaps / (taps.length - 1);
+    var bpm = Math.round((60000 / avg) * 10) / 10;
+    bpmInput.value = String(Math.min(300, Math.max(20, bpm)));
+    tapNote.textContent = "Measured from " + taps.length + " taps. Keep going to refine, or type the tempo directly.";
+    render();
+  });
+
+  render();
+})();
+</script>
+</Fragment>
+</BaseLayout>

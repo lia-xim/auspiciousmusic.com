@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" role="img" aria-label="Auspicious Music">
+  <title>Auspicious Music</title>
+  <!-- Driving wave: one full period, nodes at x = 2, 12, 22 -->
+  <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <!-- Phase-inverted response, damped to 50% amplitude -->
+  <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#101114"/>
+  <!-- Compact favicon cut: amplitude raised, single crossing pair, legible at 16px -->
+  <path d="M6 16C10 8 12 8 16 16C20 24 22 24 26 16"
+        stroke="#f7f7f8" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <path d="M6 16C10 20 12 20 16 16C20 12 22 12 26 16"
+        stroke="#f7f7f8" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.45"/>
+</svg>

@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossary — Auspicious Music</title>
+<meta name="description" content="Terms as this publication uses them, across production, Ableton, sound design, recording and music for media.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<style>
+@layer components {
+  .art-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem); }
+  .art-head h1 { max-width: 20ch; margin-top: 1.25rem; }
+  .art-head .lede { margin-top: 1.5rem; max-width: 54ch; }
+
+  .byline {
+    display: flex; flex-wrap: wrap; gap: 0.75rem 2rem;
+    margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+    font-size: var(--t-ui-sm);
+  }
+  .byline div { display: grid; gap: 0.125rem; }
+  .byline dt { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
+  .byline__v { color: var(--ink); font-weight: 500; }
+
+  .requires {
+    margin-top: 2rem; border: 1px solid var(--line); border-radius: var(--r-md);
+    background: var(--surface); padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+  .requires h2 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin: 0 0 1rem;
+  }
+  .requires dl { display: grid; gap: 0.5rem; }
+  .requires > dl > div {
+    display: grid; grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr);
+    gap: 0.5rem 1.25rem; padding-block: 0.4375rem;
+    font-size: var(--t-ui-sm); line-height: 1.5;
+  }
+  .requires > dl > div + div { border-top: 1px solid var(--line); }
+  .requires dt { color: var(--muted); }
+  .requires dd { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  @media (max-width: 560px) { .requires > dl > div { grid-template-columns: 1fr; gap: 0.1875rem; } }
+
+  .art-grid { display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+  @media (min-width: 1080px) {
+    .art-grid { grid-template-columns: 15rem minmax(0, 1fr); gap: 4.5rem; }
+    .toc { position: sticky; top: calc(var(--header-h) + 24px); }
+  }
+  .toc summary {
+    cursor: pointer; list-style: none;
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted);
+    padding-block: 0.75rem; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    min-block-size: 44px;
+  }
+  .toc summary::-webkit-details-marker { display: none; }
+  .toc summary::after { content: "−"; font-family: var(--font-mono); }
+  .toc:not([open]) summary::after { content: "+"; }
+  .toc ol { display: grid; gap: 0.125rem; padding-top: 0.75rem; counter-reset: toc; }
+  .toc a {
+    display: block; text-decoration: none; font-size: var(--t-ui-sm);
+    line-height: 1.45; color: var(--muted); padding: 0.5rem 0 0.5rem 1.75rem;
+    position: relative; transition: color var(--dur-fast) var(--ease);
+  }
+  .toc li { counter-increment: toc; }
+  .toc a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute; left: 0; font-family: var(--font-mono);
+    font-size: var(--t-meta); opacity: 0.7;
+  }
+  .toc a:hover { color: var(--ink); }
+
+  .prose { max-width: var(--measure); }
+  .prose > * + * { margin-top: 1.5rem; }
+  .prose h2 {
+    font-size: clamp(1.625rem, 1.2rem + 1.5vw, 2.25rem); letter-spacing: -0.018em;
+    margin-top: clamp(3rem, 5vw, 4rem); scroll-margin-top: calc(var(--header-h) + 32px);
+  }
+  .prose h3 { font-size: 1.3125rem; margin-top: 2.25rem; letter-spacing: -0.012em; }
+  .prose p { color: var(--ink-soft); }
+  .prose a:not(.link) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .prose ol.steps { counter-reset: step; display: grid; gap: 1.125rem; }
+  .prose ol.steps li { counter-increment: step; position: relative; padding-left: 2.5rem; color: var(--ink-soft); }
+  .prose ol.steps li::before {
+    content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 0.15em;
+    font-family: var(--font-mono); font-size: var(--t-meta); color: var(--muted);
+  }
+  .prose ul.bullets { display: grid; gap: 0.625rem; }
+  .prose ul.bullets li { padding-left: 1.25rem; position: relative; color: var(--ink-soft); line-height: 1.6; }
+  .prose ul.bullets li::before {
+    content: ""; position: absolute; left: 0; top: 0.72em;
+    inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--line-strong);
+  }
+
+  .settings {
+    background: var(--dark); color: var(--dark-text);
+    border-radius: var(--r-md); padding: clamp(1.125rem, 2.5vw, 1.5rem); overflow-x: auto;
+  }
+  .settings figcaption {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--dark-muted); margin-bottom: 0.875rem;
+  }
+  .settings pre { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.7; white-space: pre; margin: 0; }
+  .settings b { color: var(--accent-on-dark); font-weight: 500; }
+
+  .fig figcaption { margin-top: 0.75rem; font-size: var(--t-ui-sm); color: var(--muted); line-height: 1.55; max-width: 58ch; }
+  .fig .ph { aspect-ratio: 16 / 10; }
+
+  .callout { border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; }
+  .callout strong { display: block; margin-bottom: 0.375rem; }
+  .callout p { color: var(--ink); }
+
+  /* Outstanding-test marker — the material axis, never dressed as a result */
+  .pending {
+    border-left: 2px solid var(--ember-bright);
+    padding: 0.25rem 0 0.25rem 1.5rem;
+  }
+  .pending strong { display: block; margin-bottom: 0.375rem; color: var(--ember); }
+  .pending p { color: var(--ink-soft); }
+
+  .verdict { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: 1.75rem; }
+  @media (min-width: 760px) { .verdict { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .verdict > div > h3 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin: 0 0 0.875rem;
+  }
+
+  .sources { margin-top: clamp(3rem, 5vw, 4rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+  .sources h2 { font-size: var(--t-h3); margin: 0 0 1.25rem; }
+  .sources ol { display: grid; gap: 0.875rem; counter-reset: src; }
+  .sources li { counter-increment: src; padding-left: 2rem; position: relative; font-size: 1rem; line-height: 1.6; color: var(--muted); }
+  .sources li::before { content: counter(src); position: absolute; left: 0; font-family: var(--font-mono); font-size: var(--t-meta); }
+  .sources a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  .glossary-index { display: grid; gap: 0; }
+  .glossary-index > div { padding-block: 1.25rem; border-top: 1px solid var(--line); }
+  .glossary-index > div:last-child { border-bottom: 1px solid var(--line); }
+  .glossary-index dt { font-size: 1.1875rem; font-weight: 550; letter-spacing: -0.012em; }
+  .glossary-index dd { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.6; margin-top: 0.375rem; max-width: 64ch; }
+  .glossary-index .tag {
+    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
+    color: var(--muted); display: block; margin-top: 0.5rem;
+  }
+  .alpha { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; margin-top: 1.5rem; }
+  .alpha a {
+    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
+    text-decoration: none; color: var(--muted);
+    min-inline-size: 44px; min-block-size: 44px;
+    display: grid; place-items: center;
+    border: 1px solid var(--line); border-radius: var(--r-sm);
+  }
+  .alpha a:hover { color: var(--ink); border-color: var(--line-strong); }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="shell site-header__inner">
+    <a class="brand" href="index.html" aria-label="Auspicious Music — home">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="hub-production.html">Production</a></li>
+        <li><a href="hub-ableton.html">Ableton</a></li>
+        <li><a href="hub-sound-design.html">Sound Design</a></li>
+        <li><a href="hub-recording.html">Recording</a></li>
+        <li><a href="hub-music-for-media.html">Music for Media</a></li>
+        <li><a href="resources.html" aria-current="page">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-tools">
+      <button class="icon-btn" type="button" aria-label="Search">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="9" cy="9" r="5.75" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M13.2 13.2 17 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" data-sheet-open>
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" id="menu" data-sheet data-open="false" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="shell sheet__head">
+    <span class="brand">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+      Auspicious Music
+    </span>
+    <button class="icon-btn" type="button" aria-label="Close menu" data-sheet-close>
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="shell" aria-label="Menu">
+    <ul>
+      <li><a href="hub-production.html">Production</a></li>
+      <li><a href="hub-ableton.html">Ableton</a></li>
+      <li><a href="hub-sound-design.html">Sound Design</a></li>
+      <li><a href="hub-recording.html">Recording</a></li>
+      <li><a href="hub-music-for-media.html">Music for Media</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <div class="shell sheet__foot">
+    <a href="tools.html" style="text-decoration:none">Tools and calculators</a>
+  </div>
+</div>
+
+<main id="content">
+
+  <section class="art-head" data-od-id="glossary-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li>Glossary</li>
+        </ol>
+      </nav>
+      <h1>Glossary</h1>
+      <p class="lede">
+        23 terms as this publication uses them. Where usage differs between
+        DAWs or between disciplines, the difference is stated rather than smoothed over.
+      </p>
+    </div>
+  </section>
+
+  <section class="band band--tight" data-od-id="glossary-body">
+    <div class="shell">
+      <dl class="glossary-index" style="max-width:56rem">
+        <div id="bank">
+          <dt>Bank</dt>
+          <dd>A switchable page of controller assignments, so one physical encoder can address several parameters.<span class="tag">Ableton · Controllers</span></dd>
+        </div>
+        <div id="bit-depth">
+          <dt>Bit depth</dt>
+          <dd>How finely each sample's amplitude is stored. 24-bit is the working standard; it buys headroom rather than audible resolution.<span class="tag">Recording</span></dd>
+        </div>
+        <div id="cent">
+          <dt>Cent</dt>
+          <dd>One hundredth of a semitone. Under about five cents most listeners hear a single pitch.<span class="tag">Sound Design</span></dd>
+        </div>
+        <div id="collect-all-and-save">
+          <dt>Collect All and Save</dt>
+          <dd>The Live command that copies every referenced sample into the project folder. The one step that decides whether a set opens on another machine.<span class="tag">Ableton · Production</span></dd>
+        </div>
+        <div id="endless-encoder">
+          <dt>Endless encoder</dt>
+          <dd>A rotary control with no start or end position, so switching what it controls causes no value jump.<span class="tag">Controllers</span></dd>
+        </div>
+        <div id="formant">
+          <dt>Formant</dt>
+          <dd>The resonance that gives a source its character. Transposing a sample too far moves it, which is why a repitched voice sounds artificial.<span class="tag">Sound Design</span></dd>
+        </div>
+        <div id="freezing">
+          <dt>Freezing</dt>
+          <dd>Rendering a track to audio in place so its plug-ins stop consuming CPU, while remaining reversible.<span class="tag">Production</span></dd>
+        </div>
+        <div id="gain-staging">
+          <dt>Gain staging</dt>
+          <dd>Setting level at every stage so nothing clips and nothing sits so low that noise becomes audible later.<span class="tag">Recording</span></dd>
+        </div>
+        <div id="headroom">
+          <dt>Headroom</dt>
+          <dd>The distance between the loudest part of a signal and the point at which it clips.<span class="tag">Recording</span></dd>
+        </div>
+        <div id="lufs">
+          <dt>LUFS</dt>
+          <dd>Loudness Units relative to Full Scale. The measurement platforms normalise against, and the figure a delivery specification will quote.<span class="tag">Music for Media</span></dd>
+        </div>
+        <div id="master-rights">
+          <dt>Master rights</dt>
+          <dd>The rights in a specific recording, as distinct from the rights in the underlying composition. Both are usually needed.<span class="tag">Music for Media</span></dd>
+        </div>
+        <div id="max-for-live">
+          <dt>Max for Live</dt>
+          <dd>The visual programming environment bundled with Live Suite, used to build devices that run inside a Live set.<span class="tag">Ableton</span></dd>
+        </div>
+        <div id="pre-delay">
+          <dt>Pre-delay</dt>
+          <dd>The gap between a dry signal and the first reflections of a reverb. Long enough keeps the transient clear; too long and the effect detaches.<span class="tag">Production</span></dd>
+        </div>
+        <div id="proximity-effect">
+          <dt>Proximity effect</dt>
+          <dd>The bass lift that appears as a directional microphone moves closer to a source. A tone control, once you know it is there.<span class="tag">Recording</span></dd>
+        </div>
+        <div id="room-mode">
+          <dt>Room mode</dt>
+          <dd>A standing wave at a frequency whose wavelength fits a dimension of the room, making some notes far louder in some positions.<span class="tag">Recording</span></dd>
+        </div>
+        <div id="round-robin">
+          <dt>Round-robin</dt>
+          <dd>Cycling through several recordings of the same note so repeats do not sound identical. Random selection can repeat; cyclic selection cannot.<span class="tag">Sound Design</span></dd>
+        </div>
+        <div id="sample-rate">
+          <dt>Sample rate</dt>
+          <dd>How many times per second the waveform is measured. Playing a file at the wrong rate shifts both its pitch and its length.<span class="tag">Recording · Sound Design</span></dd>
+        </div>
+        <div id="stem">
+          <dt>Stem</dt>
+          <dd>A submix of one element or group delivered separately, so it can be rebalanced downstream without a remix.<span class="tag">Music for Media</span></dd>
+        </div>
+        <div id="sync-licence">
+          <dt>Sync licence</dt>
+          <dd>Permission to synchronise a composition with moving images. Separate from the right to use a particular recording of it.<span class="tag">Music for Media</span></dd>
+        </div>
+        <div id="time-stretching">
+          <dt>Time-stretching</dt>
+          <dd>Changing a sample's length without changing its pitch. It costs artefacts, which is the trade resampling avoids.<span class="tag">Sound Design</span></dd>
+        </div>
+        <div id="underscore">
+          <dt>Underscore</dt>
+          <dd>A version mixed to sit beneath dialogue, usually with the melodic lead reduced or removed.<span class="tag">Music for Media</span></dd>
+        </div>
+        <div id="velocity-layer">
+          <dt>Velocity layer</dt>
+          <dd>A separate recording used across a range of playing strengths, so dynamics change timbre rather than only volume.<span class="tag">Sound Design</span></dd>
+        </div>
+        <div id="zero-crossing">
+          <dt>Zero crossing</dt>
+          <dd>The point where a waveform passes through silence. Cutting there avoids the click a mid-waveform edit produces.<span class="tag">Sound Design</span></dd>
+        </div>
+      </dl>
+
+      <p style="margin-top:2.5rem;color:var(--muted);font-size:1rem;line-height:1.6;max-width:56ch">
+        A term is added here when it appears in a guide and would otherwise need
+        explaining twice. Suggestions are welcome via
+        <a href="kontakt.html" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px">contact</a>.
+      </p>
+    </div>
+  </section>
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="history-relaunch.html">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-od-id="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+      </svg>
+          Auspicious Music
+        </a>
+        <p style="font-size:var(--t-ui-sm);color:var(--muted);margin-top:1rem;max-width:26ch;line-height:1.6">
+          An independent publication for music production and creative audio.
+        </p>
+      </div>
+      <div>
+        <h4>Topics</h4>
+        <ul>
+          <li><a href="hub-production.html">Production</a></li>
+          <li><a href="hub-ableton.html">Ableton</a></li>
+          <li><a href="hub-sound-design.html">Sound Design</a></li>
+          <li><a href="hub-recording.html">Recording</a></li>
+          <li><a href="hub-music-for-media.html">Music for Media</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Publication</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="history-relaunch.html">History &amp; relaunch</a></li>
+          <li><a href="editorial-policy.html">Editorial policy</a></li>
+          <li><a href="authors.html">Authors</a></li>
+          <li><a href="kontakt.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="download.html">Downloads</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html" lang="de">Impressum</a></li>
+          <li><a href="datenschutz.html" lang="de">Datenschutz</a></li>
+          <li><a href="barrierefreiheit.html" lang="de">Barrierefreiheit</a></li>
+          <li><a href="#">RSS feed</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© 2026 Auspicious Music</span>
+      <span>Relaunched under new ownership in 2026. Not affiliated with the former operator.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/motion.js" defer></script>
+</body>
+</html>

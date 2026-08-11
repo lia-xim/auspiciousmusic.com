@@ -1,0 +1,347 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Legacy Downloads & Current Music Production Resources — Auspicious Music"}
+  description={"The status of every download once published on this domain, and the current resources that replace them."}
+  canonicalPath={"/download/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .dl-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem); }
+  .dl-head h1 { max-width: 18ch; margin-top: 1.25rem; }
+  .dl-head .lede { margin-top: 1.5rem; max-width: 60ch; }
+
+  .notice {
+    margin-top: clamp(2rem, 4vw, 2.75rem);
+    border-left: 2px solid var(--ink);
+    padding: 0.25rem 0 0.25rem 1.5rem;
+    max-width: 64ch;
+  }
+  .notice p { font-size: 1.0625rem; line-height: 1.65; }
+  .notice p + p { margin-top: 0.875rem; color: var(--ink-soft); }
+
+  /* Filters as editorial text controls, not pills */
+  .filters {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1.75rem;
+    padding-block: 1.125rem; border-bottom: 1px solid var(--line-strong);
+  }
+  .filters__label {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted); margin-right: 0.5rem;
+  }
+  .filters button {
+    font-size: var(--t-ui-sm); font-weight: 500; color: var(--muted);
+    padding: 0.5rem 0; border-bottom: 1px solid transparent;
+    min-height: 40px;
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  }
+  .filters button:hover { color: var(--ink); }
+  .filters button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink); font-weight: 550; }
+
+  /* Resource rows — records, not cards */
+  .res { border-bottom: 1px solid var(--line); }
+  .res[hidden] { display: none; }
+  .res__grid {
+    display: grid; gap: 0.75rem 2.5rem;
+    padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  @media (min-width: 900px) {
+    .res__grid { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr) minmax(0, 13rem); align-items: start; }
+  }
+  .res h3 { font-size: 1.375rem; letter-spacing: -0.015em; }
+  .res__kind {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted);
+    display: block; margin-top: 0.4375rem; line-height: 1.55;
+  }
+  .res p { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.6; max-width: 56ch; }
+  .res__act { display: grid; gap: 0.875rem; justify-items: start; }
+  @media (min-width: 900px) { .res__act { justify-items: end; text-align: right; } }
+  .res .link { font-size: var(--t-ui-sm); }
+
+  /* Empty state — informative, never broken-looking */
+  .empty {
+    display: none;
+    padding: clamp(2rem, 4vw, 3rem) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .empty[data-shown="true"] { display: block; }
+  .empty h3 { font-size: 1.25rem; letter-spacing: -0.013em; }
+  .empty p { color: var(--muted); margin-top: 0.625rem; max-width: 58ch; font-size: 1.0625rem; line-height: 1.6; }
+
+  /* Reserved fields for a future first-party download */
+  .schema {
+    display: grid; gap: 0;
+    border-top: 1px solid var(--line);
+    max-width: 46rem;
+  }
+  .schema > div {
+    display: grid; grid-template-columns: minmax(8rem, 12rem) minmax(0, 1fr);
+    gap: 0.5rem 1.5rem; padding-block: 0.8125rem;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); line-height: 1.6;
+  }
+  .schema dt { color: var(--muted); }
+  .schema dd { color: var(--ink-soft); }
+  @media (max-width: 560px) { .schema > div { grid-template-columns: 1fr; gap: 0.1875rem; } }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <section class="dl-head" data-od-id="download-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Downloads</li>
+        </ol>
+      </nav>
+
+      <h1>Legacy Downloads &amp; Current Music Production Resources</h1>
+
+      <p class="lede">
+        Every file once published at this address, with its status stated plainly —
+        and the current resources that replace the ones that are gone.
+      </p>
+
+      <div class="notice">
+        <p>
+          Auspicious Music was relaunched under new ownership in 2026. The downloads
+          published here before that date were created by the former operator and did
+          <strong>not</strong> transfer with the domain.
+        </p>
+        <p>
+          Nothing is offered here that the current publisher does not hold the right to
+          distribute. Where a file is gone, this page says so and points to whatever is
+          genuinely available instead — an official external source, or a current guide
+          that rebuilds the same result from scratch.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight" data-od-id="download-list" aria-labelledby="list-title">
+    <div class="shell">
+      <h2 id="list-title" style="font-size:var(--t-h3);margin-bottom:1.5rem">Resource status</h2>
+
+      <div class="filters" role="group" aria-label="Filter resources by status">
+        <span class="filters__label">Status</span>
+        <button type="button" data-filter="all" aria-pressed="true">All <span aria-hidden="true">(6)</span></button>
+        <button type="button" data-filter="available" aria-pressed="false">Available</button>
+        <button type="button" data-filter="alternative" aria-pressed="false">Modern alternative</button>
+        <button type="button" data-filter="external" aria-pressed="false">External source</button>
+        <button type="button" data-filter="unavailable" aria-pressed="false">Unavailable</button>
+      </div>
+
+      <div id="reslist" aria-live="polite">
+
+        <div class="empty" data-empty="available">
+          <h3>No first-party download is published yet</h3>
+          <p>
+            When one is, it will carry the fields listed further down this page —
+            version, licence, checksum and scan date — before it goes live. An empty
+            list here is the honest state, not an error.
+          </p>
+        </div>
+        <div class="empty" data-empty="generic">
+          <h3>Nothing under this status</h3>
+          <p>Choose another status, or view all resources.</p>
+        </div>
+
+        <article class="res" data-status="alternative">
+          <div class="res__grid">
+            <div>
+              <h3>The Spy Guitar</h3>
+              <span class="res__kind">Ableton Live Pack<br>Published 2013 – 2017</span>
+            </div>
+            <p>
+              A sampled electric guitar instrument. The original files were not
+              transferred with the domain and their licence position is unresolved, so
+              they are not redistributed. The technique is fully documented in a current
+              guide you can follow with your own recordings.
+            </p>
+            <div class="res__act">
+              <span class="status" data-state="alternative">Modern alternative</span>
+              <a class="link" href="/legacy/the-spy-guitar/">Resource page
+                <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="res" data-status="external">
+          <div class="res__grid">
+            <div>
+              <h3>Bang My Twister</h3>
+              <span class="res__kind">Max for Live device<br>Published 2014</span>
+            </div>
+            <p>
+              A device for switching banks on the DJ TechTools MIDI Fighter Twister.
+              The mapping is still published and maintained by DJ TechTools, so this
+              page links there rather than rehosting a copy that would immediately go
+              out of date.
+            </p>
+            <div class="res__act">
+              <span class="status" data-state="external">External source</span>
+              <a class="link" href="https://maps.djtechtools.com/mappings/2929" rel="noopener">DJ TechTools
+                <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="res" data-status="unavailable">
+          <div class="res__grid">
+            <div>
+              <h3>Fender VI Ableton Sampler Live Pack</h3>
+              <span class="res__kind">Ableton Live Pack<br>Published 2014</span>
+            </div>
+            <p>
+              A sampled baritone instrument built from a Fender VI. Rights to the source
+              recordings are unverified and the instrument is not redistributed. A
+              rebuild guide is planned but not published — this entry will change when
+              it is, not before.
+            </p>
+            <div class="res__act">
+              <span class="status" data-state="unavailable">Unavailable</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="res" data-status="external">
+          <div class="res__grid">
+            <div>
+              <h3>NoisR</h3>
+              <span class="res__kind">Max for Live instrument<br>Announced 2014</span>
+            </div>
+            <p>
+              A noise-designer device developed by a third party and covered on this
+              domain at the time of its release. It was never owned by this publication;
+              any current version remains with its own developer.
+            </p>
+            <div class="res__act">
+              <span class="status" data-state="external">External source</span>
+              <a class="link" href="/publishing-roadmap/">Historical context
+                <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="res" data-status="unavailable">
+          <div class="res__grid">
+            <div>
+              <h3>Sylenth skins — wood panels, black</h3>
+              <span class="res__kind">Plug-in skin files<br>Published 2013 – 2015</span>
+            </div>
+            <p>
+              Interface skins for a third-party synthesiser. Redistributing modified
+              plug-in assets without the vendor's permission is not something this
+              publication does, so these are documented rather than offered.
+            </p>
+            <div class="res__act">
+              <span class="status" data-state="unavailable">Unavailable</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="res" data-status="unavailable">
+          <div class="res__grid">
+            <div>
+              <h3>Chicago Hous Mod</h3>
+              <span class="res__kind">Max for Live drum sequencer<br>Announced 2014</span>
+            </div>
+            <p>
+              A drum sequencer device announced on this domain and presented at an
+              Ableton user group. Ownership and current compatibility are both
+              unresolved; the page exists to record what it was.
+            </p>
+            <div class="res__act">
+              <span class="status" data-state="unavailable">Unavailable</span>
+              <a class="link" href="/publishing-roadmap/">Historical context
+                <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight band-surface" data-od-id="download-schema" aria-labelledby="schema-title">
+    <div class="shell">
+      <h2 id="schema-title" style="font-size:var(--t-h3)">What a published download will carry</h2>
+      <p style="color:var(--ink-soft);margin-top:1rem;max-width:58ch;font-size:1.0625rem;line-height:1.65">
+        These fields are required before any file is served from this domain. They are
+        listed here so the standard is public before there is anything to apply it to.
+      </p>
+      <dl class="schema" style="margin-top:2rem">
+        <div><dt>Version</dt><dd>Semantic version, incremented on every change</dd></div>
+        <div><dt>Compatibility</dt><dd>Host application and minimum version, tested</dd></div>
+        <div><dt>Platform</dt><dd>macOS / Windows, with the versions actually verified</dd></div>
+        <div><dt>Owner</dt><dd>Who created it and who holds the rights today</dd></div>
+        <div><dt>Licence</dt><dd>Named licence, linked in full</dd></div>
+        <div><dt>Checksum</dt><dd>SHA-256, published beside the file</dd></div>
+        <div><dt>Security scan</dt><dd>Scan date, re-run on every version change</dd></div>
+        <div><dt>Support status</dt><dd>Maintained, archived, or unsupported — stated plainly</dd></div>
+      </dl>
+      <p style="margin-top:2rem">
+        <a class="link" href="/ableton/">Current guides and tested workflows
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+<Fragment slot="scripts">
+<script is:inline>
+/* Status filter — real behaviour, no framework. Becomes an Astro island only
+   if the list ever needs server-side pagination. */
+(function () {
+  var buttons = document.querySelectorAll(".filters button");
+  var rows = document.querySelectorAll(".res");
+  var emptyAvailable = document.querySelector('[data-empty="available"]');
+  var emptyGeneric = document.querySelector('[data-empty="generic"]');
+
+  function apply(filter) {
+    var shown = 0;
+    rows.forEach(function (row) {
+      var match = filter === "all" || row.dataset.status === filter;
+      row.hidden = !match;
+      if (match) shown++;
+    });
+    emptyAvailable.dataset.shown = String(shown === 0 && filter === "available");
+    emptyGeneric.dataset.shown = String(shown === 0 && filter !== "available");
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+      apply(btn.dataset.filter);
+    });
+  });
+})();
+</script>
+</Fragment>
+</BaseLayout>

@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Sitemap — Auspicious Music"}
+  description={"Every page on this site in one list."}
+  canonicalPath={"/sitemap/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .pg-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem); }
+  .pg-head h1 { max-width: 20ch; margin-top: 1.25rem; }
+  .pg-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+
+  .prose { max-width: var(--measure); }
+  .prose > * + * { margin-top: 1.375rem; }
+  .prose h2 { font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem); letter-spacing: -0.014em; margin-top: clamp(2.5rem, 4.5vw, 3.25rem); }
+  .prose h3 { font-size: 1.125rem; margin-top: 1.75rem; letter-spacing: -0.01em; }
+  .prose p, .prose li { color: var(--ink-soft); }
+  .prose a:not(.link):not(.btn) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .prose ul.bullets { display: grid; gap: 0.5rem; margin-top: 0.875rem; }
+  .prose ul.bullets li { padding-left: 1.25rem; position: relative; line-height: 1.6; }
+  .prose ul.bullets li::before {
+    content: ""; position: absolute; left: 0; top: 0.72em;
+    inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--line-strong);
+  }
+
+  /* Operator fields that must be filled before launch. Marked rather than
+     invented — an impressum with made-up details is worse than none. */
+  .fields { display: grid; border-top: 1px solid var(--line); margin-top: 1.5rem; }
+  .fields > div {
+    display: grid; grid-template-columns: minmax(9rem, 14rem) minmax(0, 1fr);
+    gap: 0.5rem 1.5rem; padding-block: 0.8125rem;
+    border-bottom: 1px solid var(--line);
+    font-size: var(--t-ui-sm); line-height: 1.6;
+  }
+  .fields dt { color: var(--muted); font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); }
+  .fields dd { color: var(--ink); }
+  .req {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
+    color: var(--ember); padding-left: 0.625rem; border-left: 2px solid var(--ember-bright);
+    line-height: 1.5;
+  }
+  @media (max-width: 620px) { .fields > div { grid-template-columns: 1fr; gap: 0.25rem; } }
+
+  .callout { border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; }
+  .callout strong { display: block; margin-bottom: 0.375rem; }
+  .callout p { color: var(--ink); }
+
+  /* English summary block under each German document */
+  .en-summary {
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+    padding-top: 2rem;
+    border-top: 1px solid var(--line-strong);
+  }
+  .en-summary h2 { margin-top: 0; }
+  .en-summary p, .en-summary li { color: var(--muted); }
+
+  .listing li { border-top: 1px solid var(--line); }
+  .listing li:last-child { border-bottom: 1px solid var(--line); }
+  .listing a {
+    display: grid; gap: 0.25rem 2.5rem; padding-block: 1rem;
+    text-decoration: none; align-items: baseline;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .listing a:hover { background: var(--surface); }
+  .listing h3 { font-size: 1.0625rem; font-weight: 550; letter-spacing: -0.011em; }
+  .listing p { color: var(--muted); font-size: 0.9375rem; line-height: 1.5; max-width: 60ch; }
+  .listing__tail { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
+  @media (min-width: 900px) {
+    .listing a { grid-template-columns: minmax(0, 18rem) minmax(0, 1fr) minmax(0, 10rem); align-items: start; }
+    .listing__tail { text-align: right; }
+  }
+
+  .sitemap-group { margin-top: clamp(2rem, 4vw, 3rem); }
+  .sitemap-group > h2 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin: 0 0 0.5rem;
+  }
+
+  /* Contact form — real controls, clearly stated as not yet wired up */
+  .form { display: grid; gap: 1.25rem; max-width: 34rem; margin-top: 2rem; }
+  .form label { display: block; font-size: var(--t-ui-sm); font-weight: 550; margin-bottom: 0.4375rem; }
+  .form input, .form textarea, .form select {
+    inline-size: 100%; min-block-size: 48px; padding: 0.75rem 0.875rem;
+    border: 1px solid var(--line-strong); border-radius: var(--r-sm);
+    background: var(--surface); color: var(--ink); font-size: var(--t-ui);
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  .form textarea { min-block-size: 9rem; resize: vertical; line-height: 1.6; }
+  .form input:hover, .form textarea:hover, .form select:hover { border-color: var(--ink-soft); }
+  .form .hint { font-size: var(--t-meta); color: var(--muted); margin-top: 0.4375rem; line-height: 1.5; }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <section class="pg-head" data-od-id="page-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Sitemap</li>
+        </ol>
+      </nav>
+      <h1>Sitemap</h1>
+      <p class="lede">Every page currently published, grouped the way the site is structured.</p>
+    </div>
+  </section>
+
+
+  <section class="band" data-od-id="sitemap-body">
+    <div class="shell">
+
+      <div class="sitemap-group">
+        <h2>Publication</h2>
+        <ul class="listing">
+          <li><a href="/"><h3>Home</h3><p>Masthead, topic portals, start here, lab, tools, archive, latest.</p><span class="listing__tail">/</span></a></li>
+          <li><a href="/sound-design/sampled-instruments/building-a-sampled-instrument/"><h3>How to Build a Sampled Instrument in Ableton Live</h3><p>Long-form tested build, Live 12 and Sampler.</p><span class="listing__tail">Article</span></a></li>
+          <li><a href="/ableton/midi-fighter-twister-review/"><h3>MIDI Fighter Twister Review and Ableton Workflow</h3><p>Review structure with the measured sections marked outstanding.</p><span class="listing__tail">Review</span></a></li>
+          <li><a href="/recording/acoustic-instruments/recording-viola-at-home/"><h3>How to Record Viola at Home</h3><p>Placement, room treatment and three positions worth trying.</p><span class="listing__tail">Article</span></a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h2>Topics</h2>
+        <ul class="listing">
+          <li><a href="/music-production/"><h3>Production</h3><p>Workflow, project discipline, arrangement, production music.</p><span class="listing__tail">Hub</span></a></li>
+          <li><a href="/ableton/"><h3>Ableton</h3><p>Live, Max for Live, controllers, reviews.</p><span class="listing__tail">Hub</span></a></li>
+          <li><a href="/sound-design/"><h3>Sound Design</h3><p>Sampling, sampled instruments, synthesis, transitions.</p><span class="listing__tail">Hub</span></a></li>
+          <li><a href="/recording/"><h3>Recording</h3><p>Home studio, acoustic instruments, strings.</p><span class="listing__tail">Hub</span></a></li>
+          <li><a href="/music-for-media/"><h3>Music for Media</h3><p>Licensing, film and video, events, delivery.</p><span class="listing__tail">Hub</span></a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h2>Resources and tools</h2>
+        <ul class="listing">
+          <li><a href="/resources/"><h3>Resources</h3><p>Tools, templates, glossary and the archive in one place.</p><span class="listing__tail">Hub</span></a></li>
+          <li><a href="/resources/tools/"><h3>Tools</h3><p>Index of the calculators and what is planned.</p><span class="listing__tail">Index</span></a></li>
+          <li><a href="/resources/tools/delay-and-reverb/"><h3>Delay &amp; Reverb Time</h3><p>Tempo to milliseconds and hertz, with tap tempo.</p><span class="listing__tail">Tool</span></a></li>
+          <li><a href="/resources/tools/note-frequency/"><h3>Note &amp; Frequency</h3><p>Notes, MIDI and frequency both ways, cents and wavelength.</p><span class="listing__tail">Tool</span></a></li>
+          <li><a href="/resources/tools/sample-pitch/"><h3>Sample Pitch &amp; Rate</h3><p>Transposition against rate, length and tempo.</p><span class="listing__tail">Tool</span></a></li>
+          <li><a href="/resources/glossary/"><h3>Glossary</h3><p>Terms as this publication uses them, with the discipline noted.</p><span class="listing__tail">Reference</span></a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h2>Archive</h2>
+        <ul class="listing">
+          <li><a href="/download/"><h3>Legacy downloads</h3><p>Every historic resource with its current status.</p><span class="listing__tail">/download/</span></a></li>
+          <li><a href="/legacy/the-spy-guitar/"><h3>The Spy Guitar</h3><p>Historical resource, 2013–2017, with a modern rebuild.</p><span class="listing__tail">Legacy</span></a></li>
+          <li><a href="/legacy/bang-my-twister/"><h3>Bang My Twister</h3><p>Historical resource, 2014, with its external source.</p><span class="listing__tail">Legacy</span></a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h2>The publication</h2>
+        <ul class="listing">
+          <li><a href="/about/"><h3>About</h3><p>What this publication does and who it is for.</p><span class="listing__tail">About</span></a></li>
+          <li><a href="/about/history-and-relaunch/"><h3>History &amp; relaunch</h3><p>Ownership disclosure and the domain's timeline.</p><span class="listing__tail">About</span></a></li>
+          <li><a href="/about/editorial-policy/"><h3>Editorial policy</h3><p>Testing, sourcing, AI assistance, corrections.</p><span class="listing__tail">About</span></a></li>
+          <li><a href="/authors/"><h3>Authors</h3><p>The rule that governs bylines.</p><span class="listing__tail">About</span></a></li>
+          <li><a href="/contact/"><h3>Contact</h3><p>Corrections, rights questions, editorial enquiries.</p><span class="listing__tail">About</span></a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h2>Rechtliches</h2>
+        <ul class="listing">
+          <li><a href="/legal/" lang="de"><h3>Impressum</h3><p>Anbieterkennzeichnung nach § 5 DDG und § 18 Abs. 2 MStV.</p><span class="listing__tail">DE</span></a></li>
+          <li><a href="/privacy/" lang="de"><h3>Datenschutzerklärung</h3><p>Verarbeitung nach Art. 13 DSGVO, Endgerätezugriff nach § 25 TDDDG.</p><span class="listing__tail">DE</span></a></li>
+          <li><a href="/accessibility/" lang="de"><h3>Erklärung zur Barrierefreiheit</h3><p>Stand, bekannte Einschränkungen, Rückmeldeweg.</p><span class="listing__tail">DE</span></a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h2>System</h2>
+        <ul class="listing">
+          <li><a href="/404/"><h3>404 — not found</h3><p>Search and topic routes. No automatic redirect.</p><span class="listing__tail">404</span></a></li>
+          <li><a href="/410/"><h3>410 — gone</h3><p>Deliberately removed legacy and spam paths.</p><span class="listing__tail">410</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+</BaseLayout>

@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Page not found — Auspicious Music"}
+  description={"Independent music production and creative audio publication."}
+  canonicalPath={"/404/"}
+  lang={"en"}
+  noindex={true}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  /* Error pages: one column, left-aligned, no hero. The status code is stated
+     as fact in mono rather than dramatised as display type. */
+  .err { padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 6vw, 5rem); }
+  .err__code {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted);
+    padding-left: 0.875rem; border-left: 2px solid var(--line-strong);
+    display: inline-block; line-height: 1.5;
+  }
+  .err h1 { font-size: clamp(2.25rem, 1.4rem + 3vw, 3.75rem); max-width: 16ch; margin-top: 1.5rem; }
+  .err__lede { margin-top: 1.25rem; max-width: 52ch; }
+
+  .search { margin-top: clamp(2.5rem, 5vw, 3.5rem); max-width: 32rem; }
+  .search label {
+    display: block; font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--muted); margin-bottom: 0.625rem;
+  }
+  .search__row { display: flex; gap: 0.625rem; }
+  .search input {
+    flex: 1; min-width: 0; min-height: 48px;
+    padding: 0 1rem; border-radius: var(--r-sm);
+    border: 1px solid var(--line-strong); background: var(--surface);
+    font-size: var(--t-ui); color: var(--ink);
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  .search input::placeholder { color: var(--muted); }
+  .search input:hover { border-color: var(--ink-soft); }
+  .search__help { margin-top: 0.75rem; font-size: var(--t-ui-sm); color: var(--muted); line-height: 1.55; }
+
+  .paths { margin-top: clamp(3rem, 6vw, 4.5rem); }
+  .paths h2 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .paths ul { border-top: 1px solid var(--line); max-width: 44rem; }
+  .paths li { border-bottom: 1px solid var(--line); }
+  .paths a {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+    padding-block: 1rem; text-decoration: none;
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .paths a:hover { color: var(--accent); }
+  .paths strong { font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.011em; }
+  .paths span { font-size: var(--t-ui-sm); color: var(--muted); text-align: right; }
+  .paths a:hover span { color: inherit; }
+}
+</style>
+</Fragment>
+
+<main id="content">
+  <section class="err" data-od-id="error-404">
+    <div class="shell">
+      <p class="err__code">HTTP 404<br>Not found</p>
+
+      <h1>That address does not exist here</h1>
+
+      <p class="lede err__lede">
+        It may have been a page on the previous site that was not carried over, or the
+        link may simply be wrong. Either way, you are not being redirected somewhere
+        you did not ask for.
+      </p>
+
+      <form class="search" role="search" action="#" method="get">
+        <label for="q">Search the publication</label>
+        <div class="search__row">
+          <input id="q" name="q" type="search" placeholder="Sampler, viola, Max for Live…"
+                 aria-describedby="q-help" autocomplete="off">
+          <button class="btn btn--primary" type="submit">Search</button>
+        </div>
+        <p class="search__help" id="q-help">
+          Searches titles and body text across guides, hub pages and archive entries.
+        </p>
+      </form>
+
+      <nav class="paths" aria-labelledby="paths-title">
+        <h2 id="paths-title">Or start from a topic</h2>
+        <ul>
+          <li><a href="/music-production/"><strong>Production</strong><span>Workflow, arrangement, project discipline</span></a></li>
+          <li><a href="/ableton/"><strong>Ableton</strong><span>Live, Max for Live, controllers</span></a></li>
+          <li><a href="/sound-design/"><strong>Sound Design</strong><span>Sampling, synthesis, sampled instruments</span></a></li>
+          <li><a href="/recording/"><strong>Recording</strong><span>Home studio, acoustic instruments, strings</span></a></li>
+          <li><a href="/music-for-media/"><strong>Music for Media</strong><span>Licensing, film and video, ceremonies</span></a></li>
+          <li><a href="/resources/tools/"><strong>Tools</strong><span>Delay times, note frequencies, sample transposition</span></a></li>
+          <li><a href="/download/"><strong>Archive and downloads</strong><span>Historic resources and their status</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</main>
+</BaseLayout>

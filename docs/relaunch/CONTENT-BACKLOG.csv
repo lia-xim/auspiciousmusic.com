@@ -1,0 +1,30 @@
+priority,proposed_path,working_title,cluster,search_or_reader_intent,page_type,original_evidence_needed,external_project_bridge,launch_wave
+P0,/,Auspicious Music — Practical Music Production and Creative Audio,Brand,Understand publication and find best resources,Homepage,"Original positioning; editorial proof",None,Pre-launch
+P0,/music-production/,Music Production Workflows,Music Production,Browse practical production guides,Hub,"Original hub copy and curated guides",None,Pre-launch
+P0,/ableton/,Ableton Live and Max for Live,Ableton,Browse Ableton workflows and tools,Hub,"Original hub copy; tested version details",None,Pre-launch
+P0,/sound-design/,Sound Design and Sampling,Sound Design,Browse sampling and sound design guides,Hub,"Original hub copy",None,Pre-launch
+P0,/recording/,Recording Acoustic Instruments and Strings,Recording,Browse practical recording guides,Hub,"Original hub copy; own recordings",Music and viola portfolio later,Pre-launch
+P0,/music-for-media/,Music for Film Video and Media,Music for Media,Browse composition licensing and delivery guides,Hub,"Original hub copy",Videography project later,Pre-launch
+P0,/resources/,Music Production Resources,Resources,Find tested tools templates and references,Hub,"Curated and tested resources",None,Pre-launch
+P0,/download/,Legacy Downloads and Current Music Production Resources,Legacy,Understand old downloads and find safe alternatives,Legacy hub,"Status verification for each item",None,Pre-launch
+P0,/legacy/the-spy-guitar/,The Spy Guitar — History Compatibility and Modern Alternatives,Legacy Ableton,Satisfy historic link and understand/recreate resource,Legacy resource,"Wayback research; BeatProduction link; own modern workflow",None,Pre-launch
+P0,/legacy/bang-my-twister/,Bang My Twister — Historic Max for Live Device and Current Setup,Legacy Ableton,Satisfy historic device intent and link official source,Legacy resource,"DJ TechTools source; modern compatibility test",None,Pre-launch
+P0,/music-production/daw-project-guidelines/,DAW Project Guidelines for Reliable Music Production,Music Production,Organize durable DAW projects,Evergreen guide,"Own tested workflow and templates",None,Pre-launch
+P0,/ableton/midi-fighter-twister-review/,MIDI Fighter Twister Review and Ableton Workflow,Ableton,Evaluate controller and configure it,Review,"Current hands-on test or transparent research-only label",None,Pre-launch
+P0,/ableton/max-for-live-guide/,What Is Max for Live? A Practical Starting Guide,Ableton,Understand and start using Max for Live,Evergreen guide,"Current Ableton version screenshots",None,Pre-launch
+P0,/sound-design/build-sampled-instrument-ableton/,How to Build a Sampled Instrument in Ableton Live,Sound Design,Create a playable sampled instrument,Tutorial,"Own recorded samples and screenshots",Music/viola example optional,Pre-launch
+P0,/recording/live-strings-vs-sample-libraries/,Live Strings vs Sample Libraries: When Each Works,Recording,Choose live or virtual strings,Comparison,"Own A/B audio examples",Music/viola project natural,Pre-launch
+P0,/recording/record-viola-at-home/,How to Record Viola at Home,Recording,Solve home-recording setup and placement,Tutorial,"Own photos/audio and microphone tests",Music/viola project natural,Pre-launch
+P0,/music-for-media/production-music-licensing-guide/,Production Music Licensing: A Practical Introduction,Music for Media,Understand licensing workflow,Guide,"Primary legal/licensing sources; no legal claims beyond sources",None,Pre-launch
+P1,/music-production/ableton-project-template/,A Practical Ableton Live Project Template,Music Production,Start repeatable projects faster,Tutorial/download,"Own template; license and checksum",None,30-60 days
+P1,/music-production/organize-samples/,How to Organize Samples Without Breaking Old Projects,Music Production,Improve sample library durability,Tutorial,"Own workflow and failure examples",None,30-60 days
+P1,/sound-design/noise-risers/,How to Design Noise Risers Without a Dedicated Plugin,Sound Design,Create noise transitions,Tutorial,"Own audio examples and device chain",None,30-60 days
+P1,/ableton/midi-fighter-twister-workflows/,MIDI Fighter Twister Workflows in Modern Ableton Live,Ableton,Use controller productively,Tutorial,"Current compatibility testing",None,30-60 days
+P1,/sound-design/sample-electric-guitar/,Sampling Electric Guitar for a Playable Instrument,Sound Design,Build guitar sample instruments,Tutorial,"Own guitar or licensed samples",None,30-60 days
+P1,/recording/viola-microphone-placement/,Microphone Placement for Viola and Small String Ensembles,Recording,Choose practical mic positions,Tutorial,"Own measurements and A/B recordings",Music/viola project natural,30-60 days
+P1,/recording/layer-live-strings-with-virtual-instruments/,Layering Live Strings with Virtual Instruments,Recording,Blend recorded and sampled strings,Tutorial,"Own arrangement and audio examples",Music/viola project natural,30-60 days
+P1,/music-for-media/loudness-delivery-online-video/,Music Loudness and Delivery for Online Video,Music for Media,Deliver usable mixes for video,Guide,"Current platform documentation and own exports",Videography project natural,30-60 days
+P1,/music-for-media/composing-for-wedding-films/,Composing Music for Wedding Films,Music for Media,Score emotional wedding video,Guide/case study,"Own real project or clearly labeled hypothetical workflow",Wedding/video project natural,30-60 days
+P1,/music-production/arranging-strings-for-ceremonies/,Arranging Modern Ceremony Music for Strings,Music Production,Arrange practical live string parts,Guide/case study,"Own arrangement and performance constraints",Wedding music project natural,30-60 days
+P1,/music-for-media/production-music-rights-checklist/,Production Music Rights and Delivery Checklist,Music for Media,Prepare tracks for licensing,Checklist,"Primary sources and dated review",None,30-60 days
+P1,/music-production/repeatable-workflow/,A Repeatable Music Production Workflow From Idea to Delivery,Music Production,Build an end-to-end process,Evergreen guide,"Own workflow and project screenshots",None,30-60 days

@@ -1,0 +1,295 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Sample Pitch and Rate Calculator — Auspicious Music"}
+  description={"What transposing a sample does to its playback rate, its length and its tempo, including sample-rate mismatch in semitones."}
+  canonicalPath={"/resources/tools/sample-pitch/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .tool-body { max-width: var(--measure); }
+  .tool-body > * + * { margin-top: 1.5rem; }
+  .tool-body h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); letter-spacing: -0.016em; margin-top: clamp(2.75rem, 5vw, 3.5rem); }
+  .tool-body p { color: var(--ink-soft); }
+  .tool-body a:not(.link) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .field--st input { inline-size: 7rem; }
+  .field--len input { inline-size: 9rem; }
+  .related-tools li { border-top: 1px solid var(--line); }
+  .related-tools li:last-child { border-bottom: 1px solid var(--line); }
+  .related-tools a {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+    padding-block: 1.125rem; text-decoration: none; font-size: 1.0625rem; font-weight: 500;
+  }
+  .related-tools a:hover { color: var(--accent); }
+  .related-tools svg { width: 14px; height: 14px; flex: none; }
+  .rate-note {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--ink-soft);
+    padding-left: 0.875rem; border-left: 2px solid var(--ember-bright);
+    line-height: 1.6; margin-top: 1.5rem; display: block; max-width: 52ch;
+  }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <section class="tool-head" data-od-id="tool-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/resources/tools/">Tools</a></li>
+          <li>Sample pitch &amp; rate</li>
+        </ol>
+      </nav>
+      <h1>Sample Pitch and Rate Calculator</h1>
+      <p class="lede">
+        Transposing a sample without time-stretching changes three things at once:
+        its pitch, its playback rate and its length. This works out all three, and
+        tells you what a sample-rate mismatch costs you in semitones.
+      </p>
+    </div>
+  </section>
+
+  <section data-od-id="tool-console">
+    <div class="shell">
+      <div class="console">
+        <div class="console__row">
+          <div class="field field--st">
+            <label for="st">Semitones</label>
+            <input id="st" type="number" value="0" min="-48" max="48" step="1"
+                   inputmode="decimal" autocomplete="off">
+          </div>
+          <div class="field field--st field--sm">
+            <label for="cents">Cents</label>
+            <input id="cents" type="number" value="0" min="-100" max="100" step="1"
+                   inputmode="decimal" autocomplete="off">
+          </div>
+          <div class="field field--len field--sm">
+            <label for="len">Original length · ms</label>
+            <input id="len" type="number" value="2000" min="1" step="1"
+                   inputmode="decimal" autocomplete="off">
+          </div>
+          <div class="field field--len field--sm">
+            <label for="bpm">Original tempo · BPM</label>
+            <input id="bpm" type="number" value="120" min="20" max="300" step="0.1"
+                   inputmode="decimal" autocomplete="off">
+          </div>
+        </div>
+        <p class="console__note">
+          Assumes plain resampling — the behaviour of Simpler and Sampler in Classic
+          mode, and of any sampler with time-stretching switched off. A stretching
+          algorithm holds the length and breaks this relationship on purpose.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight" data-od-id="tool-readouts">
+    <div class="shell">
+      <dl class="readouts">
+        <div class="readout">
+          <dt>Playback rate</dt>
+          <dd><span id="ro-rate">1.0000</span><small>×</small></dd>
+        </div>
+        <div class="readout">
+          <dt>New length</dt>
+          <dd><span id="ro-len">2000.0</span><small>ms</small></dd>
+        </div>
+        <div class="readout">
+          <dt>New tempo</dt>
+          <dd><span id="ro-bpm">120.0</span><small>BPM</small></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section data-od-id="tool-table">
+    <div class="shell">
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <caption>Transposition table · click a value to copy</caption>
+          <thead>
+            <tr>
+              <th scope="col">Shift</th>
+              <th scope="col">Rate</th>
+              <th scope="col">Length</th>
+              <th scope="col">Length at <span id="cap-len">2000</span> ms</th>
+              <th scope="col">Tempo at <span id="cap-bpm">120</span> BPM</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <section class="band band--tight" data-od-id="tool-body">
+    <div class="shell">
+      <div class="tool-body">
+
+        <h2 style="margin-top:0">Why the length moves</h2>
+        <p>
+          Resampling plays the same audio data faster or slower. Up an octave means
+          reading the file at twice the rate, so it finishes in half the time; down an
+          octave doubles its length. There is no way to raise the pitch this way and
+          keep the duration — that is precisely the job time-stretching exists to do,
+          and it costs artefacts in exchange.
+        </p>
+        <p>
+          For loops this is usually a feature rather than a problem. A break repitched
+          down three semitones lands at a slower tempo with the weight that comes with
+          it, which is a large part of why so much music built on repitched breaks
+          sounds the way it does.
+        </p>
+
+        <h2>Sample-rate mismatch</h2>
+        <p>
+          Playing a file at the wrong sample rate is the same arithmetic wearing a
+          different hat. The ratio between the two rates is the playback rate, and the
+          pitch shift follows from it:
+        </p>
+        <p class="rate-note" id="sr-note"></p>
+        <p>
+          This is what has happened when an imported file sounds slightly sharp and
+          slightly short for no obvious reason. It is a rate mismatch, not a tuning
+          error, and the fix is to convert the file properly rather than to transpose
+          it back.
+        </p>
+
+        <h2>The arithmetic</h2>
+        <p>
+          Playback rate is <code style="font-family:var(--font-mono);font-size:0.92em">2^(semitones ÷ 12)</code>,
+          with cents folded in as hundredths of a semitone. New length is the original
+          divided by that rate; new tempo is the original multiplied by it. Twelve
+          semitones gives exactly 2, which is the definition of an octave.
+        </p>
+
+        <h2>Related</h2>
+        <ul class="related-tools">
+          <li><a href="/resources/tools/note-frequency/">Note &amp; Frequency
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="/resources/tools/delay-and-reverb/">Delay &amp; Reverb Time
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="/sound-design/sampled-instruments/building-a-sampled-instrument/">How to Build a Sampled Instrument in Ableton Live
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+<Fragment slot="scripts">
+<script is:inline>
+/* ── Sample pitch & rate ─────────────────────────────────────────────
+   rate = 2^((semitones + cents/100) / 12). Length divides by the rate,
+   tempo multiplies by it.                                             */
+(function () {
+  "use strict";
+
+  var stInput = document.getElementById("st");
+  var centsInput = document.getElementById("cents");
+  var lenInput = document.getElementById("len");
+  var bpmInput = document.getElementById("bpm");
+  var rows = document.getElementById("rows");
+  var status = document.getElementById("copy-status");
+
+  function num(el, fallback) {
+    var v = parseFloat(el.value);
+    return isFinite(v) ? v : fallback;
+  }
+
+  function rateFor(semitones) { return Math.pow(2, semitones / 12); }
+
+  function render() {
+    var st = num(stInput, 0);
+    var cents = num(centsInput, 0);
+    var len = Math.max(1, num(lenInput, 2000));
+    var bpm = Math.max(1, num(bpmInput, 120));
+
+    var total = st + cents / 100;
+    var rate = rateFor(total);
+
+    document.getElementById("ro-rate").textContent = rate.toFixed(4);
+    document.getElementById("ro-len").textContent = (len / rate).toFixed(1);
+    document.getElementById("ro-bpm").textContent = (bpm * rate).toFixed(1);
+
+    document.getElementById("cap-len").textContent = String(Math.round(len));
+    document.getElementById("cap-bpm").textContent = String(Math.round(bpm * 10) / 10);
+
+    var html = "";
+    for (var s = 12; s >= -12; s--) {
+      var r = rateFor(s);
+      var pct = (1 / r) * 100;
+      var isCurrent = Math.round(total) === s;
+      html += "<tr" + (isCurrent ? " data-highlight='true'" : "") + ">" +
+        "<th scope='row'>" + (s > 0 ? "+" : "") + s + " st</th>" +
+        cell(r.toFixed(4) + "×") +
+        cell(pct.toFixed(1) + "%") +
+        cell((len / r).toFixed(0) + " ms") +
+        cell((bpm * r).toFixed(1) + " BPM") +
+        "</tr>";
+    }
+    rows.innerHTML = html;
+
+    /* Sample-rate mismatch, worked for the two pairs that actually occur */
+    var pairs = [[44100, 48000], [48000, 44100]];
+    var lines = pairs.map(function (p) {
+      var ratio = p[0] / p[1];
+      var semis = 12 * Math.log2(1 / ratio);
+      return p[0] / 1000 + " kHz file played at " + p[1] / 1000 + " kHz  →  " +
+             (semis > 0 ? "+" : "") + semis.toFixed(2) + " st  ·  rate " + (1 / ratio).toFixed(4) + "×";
+    });
+    document.getElementById("sr-note").textContent = lines.join("\n");
+  }
+
+  function cell(value) {
+    return "<td><button type='button' data-value=\"" + value + "\" title='Copy'>" + value + "</button></td>";
+  }
+
+  rows.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-value]");
+    if (!btn) return;
+    if (!navigator.clipboard || !navigator.clipboard.writeText) {
+      status.textContent = "Clipboard unavailable — select the value manually";
+      return;
+    }
+    navigator.clipboard.writeText(btn.dataset.value).then(function () {
+      btn.dataset.copied = "true";
+      status.textContent = btn.dataset.value + " copied to the clipboard";
+      window.setTimeout(function () { btn.dataset.copied = "false"; }, 900);
+    }, function () {
+      status.textContent = "Could not copy — select the value manually";
+    });
+  });
+
+  [stInput, centsInput, lenInput, bpmInput].forEach(function (el) {
+    el.addEventListener("input", render);
+  });
+
+  document.getElementById("sr-note").style.whiteSpace = "pre-line";
+  render();
+})();
+</script>
+</Fragment>
+</BaseLayout>

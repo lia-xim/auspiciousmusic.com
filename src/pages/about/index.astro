@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"About — Auspicious Music"}
+  description={"What Auspicious Music publishes, who writes it, and how to reach the publication."}
+  canonicalPath={"/about/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .pg-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem); }
+  .pg-head h1 { max-width: 17ch; margin-top: 1.25rem; }
+  .pg-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+  .pg-head--dark { background: var(--dark); color: var(--dark-text); padding-block: clamp(2.5rem, 5vw, 4rem); }
+  .pg-head--dark .crumbs { color: var(--dark-muted); }
+  .pg-head--dark .crumbs a:hover { color: var(--dark-text); }
+  .pg-head--dark .lede { color: var(--dark-muted); }
+
+  .prose { max-width: var(--measure); }
+  .prose > * + * { margin-top: 1.5rem; }
+  .prose h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); letter-spacing: -0.016em; margin-top: clamp(2.75rem, 5vw, 3.75rem); }
+  .prose h3 { font-size: 1.25rem; margin-top: 2rem; letter-spacing: -0.012em; }
+  .prose p { color: var(--ink-soft); }
+  .prose a:not(.link):not(.btn) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  .rule-list li {
+    padding-block: 1rem; border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.75rem;
+    color: var(--ink-soft); line-height: 1.65;
+  }
+  .rule-list li:last-child { border-bottom: 1px solid var(--line); }
+  .rule-list li::before {
+    content: ""; inline-size: 7px; block-size: 7px; border-radius: 50%;
+    background: transparent; box-shadow: inset 0 0 0 2px var(--line-strong); margin-top: 0.62rem;
+  }
+  .rule-list strong { color: var(--ink); display: block; margin-bottom: 0.25rem; }
+
+  .callout { border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; }
+  .callout strong { display: block; margin-bottom: 0.375rem; }
+  .callout p { color: var(--ink); }
+
+  .facts { display: grid; gap: 0; border-top: 1px solid var(--dark-line); margin-top: clamp(2rem, 4vw, 3rem); }
+  .facts > div {
+    display: grid; grid-template-columns: minmax(8rem, 12rem) minmax(0, 1fr);
+    gap: 0.5rem 1.5rem; padding-block: 0.875rem;
+    border-bottom: 1px solid var(--dark-line-soft);
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); line-height: 1.6;
+  }
+  .facts dt { color: var(--dark-muted); }
+  .facts dd { color: var(--dark-text); }
+  @media (max-width: 560px) { .facts > div { grid-template-columns: 1fr; gap: 0.1875rem; } }
+
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ""; position: absolute; left: 3px; top: 1.2rem; bottom: 1.2rem; width: 1px; background: var(--line-strong); }
+  .timeline li { position: relative; padding-block: 1.125rem; }
+  .timeline li + li { border-top: 1px solid var(--line); }
+  .timeline li::before {
+    content: ""; position: absolute; left: -2rem; top: 1.7rem;
+    inline-size: 7px; block-size: 7px; border-radius: 50%;
+    background: var(--canvas); box-shadow: inset 0 0 0 2px var(--line-strong);
+  }
+  .timeline li:last-child::before { background: var(--ember-bright); box-shadow: none; }
+  .timeline time { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); display: block; margin-bottom: 0.375rem; }
+  .timeline h3 { font-size: 1.125rem; letter-spacing: -0.011em; margin: 0 0 0.375rem; }
+  .timeline p { color: var(--ink-soft); font-size: 1rem; line-height: 1.6; max-width: 58ch; }
+
+  .listing li { border-top: 1px solid var(--line); }
+  .listing li:last-child { border-bottom: 1px solid var(--line); }
+  .listing a {
+    display: grid; gap: 0.375rem 2.5rem; padding-block: 1.375rem;
+    text-decoration: none; align-items: baseline;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .listing a:hover { background: var(--surface); }
+  .listing h3 { font-size: 1.25rem; letter-spacing: -0.014em; }
+  .listing p { color: var(--muted); font-size: 1rem; line-height: 1.55; max-width: 58ch; }
+  .listing__tail { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
+  @media (min-width: 900px) {
+    .listing a { grid-template-columns: minmax(0, 16rem) minmax(0, 1fr) minmax(0, 9rem); align-items: start; }
+    .listing__tail { text-align: right; padding-top: 0.3rem; }
+  }
+
+  .glossary > div { padding-block: 1.125rem; border-top: 1px solid var(--line); }
+  .glossary > div:last-child { border-bottom: 1px solid var(--line); }
+  .glossary dt { font-weight: 550; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .glossary dd { color: var(--muted); font-size: 1rem; line-height: 1.6; margin-top: 0.25rem; max-width: 60ch; }
+
+  .sources { margin-top: clamp(2.5rem, 5vw, 3.5rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+  .sources h2 { font-size: var(--t-h3); margin: 0 0 1.25rem; }
+  .sources ol { display: grid; gap: 0.875rem; counter-reset: src; }
+  .sources li { counter-increment: src; padding-left: 2rem; position: relative; font-size: 1rem; line-height: 1.6; color: var(--muted); }
+  .sources li::before { content: counter(src); position: absolute; left: 0; font-family: var(--font-mono); font-size: var(--t-meta); }
+  .sources a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <section class="pg-head" data-od-id="page-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>About</li>
+        </ol>
+      </nav>
+      
+      <h1>About Auspicious Music</h1>
+      <p class="lede">An independent publication for music production, sound design, recording and creative audio technology — relaunched under new ownership in 2026.</p>
+      
+    </div>
+  </section>
+
+
+  <section class="band" data-od-id="about-body">
+    <div class="shell">
+      <div class="prose">
+        <h2 style="margin-top:0">What this publication does</h2>
+        <p>
+          Auspicious Music writes about making music with computers and with instruments,
+          and refuses to treat those as separate subjects. Ableton Live and Max for Live,
+          sampling and synthesis, recording acoustic instruments and strings, arrangement,
+          and writing music for film, video and occasions.
+        </p>
+        <p>
+          Every technical page states the software version it was tested against and the
+          date of that test. Where something was researched rather than tested, the page
+          says so in those words. That standard is set out in full in the
+          <a href="/about/editorial-policy/">editorial policy</a>.
+        </p>
+
+        <h2>Who it is for</h2>
+        <ul class="rule-list">
+          <li><div><strong>Producers and electronic musicians</strong>People working in a DAW who want a method rather than a preset.</div></li>
+          <li><div><strong>Ableton and Max for Live users</strong>From a first session through to building devices that solve a specific problem.</div></li>
+          <li><div><strong>Composers for film, video and media</strong>Writing to a brief, to a picture, and to a delivery specification.</div></li>
+          <li><div><strong>Instrumentalists moving into production</strong>Players integrating an acoustic instrument into a digital workflow.</div></li>
+          <li><div><strong>Small studios and creators</strong>Anyone with a practical recording or workflow problem and no technical department to ask.</div></li>
+        </ul>
+
+        <h2 id="authors">Authors</h2>
+        <p>
+          Articles are currently credited to the editorial desk while the author records
+          are being set up. This publication does not invent bylines: no article will
+          carry a name that does not belong to a real person who wrote or reviewed it,
+          and author pages will link to verifiable work.
+        </p>
+
+        <h2>Relationship to other projects</h2>
+        <p>
+          The publisher works on other things, including music and video projects. Where
+          one of those is genuinely relevant to an article — a recording used as an
+          example, a real project used as a case study — it may be linked, and the
+          relationship is disclosed on the page. There are no such links in the
+          navigation or the global footer, and no article exists in order to carry one.
+        </p>
+
+        <h2 id="contact">Contact and corrections</h2>
+        <p>
+          Corrections are welcome and are acted on. If a technical claim, a date, an
+          attribution or a historical detail is wrong, it gets fixed and the change is
+          recorded on the page. That applies with particular force to anything concerning
+          the former operator of this domain.
+        </p>
+        <div class="callout">
+          <p>
+            <strong>Contact details are not yet published.</strong>
+            They go live with the operator information required for the legal notice,
+            rather than being put up as a placeholder address that nobody reads.
+          </p>
+        </div>
+
+        <h2>The domain's history</h2>
+        <p>
+          This address hosted a different music-technology site under a different operator
+          between roughly 2013 and 2017, and was later exploited for spam while it lay
+          dormant. That history is documented rather than hidden — see
+          <a href="/about/history-and-relaunch/">history and relaunch</a> for the full account,
+          and the <a href="/download/">archive</a> for the status of every historic
+          resource.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+</BaseLayout>

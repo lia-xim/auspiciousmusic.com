@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Contact — Auspicious Music"}
+  description={"How to reach the editorial desk, report a correction, or raise a rights question."}
+  canonicalPath={"/contact/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .pg-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem); }
+  .pg-head h1 { max-width: 20ch; margin-top: 1.25rem; }
+  .pg-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+
+  .prose { max-width: var(--measure); }
+  .prose > * + * { margin-top: 1.375rem; }
+  .prose h2 { font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem); letter-spacing: -0.014em; margin-top: clamp(2.5rem, 4.5vw, 3.25rem); }
+  .prose h3 { font-size: 1.125rem; margin-top: 1.75rem; letter-spacing: -0.01em; }
+  .prose p, .prose li { color: var(--ink-soft); }
+  .prose a:not(.link):not(.btn) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .prose ul.bullets { display: grid; gap: 0.5rem; margin-top: 0.875rem; }
+  .prose ul.bullets li { padding-left: 1.25rem; position: relative; line-height: 1.6; }
+  .prose ul.bullets li::before {
+    content: ""; position: absolute; left: 0; top: 0.72em;
+    inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--line-strong);
+  }
+
+  /* Operator fields that must be filled before launch. Marked rather than
+     invented — an impressum with made-up details is worse than none. */
+  .fields { display: grid; border-top: 1px solid var(--line); margin-top: 1.5rem; }
+  .fields > div {
+    display: grid; grid-template-columns: minmax(9rem, 14rem) minmax(0, 1fr);
+    gap: 0.5rem 1.5rem; padding-block: 0.8125rem;
+    border-bottom: 1px solid var(--line);
+    font-size: var(--t-ui-sm); line-height: 1.6;
+  }
+  .fields dt { color: var(--muted); font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); }
+  .fields dd { color: var(--ink); }
+  .req {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta);
+    color: var(--ember); padding-left: 0.625rem; border-left: 2px solid var(--ember-bright);
+    line-height: 1.5;
+  }
+  @media (max-width: 620px) { .fields > div { grid-template-columns: 1fr; gap: 0.25rem; } }
+
+  .callout { border-left: 2px solid var(--ink); padding: 0.25rem 0 0.25rem 1.5rem; }
+  .callout strong { display: block; margin-bottom: 0.375rem; }
+  .callout p { color: var(--ink); }
+
+  /* English summary block under each German document */
+  .en-summary {
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+    padding-top: 2rem;
+    border-top: 1px solid var(--line-strong);
+  }
+  .en-summary h2 { margin-top: 0; }
+  .en-summary p, .en-summary li { color: var(--muted); }
+
+  .listing li { border-top: 1px solid var(--line); }
+  .listing li:last-child { border-bottom: 1px solid var(--line); }
+  .listing a {
+    display: grid; gap: 0.25rem 2.5rem; padding-block: 1rem;
+    text-decoration: none; align-items: baseline;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .listing a:hover { background: var(--surface); }
+  .listing h3 { font-size: 1.0625rem; font-weight: 550; letter-spacing: -0.011em; }
+  .listing p { color: var(--muted); font-size: 0.9375rem; line-height: 1.5; max-width: 60ch; }
+  .listing__tail { font-family: var(--font-mono); font-size: var(--t-meta); letter-spacing: var(--tr-meta); color: var(--muted); }
+  @media (min-width: 900px) {
+    .listing a { grid-template-columns: minmax(0, 18rem) minmax(0, 1fr) minmax(0, 10rem); align-items: start; }
+    .listing__tail { text-align: right; }
+  }
+
+  .sitemap-group { margin-top: clamp(2rem, 4vw, 3rem); }
+  .sitemap-group > h2 {
+    font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+    letter-spacing: var(--tr-meta); color: var(--muted); margin: 0 0 0.5rem;
+  }
+
+  /* Contact form — real controls, clearly stated as not yet wired up */
+  .form { display: grid; gap: 1.25rem; max-width: 34rem; margin-top: 2rem; }
+  .form label { display: block; font-size: var(--t-ui-sm); font-weight: 550; margin-bottom: 0.4375rem; }
+  .form input, .form textarea, .form select {
+    inline-size: 100%; min-block-size: 48px; padding: 0.75rem 0.875rem;
+    border: 1px solid var(--line-strong); border-radius: var(--r-sm);
+    background: var(--surface); color: var(--ink); font-size: var(--t-ui);
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  .form textarea { min-block-size: 9rem; resize: vertical; line-height: 1.6; }
+  .form input:hover, .form textarea:hover, .form select:hover { border-color: var(--ink-soft); }
+  .form .hint { font-size: var(--t-meta); color: var(--muted); margin-top: 0.4375rem; line-height: 1.5; }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <section class="pg-head" data-od-id="page-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About</a></li>
+          <li>Contact</li>
+        </ol>
+      </nav>
+      <h1>Contact</h1>
+      <p class="lede">Corrections, rights questions and editorial enquiries all reach the same desk. Corrections are acted on and recorded on the page they concern.</p>
+    </div>
+  </section>
+
+
+  <section class="band" data-od-id="kontakt-body">
+    <div class="shell">
+      <div class="prose">
+
+        <h2 style="margin-top:0">What to write about</h2>
+        <ul class="bullets">
+          <li><strong>Corrections.</strong> A wrong figure, a mis-stated version, a broken step, a bad attribution. Include the page and what you observed.</li>
+          <li><strong>Rights and archive.</strong> If you hold rights in anything published on this domain before 2026, or believe a historical page misrepresents your work, this is the fastest route.</li>
+          <li><strong>Editorial.</strong> Suggestions for guides, gaps you keep hitting, or a technique you would like tested.</li>
+          <li><strong>Press.</strong> Enquiries about the publication itself and its relaunch.</li>
+        </ul>
+
+        <div class="callout" style="margin-top:2rem">
+          <p>
+            <strong>The form below is designed but not yet connected.</strong>
+            It goes live together with the operator details required for the
+            <a href="/legal/" lang="de">Impressum</a>, so that a message has a
+            named, reachable recipient rather than disappearing into an unattended
+            mailbox.
+          </p>
+        </div>
+
+        <form class="form" action="#" method="post" novalidate>
+          <div>
+            <label for="c-topic">Subject</label>
+            <select id="c-topic" name="topic">
+              <option>Correction</option>
+              <option>Rights or archive</option>
+              <option>Editorial suggestion</option>
+              <option>Press</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div>
+            <label for="c-page">Page concerned</label>
+            <input id="c-page" name="page" type="text" placeholder="e.g. /sound-design/build-sampled-instrument-ableton/" aria-describedby="c-page-hint">
+            <p class="hint" id="c-page-hint">Optional, but it makes a correction far quicker to act on.</p>
+          </div>
+          <div>
+            <label for="c-mail">Your email</label>
+            <input id="c-mail" name="email" type="email" autocomplete="email" aria-describedby="c-mail-hint">
+            <p class="hint" id="c-mail-hint">Used only to reply to you. See the <a href="/privacy/" lang="de">Datenschutzerklärung</a>.</p>
+          </div>
+          <div>
+            <label for="c-msg">Message</label>
+            <textarea id="c-msg" name="message" aria-describedby="c-msg-hint"></textarea>
+            <p class="hint" id="c-msg-hint">For a correction, what you expected and what you found is enough.</p>
+          </div>
+          <div>
+            <button class="btn btn--primary" type="submit" disabled>Send — not yet active</button>
+          </div>
+        </form>
+
+        <h2>How corrections are handled</h2>
+        <p>
+          A substantive correction is made on the page and recorded there with its
+          date, rather than quietly overwritten. Historical and attribution errors are
+          treated as urgent. The full standard is set out in the
+          <a href="/about/editorial-policy/">editorial policy</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+</BaseLayout>

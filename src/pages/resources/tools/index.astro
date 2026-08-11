@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"Music Production Tools and Calculators — Auspicious Music"}
+  description={"Free calculators for delay and reverb times, note frequencies and sample transposition. No sign-up, nothing stored, nothing sent anywhere."}
+  canonicalPath={"/resources/tools/"}
+  lang={"en"}
+  noindex={false}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  .hub-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4rem); }
+  .hub-head h1 { max-width: 16ch; margin-top: 1.25rem; }
+  .hub-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+
+  .tool-card { border-top: 1px solid var(--line); }
+  .tools-index > li:last-child { border-bottom: 1px solid var(--line); }
+  .tool-card a {
+    display: grid; gap: 0.625rem 3rem;
+    padding-block: clamp(1.75rem, 3.5vw, 2.75rem);
+    text-decoration: none; align-items: start;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .tool-card a:hover { background: var(--surface); }
+  .tool-card h2 { font-size: clamp(1.625rem, 1.2rem + 1.5vw, 2.25rem); letter-spacing: -0.018em; }
+  .tool-card p { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.6; max-width: 56ch; }
+  .tool-card .meta { margin-top: 0.875rem; }
+  .tool-card__go { display: inline-flex; align-items: center; gap: 0.4375rem; font-size: var(--t-ui-sm); font-weight: 550; }
+  .tool-card a:hover .tool-card__go { gap: 0.6875rem; }
+  .tool-card__go svg { width: 14px; height: 14px; }
+  @media (min-width: 900px) {
+    .tool-card a { grid-template-columns: minmax(0, 18rem) minmax(0, 1fr) auto; }
+    .tool-card__go { padding-top: 0.5rem; }
+  }
+
+  .principles { display: grid; gap: 0; border-top: 1px solid var(--line); max-width: 52rem; }
+  .principles > div { padding-block: 1.125rem; border-bottom: 1px solid var(--line); }
+  .principles dt { font-weight: 550; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .principles dd { color: var(--muted); font-size: 1rem; line-height: 1.6; margin-top: 0.25rem; max-width: 56ch; }
+
+  .planned li {
+    padding-block: 0.875rem; border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.75rem;
+    font-size: 1.0625rem; line-height: 1.6; color: var(--ink-soft);
+  }
+  .planned li:last-child { border-bottom: 1px solid var(--line); }
+  .planned li::before {
+    content: ""; inline-size: 7px; block-size: 7px; border-radius: 50%;
+    background: transparent; box-shadow: inset 0 0 0 2px var(--line-strong); margin-top: 0.6rem;
+  }
+}
+</style>
+</Fragment>
+
+<main id="content">
+
+  <section class="hub-head" data-od-id="tools-head">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li>Tools</li>
+        </ol>
+      </nav>
+      <h1>Tools</h1>
+      <p class="lede">
+        Small calculators for the arithmetic that comes up mid-session. Each one runs
+        entirely in your browser, needs no account, and works the same on a phone in a
+        live room as on a desktop.
+      </p>
+    </div>
+  </section>
+
+  <section data-od-id="tools-index" aria-labelledby="index-title">
+    <div class="shell">
+      <h2 id="index-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Available tools</h2>
+      <ul class="tools-index" data-reveal-group>
+
+        <li class="tool-card" data-reveal><a href="/resources/tools/delay-and-reverb/">
+          <h2>Delay &amp; Reverb Time</h2>
+          <div>
+            <p>Every note division in milliseconds and hertz for a given tempo — straight,
+               dotted and triplet — with reverb pre-delay and decay starting points.
+               Includes a tap-tempo control for when you have the track but not the number.</p>
+            <p class="meta"><span>BPM → ms · Hz</span><span>Tap tempo</span><span>Copy on click</span></p>
+          </div>
+          <span class="tool-card__go">Open
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a></li>
+
+        <li class="tool-card" data-reveal><a href="/resources/tools/note-frequency/">
+          <h2>Note &amp; Frequency</h2>
+          <div>
+            <p>Note names, MIDI numbers and frequencies in both directions across the full
+               instrumental range. Set the concert pitch, enter a frequency, and read the
+               cents deviation to the nearest note — plus the wavelength, for room problems.</p>
+            <p class="meta"><span>Note ⇄ Hz ⇄ MIDI</span><span>415–443 Hz</span><span>Cents · wavelength</span></p>
+          </div>
+          <span class="tool-card__go">Open
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a></li>
+
+        <li class="tool-card" data-reveal><a href="/resources/tools/sample-pitch/">
+          <h2>Sample Pitch &amp; Rate</h2>
+          <div>
+            <p>What transposing a sample does to its playback rate, its length and its
+               tempo when nothing is time-stretched. Also works out sample-rate mismatch
+               in semitones, which is usually the answer when an import sounds slightly sharp.</p>
+            <p class="meta"><span>Semitones → rate</span><span>Length · tempo</span><span>44.1 / 48 kHz</span></p>
+          </div>
+          <span class="tool-card__go">Open
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a></li>
+
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band--tight band-surface" data-od-id="tools-principles" aria-labelledby="principles-title">
+    <div class="shell">
+      <h2 id="principles-title" style="font-size:var(--t-h3);margin-bottom:1.5rem">How these work</h2>
+      <dl class="principles">
+        <div>
+          <dt>Nothing leaves your browser</dt>
+          <dd>Every calculation runs locally. No values are transmitted, logged or stored, and there is nothing to sign in to.</dd>
+        </div>
+        <div>
+          <dt>The arithmetic is written out</dt>
+          <dd>Each tool states the formula it uses, so you can check it rather than trust it. Where a figure is a convention rather than a fact, the page says so.</dd>
+        </div>
+        <div>
+          <dt>Usable on a phone in a live room</dt>
+          <dd>Large controls, tabular figures, and every result one tap from the clipboard. Full keyboard operation on desktop.</dd>
+        </div>
+        <div>
+          <dt>No advertising inside a tool</dt>
+          <dd>A calculator you reach for mid-session should not be a surface for anything else. Related reading sits below the tool, never in front of it.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band band--tight" data-od-id="tools-planned" aria-labelledby="planned-title">
+    <div class="shell">
+      <div class="section-head">
+        <h2 id="planned-title" style="font-size:var(--t-h3)">Planned</h2>
+        <p>Listed so the shape of the section is visible. Nothing here is live yet.</p>
+      </div>
+      <ul class="planned" style="max-width:52rem">
+        <li>Loudness targets by platform, with the delivery figures dated and sourced</li>
+        <li>Time-code and frame calculator for scoring to picture</li>
+        <li>Room mode calculator from three dimensions, paired with the wavelength column</li>
+        <li>Bar and beat length in minutes, for arranging to a fixed running time</li>
+      </ul>
+    </div>
+  </section>
+
+  <section data-od-id="relaunch-notice">
+    <div class="shell relaunch">
+      <p>Auspicious Music was relaunched under new ownership in 2026. Historical
+         references are preserved for context.</p>
+      <a class="link" href="/about/history-and-relaunch/">Read the history and relaunch note
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+</BaseLayout>

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={"This address was removed — Auspicious Music"}
+  description={"Independent music production and creative audio publication."}
+  canonicalPath={"/410/"}
+  lang={"en"}
+  noindex={true}
+  loadStringField={false}
+>
+<Fragment slot="head">
+<style is:global>
+@layer components {
+  /* 410 inverts to graphite. It is the one page on the site that reports a
+     deliberate act rather than an absence, and it should not be mistaken
+     for an ordinary not-found. */
+  .err { padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 6vw, 5rem); min-height: 60vh; }
+  .err__code {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--dark-text);
+    padding-left: 0.875rem; border-left: 2px solid var(--accent-on-dark);
+    display: inline-block; line-height: 1.5;
+  }
+  .err h1 { font-size: clamp(2.25rem, 1.4rem + 3vw, 3.75rem); max-width: 17ch; margin-top: 1.5rem; }
+  .err__lede { margin-top: 1.25rem; max-width: 54ch; }
+  .err__body { margin-top: 1.5rem; max-width: 56ch; }
+  .err__body p { color: var(--dark-muted); font-size: 1.0625rem; line-height: 1.7; }
+  .err__body p + p { margin-top: 1rem; }
+  .err__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: clamp(2.25rem, 4vw, 3rem); }
+}
+</style>
+</Fragment>
+
+<main id="content">
+  <section class="err" data-od-id="error-410">
+    <div class="shell">
+      <p class="err__code">HTTP 410<br>Gone — permanently removed</p>
+
+      <h1>This address was removed on purpose</h1>
+
+      <p class="lede err__lede" style="color:var(--dark-muted)">
+        You have reached a path that once existed on this domain and has been
+        deliberately taken out of service.
+      </p>
+
+      <div class="err__body">
+        <p>
+          Between the previous site going quiet and this domain changing hands, a
+          number of addresses here were used for injected pages that had nothing to do
+          with music — gambling spam, fake support articles, and redirect chains
+          pointing at unrelated sites.
+        </p>
+        <p>
+          Those paths are not repaired, reused or redirected. They return this response
+          so that search engines and archives record them as permanently gone, rather
+          than passing that history into the current publication. The same applies to a
+          small number of genuine old pages that carried no lasting value.
+        </p>
+        <p>
+          If you followed a link expecting a real music-technology resource, the archive
+          below lists every historic item from this domain together with its actual
+          status.
+        </p>
+      </div>
+
+      <div class="err__actions">
+        <a class="btn btn--primary" href="/download/">Open the archive</a>
+        <a class="btn btn--quiet" href="/about/history-and-relaunch/">Why this domain changed</a>
+      </div>
+    </div>
+  </section>
+</main>
+</BaseLayout>
