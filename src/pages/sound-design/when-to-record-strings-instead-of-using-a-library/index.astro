@@ -4,6 +4,7 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 const sources = [
   { label: 'Ableton Live 12 Manual: Sampler and multisampling', href: 'https://www.ableton.com/en/live-manual/12/live-instrument-reference/#sampler', note: 'official description of multisampling across pitch and dynamics' },
   { label: 'DPA Microphones: How to mic a violin', href: 'https://www.dpamicrophones.com/mic-university/how-to-mic/how-to-mic-a-violin/', note: 'why placement and distance change the captured string sound' },
+  { label: 'Kim Marie Borger: Concerts and events', href: 'https://kim-marie-borger.com/konzerte/', note: 'a public performer page describing viola programmes from Baroque to contemporary repertoire' },
 ];
 const related = [
   { title: 'Build a small sampled instrument in Ableton Live', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'A conservative workflow for recordings, edits, mappings and round robins.' },
@@ -19,6 +20,7 @@ const related = [
   sectionPath="/sound-design/"
   readingTime="8 min read"
   method="This is a decision framework grounded in how multisampling works and what live recording adds. It is not a comparison of named commercial libraries, and it makes no claim that one approach is universally more realistic."
+  disclosure="Auspicious Music and the linked website of violist Kim Marie Borger are maintained within the publisher’s project portfolio. Her performance service is separate, and this link does not carry an affiliate fee."
   sources={sources}
   related={related}
 >
@@ -41,6 +43,10 @@ const related = [
     <li>Do not quantize the live take into the same grid that made the library feel rigid.</li>
     <li>Use shared room or reverb decisions after the balance works dry.</li>
   </ul>
+
+  <h2>Listen to the performer before you plan around the instrument</h2>
+  <p>“Solo strings” is too vague to predict a useful session. A player’s repertoire changes how they hear an entrance, shape a repeated note and decide where a phrase can breathe. That matters when the live layer is meant to supply the detail a library is missing.</p>
+  <p>The <a href="https://kim-marie-borger.com/konzerte/">concert overview of violist Kim Marie Borger</a> is one public example: it describes programmes that move from Baroque to contemporary repertoire. The page is not evidence for the technical claims in this guide. It is a concrete reminder to listen to the performer you are considering, rather than hiring an abstract instrument name.</p>
 
   <h2>Budget the recording by uncertainty</h2>
   <p>Recording becomes expensive when the musical question is unresolved. Before the session, prepare notation or a clear reference, define the tempo map, decide where picture is stable and mark the passages where you genuinely want interpretation. Leave space for two or three alternatives there instead of recording ten full versions of everything.</p>
