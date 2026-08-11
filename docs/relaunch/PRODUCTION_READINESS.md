@@ -28,7 +28,8 @@ Legend:
 | Manual screenreader matrix | NOT PROVEN | Keyboard/reduced-motion/semantic checks exist; multi-screenreader manual pass remains |
 | Synthetic lab performance | PASS | Slow-4G LCP 0.97–1.09 s, CLS 0–0.026 and 94–100 KB transfer on representative pages; not field CWV |
 | Vercel file configuration | PASS | Uses supported high-level redirects, headers and trailing-slash rules; mixed legacy `routes` removed and audited |
-| Live Vercel build and headers | NOT PROVEN | Worktree is not linked to a Vercel project |
+| Vercel project link | PASS | Main repository is linked to project `auspiciousmusic.com` (`prj_NmM3j6CNyqmiQkwnP3E42VXmiqms`) in the expected team; no deployment was started |
+| Live Vercel build and headers | NOT PROVEN | Requires an explicitly approved preview deployment |
 | Canonical domain, DNS and HTTPS | NOT PROVEN | Requires final domain attachment |
 | Live redirect and known-spam 404 behaviour | NOT PROVEN | Requires deployment on the canonical host |
 | Search Console ownership/indexing | NOT PROVEN | Must happen after production-domain approval |
@@ -76,7 +77,7 @@ Before committing, `git diff --check` must also pass and the worktree must conta
 ## Domain and Vercel gate
 
 - [ ] Obtain explicit approval to publish the site and its legal/contact data externally.
-- [ ] Link or create the correct Vercel project without overwriting another project.
+- [x] Confirm the existing link targets Vercel project `auspiciousmusic.com` without creating or overwriting another project.
 - [ ] Confirm project root, Astro framework detection, `pnpm` lockfile and `dist` output.
 - [ ] Confirm Vercel uses Node 22 from `package.json`.
 - [ ] Keep `SITE_INDEXABLE` unset/false on Preview.
