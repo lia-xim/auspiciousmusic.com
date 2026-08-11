@@ -10,8 +10,10 @@ const require = createRequire(path.join(bundledNodeRoot, 'package.json'));
 const { chromium } = require('playwright');
 
 const implementation = process.env.QA_BASE_URL ?? 'http://127.0.0.1:4321';
-const reference = process.env.QA_REFERENCE_URL ?? 'http://127.0.0.1:4171/index.html';
-const outputDirectory = path.join(projectRoot, 'docs', 'qa');
+const reference = process.env.QA_REFERENCE_URL;
+const outputDirectory = process.env.QA_OUTPUT_DIR
+  ? path.resolve(process.env.QA_OUTPUT_DIR)
+  : path.join(projectRoot, 'docs', 'qa');
 await mkdir(outputDirectory, { recursive: true });
 
 const migrated = JSON.parse(await readFile(path.join(projectRoot, 'src', 'data', 'migrated-pages.json'), 'utf8'));
@@ -49,6 +51,29 @@ async function checkRoute(route, viewport) {
     bodyText: document.body.innerText.trim().length,
     overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     overlay: Boolean(document.querySelector('vite-error-overlay, [data-vite-error-overlay]')),
+    lang: document.documentElement.lang,
+    duplicateIds: [...document.querySelectorAll('[id]')]
+      .map((element) => element.id)
+      .filter((id, index, ids) => id && ids.indexOf(id) !== index),
+    unlabeledControls: [...document.querySelectorAll('input:not([type=\"hidden\"]), select, textarea')]
+      .filter((element) => !element.closest('label')
+        && !document.querySelector(`label[for=\"${CSS.escape(element.id)}\"]`)
+        && !element.getAttribute('aria-label')
+        && !element.getAttribute('aria-labelledby')
+        && !element.getAttribute('title'))
+      .length,
+    namelessInteractive: [...document.querySelectorAll('a[href], button')]
+      .filter((element) => !element.textContent?.trim()
+        && !element.getAttribute('aria-label')
+        && !element.getAttribute('aria-labelledby')
+        && !element.getAttribute('title')
+        && !element.querySelector('img[alt]'))
+      .length,
+    headingSkips: (() => {
+      const levels = [...document.querySelectorAll('main h1, main h2, main h3, main h4, main h5, main h6')]
+        .map((element) => Number(element.tagName.slice(1)));
+      return levels.filter((level, index) => index > 0 && level > levels[index - 1] + 1).length;
+    })(),
   }));
 
   if (route === '/definitely-not-a-real-page/' ? status !== 404 : status >= 400) failures.push(`${route}: HTTP ${status}`);
@@ -58,6 +83,11 @@ async function checkRoute(route, viewport) {
   if (metrics.bodyText < 80) failures.push(`${route}: unexpectedly little content`);
   if (metrics.overflow > 1) failures.push(`${route}: horizontal overflow ${metrics.overflow}px at ${viewport.width}px`);
   if (metrics.overlay) failures.push(`${route}: framework error overlay present`);
+  if (!metrics.lang) failures.push(`${route}: html lang is missing`);
+  if (metrics.duplicateIds.length) failures.push(`${route}: duplicate ids ${metrics.duplicateIds.join(', ')}`);
+  if (metrics.unlabeledControls) failures.push(`${route}: ${metrics.unlabeledControls} unlabeled form controls`);
+  if (metrics.namelessInteractive) failures.push(`${route}: ${metrics.namelessInteractive} unnamed links or buttons`);
+  if (metrics.headingSkips) failures.push(`${route}: ${metrics.headingSkips} heading-level skips inside main`);
   for (const error of runtimeErrors) {
     if (route === '/definitely-not-a-real-page/' && /404/.test(error)) continue;
     failures.push(`${route}: ${error}`);
@@ -71,6 +101,16 @@ async function checkRoute(route, viewport) {
 }
 
 for (const route of routes) await checkRoute(route, { width: 1440, height: 900 });
+for (const route of routes) await checkRoute(route, { width: 390, height: 844 });
+const reflowRoutes = [
+  '/',
+  '/music-production/ableton-project-handoff/',
+  '/resources/tools/delay-and-reverb/',
+  '/legal/',
+];
+for (const width of [640, 320]) {
+  for (const route of reflowRoutes) await checkRoute(route, { width, height: 900 });
+}
 
 const interactionPage = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
 const interactionErrors = [];
@@ -99,6 +139,21 @@ const closedMenu = await interactionPage.locator('[data-sheet]').evaluate((eleme
 }));
 if (closedMenu.open !== 'false' || closedMenu.hidden !== 'true') failures.push('mobile menu: close state is incorrect');
 
+const menuButton = interactionPage.locator('[data-sheet-open]');
+await menuButton.focus();
+await menuButton.press('Enter');
+await interactionPage.waitForTimeout(100);
+await interactionPage.keyboard.press('Escape');
+await interactionPage.waitForTimeout(100);
+const keyboardClosedMenu = await interactionPage.locator('[data-sheet]').evaluate((element) => ({
+  open: element.getAttribute('data-open'),
+  hidden: element.getAttribute('aria-hidden'),
+  focusReturned: document.activeElement === document.querySelector('[data-sheet-open]'),
+}));
+if (keyboardClosedMenu.open !== 'false' || keyboardClosedMenu.hidden !== 'true' || !keyboardClosedMenu.focusReturned) {
+  failures.push('mobile menu: keyboard open, Escape close or focus restoration is incorrect ' + JSON.stringify(keyboardClosedMenu));
+}
+
 const canvas = interactionPage.locator('[data-string]');
 if (await canvas.count() !== 1) failures.push('homepage: interactive string canvas missing');
 await interactionPage.locator('[data-string-pluck]').click();
@@ -123,15 +178,37 @@ const calculator = await calculatorPage.evaluate(() => ({
 if (calculator.quarter !== '600.0' || calculator.rows !== 7) failures.push(`delay calculator: unexpected result ${JSON.stringify(calculator)}`);
 await calculatorPage.close();
 
+const mediaPage = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+const mediaErrors = [];
+mediaPage.on('pageerror', (error) => mediaErrors.push(`pageerror: ${error.message}`));
+mediaPage.on('console', (message) => { if (message.type() === 'error') mediaErrors.push(`console: ${message.text()}`); });
+await mediaPage.emulateMedia({ forcedColors: 'active', reducedMotion: 'reduce' });
+await mediaPage.goto(implementation, { waitUntil: 'networkidle' });
+await mediaPage.locator('[data-sheet-open]').focus();
+const mediaState = await mediaPage.evaluate(() => ({
+  forcedColors: matchMedia('(forced-colors: active)').matches,
+  reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+  overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  focusedControl: document.activeElement?.getAttribute('aria-label'),
+  bodyText: document.body.innerText.trim().length,
+}));
+if (!mediaState.forcedColors || !mediaState.reducedMotion || mediaState.overflow > 1 || mediaState.focusedControl !== 'Open menu' || mediaState.bodyText < 80) {
+  failures.push(`forced-colors/reduced-motion: unexpected state ${JSON.stringify(mediaState)}`);
+}
+for (const error of mediaErrors) failures.push(`forced-colors/reduced-motion: ${error}`);
+await mediaPage.close();
+
 const desktopPage = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
 await desktopPage.goto(implementation, { waitUntil: 'networkidle' });
 await desktopPage.screenshot({ path: path.join(outputDirectory, 'implementation-home-desktop.png'), fullPage: true });
 await desktopPage.close();
 
-const referencePage = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
-await referencePage.goto(reference, { waitUntil: 'networkidle' });
-await referencePage.screenshot({ path: path.join(outputDirectory, 'reference-home-desktop.png'), fullPage: true });
-await referencePage.close();
+if (reference) {
+  const referencePage = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
+  await referencePage.goto(reference, { waitUntil: 'networkidle' });
+  await referencePage.screenshot({ path: path.join(outputDirectory, 'reference-home-desktop.png'), fullPage: true });
+  await referencePage.close();
+}
 
 for (const error of interactionErrors) failures.push(`interaction runtime: ${error}`);
 await browser.close();
@@ -140,7 +217,8 @@ const report = {
   implementation,
   reference,
   checkedAt: new Date().toISOString(),
-  routesChecked: observations.length,
+  uniqueRoutesChecked: routes.length,
+  routeViewportChecks: observations.length,
   observations,
   failures,
 };
@@ -151,5 +229,5 @@ if (failures.length) {
   failures.forEach((failure) => console.error(`- ${failure}`));
   process.exitCode = 1;
 } else {
-  console.log(`Browser QA passed: ${observations.length} routes, mobile navigation, site search, canvas trigger, and delay calculator.`);
+  console.log(`Browser QA passed: ${routes.length} routes across desktop/mobile plus 200%/400% reflow checks (${observations.length} route-viewport checks), keyboard/mobile navigation, forced-colors/reduced-motion, site search, canvas trigger, and delay calculator.`);
 }

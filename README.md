@@ -18,13 +18,14 @@ The repository preserves the accepted HTML design in `design-source/`, while the
 pnpm install --frozen-lockfile
 pnpm sync:content
 pnpm check
+pnpm check:indexable
 pnpm dev --host 127.0.0.1 --port 4321
 pnpm preview --host 127.0.0.1 --port 4321
 node scripts/browser-qa.mjs
 node scripts/browser-scroll-qa.mjs
 ```
 
-`pnpm check` runs Astro diagnostics, creates the production build, and validates the generated site. `pnpm sync:content` keeps the route registry and client-side search index aligned.
+`pnpm check` runs Astro diagnostics, creates the safe noindex preview build, validates the generated site, and runs the SEO/crawl audit. `pnpm check:indexable` repeats the gates with production indexing enabled. `pnpm sync:content` generates the client-side search index from the route registry.
 
 `pnpm migrate:design` is an intentionally destructive bootstrap command. It is blocked unless `ALLOW_DESTRUCTIVE_DESIGN_MIGRATION=true` is set because it can overwrite edited pages. Do not run it during ordinary editorial work.
 
@@ -38,7 +39,7 @@ The default build is intentionally non-indexable:
 
 Only set `SITE_INDEXABLE=true` after the production-domain and final launch checks are complete. Vercel Preview deployments should keep the variable unset or false.
 
-## Pre-launch gates
+## Release gates
 
 Do not enable indexing until all of these are complete:
 
@@ -64,7 +65,7 @@ Core routes include:
 - `/legacy/the-spy-guitar/` and `/legacy/bang-my-twister/`
 - `/about/history-and-relaunch/`
 
-Known equivalent historic paths are defined in `vercel.json`. The confirmed injected Envato support URL returns 410 at Vercel's routing layer. Unknown paths use the custom Astro 404; there is no catch-all homepage redirect.
+Known equivalent historic paths are defined in `vercel.json`. The confirmed injected Envato support URL is intentionally not recreated and falls through to the custom Astro 404. There is no catch-all homepage redirect.
 
 ## Repository map
 
@@ -76,14 +77,17 @@ Known equivalent historic paths are defined in `vercel.json`. The confirmed inje
 - `public/assets/` — visual system and interaction scripts
 - `scripts/sync-content-indexes.mjs` — route/search metadata synchronization
 - `scripts/validate-built-site.mjs` — structural, link, asset, and indexing validation
-- `scripts/browser-qa.mjs` — route and interaction browser QA
+- `scripts/browser-qa.mjs` — desktop/mobile/reflow, accessibility sanity and interaction browser QA
 - `scripts/browser-scroll-qa.mjs` — scroll-reveal and representative mobile article QA
-- `docs/relaunch/` — strategy, URL registry, and launch checklist
-- `vercel.json` — legacy redirects, 410 response, caching, and security headers
+- `docs/relaunch/SEO_STRATEGY.md` — evidence register, page roles, hub/cluster plan and measurement
+- `docs/relaunch/URL_MIGRATION_REGISTRY.md` — explicit redirect and 404/410 decisions
+- `docs/relaunch/PRODUCTION_READINESS.md` — reproducible PASS/NOT-PROVEN release gates
+- `docs/relaunch/QA_EVIDENCE.md` — current release-candidate commands, measurements, resolved findings and residual risk
+- `vercel.json` — legacy redirects, caching and security headers
 
 ## Deployment
 
-A non-indexable Vercel preview can be created with:
+After explicit approval to publish the legal/contact data, a non-indexable Vercel preview can be created with:
 
 ```bash
 vercel --yes

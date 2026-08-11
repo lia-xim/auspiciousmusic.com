@@ -9,6 +9,10 @@ interface Props {
   lang?: string;
   noindex?: boolean;
   loadStringField?: boolean;
+  contentType?: 'website' | 'article';
+  published?: string;
+  updated?: string;
+  section?: string;
 }
 
 const {
@@ -18,12 +22,41 @@ const {
   lang = 'en',
   noindex = false,
   loadStringField = false,
+  contentType = 'website',
+  published,
+  updated,
+  section,
 } = Astro.props;
 
 const siteIndexable = import.meta.env.SITE_INDEXABLE === 'true';
 const robots = siteIndexable && !noindex ? 'index,follow,max-image-preview:large' : 'noindex,nofollow,noarchive';
-const canonical = new URL(canonicalPath, Astro.site ?? 'https://www.auspiciousmusic.com/');
-const image = new URL('/assets/hero-portrait.png', Astro.site ?? canonical);
+const site = Astro.site ?? new URL('https://www.auspiciousmusic.com/');
+const canonical = new URL(canonicalPath, site);
+const image = new URL('/assets/hero-portrait.png', site);
+const locale = lang === 'de' ? 'de_DE' : 'en_US';
+const authorId = new URL('/authors/#matthias-ramahi', site).href;
+const identitySchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': authorId,
+      name: 'Matthias Ramahi',
+      url: new URL('/authors/', site).href,
+      email: 'info@matthiasramahi.de',
+      telephone: '+49 176 42 44 98 58',
+      sameAs: ['https://matthiasramahi.de/'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': new URL('/#website', site).href,
+      name: 'Auspicious Music',
+      url: site.href,
+      inLanguage: 'en',
+      publisher: { '@id': authorId },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -34,21 +67,33 @@ const image = new URL('/assets/hero-portrait.png', Astro.site ?? canonical);
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Matthias Ramahi" />
     <meta name="robots" content={robots} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="Auspicious Music RSS" href="/rss.xml" />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/assets/inter.css" />
     <link rel="stylesheet" href="/assets/system.css" />
-    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#f4f0e8" />
+    <meta property="og:type" content={contentType} />
     <meta property="og:site_name" content="Auspicious Music" />
+    <meta property="og:locale" content={locale} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="928" />
+    <meta property="og:image:height" content="1152" />
+    <meta property="og:image:alt" content="Auspicious Music editorial illustration of a metal block and a tensioned string" />
+    {contentType === 'article' && published && <meta property="article:published_time" content={published} />}
+    {contentType === 'article' && updated && <meta property="article:modified_time" content={updated} />}
+    {contentType === 'article' && section && <meta property="article:section" content={section} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content="Auspicious Music editorial illustration of a metal block and a tensioned string" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(identitySchema)} />
     <slot name="head" />
   </head>
   <body>

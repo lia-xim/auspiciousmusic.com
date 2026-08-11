@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   canonicalPath: string;
   section: string;
@@ -18,6 +19,7 @@ interface Props {
 
 const {
   title,
+  seoTitle = title,
   description,
   canonicalPath,
   section,
@@ -32,23 +34,59 @@ const {
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://www.auspiciousmusic.com/');
+const canonicalUrl = new URL(canonicalPath, site).href;
+const authorId = new URL('/authors/#matthias-ramahi', site).href;
+const websiteId = new URL('/#website', site).href;
+const formatDate = (value: string) => new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date(`${value}T00:00:00.000Z`));
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
+  '@id': `${canonicalUrl}#article`,
+  url: canonicalUrl,
   headline: title,
   description,
   datePublished: published,
   dateModified: updated,
-  mainEntityOfPage: new URL(canonicalPath, site).href,
-  author: { '@type': 'Person', name: 'Matthias Ramahi', url: new URL('/authors/', site).href },
-  publisher: { '@type': 'Organization', name: 'Auspicious Music', url: site.href },
+  inLanguage: 'en',
+  mainEntityOfPage: canonicalUrl,
+  isPartOf: { '@id': websiteId },
+  author: { '@id': authorId },
+  publisher: { '@id': authorId },
   articleSection: section,
+  citation: sources.map((source) => source.href),
 };
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': `${canonicalUrl}#breadcrumb`,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: site.href },
+    { '@type': 'ListItem', position: 2, name: section, item: new URL(sectionPath, site).href },
+    { '@type': 'ListItem', position: 3, name: title, item: canonicalUrl },
+  ],
+};
+const brandedTitle = `${seoTitle} — Auspicious Music`;
+const documentTitle = brandedTitle.length <= 70 ? brandedTitle : seoTitle;
 ---
 
-<BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang="en">
+<BaseLayout
+  title={documentTitle}
+  description={description}
+  canonicalPath={canonicalPath}
+  lang="en"
+  contentType="article"
+  published={published}
+  updated={updated}
+  section={section}
+>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     <style is:global>
       @layer components {
         .article-head { padding-block: clamp(2.25rem, 5vw, 4.5rem); border-bottom: 1px solid var(--line); }
@@ -60,6 +98,7 @@ const schema = {
         .article-grid { display: grid; gap: 3rem 5rem; align-items: start; }
         @media (min-width: 1040px) { .article-grid { grid-template-columns: minmax(0, 48rem) minmax(13rem, 18rem); } }
         .article { max-width: var(--measure); }
+        .article, .article-aside { min-width: 0; overflow-wrap: anywhere; }
         .article > * + * { margin-top: 1.45rem; }
         .article h2 { font-size: clamp(1.65rem, 1.2rem + 1.35vw, 2.35rem); margin-top: clamp(3rem, 6vw, 4.75rem); }
         .article h3 { font-size: clamp(1.2rem, 1.1rem + .4vw, 1.5rem); margin-top: 2.25rem; }
@@ -103,8 +142,8 @@ const schema = {
         <p class="lede">{description}</p>
         <div class="article-meta">
           <span>By <a href="/authors/">Matthias Ramahi</a></span>
-          <time datetime={published}>Published 11 August 2026</time>
-          {updated !== published && <time datetime={updated}>Updated 11 August 2026</time>}
+          <time datetime={published}>Published {formatDate(published)}</time>
+          {updated !== published && <time datetime={updated}>Updated {formatDate(updated)}</time>}
           <span>{readingTime}</span>
         </div>
       </div>

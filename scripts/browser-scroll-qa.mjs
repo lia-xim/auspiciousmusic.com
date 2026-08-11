@@ -9,7 +9,9 @@ const bundledNodeRoot = process.env.CODEX_BUNDLED_NODE_ROOT
 const require = createRequire(path.join(bundledNodeRoot, 'package.json'));
 const { chromium } = require('playwright');
 const baseUrl = process.env.QA_BASE_URL ?? 'http://127.0.0.1:4321';
-const outputDirectory = path.join(projectRoot, 'docs', 'qa');
+const outputDirectory = process.env.QA_OUTPUT_DIR
+  ? path.resolve(process.env.QA_OUTPUT_DIR)
+  : path.join(projectRoot, 'docs', 'qa');
 await mkdir(outputDirectory, { recursive: true });
 
 const browser = await chromium.launch({

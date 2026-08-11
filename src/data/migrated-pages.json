@@ -1,7 +1,7 @@
 [
   {
     "route": "/",
-    "title": "Auspicious Music — Practical guides for music production and creative audio",
+    "title": "Auspicious Music — Independent music production guides",
     "description": "Independent, source-labelled guides for music production, recording, sound design, Ableton and music for media.",
     "h1": "Make sound with intent.",
     "internal": false
@@ -44,7 +44,7 @@
   {
     "route": "/resources/",
     "title": "Music Production Resources — Auspicious Music",
-    "description": "Calculators, templates, a working glossary and the archive of everything once published at this address.",
+    "description": "Browser-based music calculators, a working glossary and rights-aware records for verified resources formerly associated with this domain.",
     "h1": "Resources",
     "internal": false
   },
@@ -64,22 +64,22 @@
   },
   {
     "route": "/download/",
-    "title": "Legacy Downloads & Current Music Production Resources — Auspicious Music",
-    "description": "The status of every download once published on this domain, and the current resources that replace them.",
+    "title": "Legacy Resource Status — Auspicious Music",
+    "description": "Rights and availability notes for the former music-technology resources that can still be verified.",
     "h1": "Legacy Downloads &amp; Current Music Production Resources",
     "internal": false
   },
   {
     "route": "/legacy/the-spy-guitar/",
-    "title": "The Spy Guitar — History, Compatibility and a Modern Rebuild — Auspicious Music",
-    "description": "A historical resource published on this domain between 2013 and 2017, documented with its current status, rights position and a tested modern alternative.",
+    "title": "The Spy Guitar Archive Record — Auspicious Music",
+    "description": "A rights-aware record of a sampled-instrument project formerly associated with this domain.",
     "h1": "The Spy Guitar",
     "internal": false
   },
   {
     "route": "/legacy/bang-my-twister/",
-    "title": "Bang My Twister — Historic Max for Live Device and Current Setup — Auspicious Music",
-    "description": "A Max for Live device for the MIDI Fighter Twister published here in 2014, documented with its surviving external record and current rights status.",
+    "title": "Bang My Twister Archive Record — Auspicious Music",
+    "description": "A rights-aware record of a former Max for Live and MIDI Fighter Twister project associated with this domain.",
     "h1": "Bang My Twister",
     "internal": false
   },
@@ -163,7 +163,7 @@
   {
     "route": "/sitemap/",
     "title": "Sitemap — Auspicious Music",
-    "description": "Every page on this site in one list.",
+    "description": "Every public editorial, resource, archive and publication page on Auspicious Music.",
     "h1": "Sitemap",
     "internal": false
   },

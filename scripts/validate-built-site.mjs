@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = path.join(projectRoot, 'dist');
 const failures = [];
+const indexableMode = process.env.SITE_INDEXABLE === 'true';
+const permanentlyNoindex = new Set(['/404/', '/410/', '/search/', '/publishing-roadmap/']);
 
 async function walk(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -33,10 +35,18 @@ const htmlFiles = files.filter((file) => file.endsWith('.html'));
 for (const file of htmlFiles) {
   const relative = path.relative(distRoot, file).replaceAll('\\', '/');
   const html = await readFile(file, 'utf8');
+  const canonicalHref = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1] ?? '';
+  const canonicalRoute = canonicalHref ? new URL(canonicalHref).pathname : '';
+  const mustRemainNoindex = permanentlyNoindex.has(canonicalRoute) || canonicalRoute.startsWith('/internal/');
+  const expectedRobots = indexableMode && !mustRemainNoindex
+    ? 'index,follow,max-image-preview:large'
+    : 'noindex,nofollow,noarchive';
   const h1Count = (html.match(/<h1\b/gi) ?? []).length;
   if (!/<title>[^<]+<\/title>/i.test(html)) failures.push(`${relative}: missing title`);
   if (!/<meta\s+name="description"\s+content="[^"]+"/i.test(html)) failures.push(`${relative}: missing description`);
-  if (!/<meta\s+name="robots"\s+content="noindex,nofollow,noarchive"/i.test(html)) failures.push(`${relative}: preview is not noindex`);
+  if (!html.includes(`<meta name="robots" content="${expectedRobots}"`)) {
+    failures.push(`${relative}: expected robots ${expectedRobots}`);
+  }
   if (!/<main\b/i.test(html)) failures.push(`${relative}: missing main landmark`);
   if (h1Count !== 1) failures.push(`${relative}: expected one h1, found ${h1Count}`);
   if (/href="#"/i.test(html)) failures.push(`${relative}: dead # link`);
