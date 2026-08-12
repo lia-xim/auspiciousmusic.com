@@ -9,99 +9,199 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   lang={"en"}
   noindex={false}
   loadStringField={true}
+  headerOverDark={true}
 >
 <Fragment slot="head">
 <style is:global>
 @layer components {
 
   /* ══ Hero ═══════════════════════════════════════════════════════════
-     Revision 4 — the masthead is the type, and the string is playable.
+     Revision 5 — the immersive stage.
 
-     Earlier passes leaned on photography: first a framed object, then a
-     full-bleed band, then a portrait. Each put the argument in a picture.
-     This one puts it in the typography and gives the reader one thing to
-     do — a taut string across the headline that answers the pointer and
-     rings down on its own physics.
+     Revision 4 put the argument in typography and made the string
+     playable, but it played on the same paper as everything after it,
+     at 13% ink: the site's one recognisable gesture was a whisper.
 
-     That is not ornament. The brand mark is a driving wave and its damped
-     response; this is the same idea made operable, on a publication about
-     how sound behaves. It is also the only motion above the fold, it
-     never loops, and it stops dead once the string is at rest.          */
-  /* Full-viewport masthead. svh rather than vh so a mobile browser's
-     collapsing address bar cannot push the footer row out of frame.
-     min-block-size, not height: on a short laptop window the scene grows
-     with its contents instead of clipping them. */
+     This pass moves the masthead onto the stage. Three architectures
+     were weighed: an editorial split (type left, strings right) separates
+     exactly the two things that must read as one instrument; an
+     instrument-canvas on paper keeps the flatness that was the problem;
+     the immersive stage wins because darkness is what makes a string
+     visible — ivory lines under a high centre light, a copper node
+     glowing where the pluck landed. The header goes transparent and the
+     scene extends underneath it; the next section lays its paper edge
+     over the stage floor, so the first viewport already promises a page
+     to read. Still the only motion above the fold, still never loops,
+     still stops dead at rest.                                          */
   .hero {
-    background: var(--canvas);
-    color: var(--ink);
     position: relative;
     overflow: clip;
-    min-block-size: calc(100svh - var(--header-h));
+    /* The scene extends under the transparent header. */
+    margin-top: calc(-1 * var(--header-h));
+    padding-top: var(--header-h);
+    /* Short of the full viewport by exactly the strip in which the next
+       section's paper edge appears. */
+    min-block-size: calc(100svh - 2rem);
     display: flex;
+    background-color: var(--stage);
+    background-image:
+      radial-gradient(110% 85% at 50% -18%, rgba(243, 240, 233, 0.10), transparent 62%),
+      radial-gradient(70% 55% at 88% 108%, rgba(43, 79, 215, 0.07), transparent 70%),
+      linear-gradient(var(--stage-deep), var(--stage) 26%, var(--stage) 80%, var(--stage-deep));
+    color: var(--stage-text);
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--grain);
+    background-size: 160px 160px;
+    opacity: 0.05;
+    pointer-events: none;
   }
   .hero > .shell {
     position: relative;
     z-index: 1;                /* type sits above the string field */
     inline-size: 100%;
     display: grid;
-    grid-template-rows: auto 1fr auto auto;
-    padding-block: clamp(1.25rem, 2.5vh, 2rem) 0;
+    grid-template-rows: 1fr auto;
+    padding-block: clamp(2rem, 5vh, 4rem) 0;
+  }
+
+  /* Reference composition: editorial copy on the left, a working piece of
+     the studio floating on the right. The string field still owns the
+     whole stage behind both. */
+  .hero__grid {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    align-items: center;
+    align-self: center;
+    padding-block: clamp(1rem, 3vh, 2.5rem);
+  }
+  @media (min-width: 1080px) {
+    .hero__grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
   }
 
   .hero__note {
-    margin-left: auto;
-    max-width: 34ch;
-    font-size: var(--t-ui-sm);
-    line-height: 1.55;
-    color: var(--muted);
-  }
-  @media (min-width: 860px) { .hero__note { text-align: right; } }
-
-  /* The stage holds the headline and the string on the same layer, so the
-     string crosses the letterforms rather than sitting under them. It
-     takes the free row and centres within it. */
-  /* Weighted to the bottom of the free row, so the open space collects
-     above the headline rather than splitting either side of it. */
-  .hero__stage {
-    display: grid;
-    align-content: end;
-    padding-block: clamp(2rem, 6vh, 5rem) clamp(1.5rem, 3vh, 2.5rem);
-  }
-  /* On a phone the headline is only two short lines, so bottom-weighting
-     the free row leaves a dead field above it. Centred instead, the space
-     splits and the scene reads as composed rather than bottom-heavy. */
-  @media (max-width: 700px) {
-    .hero__stage { align-content: center; padding-block: clamp(1rem, 3vh, 2rem); }
+    max-width: 46ch;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--stage-muted);
+    margin-top: 1.5rem;
   }
 
-  /* Two long lines rather than three uneven ones: "Make" on its own left a
-     third of the measure empty. Set at a size where the second line very
-     nearly spans the container, which is what gives the block its weight. */
   .hero__title {
-    font-size: clamp(2.75rem, 0.5rem + 11.4vw, 10.5rem);   /* 44 → 168 */
-    line-height: 0.85;
-    letter-spacing: -0.048em;
-    font-weight: 600;
-    text-wrap: nowrap;
+    font-size: clamp(2.75rem, 1.2rem + 5.8vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.042em;
+    font-weight: 640;
+    color: var(--stage-text);
   }
   .hero__title span { display: block; }
-  .hero__title span:nth-child(2) { margin-left: 9%; }
-  @media (max-width: 700px) {
-    .hero__title span:nth-child(2) { margin-left: 5%; }
+
+  .hero__actions { margin-top: 2rem; }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: clamp(2rem, 4vh, 3rem);
+    max-inline-size: 34rem;
   }
-  /* Short windows: a 168px headline plus the footer rows does not fit a
-     600px-tall viewport, so the display scale gives way rather than the
-     scene overflowing. */
+  .hero__stats .stat-tile span { white-space: normal; }
+  @media (max-width: 520px) { .hero__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* The console: not a screenshot of a product — the product. The same
+     arithmetic as the full calculator, floating over the stage the way
+     the reference layouts float their dashboards. */
+  .hero__console-wrap { position: relative; }
+  .hero__console-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -12% -8%;
+    background:
+      radial-gradient(52% 48% at 30% 32%, rgba(43, 79, 215, 0.32), transparent 68%),
+      radial-gradient(46% 44% at 76% 78%, rgba(196, 104, 31, 0.24), transparent 70%);
+    filter: blur(6px);
+    pointer-events: none;
+  }
+  .hero__console { max-inline-size: 34rem; margin-inline: auto; }
+  @media (min-width: 1080px) and (prefers-reduced-motion: no-preference) {
+    .hero__console {
+      transform: perspective(1400px) rotateY(-8deg) rotateX(2.5deg);
+      transition: transform 700ms var(--ease);
+    }
+    .hero__console:hover { transform: perspective(1400px) rotateY(-2deg) rotateX(0.5deg); }
+  }
+  .console-live { padding: clamp(1.25rem, 2.5vw, 1.75rem); display: grid; gap: 1.25rem; }
+  .console-live label {
+    display: block;
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--stage-muted);
+    margin-bottom: 0.5rem;
+  }
+  .console-live input {
+    inline-size: 100%;
+    min-block-size: 52px;
+    padding-inline: 1rem;
+    border-radius: var(--r-control);
+    border: 1px solid var(--stage-line);
+    background: var(--stage-high);
+    color: var(--stage-text);
+    font-size: 1.5rem; font-weight: 615;
+    font-variant-numeric: tabular-nums;
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  .console-live input:hover { border-color: var(--stage-muted); }
+  .console-live :focus-visible { outline-color: var(--accent-on-dark); }
+  .console-live__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.625rem;
+  }
+  .console-live__grid > div {
+    border: 1px solid var(--stage-line-soft);
+    border-radius: var(--r-sm);
+    padding: 0.75rem 0.875rem;
+    background: color-mix(in srgb, var(--stage-high) 45%, transparent);
+  }
+  .console-live__grid dt {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--stage-muted);
+  }
+  .console-live__grid dd {
+    font-size: clamp(1.25rem, 1rem + 0.9vw, 1.625rem);
+    font-weight: 640; letter-spacing: -0.015em;
+    font-variant-numeric: tabular-nums;
+    margin-top: 0.125rem;
+  }
+  .console-live__grid small { font-size: 0.8125rem; font-weight: 500; color: var(--stage-muted); margin-left: 0.2rem; }
+  .console-live__wave { display: flex; align-items: flex-end; gap: 3px; block-size: 34px; }
+  .console-live__wave i {
+    flex: 1;
+    border-radius: 2px;
+    background: var(--ember-bright);
+    opacity: 0.65;
+    block-size: calc(18% + var(--h, 30%));
+  }
+  .console-live__foot {
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--stage-muted);
+  }
+  .console-live__foot a { color: var(--stage-text); }
+
+  /* Short windows: scale gives way rather than the scene overflowing. */
   @media (min-width: 900px) and (max-height: 760px) {
-    .hero__title { font-size: clamp(2.75rem, 0.5rem + 7.4vw, 6.75rem); }
-    .hero__string { block-size: 170px; }
+    .hero__title { font-size: clamp(2.5rem, 1rem + 4.2vw, 4rem); }
+    .hero__stats { margin-top: 1.5rem; }
   }
 
-  /* The string field occupies the whole masthead rather than a single
-     band. Six strings distributed across the upper two thirds — which is
-     precisely the region that was previously empty. Transparent to clicks
-     so the type, the actions and the selection behaviour underneath are
-     untouched; the pointer is read from .hero itself. */
+  /* The string field owns the whole stage, header strip included.
+     Transparent to clicks so the type, the actions and the selection
+     behaviour underneath are untouched; the pointer is read from .hero
+     itself. Colour is decided here, not in the script: ivory lines,
+     copper node — stage lighting, not document ink. */
   .hero__string {
     position: absolute;
     inset: 0;
@@ -109,28 +209,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     block-size: 100%;
     pointer-events: none;
     z-index: 0;
-  }
-
-  /* Scroll cue — replaces the Latest row. A masthead at full viewport
-     height needs to say that something follows; it does not need to
-     advertise an article to do it. */
-  .hero__scroll {
-    position: relative;
-    padding-block: 1rem clamp(1.25rem, 2.5vh, 1.75rem);
-    border-top: 1px solid var(--line);
-  }
-  .hero__scroll::before {
-    content: "";
-    position: absolute; top: -4px; left: 0;
-    inline-size: 7px; block-size: 7px; border-radius: 50%;
-    background: var(--ember-bright);
-  }
-  .hero__scroll span {
-    font-family: var(--font-mono);
-    font-size: var(--t-meta);
-    letter-spacing: var(--tr-caps);
-    text-transform: uppercase;
-    color: var(--muted);
+    --string-line: var(--stage-text);
+    --string-node: var(--ember-bright);
   }
 
   .hero__foot {
@@ -139,28 +219,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
     justify-content: space-between;
     gap: 1.25rem 2rem;
-    padding-bottom: clamp(1.5rem, 3vh, 2.25rem);
+    /* Content ends above the paper edge that the next section lays over
+       the stage floor. */
+    padding-bottom: calc(var(--sheet-overlap, 3.5rem) + clamp(1.5rem, 3vh, 2.25rem));
   }
   .hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .hero .btn--quiet { border-color: var(--stage-line); color: var(--stage-text); }
+  .hero .btn--quiet:hover { border-color: var(--stage-text); background: var(--stage-raised); }
+  .hero :focus-visible { outline-color: var(--accent-on-dark); }
 
   .hero__hint {
     font-family: var(--font-mono);
     font-size: var(--t-meta);
     letter-spacing: var(--tr-caps);
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--stage-muted);
     line-height: 1.6;
   }
   .hero__hint button {
     font: inherit;
     letter-spacing: inherit;
     text-transform: inherit;
-    color: var(--ink);
-    border-bottom: 1px solid var(--line-strong);
+    color: var(--stage-text);
+    border-bottom: 1px solid var(--stage-line);
     padding-bottom: 1px;
     transition: border-color var(--dur-fast) var(--ease);
   }
-  .hero__hint button:hover { border-bottom-color: var(--ink); }
+  .hero__hint button:hover { border-bottom-color: var(--stage-text); }
 
 
   .line-mask { display: block; overflow: hidden; padding-bottom: 0.06em; }
@@ -171,30 +256,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
   @keyframes line-in { from { transform: translateY(102%); } }
 
-  /* ══ 2 · topic portals ══════════════════════════════════════════════ */
-  .portal { border-top: 1px solid var(--line); }
-  .portals > li:last-child { border-bottom: 1px solid var(--line); }
-  .portal a {
-    display: grid; gap: 0.5rem 2.5rem;
-    padding-block: clamp(1.5rem, 3vw, 2.5rem);
-    text-decoration: none; align-items: baseline;
-    transition: background-color var(--dur-fast) var(--ease);
+  /* ══ 2 · topic cards ════════════════════════════════════════════════
+     Four lifted cards, each carrying its topic's diagram as a mark —
+     the reference language (feature tiles) drawn in the house line
+     vocabulary instead of icon fonts. */
+  .topic-grid { display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
+  @media (min-width: 720px) { .topic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .topic-card {
+    display: grid;
+    gap: 0.625rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    align-content: start;
   }
-  .portal a:hover { background: var(--surface); }
-  .portal__n {
-    font-family: var(--font-mono); font-size: var(--t-meta);
-    color: var(--muted); letter-spacing: var(--tr-meta);
-    font-variant-numeric: tabular-nums;
+  .topic-card svg { inline-size: 64px; block-size: 44px; color: var(--ink); margin-bottom: 0.5rem; }
+  .topic-card h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); letter-spacing: -0.019em; }
+  .topic-card p { color: var(--muted); font-size: 1rem; line-height: 1.6; max-width: 46ch; }
+  .topic-card__go {
+    display: inline-flex; align-items: center; gap: 0.4375rem;
+    font-size: var(--t-ui-sm); font-weight: 550; margin-top: 0.375rem;
+    transition: gap var(--dur-fast) var(--ease);
   }
-  .portal h3 { font-size: clamp(1.75rem, 1.2rem + 2.1vw, 3rem); letter-spacing: -0.021em; }
-  .portal p { color: var(--muted); font-size: 1.0625rem; line-height: 1.6; max-width: 52ch; }
-  .portal__go { display: inline-flex; align-items: center; gap: 0.4375rem; font-size: var(--t-ui-sm); font-weight: 550; }
-  .portal a:hover .portal__go { gap: 0.6875rem; }
-  .portal__go svg { width: 14px; height: 14px; }
-  @media (min-width: 900px) {
-    .portal a { grid-template-columns: 3.5rem minmax(0, 15rem) minmax(0, 1fr) auto; align-items: start; }
-    .portal__n, .portal__go { padding-top: 0.65rem; }
-  }
+  .topic-card:hover .topic-card__go { gap: 0.6875rem; color: var(--ember); }
+  .topic-card__go svg { inline-size: 14px; block-size: 14px; margin: 0; }
 
   /* ══ 3 · start here ═════════════════════════════════════════════════ */
   .start { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2.5rem, 5vw, 4rem); }
@@ -204,10 +287,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .start__lead .meta { margin-top: 1.25rem; }
   .start__lead a { text-decoration: none; display: block; }
   .start__lead a:hover h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
-  .start__lead .ph { aspect-ratio: 16 / 10; }
+  .start__lead .ph { aspect-ratio: 16 / 10; background-color: var(--surface); box-shadow: var(--shadow-lift); }
 
-  .numbered li { border-top: 1px solid var(--line); }
-  .numbered li:last-child { border-bottom: 1px solid var(--line); }
+  /* The reading list sits in a lifted panel rather than on bare rules. */
+  ol.numbered {
+    background: var(--surface-bright);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-lift);
+    padding-inline: clamp(1.25rem, 2.5vw, 1.75rem);
+    overflow: clip;
+  }
+  .numbered li + li { border-top: 1px solid var(--line); }
   .numbered a {
     display: grid; grid-template-columns: 2.25rem minmax(0, 1fr);
     gap: 0.375rem 1rem; padding-block: 1.375rem; text-decoration: none;
@@ -228,7 +319,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .lab p { color: var(--dark-muted); margin-top: 1.25rem; max-width: 46ch; font-size: 1.0625rem; line-height: 1.65; }
   .lab .meta { margin-top: 1.75rem; }
   .lab .link { margin-top: 2rem; }
-  .lab__art { border-radius: var(--r-media); overflow: hidden; background: var(--dark-surface); }
+  .lab__art {
+    border-radius: var(--r-media); overflow: hidden;
+    background: var(--stage-raised);
+    border: 1px solid var(--stage-line-soft);
+    box-shadow: var(--shadow-float);
+  }
   .lab__art img {
     inline-size: 100%;
     aspect-ratio: 5 / 4;
@@ -237,23 +333,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   /* ══ 5 · tools ══════════════════════════════════════════════════════
-     Deliberately the densest block on the page. A calculator row should
-     look like something you use, not something you are sold.          */
-  .tools-band { background: var(--surface); }
-  .tool-row { border-top: 1px solid var(--line); }
-  .tools-list > li:last-child { border-bottom: 1px solid var(--line); }
-  .tool-row a {
-    display: grid; gap: 0.5rem 2.5rem; padding-block: 1.5rem;
-    text-decoration: none; align-items: baseline;
-    transition: background-color var(--dur-fast) var(--ease);
+     Three small applications, presented as applications: each card opens
+     with a dark readout head showing a real computed value, labelled with
+     the exact input it was computed from. Nothing is a mock number.    */
+  .tools-band { background: var(--tint); }
+  .tools-grid { display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
+  @media (min-width: 860px) { .tools-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .tool-app { overflow: clip; display: grid; grid-template-rows: auto 1fr; }
+  .tool-app__head {
+    background: linear-gradient(178deg, var(--stage-raised), var(--stage) 70%);
+    color: var(--stage-text);
+    padding: 1.25rem 1.375rem 1.375rem;
+    display: grid;
+    gap: 0.25rem;
   }
-  .tool-row a:hover { background: var(--surface-bright); }
-  .tool-row h3 { font-size: 1.375rem; letter-spacing: -0.015em; }
-  .tool-row p { color: var(--muted); font-size: 1rem; line-height: 1.55; max-width: 56ch; }
-  .tool-row__io {
+  .tool-app__head .app-frame__title { margin-bottom: 0.625rem; }
+  .tool-app__value {
+    font-size: clamp(1.875rem, 1.4rem + 1.6vw, 2.5rem);
+    font-weight: 640; letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .tool-app__value small { font-size: 1rem; font-weight: 500; color: var(--stage-muted); margin-left: 0.25rem; }
+  .tool-app__ctx {
+    font-family: var(--font-mono); font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta); color: var(--stage-muted);
+  }
+  .tool-app__body { padding: 1.25rem 1.375rem 1.5rem; display: grid; gap: 0.5rem; align-content: start; }
+  .tool-app__body h3 { font-size: 1.25rem; letter-spacing: -0.014em; }
+  .tool-app__body p { color: var(--muted); font-size: 0.9875rem; line-height: 1.55; }
+  .tool-app__io {
     font-family: var(--font-mono); font-size: var(--t-meta);
     letter-spacing: var(--tr-meta); color: var(--ink-soft);
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    margin-top: 0.375rem;
   }
   @media (min-width: 900px) {
     .tool-row a { grid-template-columns: minmax(0, 16rem) minmax(0, 1fr) minmax(0, 11rem); align-items: start; }
@@ -261,10 +372,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   /* ══ 6 · archive ════════════════════════════════════════════════════ */
-  .record { border-top: 1px solid var(--line-strong); padding-block: clamp(2rem, 4vw, 3rem); }
-  .record:last-of-type { border-bottom: 1px solid var(--line-strong); }
-  .record__grid { display: grid; gap: 1.25rem 3rem; }
-  @media (min-width: 900px) { .record__grid { grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); } }
+  .records-grid { display: grid; gap: clamp(1rem, 2vw, 1.5rem); align-items: start; }
+  @media (min-width: 860px) { .records-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .record { padding: clamp(1.5rem, 3vw, 2.25rem); }
+  .record__grid { display: grid; gap: 1.25rem; }
   .record h3 { font-size: clamp(1.5rem, 1.15rem + 1.1vw, 2rem); letter-spacing: -0.017em; margin-top: 0.625rem; }
   .record p { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.65; max-width: 60ch; }
   .record__facts { display: grid; gap: 0.625rem; margin-top: 1.5rem; }
@@ -280,13 +391,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   @media (max-width: 560px) { .fact { grid-template-columns: 1fr; gap: 0.1875rem; } }
 
   /* ══ 7 · acoustic story ═════════════════════════════════════════════ */
-  .story__media { position: relative; border-radius: var(--r-media); overflow: hidden; }
+  .story__media {
+    position: relative; border-radius: var(--r-media); overflow: hidden;
+    box-shadow: var(--shadow-media);
+  }
   .story__media img { aspect-ratio: 16 / 9; object-fit: cover; }
   .story__body { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: clamp(2rem, 4vw, 3rem); }
   @media (min-width: 900px) { .story__body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; } }
   .story h2 { max-width: 16ch; }
   .story p { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.7; max-width: 56ch; }
   .story__links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-top: 1.75rem; }
+
+  /* ══ 8 · latest — the index in a lifted panel ═══════════════════════ */
+  .index--panel {
+    background: var(--surface-bright);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-lift);
+    padding-inline: clamp(1.25rem, 2.5vw, 1.75rem);
+    overflow: clip;
+  }
+  .index--panel li:first-child a { border-top: none; }
 }
 </style>
 </Fragment>
@@ -294,56 +419,99 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <main id="content">
 
   <!-- 1 ─────────────────────────────────────────────────────── hero -->
-  <section class="hero" data-od-id="hero" aria-labelledby="hero-title">
+  <section class="hero" data-od-id="hero" data-stage-scene aria-labelledby="hero-title">
     <canvas class="hero__string" data-string aria-hidden="true"></canvas>
 
     <div class="shell">
 
-      <p class="hero__note">
-        Practical, source-labelled guides for music production, Ableton, recording,
-        sound design and music for media. Each page tells you what was tested, researched or preserved.
-      </p>
+      <div class="hero__grid">
+        <div>
+          <h1 id="hero-title" class="hero__title">
+            <span>Make sound</span>
+            <span>with intent.</span>
+          </h1>
+          <p class="hero__note">
+            Practical, source-labelled guides for music production, Ableton, recording,
+            sound design and music for media. Each page tells you what was tested, researched or preserved.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="/services/">Work with us</a>
+            <a class="btn btn--quiet" href="/ableton/">Explore the guides</a>
+          </div>
+          <ul class="hero__stats">
+            <li class="stat-tile"><strong>8</strong><span>source-labelled guides</span></li>
+            <li class="stat-tile"><strong>3</strong><span>in-browser tools</span></li>
+            <li class="stat-tile"><strong>23</strong><span>glossary terms</span></li>
+          </ul>
+        </div>
 
-      <div class="hero__stage">
-        <h1 id="hero-title" class="hero__title">
-          <span>Make sound</span>
-          <span>with intent.</span>
-        </h1>
+        <div class="hero__console-wrap">
+          <div class="app-frame hero__console">
+            <div class="app-frame__bar">
+              <span class="app-frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="app-frame__title">delay-and-reverb — live</span>
+            </div>
+            <div class="console-live">
+              <div>
+                <label for="live-bpm">Your tempo · BPM</label>
+                <input id="live-bpm" type="number" value="120" min="20" max="300" step="1" inputmode="decimal" autocomplete="off" />
+              </div>
+              <dl class="console-live__grid" aria-live="polite">
+                <div><dt>1/4 note</dt><dd><span data-live-q>500.0</span><small>ms</small></dd></div>
+                <div><dt>1/8 note</dt><dd><span data-live-e>250.0</span><small>ms</small></dd></div>
+                <div><dt>1/4 dotted</dt><dd><span data-live-d>750.0</span><small>ms</small></dd></div>
+                <div><dt>1/4 as rate</dt><dd><span data-live-hz>2.00</span><small>Hz</small></dd></div>
+              </dl>
+              <div class="console-live__wave" aria-hidden="true">
+                <i style="--h:22%"></i><i style="--h:58%"></i><i style="--h:36%"></i><i style="--h:74%"></i><i style="--h:48%"></i><i style="--h:82%"></i><i style="--h:30%"></i><i style="--h:64%"></i><i style="--h:42%"></i><i style="--h:70%"></i><i style="--h:26%"></i><i style="--h:54%"></i><i style="--h:38%"></i><i style="--h:60%"></i><i style="--h:20%"></i><i style="--h:46%"></i>
+              </div>
+              <p class="console-live__foot">
+                <span>Runs locally · nothing leaves the browser</span>
+                <a href="/resources/tools/delay-and-reverb/">Full calculator →</a>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="hero__foot">
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="/ableton/">Explore the guides</a>
-          <a class="btn btn--quiet" href="/download/">Browse legacy resources</a>
-        </div>
         <p class="hero__hint">
           <button type="button" data-string-pluck>Play the strings</button> — drag one and the others answer.
         </p>
       </div>
+    </div>
+  </section>
 
-      <div class="hero__scroll" aria-hidden="true">
-        <span>Scroll</span>
+  <!-- 2 · topic cards — the paper edge over the stage floor -->
+  <section class="band band--tight sheet-lift band--glow" aria-labelledby="portals-title">
+    <div class="shell" style="position:relative">
+      <span class="rail" data-rail style="left:calc(var(--gutter) * -0.55)" aria-hidden="true"></span>
+      <h2 id="portals-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Where to start by topic</h2>
+      <div class="topic-grid" data-reveal-group>
+        <a class="card topic-card" href="/ableton/" data-reveal>
+          <svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><rect x="2" y="4" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><rect x="24" y="4" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><rect x="46" y="4" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><rect x="2" y="18" width="16" height="9" rx="2" style="stroke:var(--ember-bright)" fill="var(--ember-bright)" fill-opacity=".12"/><rect x="24" y="18" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><rect x="46" y="18" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><path d="M10 27 C 10 38, 30 34, 34 39" style="stroke:var(--ember-bright)"/><circle cx="37" cy="39" r="3.5" stroke="currentColor" stroke-opacity=".55"/></svg>
+          <h3>Ableton</h3><p>File management, Sampler and controller systems grounded in official behavior — with test limits stated where hardware experience is missing.</p><span class="topic-card__go">Open hub <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="card topic-card" href="/recording/" data-reveal>
+          <svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M10 40 C 4 40, 3 32, 7 29 C 3 26, 4 18, 9 17 C 6 13, 8 7, 13 7 C 18 7, 20 13, 17 17 C 22 18, 23 26, 19 29 C 23 32, 22 40, 16 40 Z" stroke="currentColor" stroke-opacity=".5"/><path d="M30 36 A 18 18 0 0 0 30 8" stroke="currentColor" stroke-opacity=".3" stroke-dasharray="2 4"/><path d="M46 42 A 30 30 0 0 0 46 2" stroke="currentColor" stroke-opacity=".3" stroke-dasharray="2 4"/><circle cx="33" cy="16" r="3.5" style="fill:var(--ember-bright)"/><circle cx="50" cy="10" r="3.5" fill="currentColor" fill-opacity=".55"/></svg>
+          <h3>Recording</h3><p>Repeatable room and microphone decisions for acoustic instruments, beginning with viola and domestic spaces.</p><span class="topic-card__go">Open hub <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="card topic-card" href="/sound-design/" data-reveal>
+          <svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M2 12 C 8 2, 12 20, 18 12 C 23 5, 27 17, 33 12 C 39 7, 43 15, 49 12 C 55 9, 58 13, 62 12" stroke="currentColor" stroke-opacity=".5"/><rect x="2" y="24" width="9" height="14" stroke="currentColor" stroke-opacity=".3"/><rect x="13" y="24" width="9" height="14" stroke="currentColor" stroke-opacity=".3"/><rect x="24" y="24" width="16" height="14" style="stroke:var(--ember-bright)" fill="var(--ember-bright)" fill-opacity=".12"/><rect x="42" y="24" width="9" height="14" stroke="currentColor" stroke-opacity=".3"/><rect x="53" y="24" width="9" height="14" stroke="currentColor" stroke-opacity=".3"/></svg>
+          <h3>Sound Design</h3><p>Sampling workflows that keep source recordings, edits and mappings understandable instead of hiding them behind a preset.</p><span class="topic-card__go">Open hub <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="card topic-card" href="/music-for-media/" data-reveal>
+          <svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M2 22 H 62" stroke="currentColor" stroke-opacity=".5"/><path d="M2 18 V 26 M22 18 V 26 M42 18 V 26 M62 18 V 26" stroke="currentColor" stroke-opacity=".35"/><circle cx="22" cy="22" r="3.5" fill="currentColor" fill-opacity=".55"/><circle cx="42" cy="22" r="3.5" style="fill:var(--ember-bright)"/><path d="M34 32 h -4 v 6 h 4 M50 32 h 4 v 6 h -4" style="stroke:var(--ember-bright)"/><path d="M33 35 H 51" style="stroke:var(--ember-bright)" stroke-opacity=".55" stroke-dasharray="2 3"/></svg>
+          <h3>Music for Media</h3><p>Briefing, rights and live-performance planning for films, ceremonies and projects governed by a larger timeline.</p><span class="topic-card__go">Open hub <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 2 · topic portals -->
-  <section class="band band--tight" aria-labelledby="portals-title">
-    <div class="shell" style="position:relative">
-      <span class="rail" data-rail style="left:calc(var(--gutter) * -0.55)" aria-hidden="true"></span>
-      <h2 id="portals-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Where to start by topic</h2>
-      <ul class="portals" data-reveal-group>
-        <li class="portal" data-reveal><a href="/ableton/"><span class="portal__n">01</span><h3>Ableton</h3><p>File management, Sampler and controller systems grounded in official behavior — with test limits stated where hardware experience is missing.</p><span class="portal__go">Open hub →</span></a></li>
-        <li class="portal" data-reveal><a href="/recording/"><span class="portal__n">02</span><h3>Recording</h3><p>Repeatable room and microphone decisions for acoustic instruments, beginning with viola and domestic spaces.</p><span class="portal__go">Open hub →</span></a></li>
-        <li class="portal" data-reveal><a href="/sound-design/"><span class="portal__n">03</span><h3>Sound Design</h3><p>Sampling workflows that keep source recordings, edits and mappings understandable instead of hiding them behind a preset.</p><span class="portal__go">Open hub →</span></a></li>
-        <li class="portal" data-reveal><a href="/music-for-media/"><span class="portal__n">04</span><h3>Music for Media</h3><p>Briefing, rights and live-performance planning for films, ceremonies and projects governed by a larger timeline.</p><span class="portal__go">Open hub →</span></a></li>
-      </ul>
-    </div>
-  </section>
-
   <!-- 3 · start here -->
-  <section class="band" aria-labelledby="start-title">
+  <section class="band band--glow" aria-labelledby="start-title">
     <div class="shell">
+      <div class="staff" style="--staff-node-x:26%;margin-bottom:clamp(2rem,4vw,3rem)" aria-hidden="true"></div>
       <div class="section-head"><h2 id="start-title">Start with the work in front of you</h2><p>Eight published guides. Each one starts with a real task and shows its method, sources and limits.</p></div>
       <div class="start">
         <article class="start__lead" data-reveal>
@@ -377,11 +545,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="band tools-band" aria-labelledby="tools-title">
     <div class="shell">
       <div class="section-head"><h2 id="tools-title">Small tools, local answers</h2><p>No account, tracking or server round-trip. These calculators run in the browser.</p></div>
-      <ul class="tools-list" data-reveal-group>
-        <li class="tool-row" data-reveal><a href="/resources/tools/delay-and-reverb/"><h3>Delay &amp; Reverb Time</h3><p>Convert tempo and note divisions into milliseconds and hertz.</p><span class="tool-row__io">BPM → ms · Hz</span></a></li>
-        <li class="tool-row" data-reveal><a href="/resources/tools/note-frequency/"><h3>Note &amp; Frequency</h3><p>Move between note names, MIDI numbers, frequencies and cents.</p><span class="tool-row__io">Note ⇄ Hz ⇄ MIDI</span></a></li>
-        <li class="tool-row" data-reveal><a href="/resources/tools/sample-pitch/"><h3>Sample Pitch &amp; Rate</h3><p>See how transposition changes playback rate, duration and loop tempo.</p><span class="tool-row__io">Semitones → rate · length</span></a></li>
-      </ul>
+      <div class="tools-grid" data-reveal-group>
+        <a class="card tool-app" href="/resources/tools/delay-and-reverb/" data-reveal>
+          <div class="tool-app__head">
+            <span class="app-frame__title">delay-and-reverb</span>
+            <span class="tool-app__value">500.0<small>ms</small></span>
+            <span class="tool-app__ctx">1/4 note at 120 BPM</span>
+          </div>
+          <div class="tool-app__body">
+            <h3>Delay &amp; Reverb Time</h3>
+            <p>Convert tempo and note divisions into milliseconds and hertz — straight, dotted and triplet.</p>
+            <span class="tool-app__io">BPM → ms · Hz</span>
+          </div>
+        </a>
+        <a class="card tool-app" href="/resources/tools/note-frequency/" data-reveal>
+          <div class="tool-app__head">
+            <span class="app-frame__title">note-frequency</span>
+            <span class="tool-app__value">440.00<small>Hz</small></span>
+            <span class="tool-app__ctx">A4 at concert pitch 440</span>
+          </div>
+          <div class="tool-app__body">
+            <h3>Note &amp; Frequency</h3>
+            <p>Move between note names, MIDI numbers, frequencies and cents — plus wavelength for room problems.</p>
+            <span class="tool-app__io">Note ⇄ Hz ⇄ MIDI</span>
+          </div>
+        </a>
+        <a class="card tool-app" href="/resources/tools/sample-pitch/" data-reveal>
+          <div class="tool-app__head">
+            <span class="app-frame__title">sample-pitch</span>
+            <span class="tool-app__value">0.500<small>× rate</small></span>
+            <span class="tool-app__ctx">−12 semitones, resampled</span>
+          </div>
+          <div class="tool-app__body">
+            <h3>Sample Pitch &amp; Rate</h3>
+            <p>See how transposition changes playback rate, duration and loop tempo before you commit.</p>
+            <span class="tool-app__io">Semitones → rate · length</span>
+          </div>
+        </a>
+      </div>
       <p style="margin-top:2rem"><a class="link" href="/resources/tools/">All tools →</a></p>
     </div>
   </section>
@@ -390,8 +591,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="band" aria-labelledby="legacy-title">
     <div class="shell">
       <div class="section-head"><h2 id="legacy-title">The archive is context, not borrowed identity</h2><p>Old addresses stay useful where the historic intent can be verified. Former files and authorship are not claimed by the new publisher.</p></div>
-      <article class="record" data-reveal><div class="record__grid"><div><span class="flag">Historical resource</span><h3>The Spy Guitar</h3></div><div><p>A documented former Ableton sampler instrument. The current page explains what can be verified and why no unlicensed file is redistributed.</p><dl class="record__facts"><div class="fact"><dt>Rights</dt><dd>Not transferred with the domain</dd></div><div class="fact"><dt>Status</dt><dd><span class="status" data-state="unavailable">Documentation only</span></dd></div></dl><a class="link" href="/legacy/the-spy-guitar/">Read the archive record →</a></div></div></article>
-      <article class="record" data-reveal><div class="record__grid"><div><span class="flag">Historical resource</span><h3>Bang My Twister</h3></div><div><p>A former Max for Live/Twister project documented without claiming the previous operator’s work. External records are linked at their source.</p><dl class="record__facts"><div class="fact"><dt>Rights</dt><dd>Remain with their respective owners</dd></div><div class="fact"><dt>Status</dt><dd><span class="status" data-state="external">External records</span></dd></div></dl><a class="link" href="/legacy/bang-my-twister/">Read the archive record →</a></div></div></article>
+      <div class="records-grid" data-reveal-group>
+        <article class="card record" data-reveal><div class="record__grid"><div><span class="flag">Historical resource</span><h3>The Spy Guitar</h3></div><div><p>A documented former Ableton sampler instrument. The current page explains what can be verified and why no unlicensed file is redistributed.</p><dl class="record__facts"><div class="fact"><dt>Rights</dt><dd>Not transferred with the domain</dd></div><div class="fact"><dt>Status</dt><dd><span class="status" data-state="unavailable">Documentation only</span></dd></div></dl><a class="link" href="/legacy/the-spy-guitar/">Read the archive record →</a></div></div></article>
+        <article class="card record" data-reveal><div class="record__grid"><div><span class="flag">Historical resource</span><h3>Bang My Twister</h3></div><div><p>A former Max for Live/Twister project documented without claiming the previous operator’s work. External records are linked at their source.</p><dl class="record__facts"><div class="fact"><dt>Rights</dt><dd>Remain with their respective owners</dd></div><div class="fact"><dt>Status</dt><dd><span class="status" data-state="external">External records</span></dd></div></dl><a class="link" href="/legacy/bang-my-twister/">Read the archive record →</a></div></div></article>
+      </div>
     </div>
   </section>
 
@@ -399,15 +602,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="band band--wide story" aria-labelledby="story-title">
     <div class="shell">
       <figure class="story__media" data-reveal><img src="/assets/story-viola-back.png" width="1376" height="774" loading="lazy" decoding="async" alt="Editorial illustration of a viola and microphone in a quiet room."><figcaption class="kicker" style="margin-top:.75rem">Editorial illustration — not a documented session</figcaption></figure>
-      <div class="story__body"><h2 id="story-title">One instrument, three different jobs</h2><div><p>A viola can be a live ceremonial voice, an exposed recording or source material for a playable instrument. The useful workflow changes with the job — and so do timing, microphone, rights and delivery decisions.</p><div class="story__links"><a class="link" href="/recording/">Recording →</a><a class="link" href="/music-for-media/">Music for Media →</a><a class="link" href="/sound-design/">Sound Design →</a></div></div></div>
+      <div class="story__body"><h2 id="story-title">One instrument, three different jobs</h2><div><p>A viola can be a live ceremonial voice, an exposed recording or source material for a playable instrument. The useful workflow changes with the job — and so do timing, microphone, rights and delivery decisions. All three jobs are real here: the same practice the guides describe can be booked.</p><div class="story__links"><a class="link" href="/services/">Work with us →</a><a class="link" href="/recording/">Recording →</a><a class="link" href="/music-for-media/">Music for Media →</a><a class="link" href="/sound-design/">Sound Design →</a></div></div></div>
     </div>
   </section>
 
   <!-- 8 · latest -->
-  <section class="band band-surface" aria-labelledby="latest-title">
+  <section class="band band-surface band--glow" aria-labelledby="latest-title">
     <div class="shell">
       <div class="section-head"><h2 id="latest-title">Published for the relaunch</h2><p><a class="link" href="/journal/">Open the journal →</a></p></div>
-      <ul class="index" data-reveal-group>
+      <ul class="index index--panel" data-reveal-group>
         <li data-reveal><a href="/music-production/ableton-project-handoff/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>An Ableton project handoff another computer can open</h3><p>A delivery checklist for media, dependencies, stems and the next decision.</p></div><div class="index__tail"><span class="index__topic">Production · 8 min</span></div></a></li>
         <li data-reveal><a href="/recording/acoustic-instruments/viola-microphone-placement/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>Viola microphone placement: three useful starting positions</h3><p>Compare distance and angle before trying to repair the room with EQ.</p></div><div class="index__tail"><span class="index__topic">Recording · 9 min</span></div></a></li>
         <li data-reveal><a href="/music-for-media/planning-live-viola-for-a-wedding-ceremony/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>Planning live viola for a wedding ceremony</h3><p>Musical moments, timing ranges, cue ownership and practical conditions.</p></div><div class="index__tail"><span class="index__topic">Events · 7 min</span></div></a></li>
@@ -420,4 +623,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section><div class="shell relaunch"><p>Auspicious Music is an independent publication on a domain with an earlier history. The former operator is not involved in the current site.</p><a class="link" href="/about/history-and-relaunch/">How the archive and relaunch are handled →</a></div></section>
 
 </main>
+<Fragment slot="scripts">
+<script is:inline>
+/* Live tempo strip — the same arithmetic as the full calculator, inline so
+   the homepage tool band is something you use, not something described. */
+(function () {
+  "use strict";
+  var input = document.getElementById("live-bpm");
+  if (!input) return;
+  var q = document.querySelector("[data-live-q]");
+  var e = document.querySelector("[data-live-e]");
+  var d = document.querySelector("[data-live-d]");
+  var hz = document.querySelector("[data-live-hz]");
+  var render = function () {
+    var bpm = parseFloat(input.value);
+    if (!isFinite(bpm) || bpm <= 0) return;
+    bpm = Math.min(300, Math.max(20, bpm));
+    var quarter = 60000 / bpm;
+    q.textContent = quarter.toFixed(1);
+    e.textContent = (quarter / 2).toFixed(1);
+    d.textContent = (quarter * 1.5).toFixed(1);
+    hz.textContent = (1000 / quarter).toFixed(2);
+  };
+  input.addEventListener("input", render);
+  render();
+})();
+</script>
+</Fragment>
 </BaseLayout>

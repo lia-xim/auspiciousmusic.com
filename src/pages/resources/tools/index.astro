@@ -13,9 +13,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 <Fragment slot="head">
 <style is:global>
 @layer components {
-  .hub-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4rem); }
+  /* Tools index opens on the workbench plane, like every hub. */
+  .hub-head { background: var(--tint); padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4rem); }
   .hub-head h1 { max-width: 16ch; margin-top: 1.25rem; }
   .hub-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+  .hub-head .staff { margin-top: clamp(2rem, 4vw, 3rem); }
 
   .tool-card { border-top: 1px solid var(--line); }
   .tools-index > li:last-child { border-bottom: 1px solid var(--line); }
@@ -63,6 +65,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         entirely in your browser, needs no account, and works the same on a phone in a
         live room as on a desktop.
       </p>
+      <div class="staff" style="--staff-node-x:12%" aria-hidden="true"></div>
     </div>
   </section>
 

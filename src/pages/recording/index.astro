@@ -1,14 +1,54 @@
 ---
 import HubLayout from '../../layouts/HubLayout.astro';
 const articles = [
-  { title: 'Viola microphone placement: three useful starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Compare a blended, close and room-aware position without claiming one universal distance.', meta: '9 min' },
-  { title: 'A repeatable plan for recording viola at home', href: '/recording/acoustic-instruments/recording-viola-at-home/', description: 'Prepare the room, mark the setup, record fair comparisons and archive a clean handoff.', meta: '9 min' },
-  { title: 'When to record strings instead of using a library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Spend session time where a performer adds musical information.', meta: '8 min', label: 'Decision guide' },
+  { title: 'Viola microphone placement: three useful starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Compare a blended, close and room-aware position without claiming one universal distance.', meta: '9 min', answers: 'Where does the microphone start, before any EQ?' },
+  { title: 'A repeatable plan for recording viola at home', href: '/recording/acoustic-instruments/recording-viola-at-home/', description: 'Prepare the room, mark the setup, record fair comparisons and archive a clean handoff.', meta: '9 min', answers: 'How do I leave with takes I can still judge tomorrow?' },
+  { title: 'When to record strings instead of using a library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Spend session time where a performer adds musical information.', meta: '8 min', label: 'Decision guide', answers: 'Is a performer adding information here, or just cost?' },
 ];
 const principles = [
   { title: 'Placement is a variable', text: 'Write down distance, angle, height and pattern so a result can be repeated.' },
   { title: 'Level-match comparisons', text: 'A louder take is not automatically a better take.' },
   { title: 'Performance before processing', text: 'Choose the phrase before EQ and reverb disguise the evidence.' },
 ];
+const situations = [
+  { lead: 'First session with a bowed instrument in an untreated room.', outcome: 'Prepare the room, mark the setup and record comparisons fair enough to trust tomorrow.', href: '/recording/acoustic-instruments/recording-viola-at-home/', linkLabel: 'Session plan' },
+  { lead: 'The microphone is on the stand — but where, exactly?', outcome: 'Three starting positions with the trade-offs stated, instead of one “correct” distance.', href: '/recording/acoustic-instruments/viola-microphone-placement/', linkLabel: 'Placement guide' },
+  { lead: 'Booking a player or reaching for a library — undecided.', outcome: 'Decide by phrasing, transitions and revision risk before spending session money.', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', linkLabel: 'Decision guide' },
+  { lead: 'One note keeps booming louder than every other.', outcome: 'Find the note’s frequency and wavelength — the first step in reading a room mode.', href: '/resources/tools/note-frequency/', linkLabel: 'Calculator' },
+  { lead: 'The part needs a real player, not more reading.', outcome: 'Session viola, recorded with the documented setup and delivered as takes your session can use.', href: '/services/', linkLabel: 'Work with us' },
+];
+const tools = [
+  { title: 'Note & Frequency', href: '/resources/tools/note-frequency/', io: 'Note ⇄ Hz · wavelength', note: 'Frequencies, cents deviation and wavelengths — useful when a room dimension misbehaves.' },
+];
+const terms = [
+  { term: 'Proximity effect', def: 'The bass lift as a directional microphone moves closer — a tone control, once you know it is there.', href: '/resources/glossary/#proximity-effect' },
+  { term: 'Room mode', def: 'A standing wave whose wavelength fits a room dimension, making some notes far louder in some positions.', href: '/resources/glossary/#room-mode' },
+  { term: 'Gain staging', def: 'Setting level at every stage so nothing clips and nothing drowns in noise later.', href: '/resources/glossary/#gain-staging' },
+  { term: 'Headroom', def: 'The distance between the loudest part of a signal and the point at which it clips.', href: '/resources/glossary/#headroom' },
+  { term: 'Bit depth', def: 'How finely amplitude is stored — 24-bit makes conservative recording levels practical.', href: '/resources/glossary/#bit-depth' },
+];
 ---
-<HubLayout title="Recording" description="Room-aware, repeatable recording plans for acoustic instruments — beginning with bowed strings and honest comparison methods." canonicalPath="/recording/" kicker="Acoustic hub" intro="A domestic room can produce useful recordings when the setup is treated as evidence rather than folklore. These pages make the variables visible and avoid product claims that have not been earned by a real test." articles={articles} principles={principles} />
+<HubLayout title="Recording" description="Room-aware, repeatable recording plans for acoustic instruments — beginning with bowed strings and honest comparison methods." canonicalPath="/recording/" kicker="Acoustic hub" intro="A domestic room can produce useful recordings when the setup is treated as evidence rather than folklore. These pages make the variables visible and avoid product claims that have not been earned by a real test." articles={articles} principles={principles} situations={situations} tools={tools} terms={terms}>
+  <figure class="hub-motif" slot="motif">
+    <svg viewBox="0 0 360 240" fill="none" aria-hidden="true">
+      <!-- instrument body, abstracted -->
+      <path d="M74 214 C 42 214, 34 178, 52 160 C 38 148, 38 120, 58 110 C 44 96, 52 68, 78 66 C 104 68, 112 96, 98 110 C 118 120, 118 148, 104 160 C 122 178, 114 214, 82 214 Z" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" />
+      <path d="M70 128 v 24 M86 128 v 24" stroke="currentColor" stroke-opacity="0.4" />
+      <!-- distance arcs -->
+      <path d="M120 176 A 96 96 0 0 0 120 66" stroke="currentColor" stroke-opacity="0.22" stroke-dasharray="3 5" />
+      <path d="M178 200 A 160 160 0 0 0 178 22" stroke="currentColor" stroke-opacity="0.22" stroke-dasharray="3 5" />
+      <path d="M252 224 A 236 236 0 0 0 252 6" stroke="currentColor" stroke-opacity="0.22" stroke-dasharray="3 5" />
+      <!-- microphone positions -->
+      <circle cx="128" cy="112" r="5" style="fill:var(--ember-bright)" />
+      <text x="120" y="94" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" style="fill:var(--ember-on-dark)">CLOSE</text>
+      <circle cx="188" cy="96" r="5" fill="currentColor" fill-opacity="0.6" />
+      <text x="176" y="78" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">BLEND</text>
+      <circle cx="266" cy="72" r="5" fill="currentColor" fill-opacity="0.6" />
+      <text x="256" y="54" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">ROOM</text>
+      <!-- the variables written down -->
+      <text x="204" y="196" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">DISTANCE · ANGLE</text>
+      <text x="204" y="212" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">HEIGHT · PATTERN</text>
+    </svg>
+    <figcaption>Schematic: three starting positions, variables written down. Not a measured plot.</figcaption>
+  </figure>
+</HubLayout>

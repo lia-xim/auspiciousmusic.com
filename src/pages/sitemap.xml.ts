@@ -3,7 +3,7 @@ import records from '../data/migrated-pages.json';
 import { articles } from '../data/articles';
 
 const site = 'https://www.auspiciousmusic.com';
-const extraRoutes = ['/journal/'];
+const extraRoutes = ['/journal/', '/contribute/', '/services/'];
 function escapeXml(value: string) { return value.replace(/[<>&'\"]/g, (character) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' })[character] ?? character); }
 
 export const GET: APIRoute = () => {

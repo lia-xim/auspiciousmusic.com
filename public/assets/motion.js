@@ -18,14 +18,27 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---- 1. header: transparent → solid surface after scroll ---------------
-     → GSAP: ScrollTrigger.create({ start: 64, toggleClass: 'is-scrolled' }) */
+     → GSAP: ScrollTrigger.create({ start: 64, toggleClass: 'is-scrolled' })
+     On a paper page the threshold is a fixed 64px. On a page that opens on
+     the stage ([data-over-dark]) the header must stay transparent for as
+     long as the stage scene is behind it, so the threshold becomes the
+     scene's lower edge; a stage page without a scene marker (the error
+     pages) never resolves to paper at all. */
   var header = document.querySelector("[data-header]");
   if (header) {
+    var overDark = header.hasAttribute("data-over-dark");
+    var scene = document.querySelector("[data-stage-scene]");
     var onScroll = function () {
-      header.classList.toggle("is-scrolled", window.scrollY > 64);
+      var threshold = 64;
+      if (overDark) {
+        if (!scene) return;
+        threshold = scene.offsetTop + scene.offsetHeight - header.offsetHeight;
+      }
+      header.classList.toggle("is-scrolled", window.scrollY > threshold);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
   }
 
   /* ---- 2. mobile sheet --------------------------------------------------- */
@@ -140,6 +153,26 @@
         if (!el.classList.contains("is-in")) release(el);
       });
     }, 2500);
+  }
+
+  /* ---- 3b. stage light follows the pointer -------------------------------
+     Every dark plane carries a ::after light pool positioned by --px/--py
+     (see system.css). Coordinates update through one rAF-throttled handler;
+     the CSS media queries keep this off for touch and reduced motion. */
+  if (window.matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll(".hero, .band-dark, .site-footer").forEach(function (plane) {
+      var pending = false;
+      plane.addEventListener("pointermove", function (e) {
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(function () {
+          var box = plane.getBoundingClientRect();
+          plane.style.setProperty("--px", (((e.clientX - box.left) / box.width) * 100).toFixed(2) + "%");
+          plane.style.setProperty("--py", (((e.clientY - box.top) / box.height) * 100).toFixed(2) + "%");
+          pending = false;
+        });
+      }, { passive: true });
+    });
   }
 
   /* ---- 4. spectral rail: node tracks scroll through the first bands ------

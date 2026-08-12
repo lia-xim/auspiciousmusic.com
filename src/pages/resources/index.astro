@@ -13,9 +13,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 <Fragment slot="head">
 <style is:global>
 @layer components {
-  .pg-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem); }
+  /* Resources opens on the workbench plane, like every hub. */
+  .pg-head { background: var(--tint); padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem); }
   .pg-head h1 { max-width: 17ch; margin-top: 1.25rem; }
   .pg-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+  .pg-head .staff { margin-top: clamp(2rem, 4vw, 3rem); }
   .pg-head--dark { background: var(--dark); color: var(--dark-text); padding-block: clamp(2.5rem, 5vw, 4rem); }
   .pg-head--dark .crumbs { color: var(--dark-muted); }
   .pg-head--dark .crumbs a:hover { color: var(--dark-text); }
@@ -114,7 +116,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       
       <h1>Resources</h1>
       <p class="lede">The practical parts of the publication: calculators for mid-session arithmetic, a glossary for recurring terms and archive records for old references that can still be verified.</p>
-      
+      <div class="staff" style="--staff-node-x:12%" aria-hidden="true"></div>
     </div>
   </section>
 

@@ -1,14 +1,56 @@
 ---
 import HubLayout from '../../layouts/HubLayout.astro';
 const articles = [
-  { title: 'MIDI Fighter Twister in Ableton: design the mapping before the knobs', href: '/ableton/midi-fighter-twister-review/', description: 'A mapping method with explicit limits: useful without pretending an unfinished hardware review exists.', meta: '8 min', label: 'Mapping guide' },
-  { title: 'An Ableton project handoff another computer can open', href: '/music-production/ableton-project-handoff/', description: 'Use dedicated Projects, Collect All and Save, dependency notes and safety prints.', meta: '8 min' },
-  { title: 'Build a small sampled instrument in Ableton Live', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'From source recordings and filenames to zones, dynamics and portable packaging.', meta: '10 min' },
+  { title: 'MIDI Fighter Twister in Ableton: design the mapping before the knobs', href: '/ableton/midi-fighter-twister-review/', description: 'A mapping method with explicit limits: useful without pretending an unfinished hardware review exists.', meta: '8 min', label: 'Mapping guide', answers: 'Which parameters deserve physical control at all?' },
+  { title: 'An Ableton project handoff another computer can open', href: '/music-production/ableton-project-handoff/', description: 'Use dedicated Projects, Collect All and Save, dependency notes and safety prints.', meta: '8 min', answers: 'Will this Set open tomorrow, on another machine?' },
+  { title: 'Build a small sampled instrument in Ableton Live', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'From source recordings and filenames to zones, dynamics and portable packaging.', meta: '10 min', answers: 'How does a recording become a playable instrument?' },
 ];
 const principles = [
   { title: 'Official behavior first', text: 'Features and file behavior are checked against Ableton documentation.' },
   { title: 'A Set is not a package', text: 'Referenced media and third-party dependencies must be handled deliberately.' },
   { title: 'No verdict without a test', text: 'Hardware pages remain guides until repeatable use supports a review.' },
 ];
+const situations = [
+  { lead: 'A Set has to open on someone else’s machine — today.', outcome: 'Collect the media, expose the plug-in dependencies and print what would otherwise break.', href: '/music-production/ableton-project-handoff/', linkLabel: 'Handoff guide' },
+  { lead: 'A controller arrived and every knob is still generic.', outcome: 'Decide which parameters deserve hands before assigning a single encoder.', href: '/ableton/midi-fighter-twister-review/', linkLabel: 'Mapping guide' },
+  { lead: 'A recording should become an instrument, not a loop.', outcome: 'A conservative Sampler workflow that keeps the source findable and the mapping explainable.', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', linkLabel: 'Sampler workflow' },
+  { lead: 'A sample needs a different pitch — what happens to its length?', outcome: 'See transposition, playback rate and duration move together before you commit.', href: '/resources/tools/sample-pitch/', linkLabel: 'Calculator' },
+];
+const tools = [
+  { title: 'Sample Pitch & Rate', href: '/resources/tools/sample-pitch/', io: 'Semitones → rate · length', note: 'What repitching does to playback rate, duration and loop tempo.' },
+  { title: 'Delay & Reverb Time', href: '/resources/tools/delay-and-reverb/', io: 'BPM → ms · Hz', note: 'Grid-locked times for delays and LFO rates in plug-ins without tempo sync.' },
+];
+const terms = [
+  { term: 'Collect All and Save', def: 'The Live command that copies every referenced sample into the project folder — the step that decides whether a Set travels.', href: '/resources/glossary/#collect-all-and-save' },
+  { term: 'Bank', def: 'A switchable page of controller assignments, so one encoder can address several parameters.', href: '/resources/glossary/#bank' },
+  { term: 'Endless encoder', def: 'A rotary control with no fixed start or end position — configured well, it removes value jumps.', href: '/resources/glossary/#endless-encoder' },
+  { term: 'Max for Live', def: 'The visual programming environment bundled with Live Suite, used to build devices that run inside a Set.', href: '/resources/glossary/#max-for-live' },
+  { term: 'Freezing', def: 'Rendering a track to audio in place so its plug-ins stop consuming CPU, while remaining reversible.', href: '/resources/glossary/#freezing' },
+];
 ---
-<HubLayout title="Ableton Live" description="File management, Sampler and controller workflows that stay useful after the screenshot becomes outdated." canonicalPath="/ableton/" kicker="DAW hub" intro="These guides focus on the parts of Live that have to survive real work: moving a Set, mapping controls around decisions and building an instrument without burying its source files. Features matter here when they make a project clearer or more portable." articles={articles} principles={principles} />
+<HubLayout title="Ableton Live" description="File management, Sampler and controller workflows that stay useful after the screenshot becomes outdated." canonicalPath="/ableton/" kicker="DAW hub" intro="These guides focus on the parts of Live that have to survive real work: moving a Set, mapping controls around decisions and building an instrument without burying its source files. Features matter here when they make a project clearer or more portable." articles={articles} principles={principles} situations={situations} tools={tools} terms={terms}>
+  <figure class="hub-motif" slot="motif">
+    <svg viewBox="0 0 360 240" fill="none" aria-hidden="true">
+      <!-- clip grid -->
+      {[0, 1, 2].map((row) =>
+        [0, 1, 2, 3].map((col) => (
+          <rect x={20 + col * 76} y={20 + row * 40} width="64" height="28" rx="4" stroke="currentColor" stroke-opacity="0.28" />
+        ))
+      )}
+      <!-- the mapped clip -->
+      <rect x="96" y="60" width="64" height="28" rx="4" style="stroke:var(--ember-bright)" stroke-width="1.5" fill="var(--ember-bright)" fill-opacity="0.12" />
+      <!-- mapping curves from the clip to the encoders -->
+      <path d="M160 74 C 230 74, 220 150, 252 168" style="stroke:var(--ember-bright)" stroke-width="1.25" />
+      <path d="M160 80 C 240 92, 260 140, 314 166" stroke="currentColor" stroke-opacity="0.4" />
+      <!-- two encoders -->
+      <circle cx="256" cy="186" r="20" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" />
+      <path d="M256 186 L 244 172" style="stroke:var(--ember-bright)" stroke-width="1.5" stroke-linecap="round" />
+      <circle cx="318" cy="186" r="20" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" />
+      <path d="M318 186 L 330 174" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round" />
+      <!-- labels -->
+      <text x="20" y="166" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">SET</text>
+      <text x="236" y="228" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">ENCODERS</text>
+    </svg>
+    <figcaption>Schematic: one clip, two hands — the mapping is the decision. Not a screenshot.</figcaption>
+  </figure>
+</HubLayout>

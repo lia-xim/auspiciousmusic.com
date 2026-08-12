@@ -9,24 +9,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   lang={"en"}
   noindex={true}
   loadStringField={false}
+  headerOverDark={true}
 >
 <Fragment slot="head">
 <style is:global>
 @layer components {
-  /* 410 inverts to graphite. It is the one page on the site that reports a
-     deliberate act rather than an absence, and it should not be mistaken
-     for an ordinary not-found. */
-  .err { padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 6vw, 5rem); min-height: 60vh; }
+  /* 410 lives on the deepest stage. It is the one page on the site that
+     reports a deliberate act rather than an absence, and it should not
+     be mistaken for an ordinary not-found: the copper edge on the status
+     code marks it as an archive fact. */
+  body { background: var(--stage-deep); }
+  .err {
+    position: relative;
+    margin-top: calc(-1 * var(--header-h));
+    padding-top: var(--header-h);
+    background-color: var(--stage-deep);
+    background-image: var(--light-stage);
+    color: var(--stage-text);
+    padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 6vw, 5rem);
+    min-height: calc(100svh - var(--header-h));
+  }
+  .err::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: var(--grain); background-size: 160px 160px;
+    opacity: 0.04; pointer-events: none;
+  }
+  .err > * { position: relative; }
+  .err :focus-visible { outline-color: var(--accent-on-dark); }
+  .err .btn--quiet { border-color: var(--stage-line); color: var(--stage-text); }
+  .err .btn--quiet:hover { border-color: var(--stage-text); background: var(--stage-raised); }
   .err__code {
     font-family: var(--font-mono); font-size: var(--t-meta);
-    letter-spacing: var(--tr-meta); color: var(--dark-text);
-    padding-left: 0.875rem; border-left: 2px solid var(--accent-on-dark);
+    letter-spacing: var(--tr-meta); color: var(--stage-text);
+    padding-left: 0.875rem; border-left: 2px solid var(--ember-on-dark);
     display: inline-block; line-height: 1.5;
   }
   .err h1 { font-size: clamp(2.25rem, 1.4rem + 3vw, 3.75rem); max-width: 17ch; margin-top: 1.5rem; }
   .err__lede { margin-top: 1.25rem; max-width: 54ch; }
   .err__body { margin-top: 1.5rem; max-width: 56ch; }
-  .err__body p { color: var(--dark-muted); font-size: 1.0625rem; line-height: 1.7; }
+  .err__body p { color: var(--stage-muted); font-size: 1.0625rem; line-height: 1.7; }
   .err__body p + p { margin-top: 1rem; }
   .err__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: clamp(2.25rem, 4vw, 3rem); }
 }

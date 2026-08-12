@@ -1,14 +1,76 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { articles } from '../../data/articles';
+import { fetchSceneItems } from '../../lib/scene-feeds';
+
+const sceneItems = await fetchSceneItems();
+const builtOn = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date());
+const itemDate = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+
+const paths = [
+  {
+    title: 'From a quiet room to a playable instrument',
+    why: 'One instrument, one domestic room — prepared, recorded, then mapped into something you can play.',
+    steps: [
+      { title: 'A repeatable plan for recording viola at home', href: '/recording/acoustic-instruments/recording-viola-at-home/', minutes: 9 },
+      { title: 'Viola microphone placement: three starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', minutes: 9 },
+      { title: 'Build a small sampled instrument in Ableton Live', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', minutes: 10 },
+    ],
+  },
+  {
+    title: 'Deliver without surprises',
+    why: 'The two records a production actually needs from you: a session that opens, and rights that hold.',
+    steps: [
+      { title: 'An Ableton project handoff another computer can open', href: '/music-production/ableton-project-handoff/', minutes: 8 },
+      { title: 'Music clearance for a small film before edit lock', href: '/music-for-media/music-clearance-for-small-film-projects/', minutes: 8 },
+    ],
+  },
+  {
+    title: 'Strings, decided deliberately',
+    why: 'Whether a performer belongs on the layer — and what the live version demands when they do.',
+    steps: [
+      { title: 'When to record a string part instead of using a library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', minutes: 8 },
+      { title: 'Planning live viola for a wedding ceremony', href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', minutes: 7 },
+    ],
+  },
+];
+const pathMinutes = (p: typeof paths[number]) => p.steps.reduce((sum, s) => sum + s.minutes, 0);
 ---
 
 <BaseLayout title="Journal — Auspicious Music" description="All published Auspicious Music guides, with topic, method and reading time." canonicalPath="/journal/" lang="en">
   <Fragment slot="head"><style is:global>
     @layer components {
-      .journal-head { padding-block: clamp(2.5rem, 6vw, 5rem); border-bottom: 1px solid var(--line); }
+      .journal-head { background: var(--tint); padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 4vw, 3rem); }
       .journal-head h1 { margin-top: 1.2rem; }
       .journal-head .lede { margin-top: 1.4rem; max-width: 55ch; }
+
+      /* Reading paths — three short journeys through the eight guides,
+         drawn as the site's timeline: a thread with stops, ending on the
+         copper node where the journey pays off. */
+      .jpaths { display: grid; gap: clamp(2.5rem, 5vw, 3.5rem); }
+      @media (min-width: 1000px) { .jpaths { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4rem; } }
+      .jpath h3 { font-size: clamp(1.3125rem, 1.1rem + .7vw, 1.625rem); letter-spacing: -0.016em; max-width: 20ch; }
+      .jpath__why { color: var(--muted); font-size: 1rem; line-height: 1.6; margin-top: .625rem; max-width: 44ch; }
+      .jpath ol { position: relative; margin-top: 1.5rem; padding-left: 1.75rem; display: grid; }
+      .jpath ol::before {
+        content: ""; position: absolute; left: 3px; top: 1.1rem; bottom: 1.1rem;
+        width: 1px; background: var(--line-strong);
+      }
+      .jpath li { position: relative; padding-block: .75rem; }
+      .jpath li::before {
+        content: ""; position: absolute; left: -1.75rem; top: 1.3rem;
+        inline-size: 7px; block-size: 7px; border-radius: 50%;
+        background: var(--surface); box-shadow: inset 0 0 0 2px var(--line-strong);
+      }
+      .jpath li:last-child::before { background: var(--ember-bright); box-shadow: none; }
+      .jpath a {
+        text-decoration: none; font-weight: 550; font-size: 1.0625rem;
+        letter-spacing: -0.008em; line-height: 1.4;
+      }
+      .jpath a:hover { text-decoration: underline; text-underline-offset: 3px; }
+      .jpath li .meta { margin-top: .2rem; }
+      .jpath > .meta { margin-top: 1rem; }
+
       .journal-list { border-top: 1px solid var(--line-strong); }
       .journal-list li { border-bottom: 1px solid var(--line); }
       .journal-list a { display: grid; gap: .6rem 2.5rem; padding-block: 1.7rem; text-decoration: none; }
@@ -16,10 +78,101 @@ import { articles } from '../../data/articles';
       .journal-list h2 { font-size: clamp(1.35rem, 1.1rem + .8vw, 1.9rem); }
       .journal-list p { color: var(--muted); max-width: 58ch; font-size: 1rem; line-height: 1.55; }
       @media (min-width: 920px) { .journal-list a { grid-template-columns: minmax(16rem, 1fr) minmax(20rem, 1.3fr) 11rem; align-items: start; } .journal-list .meta { justify-self: end; text-align: right; } }
+
+      /* Scene reading — headlines from established publications, linked at
+         their source. Only titles travel; the reporting stays theirs. */
+      .scene-panel {
+        background: var(--surface-bright);
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        box-shadow: var(--shadow-lift);
+        padding-inline: clamp(1.25rem, 2.5vw, 1.75rem);
+        overflow: clip;
+      }
+      .scene-panel li + li { border-top: 1px solid var(--line); }
+      .scene-panel a {
+        display: grid;
+        gap: 0.25rem 2rem;
+        padding-block: 1.125rem;
+        text-decoration: none;
+        align-items: baseline;
+      }
+      .scene-panel a:hover h3 { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+      .scene-panel h3 { font-size: 1.125rem; letter-spacing: -0.011em; font-weight: 550; }
+      .scene-panel .scene-src {
+        font-family: var(--font-mono); font-size: var(--t-meta);
+        letter-spacing: var(--tr-meta); color: var(--muted);
+        display: flex; gap: 1rem; justify-content: space-between;
+      }
+      @media (min-width: 860px) {
+        .scene-panel a { grid-template-columns: minmax(0, 1fr) minmax(14rem, auto); }
+        .scene-panel .scene-src { justify-content: flex-end; text-align: right; }
+      }
+      .scene-note {
+        margin-top: 1.25rem;
+        font-family: var(--font-mono); font-size: var(--t-meta);
+        letter-spacing: var(--tr-meta); color: var(--muted); line-height: 1.6;
+      }
     }
   </style></Fragment>
   <main id="content">
-    <header class="journal-head"><div class="shell"><p class="kicker">Article index</p><h1>Journal</h1><p class="lede">Eight focused guides form the first editorial release. All were published on 11 August 2026; none are backdated to imitate the domain’s earlier publication.</p></div></header>
-    <section class="band"><div class="shell"><ul class="journal-list">{articles.map((article) => <li><a href={article.href}><h2>{article.title}</h2><p>{article.description}</p><span class="meta">{article.section} · {article.minutes} min</span></a></li>)}</ul></div></section>
+    <header class="journal-head"><div class="shell"><p class="kicker">Article index</p><h1>Journal</h1><p class="lede">Eight focused guides form the first editorial release. All were published on 11 August 2026; none are backdated to imitate the domain’s earlier publication.</p><div class="staff" style="--staff-node-x:34%;margin-top:clamp(2rem,4vw,3rem)" aria-hidden="true"></div></div></header>
+
+    <section class="band band-surface" aria-labelledby="paths-title">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="kicker">Reading paths</p><h2 id="paths-title">Three ways through the eight guides</h2></div>
+          <p>Each path is a real sequence of work, not a category — read in order and the later guides inherit the earlier decisions.</p>
+        </div>
+        <div class="jpaths">
+          {paths.map((path) => (
+            <article class="jpath" data-reveal>
+              <h3>{path.title}</h3>
+              <p class="jpath__why">{path.why}</p>
+              <ol>
+                {path.steps.map((step) => (
+                  <li>
+                    <a href={step.href}>{step.title}</a>
+                    <p class="meta"><span>{step.minutes} min</span></p>
+                  </li>
+                ))}
+              </ol>
+              <p class="meta"><span>{path.steps.length} guides</span><span>{pathMinutes(path)} min</span></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="all-title">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="kicker">Everything published</p><h2 id="all-title">The complete index</h2></div>
+        </div>
+        <ul class="journal-list">{articles.map((article) => <li><a href={article.href}><h2>{article.title}</h2><p>{article.description}</p><span class="meta">{article.section} · {article.minutes} min</span></a></li>)}</ul>
+      </div>
+    </section>
+
+    {sceneItems.length > 0 && (
+      <section class="band band-surface band--glow" aria-labelledby="scene-title">
+        <div class="shell">
+          <div class="section-head">
+            <div><p class="kicker">Scene reading</p><h2 id="scene-title">Worth reading elsewhere</h2></div>
+            <p>Recent headlines from established production publications, linked at their source. The reporting is theirs; the selection of sources is ours.</p>
+          </div>
+          <ul class="scene-panel">
+            {sceneItems.map((item) => (
+              <li>
+                <a href={item.link} rel="nofollow noopener external">
+                  <h3>{item.title}</h3>
+                  <span class="scene-src"><span>{item.source}</span><span>{itemDate.format(item.published)}</span></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p class="scene-note">Collected automatically from each publication's public feed when this site was last built ({builtOn}). No content is republished — every link opens the original.</p>
+        </div>
+      </section>
+    )}
   </main>
 </BaseLayout>

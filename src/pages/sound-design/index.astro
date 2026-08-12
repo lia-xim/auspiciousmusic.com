@@ -1,14 +1,54 @@
 ---
 import HubLayout from '../../layouts/HubLayout.astro';
 const articles = [
-  { title: 'Build a small sampled instrument in Ableton Live', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'A conservative workflow for roots, dynamics, edits, zones and round robins.', meta: '10 min' },
-  { title: 'When to record a string part instead of using a library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Choose by phrasing, transition, revision risk and the musical role of the layer.', meta: '8 min' },
-  { title: 'Viola microphone placement: three starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Capture useful differences before trying to design the sound with processing.', meta: '9 min', label: 'Recording' },
+  { title: 'Build a small sampled instrument in Ableton Live', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'A conservative workflow for roots, dynamics, edits, zones and round robins.', meta: '10 min', answers: 'How many samples does a playable instrument need?' },
+  { title: 'When to record a string part instead of using a library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Choose by phrasing, transition, revision risk and the musical role of the layer.', meta: '8 min', answers: 'Live, sampled or hybrid — decided by what?' },
+  { title: 'Viola microphone placement: three starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Capture useful differences before trying to design the sound with processing.', meta: '9 min', label: 'Recording', answers: 'What position captures a source worth sampling?' },
 ];
 const principles = [
   { title: 'Capture before decoration', text: 'Good source organization makes later design faster and safer.' },
   { title: 'Keep the unprocessed source', text: 'The instrument and the effect version are different assets.' },
   { title: 'Map one dimension at a time', text: 'Pitch, velocity, variation and loops should be debugged separately.' },
 ];
+const situations = [
+  { lead: 'A recording should become an instrument, not a loop.', outcome: 'Roots, zones, velocity layers and round robins — mapped one dimension at a time.', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', linkLabel: 'Sampler workflow' },
+  { lead: 'Library or session — the string part is still undecided.', outcome: 'Decide by phrasing, transitions and revision risk, not by habit or budget reflex.', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', linkLabel: 'Decision guide' },
+  { lead: 'A transposed sample sounds wrong and you want to know why.', outcome: 'See how far the pitch moved the playback rate and length — and where formants give out.', href: '/resources/tools/sample-pitch/', linkLabel: 'Calculator' },
+  { lead: 'Tomorrow’s instrument needs its source captured today.', outcome: 'Three microphone starting positions that leave you with material worth mapping.', href: '/recording/acoustic-instruments/viola-microphone-placement/', linkLabel: 'Placement guide' },
+];
+const tools = [
+  { title: 'Sample Pitch & Rate', href: '/resources/tools/sample-pitch/', io: 'Semitones → rate · length', note: 'Transposition against playback rate, duration and loop tempo — plus rate mismatches in semitones.' },
+  { title: 'Note & Frequency', href: '/resources/tools/note-frequency/', io: 'Note ⇄ Hz ⇄ MIDI', note: 'Roots and zones as note names, MIDI numbers and frequencies.' },
+];
+const terms = [
+  { term: 'Round-robin', def: 'Cycling through several recordings of one note so repeats never sound identical.', href: '/resources/glossary/#round-robin' },
+  { term: 'Velocity layer', def: 'A separate recording per playing strength, so dynamics change timbre rather than only volume.', href: '/resources/glossary/#velocity-layer' },
+  { term: 'Zero crossing', def: 'The point where a waveform passes through silence — cut there and the edit stays silent.', href: '/resources/glossary/#zero-crossing' },
+  { term: 'Formant', def: 'The resonance that gives a source its character; transpose too far and it moves audibly.', href: '/resources/glossary/#formant' },
+  { term: 'Time-stretching', def: 'Changing length without changing pitch — at the cost of artefacts resampling avoids.', href: '/resources/glossary/#time-stretching' },
+];
 ---
-<HubLayout title="Sound Design" description="Sampling and playable-instrument workflows that document the source, the transformation and the limits of the result." canonicalPath="/sound-design/" kicker="Sound hub" intro="Sound design becomes reusable when the source can still be found, the mapping can be explained and the result has a defined role. The guides here avoid imaginary audio examples and focus on procedures readers can run with their own material." articles={articles} principles={principles} />
+<HubLayout title="Sound Design" description="Sampling and playable-instrument workflows that document the source, the transformation and the limits of the result." canonicalPath="/sound-design/" kicker="Sound hub" intro="Sound design becomes reusable when the source can still be found, the mapping can be explained and the result has a defined role. The guides here avoid imaginary audio examples and focus on procedures readers can run with their own material." articles={articles} principles={principles} situations={situations} tools={tools} terms={terms}>
+  <figure class="hub-motif" slot="motif">
+    <svg viewBox="0 0 360 240" fill="none" aria-hidden="true">
+      <!-- source waveform -->
+      <path d="M20 56 C 40 20, 56 92, 76 56 C 92 28, 104 80, 124 56 C 144 34, 156 74, 176 56 C 196 40, 208 68, 228 56 C 248 46, 260 64, 280 56 C 300 50, 320 60, 340 56" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" />
+      <text x="20" y="96" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.5" fill="currentColor" fill-opacity="0.55">SOURCE</text>
+      <!-- mapping lines down into one zone -->
+      <path d="M124 60 V 148 M228 60 V 148" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="3 5" />
+      <!-- velocity layers -->
+      <rect x="124" y="112" width="104" height="10" stroke="currentColor" stroke-opacity="0.25" />
+      <rect x="124" y="126" width="104" height="10" stroke="currentColor" stroke-opacity="0.4" />
+      <rect x="124" y="140" width="104" height="10" style="stroke:var(--ember-bright)" fill="var(--ember-bright)" fill-opacity="0.1" />
+      <text x="238" y="150" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" style="fill:var(--ember-on-dark)">VEL</text>
+      <!-- keyboard zones -->
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => (
+        <rect x={20 + i * 27} y="176" width="25" height="34" stroke="currentColor" stroke-opacity={i >= 4 && i <= 7 ? '0.7' : '0.25'} />
+      ))}
+      <rect x="128" y="176" width="106" height="34" style="stroke:var(--ember-bright)" stroke-width="1.5" fill="var(--ember-bright)" fill-opacity="0.08" />
+      <text x="20" y="230" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.5" fill="currentColor" fill-opacity="0.55">ZONES</text>
+      <text x="252" y="230" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">ROOT ± RANGE</text>
+    </svg>
+    <figcaption>Schematic: one source, mapped one dimension at a time. Not a plug-in UI.</figcaption>
+  </figure>
+</HubLayout>

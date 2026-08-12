@@ -13,6 +13,8 @@ interface Props {
   published?: string;
   updated?: string;
   section?: string;
+  /** Page opens on the ink stage: the header starts transparent over it. */
+  headerOverDark?: boolean;
 }
 
 const {
@@ -26,6 +28,7 @@ const {
   published,
   updated,
   section,
+  headerOverDark = false,
 } = Astro.props;
 
 const siteIndexable = import.meta.env.SITE_INDEXABLE === 'true';
@@ -74,7 +77,7 @@ const identitySchema = {
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/assets/inter.css" />
     <link rel="stylesheet" href="/assets/system.css" />
-    <meta name="theme-color" content="#f4f0e8" />
+    <meta name="theme-color" content={headerOverDark ? '#0d0f16' : '#f1eee6'} />
     <meta property="og:type" content={contentType} />
     <meta property="og:site_name" content="Auspicious Music" />
     <meta property="og:locale" content={locale} />
@@ -97,7 +100,7 @@ const identitySchema = {
     <slot name="head" />
   </head>
   <body>
-    <SiteHeader currentPath={Astro.url.pathname} />
+    <SiteHeader currentPath={Astro.url.pathname} overDark={headerOverDark} />
     <slot />
     <SiteFooter />
     <script is:inline src="/assets/motion.js" defer></script>

@@ -112,7 +112,9 @@ const documentTitle = brandedTitle.length <= 70 ? brandedTitle : seoTitle;
         .article table { width: 100%; border-collapse: collapse; font-size: 1rem; }
         .article th, .article td { padding: .8rem .7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
         .article th { font-size: var(--t-meta); font-family: var(--font-mono); color: var(--muted); }
-        .method-box, .disclosure-box { padding: 1.2rem 1.35rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); }
+        /* Workshop notes: the warm workbench plane with the material edge,
+           so provenance reads as annotation, never as content. */
+        .method-box, .disclosure-box { padding: 1.2rem 1.35rem; background: var(--tint); border-left: 2px solid var(--ember-bright); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
         .method-box strong, .disclosure-box strong { display: block; margin-bottom: .35rem; color: var(--ink); }
         .method-box p, .disclosure-box p { font-size: 1rem; line-height: 1.6; color: var(--ink-soft); }
         .article-aside { position: sticky; top: calc(var(--header-h) + 2rem); display: grid; gap: 2rem; font-size: .95rem; }

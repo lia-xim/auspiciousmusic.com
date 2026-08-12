@@ -1,14 +1,54 @@
 ---
 import HubLayout from '../../layouts/HubLayout.astro';
 const articles = [
-  { title: 'An Ableton project handoff that another computer can actually open', href: '/music-production/ableton-project-handoff/', description: 'Collect media, expose plug-in dependencies, print safety stems and make the next decision obvious.', meta: '8 min' },
-  { title: 'Build a small sampled instrument without losing the source', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'Keep recordings, edits, exports and Sampler mappings separate enough to revise.', meta: '10 min', label: 'Related workflow' },
-  { title: 'Music clearance for a small film before edit lock', href: '/music-for-media/music-clearance-for-small-film-projects/', description: 'Organize rights evidence before a temporary track becomes a delivery problem.', meta: '8 min', label: 'Delivery' },
+  { title: 'An Ableton project handoff that another computer can actually open', href: '/music-production/ableton-project-handoff/', description: 'Collect media, expose plug-in dependencies, print safety stems and make the next decision obvious.', meta: '8 min', answers: 'What breaks when this Project leaves my machine?' },
+  { title: 'Build a small sampled instrument without losing the source', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'Keep recordings, edits, exports and Sampler mappings separate enough to revise.', meta: '10 min', label: 'Related workflow', answers: 'Can I still change my mind about an edit next month?' },
+  { title: 'Music clearance for a small film before edit lock', href: '/music-for-media/music-clearance-for-small-film-projects/', description: 'Organize rights evidence before a temporary track becomes a delivery problem.', meta: '8 min', label: 'Delivery', answers: 'Which rights need to exist in writing before delivery?' },
 ];
 const principles = [
   { title: 'Preserve decisions', text: 'A session should explain why a track, print or version exists.' },
   { title: 'Make dependencies visible', text: 'Samples, plug-ins, hardware and rights belong in the handoff record.' },
   { title: 'Print the fragile parts', text: 'Keep editability, but render what would otherwise block the next person.' },
 ];
+const situations = [
+  { lead: 'A collaborator needs the session — and it has to work.', outcome: 'A delivery checklist for media, dependencies, safety prints and the note that explains the next decision.', href: '/music-production/ableton-project-handoff/', linkLabel: 'Handoff guide' },
+  { lead: 'A temp track is about to become a rights problem.', outcome: 'Identify the work, the recording, media, territory and term before the edit locks around it.', href: '/music-for-media/music-clearance-for-small-film-projects/', linkLabel: 'Clearance guide' },
+  { lead: 'A sampled part must stay revisable, not congealed.', outcome: 'Keep source, edits and mapping separate enough that a change stays a change, not a rebuild.', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', linkLabel: 'Sampler workflow' },
+  { lead: 'Delays should sit on the grid, not near it.', outcome: 'Note divisions in milliseconds and hertz at your tempo, with tap tempo when you only have the track.', href: '/resources/tools/delay-and-reverb/', linkLabel: 'Calculator' },
+];
+const tools = [
+  { title: 'Delay & Reverb Time', href: '/resources/tools/delay-and-reverb/', io: 'BPM → ms · Hz', note: 'Grid-locked delay times, LFO rates and reverb starting points.' },
+  { title: 'Note & Frequency', href: '/resources/tools/note-frequency/', io: 'Note ⇄ Hz ⇄ MIDI', note: 'Move between note names, MIDI numbers and frequencies while editing.' },
+];
+const terms = [
+  { term: 'Freezing', def: 'Rendering a track to audio in place so its plug-ins stop consuming CPU, while remaining reversible.', href: '/resources/glossary/#freezing' },
+  { term: 'Stem', def: 'A submix of one element delivered separately, so it can be rebalanced downstream without a remix.', href: '/resources/glossary/#stem' },
+  { term: 'Collect All and Save', def: 'The Live command that copies every referenced sample into the project folder.', href: '/resources/glossary/#collect-all-and-save' },
+  { term: 'Gain staging', def: 'Setting level at every stage so nothing clips and nothing drowns in noise later.', href: '/resources/glossary/#gain-staging' },
+  { term: 'Pre-delay', def: 'The gap between a dry signal and the first reflections of a reverb.', href: '/resources/glossary/#pre-delay' },
+];
 ---
-<HubLayout title="Music Production" description="Session architecture, collaboration and delivery for projects that need to remain understandable after the creative rush." canonicalPath="/music-production/" kicker="Workflow hub" intro="Production is the work of turning musical intent into a project another person — or your future self — can continue. These guides focus on file ownership, version clarity, reversible decisions and handoffs that survive a different machine." articles={articles} principles={principles} />
+<HubLayout title="Music Production" description="Session architecture, collaboration and delivery for projects that need to remain understandable after the creative rush." canonicalPath="/music-production/" kicker="Workflow hub" intro="Production is the work of turning musical intent into a project another person — or your future self — can continue. These guides focus on file ownership, version clarity, reversible decisions and handoffs that survive a different machine." articles={articles} principles={principles} situations={situations} tools={tools} terms={terms}>
+  <figure class="hub-motif" slot="motif">
+    <svg viewBox="0 0 360 240" fill="none" aria-hidden="true">
+      <!-- the Set at the top -->
+      <rect x="140" y="22" width="80" height="34" rx="5" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.5" />
+      <text x="158" y="43" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.5" fill="currentColor" fill-opacity="0.7">SET</text>
+      <!-- trunk and branches -->
+      <path d="M180 56 V 96 M60 128 V 112 H 300 V 128 M140 128 V 112 M220 128 V 112 M180 96 H 60 V 112 M180 96 H 300" stroke="currentColor" stroke-opacity="0.35" />
+      <!-- the four parts of a handoff -->
+      <rect x="24" y="128" width="72" height="30" rx="5" style="stroke:var(--ember-bright)" stroke-width="1.5" fill="var(--ember-bright)" fill-opacity="0.1" />
+      <text x="34" y="147" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" style="fill:var(--ember-on-dark)">SAMPLES</text>
+      <rect x="104" y="128" width="72" height="30" rx="5" stroke="currentColor" stroke-opacity="0.45" />
+      <text x="122" y="147" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">STEMS</text>
+      <rect x="184" y="128" width="72" height="30" rx="5" stroke="currentColor" stroke-opacity="0.45" />
+      <text x="202" y="147" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">NOTES</text>
+      <rect x="264" y="128" width="72" height="30" rx="5" stroke="currentColor" stroke-opacity="0.45" />
+      <text x="288" y="147" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">REF</text>
+      <!-- the machine it must open on -->
+      <path d="M60 158 V 186 H 300 V 158" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="3 5" />
+      <text x="118" y="212" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.5" fill="currentColor" fill-opacity="0.55">ANOTHER MACHINE</text>
+    </svg>
+    <figcaption>Schematic: a Set is not a package — the handoff is. Not a screenshot.</figcaption>
+  </figure>
+</HubLayout>

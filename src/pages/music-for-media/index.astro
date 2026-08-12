@@ -1,14 +1,54 @@
 ---
 import HubLayout from '../../layouts/HubLayout.astro';
 const articles = [
-  { title: 'Planning live viola for a wedding ceremony', href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', description: 'Define musical moments, flexible timings, cues and practical conditions.', meta: '7 min', label: 'Events' },
-  { title: 'Music clearance for a small film before edit lock', href: '/music-for-media/music-clearance-for-small-film-projects/', description: 'Identify the work, recording, media, territory, term and evidence before delivery.', meta: '8 min', label: 'Film' },
-  { title: 'An Ableton project handoff another computer can open', href: '/music-production/ableton-project-handoff/', description: 'Package the source, prints and notes that a collaborator needs.', meta: '8 min', label: 'Delivery' },
+  { title: 'Planning live viola for a wedding ceremony', href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', description: 'Define musical moments, flexible timings, cues and practical conditions.', meta: '7 min', label: 'Events', answers: 'Which musical moments does the ceremony actually need?' },
+  { title: 'Music clearance for a small film before edit lock', href: '/music-for-media/music-clearance-for-small-film-projects/', description: 'Identify the work, recording, media, territory, term and evidence before delivery.', meta: '8 min', label: 'Film', answers: 'What evidence must exist before the film ships?' },
+  { title: 'An Ableton project handoff another computer can open', href: '/music-production/ableton-project-handoff/', description: 'Package the source, prints and notes that a collaborator needs.', meta: '8 min', label: 'Delivery', answers: 'What does the production need to keep working without you?' },
 ];
 const principles = [
   { title: 'Brief the function', text: 'Describe what music must do before choosing a track or piece.' },
   { title: 'Plan for timing drift', text: 'Live events and picture changes need ranges and fallback decisions.' },
   { title: 'Keep rights evidence', text: 'A license is useful only if the production can find and understand it later.' },
 ];
+const situations = [
+  { lead: 'A ceremony needs live music that can flex with the schedule.', outcome: 'Musical moments, timing ranges, cue ownership and the practical conditions to agree in advance.', href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', linkLabel: 'Ceremony plan' },
+  { lead: 'A film is approaching edit lock with an uncleared track.', outcome: 'Work through work, recording, media, territory and term — and keep the evidence findable.', href: '/music-for-media/music-clearance-for-small-film-projects/', linkLabel: 'Clearance guide' },
+  { lead: 'The finished music has to reach the production intact.', outcome: 'A handoff record with prints, stems and the notes that keep the session usable without you.', href: '/music-production/ableton-project-handoff/', linkLabel: 'Handoff guide' },
+  { lead: 'You need the musician, not another guide.', outcome: 'Live viola for ceremonies and events — planned exactly the way the guide describes, played by a real violist.', href: '/services/', linkLabel: 'Work with us' },
+];
+const terms = [
+  { term: 'Sync licence', def: 'Permission to synchronise a composition with moving images — separate from the recording’s rights.', href: '/resources/glossary/#sync-licence' },
+  { term: 'Master rights', def: 'The rights in a specific recording, distinct from the composition. Both are usually needed.', href: '/resources/glossary/#master-rights' },
+  { term: 'Stem', def: 'A submix delivered separately, so the production can rebalance without a remix.', href: '/resources/glossary/#stem' },
+  { term: 'Underscore', def: 'A version mixed to sit beneath dialogue, usually with the melodic lead reduced.', href: '/resources/glossary/#underscore' },
+  { term: 'LUFS', def: 'Loudness Units relative to Full Scale — how delivery specifications describe programme loudness.', href: '/resources/glossary/#lufs' },
+];
 ---
-<HubLayout title="Music for Media & Events" description="Briefing, rights and live-performance planning for films, ceremonies and projects where music must answer to a larger timeline." canonicalPath="/music-for-media/" kicker="Application hub" intro="Music for a film or event is never only a file. It has a function, a timing relationship, practical constraints and often a rights record. These guides make those dependencies visible before they become last-minute problems." articles={articles} principles={principles} />
+<HubLayout title="Music for Media & Events" description="Briefing, rights and live-performance planning for films, ceremonies and projects where music must answer to a larger timeline." canonicalPath="/music-for-media/" kicker="Application hub" intro="Music for a film or event is never only a file. It has a function, a timing relationship, practical constraints and often a rights record. These guides make those dependencies visible before they become last-minute problems." articles={articles} principles={principles} situations={situations} terms={terms}>
+  <figure class="hub-motif" slot="motif">
+    <svg viewBox="0 0 360 240" fill="none" aria-hidden="true">
+      <!-- the larger timeline music answers to -->
+      <path d="M20 110 H 340" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.5" />
+      {[20, 84, 148, 212, 276, 340].map((x) => (
+        <path d={`M${x} 104 V 116`} stroke="currentColor" stroke-opacity="0.4" />
+      ))}
+      <!-- cues -->
+      <circle cx="84" cy="110" r="5" fill="currentColor" fill-opacity="0.6" />
+      <circle cx="192" cy="110" r="5" style="fill:var(--ember-bright)" />
+      <circle cx="276" cy="110" r="5" fill="currentColor" fill-opacity="0.6" />
+      <text x="70" y="90" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">CUE 1</text>
+      <text x="178" y="90" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" style="fill:var(--ember-on-dark)">CUE 2</text>
+      <text x="262" y="90" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">CUE 3</text>
+      <!-- the flexible range around the copper cue -->
+      <path d="M160 132 h -8 v 12 h 8 M224 132 h 8 v 12 h -8" style="stroke:var(--ember-bright)" stroke-width="1.25" />
+      <path d="M166 138 H 218" style="stroke:var(--ember-bright)" stroke-opacity="0.6" stroke-dasharray="3 4" />
+      <text x="150" y="164" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" style="fill:var(--ember-on-dark)">FLEX RANGE</text>
+      <!-- what underlies it all: function + rights -->
+      <rect x="20" y="186" width="152" height="26" rx="4" stroke="currentColor" stroke-opacity="0.35" />
+      <text x="34" y="203" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">FUNCTION · BRIEF</text>
+      <rect x="188" y="186" width="152" height="26" rx="4" stroke="currentColor" stroke-opacity="0.35" />
+      <text x="202" y="203" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">RIGHTS · EVIDENCE</text>
+    </svg>
+    <figcaption>Schematic: cues on someone else’s timeline, with room to breathe. Not a running order.</figcaption>
+  </figure>
+</HubLayout>

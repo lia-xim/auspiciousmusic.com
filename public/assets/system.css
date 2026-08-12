@@ -9,62 +9,87 @@
 /* ---------------------------------------------------------------- tokens */
 @layer tokens {
   :root {
-    /* ─── Palette, revision 2 ────────────────────────────────────────
-     * The first pass ran #f5f5f7 + white + one indigo. Accurate to the
-     * brief, but the result read as clinical rather than editorial —
-     * a neutral that bright with no second temperature anywhere has
-     * nothing to push against.
+    /* ─── Palette, revision 3 — "Ink Stage / Paper Study" ────────────
+     * Revision 2 was one paper neutral with two accent axes. Correct as
+     * a system, flat as a page: canvas and surface sat 4% apart, the
+     * string field whispered at 13% ink, and nothing on the site cast
+     * light or shadow. Revision 3 keeps the two-axis discipline and adds
+     * the third thing a stage needs: darkness.
      *
-     * Two changes, both structural rather than decorative:
+     * The model is five distinguishable elevations:
      *
-     * 1. The canvas moves to a paper neutral (#edece8). It is roughly
-     *    5% darker and a few points warmer than before — enough to read
-     *    as stock rather than as a screen default, and far away from the
-     *    cream/beige register that would make it cosy.
+     *   stage-deep → stage → stage-raised     the ink-black theatre where
+     *                                         sound happens: hero, lab,
+     *                                         tool consoles, error pages,
+     *                                         footer
+     *   tint                                  a warm workbench plane for
+     *                                         tools and annotations
+     *   canvas → surface → surface-bright     the ivory paper where the
+     *                                         editorial work is read
      *
-     * 2. A second accent axis is introduced, with a strict split of
-     *    meaning so this stays a system and not a palette:
-     *       indigo  → action and navigation (links, CTAs, focus)
-     *       ember   → archive and material (legacy flags, the rail node,
-     *                 historic metadata, the hero's warm reflection)
-     *    No element may use both. If a colour cannot be assigned to one
-     *    of these two jobs, it stays neutral.
+     * The accent split survives unchanged in meaning:
+     *   signal (cool blue)  → action and navigation only
+     *   copper (warm metal) → material, archive, the strings themselves
+     * No element may use both. Every text/background pair below clears
+     * WCAG AA; the arithmetic lives in the design notes.
      */
-    --canvas: #edece8;          /* paper neutral */
-    --surface: #f8f7f4;         /* lifted band */
-    --surface-bright: #ffffff;  /* the brightest step, used sparingly */
-    --ink: #16161a;             /* 15.3:1 on canvas */
-    --ink-soft: #35353c;
-    --muted: #67676d;           /* 4.75:1 on canvas — holds at 13px */
-    --line: rgba(22, 22, 26, 0.13);
-    --line-strong: rgba(22, 22, 26, 0.24);
 
-    /* Action axis */
-    --accent: #4a45d6;          /* 5.71:1 on canvas · 6.30:1 on surface */
-    --accent-hover: #3b37b5;
-    --accent-on: #ffffff;
+    /* Paper — the editorial world */
+    --canvas: #f1eee6;          /* soft ivory · ink 15.7:1 */
+    --surface: #f9f7f2;         /* lifted band */
+    --surface-bright: #ffffff;  /* brightest step, used sparingly */
+    --tint: #e5dfd1;            /* warm workbench plane · ink 13.7:1 */
+    --ink: #14151c;             /* ink with the stage's blue cast */
+    --ink-soft: #34353f;
+    --muted: #5d5e69;           /* 5.5:1 on canvas · 4.8:1 on tint */
+    --line: rgba(20, 21, 28, 0.14);
+    --line-strong: rgba(20, 21, 28, 0.26);
 
-    /* Material axis. Two light-mode values because the fill weight and
-       the text weight cannot be the same colour and both clear AA. */
-    --ember: #a3441a;           /* 5.20:1 on canvas — text and rules */
-    --ember-bright: #c05621;    /* fills, markers, the rail node */
+    /* Stage — the ink-black theatre */
+    --stage: #0d0f16;           /* near-black with a navy/ink cast */
+    --stage-deep: #090a10;      /* vignette floor */
+    --stage-raised: #161925;    /* raised plane: cards, consoles */
+    --stage-high: #1e2231;      /* second lift: inputs, hovers */
+    --stage-text: #f3f0e9;      /* ivory · 16.8:1 on stage */
+    --stage-muted: #9fa1af;     /* 7.5:1 on stage · 6.2:1 on high */
+    --stage-line: rgba(243, 240, 233, 0.15);
+    --stage-line-soft: rgba(243, 240, 233, 0.07);
 
-    --dark: #0b0b0d;
-    --dark-surface: #17171b;
-    --dark-text: #f4f3f0;
+    /* Action axis — cool signal blue, links and CTAs only */
+    --accent: #2b4fd7;          /* 5.7:1 on canvas · 4.9:1 on tint */
+    --accent-hover: #2340b8;
+    --accent-on: #ffffff;       /* 6.6:1 on accent */
+    --accent-on-dark: #9db4ff;  /* 9.5:1 on stage */
 
-    /* Dark-band variants. Both base accents fall below the AA floor on
-       --dark (indigo 3.8:1, ember 4.3:1), so each gets a lifted twin. */
-    --accent-on-dark: #9698ee;  /* 7.5:1 on --dark */
-    --ember-on-dark: #e07a3c;   /* 6.6:1 on --dark */
-    --dark-muted: #92929a;      /* 6.4:1 on --dark */
-    --dark-line: rgba(244, 243, 240, 0.14);
-    --dark-line-soft: rgba(244, 243, 240, 0.08);
+    /* Material axis — copper, the colour of a wound string */
+    --ember: #9c4513;           /* text weight · 5.5:1 canvas · 4.8:1 tint */
+    --ember-bright: #c4681f;    /* fills, markers, the string's glow */
+    --ember-on-dark: #e0995c;   /* 8.1:1 on stage */
+
+    /* Legacy aliases — every page written against revision 2 keeps
+       working; the values now point into the stage model. */
+    --dark: var(--stage);
+    --dark-surface: var(--stage-raised);
+    --dark-text: var(--stage-text);
+    --dark-muted: var(--stage-muted);
+    --dark-line: var(--stage-line);
+    --dark-line-soft: var(--stage-line-soft);
 
     /* Status — legacy + download surfaces only, never decorative */
     --status-ok: #1a7f45;
-    --status-off: #67676d;
+    --status-off: #5d5e69;
     --status-ext: #2f5fbf;
+
+    /* Light — how a plane says which way is up. The stage is lit from
+       high centre like a rehearsal room; paper takes no gradient at all,
+       it is matte by definition. Grain is a hand-authored SVG turbulence
+       tile at ~4% so large dark planes read as material, not as #000. */
+    --light-stage:
+      radial-gradient(120% 90% at 50% -20%,
+        rgba(243, 240, 233, 0.085), transparent 62%),
+      radial-gradient(80% 60% at 85% 110%,
+        rgba(43, 79, 215, 0.05), transparent 70%);
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 
     /* Type families */
     --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -101,6 +126,10 @@
     --r-md: 16px;
     --r-lg: 20px;
     --r-media: 28px;
+    --r-control: 12px;           /* inputs, selects, search fields */
+
+    /* How far a paper section pulls itself over a stage plane */
+    --sheet-overlap: 3.5rem;
 
     /* Vertical rhythm — deliberately three distinct steps so sections
        never share one identical spacing signature. */
@@ -108,9 +137,14 @@
     --band-base: clamp(4.5rem, 9vw, 8rem);
     --band-wide: clamp(6rem, 12vw, 11rem);
 
-    /* Depth — restrained, two levels only */
-    --shadow-media: 0 24px 60px -28px rgba(16, 17, 20, 0.32);
-    --shadow-lift: 0 12px 28px -18px rgba(16, 17, 20, 0.26);
+    /* Depth — three levels plus the paper edge. Shadows are cast by the
+       ink of this palette, never by grey, so they stay warm on paper and
+       read as stage darkness on the stage. */
+    --shadow-lift: 0 12px 28px -18px rgba(13, 15, 22, 0.28);
+    --shadow-media: 0 24px 60px -28px rgba(13, 15, 22, 0.34);
+    --shadow-float: 0 32px 80px -32px rgba(13, 15, 22, 0.45);
+    /* The sheet edge: cast upward by a paper plane overlapping the stage */
+    --shadow-sheet: 0 -24px 60px -30px rgba(9, 10, 16, 0.55);
 
     /* Motion — matches the 450–900ms window in the brief */
     --dur-fast: 180ms;
@@ -169,12 +203,13 @@
     font-size: var(--t-body);
     line-height: var(--lh-body);
     font-synthesis-weight: none;
+    font-optical-sizing: auto; /* Inter's opsz axis carries the display cut */
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4 {
-    font-weight: 590;
+    font-weight: 615;
     line-height: var(--lh-heading);
     letter-spacing: var(--tr-heading);
     text-wrap: balance;
@@ -222,13 +257,172 @@
   .band--tight { padding-block: var(--band-tight); }
   .band--wide { padding-block: var(--band-wide); }
 
+  /* The stage. Every dark plane on the site is this one material: ink
+     black with a navy cast, lit from high centre, with a breath of grain
+     so it reads as a room rather than as a hex value. Positioned so the
+     grain pseudo-element can sit behind the content. */
   .band-dark {
-    background: var(--dark);
+    position: relative;
+    background-color: var(--stage);
+    background-image: var(--light-stage);
     color: var(--dark-text);
   }
+  .band-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--grain);
+    background-size: 160px 160px;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+  .band-dark > * { position: relative; }
   .band-dark h1, .band-dark h2, .band-dark h3 { color: var(--dark-text); }
 
   .band-surface { background: var(--surface); }
+
+  /* The workbench — the warm tinted plane between paper and stage.
+     Tools live here; so do annotations that should feel material. */
+  .band-tint { background: var(--tint); }
+
+  /* The paper edge. A light section that follows a stage section pulls
+     itself up over the dark plane like a sheet laid on the stage floor —
+     the one overlap the design allows itself, and the reason the next
+     section is already visible inside the hero viewport. */
+  .sheet-lift {
+    position: relative;
+    z-index: 2;
+    margin-top: calc(-1 * var(--sheet-overlap, 3.5rem));
+    border-radius: var(--r-media) var(--r-media) 0 0;
+    background: var(--canvas);
+    box-shadow: var(--shadow-sheet);
+  }
+
+  /* ---- cards & app frames ----
+     The reference language: content sits in lifted panels with real depth
+     instead of hairline rows. Cards are paper lifted off the canvas;
+     app frames are pieces of the stage — small working instruments. */
+  .card {
+    background: var(--surface-bright);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-lift);
+    transition: transform var(--dur-base) var(--ease),
+                box-shadow var(--dur-base) var(--ease);
+  }
+  a.card { display: block; text-decoration: none; color: inherit; }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    a.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-media); }
+  }
+
+  .app-frame {
+    position: relative;
+    background:
+      linear-gradient(178deg, var(--stage-raised), var(--stage) 62%);
+    color: var(--stage-text);
+    border: 1px solid var(--stage-line-soft);
+    border-radius: var(--r-lg);
+    box-shadow:
+      inset 0 1px 0 rgba(243, 240, 233, 0.07),
+      var(--shadow-float);
+    overflow: clip;
+  }
+  .app-frame__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--stage-line-soft);
+  }
+  .app-frame__dots { display: inline-flex; gap: 5px; }
+  .app-frame__dots i {
+    inline-size: 8px;
+    block-size: 8px;
+    border-radius: 50%;
+    background: var(--stage-line);
+  }
+  .app-frame__title {
+    font-family: var(--font-mono);
+    font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta);
+    color: var(--stage-muted);
+  }
+
+  /* Honest stat tiles — every number on them is counted, not claimed. */
+  .stat-tile {
+    display: grid;
+    gap: 0.125rem;
+    padding: 0.875rem 1.125rem;
+    border: 1px solid var(--stage-line-soft);
+    border-radius: var(--r-md);
+    background: color-mix(in srgb, var(--stage-raised) 72%, transparent);
+    backdrop-filter: blur(4px);
+  }
+  .stat-tile strong {
+    font-size: clamp(1.375rem, 1.15rem + 0.8vw, 1.75rem);
+    font-weight: 640;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--stage-text);
+  }
+  .stat-tile span {
+    font-family: var(--font-mono);
+    font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta);
+    color: var(--stage-muted);
+    white-space: nowrap;
+  }
+
+  /* Soft ambient light on paper bands — the pale counterpart of the stage
+     light, so bright sections stop reading as flat fills. */
+  .band--glow {
+    background-image:
+      radial-gradient(56% 42% at 8% 0%, rgba(43, 79, 215, 0.055), transparent 70%),
+      radial-gradient(50% 40% at 96% 100%, rgba(196, 104, 31, 0.06), transparent 70%);
+  }
+
+  /* Staff motif — five hairlines with graded spacing, the string field
+     reduced to a mark. Decorates section heads on paper planes; never
+     carries information. */
+  .staff {
+    position: relative;
+    block-size: 22px;
+    inline-size: 100%;
+    background:
+      linear-gradient(var(--line-strong), var(--line-strong)) 0 0 / 100% 1px,
+      linear-gradient(var(--line), var(--line)) 0 6px / 100% 1px,
+      linear-gradient(var(--line), var(--line)) 0 11px / 100% 1px,
+      linear-gradient(var(--line), var(--line)) 0 15px / 100% 1px,
+      linear-gradient(var(--line), var(--line)) 0 18px / 100% 1px;
+    background-repeat: no-repeat;
+  }
+  .staff::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: var(--staff-node-x, 18%);
+    inline-size: 7px;
+    block-size: 7px;
+    border-radius: 50%;
+    background: var(--ember-bright);
+  }
+  /* The staff draws itself as it scrolls into view, the node travelling
+     to its seat — scroll-driven, no JS; browsers without view() timelines
+     simply see the finished mark. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .staff {
+        animation: staff-draw both;
+        animation-timeline: view();
+        animation-range: entry 10% entry 90%;
+      }
+      .staff::after {
+        animation: staff-node both;
+        animation-timeline: view();
+        animation-range: entry 10% entry 90%;
+      }
+    }
+  }
 
   /* Hairline that separates bands without drawing a box around them */
   .rule { border-top: 1px solid var(--line); }
@@ -270,13 +464,13 @@
     background: color-mix(in srgb, var(--canvas) 94%, transparent);
   }
 
-  /* Pages that open on graphite mark the header [data-over-dark]. It takes
-     the dark surface itself rather than going transparent — the header is
-     sticky, so it occupies space above the hero rather than floating over
-     it, and transparency would show the page canvas instead of the scene.
-     Past 64px it resolves into the normal light surface. */
+  /* Pages that open on the stage mark the header [data-over-dark]. The
+     header goes transparent and the stage scene extends underneath it
+     (the scene pulls itself up by the header's height), so the light and
+     the string field own the full first viewport. Once the scene has
+     scrolled past, the header resolves into the normal paper surface. */
   .site-header[data-over-dark]:not(.is-scrolled) {
-    background: var(--dark);
+    background: transparent;
     backdrop-filter: none;
     color: var(--dark-text);
   }
@@ -326,7 +520,96 @@
   .nav a[aria-current="page"] { color: var(--ink); font-weight: 550; }
   .nav a[aria-current="page"]::after { transform: scaleX(1); }
 
+  /* ---- dropdown panels ----
+     Each main topic opens a piece of the stage below the header: the same
+     ink material as the hero and the footer, floating above the paper.
+     Pure CSS — hover for the pointer, focus-within for the keyboard; the
+     top-level link itself stays an ordinary link to the hub. */
+  .nav-group { position: relative; }
+  /* The hover underline stops before the caret instead of striking it. */
+  .nav-group > a::after { right: 1.05rem; }
+  .nav-caret {
+    inline-size: 9px;
+    block-size: 6px;
+    margin-left: 0.375rem;
+    vertical-align: 0.125rem;
+    opacity: 0.6;
+    transition: transform var(--dur-fast) var(--ease);
+  }
+  .nav-group:hover > a .nav-caret,
+  .nav-group:focus-within > a .nav-caret { transform: rotate(180deg); }
+  .nav-drop {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 0.75rem;             /* hover bridge between link and panel */
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 6px;
+    transition: opacity var(--dur-fast) var(--ease),
+                translate var(--dur-fast) var(--ease),
+                visibility var(--dur-fast);
+    z-index: 70;
+  }
+  .nav-group:hover .nav-drop,
+  .nav-group:focus-within .nav-drop {
+    opacity: 1;
+    visibility: visible;
+    translate: 0 0;
+  }
+  .nav-drop ul {
+    display: grid;
+    gap: 0.125rem;
+    min-inline-size: 19rem;
+    padding: 0.625rem;
+    /* Raised two steps above the stage so the panel keeps a visible edge
+       even when it opens over a dark hero — same ink family, clearly its
+       own surface. */
+    background: linear-gradient(178deg, var(--stage-high), var(--stage-raised) 70%);
+    border: 1px solid var(--stage-line);
+    border-radius: var(--r-md);
+    box-shadow:
+      inset 0 1px 0 rgba(243, 240, 233, 0.08),
+      0 0 0 1px rgba(9, 10, 16, 0.65),
+      var(--shadow-float);
+  }
+  .nav-drop a:hover { background: color-mix(in srgb, var(--stage-text) 12%, transparent); }
+  .nav-drop a {
+    display: grid;
+    gap: 0.125rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--r-sm);
+    color: var(--stage-text);
+    font-weight: 500;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .nav-drop a::after { content: none; }   /* no underline animation inside the panel */
+  .nav-drop a:hover { background: var(--stage-high); color: var(--stage-text); }
+  .nav-drop__label { font-size: var(--t-ui-sm); letter-spacing: -0.005em; }
+  .nav-drop__note {
+    font-family: var(--font-mono);
+    font-size: var(--t-meta);
+    letter-spacing: var(--tr-meta);
+    color: var(--stage-muted);
+  }
+  .nav-drop :focus-visible { outline-color: var(--accent-on-dark); }
+
   .header-tools { display: flex; align-items: center; gap: 0.25rem; }
+
+  /* The one commercial action the site leads to, carried in the header
+     like the reference layouts carry theirs. Hidden while the burger
+     handles narrow widths — the sheet lists it first instead. */
+  .header-cta { display: none; }
+  @media (min-width: 1240px) {
+    .header-cta {
+      display: inline-flex;
+      min-block-size: 40px;
+      padding-inline: 1.125rem;
+      margin-right: 0.5rem;
+      font-size: var(--t-ui-sm);
+    }
+  }
 
   .icon-btn {
     display: inline-grid;
@@ -350,12 +633,16 @@
     .menu-btn { display: none; }
   }
 
-  /* ---- mobile sheet ---- */
+  /* ---- mobile sheet ----
+     The menu is the curtain: the stage material drops over the page.
+     Ivory navigation at display size, lit from above like the hero. */
   .sheet {
     position: fixed;
     inset: 0;
     z-index: 60;
-    background: var(--canvas);
+    background-color: var(--stage);
+    background-image: var(--light-stage);
+    color: var(--stage-text);
     display: grid;
     grid-template-rows: auto 1fr auto;
     opacity: 0;
@@ -364,6 +651,10 @@
   }
   .sheet[data-open="true"],
   .sheet:target { opacity: 1; visibility: visible; }
+  .sheet .brand { color: var(--stage-text); }
+  .sheet .icon-btn { color: var(--stage-muted); }
+  .sheet .icon-btn:hover { color: var(--stage-text); background: var(--stage-line-soft); }
+  .sheet :focus-visible { outline-color: var(--accent-on-dark); }
   .sheet__head {
     display: flex;
     align-items: center;
@@ -379,16 +670,55 @@
     display: block;
     text-decoration: none;
     font-size: clamp(1.75rem, 7vw, 2.5rem);
-    font-weight: 590;
+    font-weight: 615;
     letter-spacing: var(--tr-heading);
     padding-block: 0.5rem;
-    color: var(--ink);
+    color: var(--stage-text);
   }
+  .sheet nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+
+  /* Grouped curtain: each topic is a fold that opens onto its pages. */
+  .sheet__nav { overflow-y: auto; min-block-size: 0; }
+  .sheet-group summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+    font-weight: 615;
+    letter-spacing: var(--tr-heading);
+    padding-block: 0.5rem;
+    color: var(--stage-text);
+  }
+  .sheet-group summary::-webkit-details-marker { display: none; }
+  .sheet-group summary .nav-caret {
+    inline-size: 14px;
+    block-size: 9px;
+    opacity: 0.55;
+    transition: transform var(--dur-fast) var(--ease);
+  }
+  .sheet-group[open] summary .nav-caret { transform: rotate(180deg); }
+  .sheet-group ul {
+    padding: 0.25rem 0 1rem 1rem;
+    gap: 0.125rem;
+    border-left: 1px solid var(--stage-line);
+    margin-left: 0.125rem;
+  }
+  .sheet-group ul a {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    padding-block: 0.4375rem;
+    color: color-mix(in srgb, var(--stage-text) 82%, transparent);
+  }
+  .sheet-group ul a:hover { color: var(--stage-text); }
+  .sheet-link { display: block; font-size: clamp(1.5rem, 6vw, 2.25rem); font-weight: 615; }
   .sheet__foot {
     padding-block: 1.75rem;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--stage-line);
     font-size: var(--t-ui-sm);
-    color: var(--muted);
+    color: var(--stage-muted);
   }
 
   /* ---- actions ---- */
@@ -411,7 +741,11 @@
   }
   .btn:active { transform: translateY(1px); }
 
-  .btn--primary { background: var(--accent); color: var(--surface); }
+  .btn--primary {
+    background: var(--accent);
+    color: var(--accent-on);
+    box-shadow: 0 8px 20px -10px rgba(43, 79, 215, 0.55);
+  }
   .btn--primary:hover { background: var(--accent-hover); }
 
   .btn--quiet {
@@ -445,6 +779,24 @@
   .link svg { width: 14px; height: 14px; flex: none; }
   .band-dark .link { color: var(--dark-text); border-bottom-color: var(--dark-line); }
   .band-dark .link:hover { border-bottom-color: var(--dark-text); }
+
+  /* ---- page heads ----
+     The shared opening zone of every non-home page. Base values live here
+     so a page that declares no head styles of its own (search) still
+     opens correctly; page CSS may refine on top. */
+  .pg-head { padding-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem); }
+  .pg-head h1 { max-width: 18ch; margin-top: 1.25rem; }
+  .pg-head .lede { margin-top: 1.5rem; max-width: 58ch; }
+  .pg-head--dark {
+    position: relative;
+    background-color: var(--stage);
+    background-image: var(--light-stage);
+    color: var(--stage-text);
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+  }
+  .pg-head--dark .crumbs { color: var(--stage-muted); }
+  .pg-head--dark .crumbs a:hover { color: var(--stage-text); }
+  .pg-head--dark .lede { color: var(--stage-muted); }
 
   /* ---- editorial primitives ---- */
   .kicker {
@@ -594,6 +946,9 @@
     transition: background-color var(--dur-fast) var(--ease);
   }
   .index a:hover { background: var(--surface); }
+  /* On a band that is already the lifted surface, the hover steps up to
+     the next elevation instead of disappearing into its own background. */
+  .band-surface .index a:hover { background: var(--surface-bright); }
   .index h3 {
     font-size: clamp(1.1875rem, 1.05rem + 0.55vw, 1.5rem);
     letter-spacing: -0.014em;
@@ -632,16 +987,34 @@
   .tool-head h1 { max-width: 20ch; margin-top: 1.25rem; font-size: var(--t-h2); }
   .tool-head .lede { margin-top: 1.25rem; max-width: 56ch; }
 
-  /* The control strip — dark, so the instrument reads as separate from
-     the article prose that explains it below. */
+  /* The control strip — a piece of the stage set down on the paper.
+     Same material as the hero and the footer (ink, top light, grain),
+     floating above the page rather than printed onto it, so the
+     instrument reads as hardware and the prose below stays prose. */
   .console {
-    background: var(--dark);
+    position: relative;
+    background-color: var(--stage);
+    background-image: var(--light-stage);
     color: var(--dark-text);
+    border: 1px solid var(--stage-line-soft);
     border-radius: var(--r-lg);
     padding: clamp(1.5rem, 3vw, 2.25rem);
     display: grid;
     gap: clamp(1.25rem, 2.5vw, 1.75rem);
+    box-shadow: var(--shadow-float);
+    overflow: clip;
   }
+  .console::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--grain);
+    background-size: 160px 160px;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+  .console > * { position: relative; }
+  .console :focus-visible { outline-color: var(--accent-on-dark); }
   .console__row {
     display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1.25rem 2rem;
   }
@@ -799,12 +1172,30 @@
   }
   .embed__note a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
-  /* ---- footer ---- */
+  /* ---- footer ----
+     The site ends where it began: on the stage. Lit from below the
+     horizon rather than from above — the house lights going down. */
   .site-footer {
-    background: var(--surface);
-    border-top: 1px solid var(--line);
-    padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+    position: relative;
+    background-color: var(--stage);
+    background-image:
+      radial-gradient(140% 100% at 50% 130%,
+        rgba(243, 240, 233, 0.07), transparent 60%);
+    color: var(--stage-text);
+    border-top: 1px solid var(--stage-line-soft);
+    padding-block: clamp(3.5rem, 7vw, 5.5rem) 2rem;
   }
+  .site-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--grain);
+    background-size: 160px 160px;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+  .site-footer > * { position: relative; }
+  .site-footer .brand { color: var(--stage-text); }
   .footer-grid {
     display: grid;
     gap: 2.5rem 2rem;
@@ -814,7 +1205,7 @@
     font-size: var(--t-meta);
     font-family: var(--font-mono);
     letter-spacing: var(--tr-meta);
-    color: var(--muted);
+    color: var(--stage-muted);
     font-weight: 500;
     margin-bottom: 1rem;
   }
@@ -822,10 +1213,11 @@
   .footer-grid a {
     text-decoration: none;
     font-size: var(--t-ui-sm);
-    color: var(--ink-soft);
+    color: color-mix(in srgb, var(--stage-text) 80%, transparent);
     transition: color var(--dur-fast) var(--ease);
   }
-  .footer-grid a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .footer-grid a:hover { color: var(--stage-text); text-decoration: underline; text-underline-offset: 3px; }
+  .site-footer :focus-visible { outline-color: var(--accent-on-dark); }
 
   .footer-base {
     display: flex;
@@ -835,9 +1227,9 @@
     align-items: center;
     margin-top: clamp(2.5rem, 5vw, 4rem);
     padding-top: 1.75rem;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--stage-line);
     font-size: var(--t-meta);
-    color: var(--muted);
+    color: var(--stage-muted);
   }
 
   /* ---- relaunch notice ---- */
@@ -923,6 +1315,60 @@
   @media (min-width: 1240px) {
     .rail { display: block; }
   }
+}
+
+/* ---------------------------------------------------------- forced colors */
+/* Windows High Contrast removes every background colour and image. The
+   palette's job transfers to the system palette; what must survive is
+   shape: controls keep a border (transparent borders become visible in
+   forced-colors mode), and the decorative canvas field simply disappears
+   with its background. */
+@media (forced-colors: active) {
+  .btn,
+  .icon-btn,
+  .field input,
+  .field select,
+  .search input,
+  .search-row input,
+  .stepper button,
+  .tap button { border: 1px solid transparent; }
+  .btn--primary { border-width: 2px; }
+}
+
+/* ------------------------------------------------------------ stage light */
+/* On devices with a real pointer, the stage answers it: a soft pool of
+   light follows the cursor across every dark plane. The coordinates come
+   from motion.js as custom properties; without JS nothing renders. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hero::after,
+  .band-dark::after,
+  .site-footer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+      460px circle at var(--px, 50%) var(--py, -30%),
+      rgba(243, 240, 233, 0.055),
+      transparent 65%
+    );
+    opacity: 0;
+    transition: opacity 700ms var(--ease);
+  }
+  .hero:hover::after,
+  .band-dark:hover::after,
+  .site-footer:hover::after { opacity: 1; }
+}
+
+@keyframes staff-draw {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes staff-node {
+  from { left: 0%; opacity: 0; }
+  40% { opacity: 1; }
+  to { left: var(--staff-node-x, 18%); opacity: 1; }
 }
 
 /* ---------------------------------------------------------------- motion */

@@ -1,7 +1,10 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 
-interface ArticleLink { title: string; href: string; description: string; meta: string; label?: string; }
+interface ArticleLink { title: string; href: string; description: string; meta: string; label?: string; answers?: string; }
+interface Situation { lead: string; outcome: string; href: string; linkLabel: string; }
+interface HubTool { title: string; href: string; io: string; note: string; }
+interface Term { term: string; def: string; href: string; }
 interface Props {
   title: string;
   description: string;
@@ -10,17 +13,112 @@ interface Props {
   intro: string;
   articles: ArticleLink[];
   principles: { title: string; text: string }[];
+  /** Concrete situations a reader arrives with, each resolving to a real page. */
+  situations?: Situation[];
+  /** Calculators that belong on this hub's workbench. */
+  tools?: HubTool[];
+  /** Glossary terms this hub leans on, deep-linked into /resources/glossary/. */
+  terms?: Term[];
 }
-const { title, description, canonicalPath, kicker, intro, articles, principles } = Astro.props;
+const { title, description, canonicalPath, kicker, intro, articles, principles, situations = [], tools = [], terms = [] } = Astro.props;
 ---
 
-<BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang="en">
+<BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang="en" headerOverDark={true}>
   <Fragment slot="head">
     <style is:global>
       @layer components {
-        .hub-head { padding-block: clamp(2.5rem, 6vw, 5.5rem); border-bottom: 1px solid var(--line); }
-        .hub-head h1 { max-width: 16ch; margin-top: 1.2rem; }
-        .hub-head .lede { max-width: 58ch; margin-top: 1.5rem; }
+        /* ── head: every hub opens like the landing page ─────────────────
+           The ink stage under a transparent header, editorial copy on the
+           left, the hub's schematic floating on the right as an app panel,
+           and the next section laying its paper edge over the stage. */
+        .hub-head {
+          position: relative;
+          overflow: clip;
+          margin-top: calc(-1 * var(--header-h));
+          padding-top: calc(var(--header-h) + clamp(1.5rem, 4vh, 3rem));
+          padding-bottom: calc(var(--sheet-overlap) + clamp(2.5rem, 5vh, 4rem));
+          background-color: var(--stage);
+          background-image:
+            radial-gradient(110% 85% at 50% -18%, rgba(243, 240, 233, 0.10), transparent 62%),
+            radial-gradient(70% 55% at 88% 108%, rgba(43, 79, 215, 0.07), transparent 70%),
+            linear-gradient(var(--stage-deep), var(--stage) 26%, var(--stage) 80%, var(--stage-deep));
+          color: var(--stage-text);
+        }
+        .hub-head::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: var(--grain);
+          background-size: 160px 160px;
+          opacity: 0.05;
+          pointer-events: none;
+        }
+        .hub-head > * { position: relative; }
+        .hub-head .kicker { color: var(--stage-muted); }
+        .hub-head :focus-visible { outline-color: var(--accent-on-dark); }
+        .hub-head__grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); align-items: center; }
+        @media (min-width: 1000px) {
+          .hub-head__grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
+        }
+        .hub-head h1 {
+          max-width: 16ch;
+          margin-top: 1.2rem;
+          font-size: clamp(2.5rem, 1.2rem + 4.6vw, 4.75rem);
+          line-height: 0.98;
+          letter-spacing: -0.038em;
+          font-weight: 640;
+          color: var(--stage-text);
+        }
+        .hub-head .lede { max-width: 50ch; margin-top: 1.5rem; color: var(--stage-muted); }
+        .hub-stats {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, max-content));
+          gap: 0.75rem;
+          margin-top: clamp(1.75rem, 3.5vh, 2.5rem);
+        }
+        @media (max-width: 520px) { .hub-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+        /* The schematic floats like the landing console: an app frame with
+           a soft light pool behind it. */
+        .hub-motif-wrap { position: relative; }
+        .hub-motif-wrap::before {
+          content: "";
+          position: absolute;
+          inset: -12% -8%;
+          background:
+            radial-gradient(52% 48% at 32% 30%, rgba(43, 79, 215, 0.28), transparent 68%),
+            radial-gradient(46% 44% at 74% 80%, rgba(196, 104, 31, 0.22), transparent 70%);
+          filter: blur(6px);
+          pointer-events: none;
+        }
+        .hub-motif-panel { max-inline-size: 33rem; margin-inline: auto; }
+        @media (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+          .hub-motif-panel {
+            transform: perspective(1400px) rotateY(-7deg) rotateX(2deg);
+            transition: transform 700ms var(--ease);
+          }
+          .hub-motif-panel:hover { transform: perspective(1400px) rotateY(-2deg) rotateX(0.5deg); }
+        }
+        .hub-motif { padding: clamp(1.25rem, 2.5vw, 1.75rem); }
+        .hub-motif svg { width: 100%; height: auto; display: block; color: var(--stage-text); }
+        .hub-motif figcaption {
+          margin-top: 1rem;
+          font-family: var(--font-mono); font-size: var(--t-meta);
+          letter-spacing: var(--tr-meta); color: var(--stage-muted); line-height: 1.5;
+        }
+        /* The diagram wipes in like a plot being drawn, once, on arrival. */
+        @media (prefers-reduced-motion: no-preference) {
+          .hub-motif svg {
+            animation: motif-draw 900ms var(--ease-out) 180ms both;
+          }
+          @keyframes motif-draw {
+            from { clip-path: inset(0 100% 0 0); opacity: 0.4; }
+            to { clip-path: inset(0 0 0 0); opacity: 1; }
+          }
+        }
+
+        /* ── intro + principles on the paper edge ── */
+        .hub-intro-band { padding-top: clamp(2.5rem, 5vw, 4rem); }
         .hub-intro { display: grid; gap: 2rem 5rem; align-items: start; }
         @media (min-width: 900px) { .hub-intro { grid-template-columns: minmax(0, 1.1fr) minmax(18rem, .9fr); } }
         .hub-intro > p { color: var(--ink-soft); font-size: clamp(1.15rem, 1rem + .45vw, 1.35rem); max-width: 52ch; }
@@ -28,23 +126,217 @@ const { title, description, canonicalPath, kicker, intro, articles, principles }
         .principles li { display: grid; gap: .35rem; padding-block: 1rem; border-bottom: 1px solid var(--line); }
         .principles strong { font-size: 1rem; }
         .principles span { color: var(--muted); font-size: .95rem; line-height: 1.55; }
-        .article-list { border-top: 1px solid var(--line-strong); }
-        .article-list li { border-bottom: 1px solid var(--line); }
+
+        /* ── what's in front of you: intent cards ── */
+        .paths-grid { display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
+        @media (min-width: 860px) { .paths-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .paths-card { display: grid; gap: 0.625rem; align-content: start; padding: clamp(1.5rem, 3vw, 2rem); }
+        .paths-card strong {
+          font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem);
+          letter-spacing: -0.016em; font-weight: 615; line-height: 1.25;
+          text-wrap: pretty;
+        }
+        .paths-card p { color: var(--muted); font-size: 1rem; line-height: 1.55; max-width: 48ch; }
+        .paths-card .paths__go {
+          display: inline-flex; align-items: center; gap: 0.4375rem;
+          font-family: var(--font-mono); font-size: var(--t-meta);
+          letter-spacing: var(--tr-meta); color: var(--ink-soft);
+          margin-top: 0.25rem;
+          transition: color var(--dur-fast) var(--ease);
+        }
+        .paths-card:hover .paths__go { color: var(--ember); }
+
+        /* ── guides: the question first, in a lifted panel ── */
+        .article-list {
+          background: var(--surface-bright);
+          border: 1px solid var(--line);
+          border-radius: var(--r-lg);
+          box-shadow: var(--shadow-lift);
+          padding-inline: clamp(1.25rem, 2.5vw, 1.75rem);
+          overflow: clip;
+        }
+        .article-list li + li { border-top: 1px solid var(--line); }
         .article-list a { display: grid; gap: .55rem 2.5rem; padding-block: clamp(1.4rem, 3vw, 2.1rem); text-decoration: none; }
         .article-list a:hover { background: var(--surface); }
+        .article-list .answers {
+          display: block;
+          font-family: var(--font-mono); font-size: var(--t-meta);
+          letter-spacing: var(--tr-meta); color: var(--muted);
+          margin-bottom: 0.5rem;
+        }
         .article-list h2 { font-size: clamp(1.35rem, 1.12rem + .75vw, 1.9rem); }
-        .article-list p { color: var(--muted); max-width: 58ch; font-size: 1rem; line-height: 1.55; }
+        .article-list > li > a > p { color: var(--muted); max-width: 58ch; font-size: 1rem; line-height: 1.55; }
         .article-list .meta { align-self: start; }
-        @media (min-width: 900px) { .article-list a { grid-template-columns: minmax(15rem, 1fr) minmax(20rem, 1.4fr) 9rem; align-items: start; } .article-list .meta { justify-self: end; text-align: right; } }
-        .hub-note { max-width: 60rem; padding: 1.5rem; border-left: 2px solid var(--ember-bright); background: var(--surface); }
+        @media (min-width: 900px) {
+          .article-list a { grid-template-columns: minmax(15rem, 1.1fr) minmax(20rem, 1.3fr) 9rem; align-items: start; }
+          .article-list .meta { justify-self: end; text-align: right; }
+          .article-list > li > a > p { padding-top: 0.15rem; }
+        }
+
+        /* ── the workbench band: tools + terms in panels ── */
+        .hub-bench { background: var(--tint); }
+        .bench-grid { display: grid; gap: clamp(1.25rem, 2.5vw, 2rem); align-items: start; }
+        @media (min-width: 940px) { .bench-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+        .bench-grid > div {
+          background: var(--surface-bright);
+          border: 1px solid var(--line);
+          border-radius: var(--r-lg);
+          box-shadow: var(--shadow-lift);
+          padding: clamp(1.5rem, 3vw, 2rem);
+        }
+        .bench-grid h2 {
+          font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
+          letter-spacing: var(--tr-caps); text-transform: uppercase;
+          color: var(--muted); margin-bottom: 0.75rem;
+        }
+        .bench-tools li + li { border-top: 1px solid var(--line); }
+        .bench-tools a {
+          display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .25rem 1.5rem;
+          padding-block: 1.125rem; text-decoration: none; align-items: baseline;
+          transition: background-color var(--dur-fast) var(--ease);
+        }
+        .bench-tools a:hover { background: var(--surface); }
+        .bench-tools strong { font-size: 1.125rem; letter-spacing: -0.012em; font-weight: 615; }
+        .bench-tools .bench-tools__io {
+          font-family: var(--font-mono); font-size: var(--t-meta);
+          letter-spacing: var(--tr-meta); color: var(--ink-soft); white-space: nowrap;
+        }
+        .bench-tools p { grid-column: 1 / -1; color: var(--muted); font-size: .95rem; line-height: 1.55; max-width: 48ch; }
+        .bench-terms > div { padding-block: .875rem; }
+        .bench-terms > div + div { border-top: 1px solid var(--line); }
+        .bench-terms dt a {
+          font-weight: 615; font-size: 1.0625rem; letter-spacing: -0.01em;
+          color: var(--ink); text-decoration: none;
+        }
+        .bench-terms dt a:hover { text-decoration: underline; text-underline-offset: 3px; }
+        .bench-terms dd { color: var(--muted); font-size: .95rem; line-height: 1.55; margin-top: .25rem; max-width: 52ch; }
+        .bench-all {
+          margin-top: 1.25rem;
+          font-size: var(--t-ui-sm); font-weight: 550; color: var(--ink);
+          text-decoration: none; border-bottom: 1px solid var(--line-strong);
+          padding-block: 0.25rem; display: inline-flex; gap: .4375rem; align-items: center;
+          transition: border-color var(--dur-fast) var(--ease);
+        }
+        .bench-all:hover { border-bottom-color: var(--ink); }
+
+        .hub-note { max-width: 60rem; padding: 1.5rem; border-left: 2px solid var(--ember-bright); background: var(--tint); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
         .hub-note p { color: var(--ink-soft); }
       }
     </style>
   </Fragment>
   <main id="content">
-    <header class="hub-head"><div class="shell"><p class="kicker">{kicker}</p><h1>{title}</h1><p class="lede">{description}</p></div></header>
-    <section class="band"><div class="shell hub-intro"><p>{intro}</p><ul class="principles">{principles.map((item) => <li><strong>{item.title}</strong><span>{item.text}</span></li>)}</ul></div></section>
-    <section class="band band-surface"><div class="shell"><div class="section-head"><div><p class="kicker">Published guides</p><h2>Start with a real decision</h2></div><p>Every guide below is published, source-labelled and written around a concrete decision. Unfinished ideas stay out of the article list.</p></div><ul class="article-list">{articles.map((article) => <li><a href={article.href}><h2>{article.title}</h2><p>{article.description}</p><span class="meta">{article.label ?? 'Guide'} · {article.meta}</span></a></li>)}</ul></div></section>
+    <header class="hub-head" data-stage-scene>
+      <div class="shell">
+        <div class="hub-head__grid">
+          <div>
+            <p class="kicker">{kicker}</p>
+            <h1>{title}</h1>
+            <p class="lede">{description}</p>
+            <ul class="hub-stats">
+              <li class="stat-tile"><strong>{articles.length}</strong><span>guides on this hub</span></li>
+              {tools.length > 0 && <li class="stat-tile"><strong>{tools.length}</strong><span>in-browser {tools.length === 1 ? 'tool' : 'tools'}</span></li>}
+              {terms.length > 0 && <li class="stat-tile"><strong>{terms.length}</strong><span>key terms</span></li>}
+            </ul>
+          </div>
+          <div class="hub-motif-wrap">
+            <div class="app-frame hub-motif-panel">
+              <div class="app-frame__bar">
+                <span class="app-frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="app-frame__title">schematic — {canonicalPath.replaceAll('/', '') || 'hub'}</span>
+              </div>
+              <slot name="motif" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="band sheet-lift hub-intro-band"><div class="shell hub-intro"><p>{intro}</p><ul class="principles">{principles.map((item) => <li><strong>{item.title}</strong><span>{item.text}</span></li>)}</ul></div></section>
+
+    {situations.length > 0 && (
+      <section class="band band-surface band--glow" aria-labelledby="paths-title">
+        <div class="shell">
+          <div class="section-head">
+            <div><p class="kicker">Start from the situation</p><h2 id="paths-title">What's in front of you</h2></div>
+            <p>Each entry resolves to a page that already exists — a guide or a calculator, never a placeholder.</p>
+          </div>
+          <div class="paths-grid" data-reveal-group>
+            {situations.map((s) => (
+              <a class="card paths-card" href={s.href} data-reveal>
+                <strong>{s.lead}</strong>
+                <p>{s.outcome}</p>
+                <span class="paths__go">{s.linkLabel} →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="band band--glow" aria-labelledby="guides-title">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="kicker">Published guides</p><h2 id="guides-title">Start with a real decision</h2></div>
+          <p>Every guide below is published, source-labelled and written around a concrete decision. Unfinished ideas stay out of the article list.</p>
+        </div>
+        <ul class="article-list">
+          {articles.map((article) => (
+            <li>
+              <a href={article.href}>
+                <div>
+                  {article.answers && <span class="answers">{article.answers}</span>}
+                  <h2>{article.title}</h2>
+                </div>
+                <p>{article.description}</p>
+                <span class="meta">{article.label ?? 'Guide'} · {article.meta}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    {(tools.length > 0 || terms.length > 0) && (
+      <section class="band band--tight hub-bench" aria-labelledby="bench-title">
+        <div class="shell">
+          <h2 id="bench-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Workbench: tools and terms for this topic</h2>
+          <div class="bench-grid">
+            {tools.length > 0 && (
+              <div>
+                <h2 aria-hidden="true">Tools for this work</h2>
+                <ul class="bench-tools">
+                  {tools.map((tool) => (
+                    <li>
+                      <a href={tool.href}>
+                        <strong>{tool.title}</strong>
+                        <span class="bench-tools__io">{tool.io}</span>
+                        <p>{tool.note}</p>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <a class="bench-all" href="/resources/tools/">All tools →</a>
+              </div>
+            )}
+            {terms.length > 0 && (
+              <div>
+                <h2 aria-hidden="true">Terms this hub leans on</h2>
+                <dl class="bench-terms">
+                  {terms.map((t) => (
+                    <div>
+                      <dt><a href={t.href}>{t.term}</a></dt>
+                      <dd>{t.def}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <a class="bench-all" href="/resources/glossary/">All 23 terms →</a>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    )}
+
     <section class="band"><div class="shell"><div class="hub-note"><p><strong>Editorial boundary.</strong> These pages distinguish documented guidance from first-hand testing. When Auspicious Music has not run a product or recorded an example, it says so instead of manufacturing evidence.</p></div></div></section>
   </main>
 </BaseLayout>

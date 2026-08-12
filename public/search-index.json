@@ -133,6 +133,20 @@
     "internal": false
   },
   {
+    "route": "/contribute/",
+    "title": "Pitch a guide — Auspicious Music",
+    "description": "How to propose a guest guide for Auspicious Music: what the publication accepts, what it declines, and how the editorial review works.",
+    "h1": "Pitch a guide",
+    "internal": false
+  },
+  {
+    "route": "/services/",
+    "title": "Live Viola & String Recording — Auspicious Music",
+    "description": "Book live viola for ceremonies and events, session viola recording, or music for small productions — the practice behind this publication's guides.",
+    "h1": "The practice behind the guides.",
+    "internal": false
+  },
+  {
     "route": "/contact/",
     "title": "Contact — Auspicious Music",
     "description": "How to reach the editorial desk, report a correction, or raise a rights question.",

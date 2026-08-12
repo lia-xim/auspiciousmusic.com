@@ -71,10 +71,17 @@
   var colour = { line: "currentColor", node: "currentColor" };
 
   function styles() {
+    /* Colour is decided by the surface the field sits on, not by the
+       document: the canvas element carries --string-line/--string-node
+       from its context (ivory + copper on the stage). The document ink
+       remains the fallback so the field still draws on a paper page. */
+    var scoped = getComputedStyle(canvas);
     var root = getComputedStyle(document.documentElement);
     return {
-      line: root.getPropertyValue("--ink").trim() || "currentColor",
-      node: root.getPropertyValue("--ember-bright").trim() || "currentColor"
+      line: scoped.getPropertyValue("--string-line").trim() ||
+            root.getPropertyValue("--ink").trim() || "currentColor",
+      node: scoped.getPropertyValue("--string-node").trim() ||
+            root.getPropertyValue("--ember-bright").trim() || "currentColor"
     };
   }
 
@@ -121,10 +128,10 @@
       var st = strings[s];
       var base = st.offset;
 
-      /* A ringing string darkens. At rest the field is a whisper so the
-         headline never has to compete with it. */
+      /* A ringing string brightens. On the stage the field is lit even at
+         rest — a strung instrument, not a watermark — but stays quiet
+         enough that the headline never competes with it. */
       var activity = Math.min(1, st.energy * 2.2);
-      ctx.globalAlpha = 0.13 + activity * 0.66;
 
       ctx.beginPath();
       ctx.moveTo(0, base + st.y[0]);
@@ -137,6 +144,18 @@
       }
       ctx.lineTo(w, base + st.y[N - 1]);
 
+      /* A moving string catches the warm light: a wide copper halo under
+         the line, faded by activity. Two strokes, no shadowBlur — the
+         halo costs one extra path stroke and nothing at rest. */
+      if (activity > 0.02) {
+        ctx.globalAlpha = activity * 0.24;
+        ctx.strokeStyle = colour.node;
+        ctx.lineWidth = 3.5 + activity * 2.5;
+        ctx.lineCap = "round";
+        ctx.stroke();
+      }
+
+      ctx.globalAlpha = 0.22 + activity * 0.62;
       ctx.strokeStyle = colour.line;
       ctx.lineWidth = 1 + activity * 0.55;
       ctx.lineCap = "round";
@@ -310,6 +329,28 @@
     window.addEventListener("resize", resize, { passive: true });
   } else {
     bind();
+
+    /* One quiet strum shortly after arrival — the field introduces itself,
+       softer than the button's full strum, exactly once, and never if the
+       reader has already touched a string first. It does not loop, and the
+       physics still ring down to a dead stop. */
+    var introduced = false;
+    var markTouched = function () { introduced = true; };
+    canvas.parentElement.addEventListener("pointerdown", markTouched, { once: true, passive: true });
+    window.setTimeout(function () {
+      if (introduced || document.hidden) return;
+      introduced = true;
+      var i = Math.round(N * 0.58);
+      for (var s = 0; s < COUNT; s++) {
+        (function (str, idx, delay) {
+          window.setTimeout(function () {
+            str.v[idx] += 3.6;
+            str.v[idx - 1] += 2; str.v[idx + 1] += 2;
+            wake();
+          }, delay);
+        })(strings[s], i + s * 3, s * 70);
+      }
+    }, 900);
   }
 
   reduced.addEventListener("change", function (e) {

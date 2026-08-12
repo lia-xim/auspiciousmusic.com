@@ -1,28 +1,143 @@
 ---
-interface Props { currentPath: string; }
-const { currentPath } = Astro.props;
-const navigation = [
+interface Props { currentPath: string; overDark?: boolean; }
+const { currentPath, overDark = false } = Astro.props;
+
+interface NavChild { href: string; label: string; note?: string; }
+interface NavItem { href: string; label: string; children?: NavChild[]; }
+
+/* The main topics carry the navigation; each opens onto its hub plus the
+   work that actually exists there. The Journal is the index, not the front
+   door — it sits at the far end with Resources and About. */
+const navigation: NavItem[] = [
+  {
+    href: '/music-production/', label: 'Production',
+    children: [
+      { href: '/music-production/', label: 'Production hub', note: 'Sessions, versions, delivery' },
+      { href: '/music-production/ableton-project-handoff/', label: 'Ableton project handoff', note: 'Guide · 8 min' },
+      { href: '/resources/tools/delay-and-reverb/', label: 'Delay & Reverb Time', note: 'Tool' },
+    ],
+  },
+  {
+    href: '/ableton/', label: 'Ableton',
+    children: [
+      { href: '/ableton/', label: 'Ableton hub', note: 'Files, Sampler, controllers' },
+      { href: '/ableton/midi-fighter-twister-review/', label: 'Controller mapping method', note: 'Guide · 8 min' },
+      { href: '/music-production/ableton-project-handoff/', label: 'Ableton project handoff', note: 'Guide · 8 min' },
+      { href: '/resources/tools/sample-pitch/', label: 'Sample Pitch & Rate', note: 'Tool' },
+    ],
+  },
+  {
+    href: '/sound-design/', label: 'Sound Design',
+    children: [
+      { href: '/sound-design/', label: 'Sound Design hub', note: 'Sampling, playable instruments' },
+      { href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', label: 'Build a sampled instrument', note: 'Guide · 10 min' },
+      { href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', label: 'Strings: record or library?', note: 'Guide · 8 min' },
+    ],
+  },
+  {
+    href: '/recording/', label: 'Recording',
+    children: [
+      { href: '/recording/', label: 'Recording hub', note: 'Rooms, microphones, comparisons' },
+      { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Viola microphone placement', note: 'Guide · 9 min' },
+      { href: '/recording/acoustic-instruments/recording-viola-at-home/', label: 'Recording viola at home', note: 'Guide · 9 min' },
+      { href: '/resources/tools/note-frequency/', label: 'Note & Frequency', note: 'Tool' },
+      { href: '/services/', label: 'Book a session player', note: 'Work with us' },
+    ],
+  },
+  {
+    href: '/music-for-media/', label: 'Media & Events',
+    children: [
+      { href: '/music-for-media/', label: 'Media & Events hub', note: 'Briefing, rights, live planning' },
+      { href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', label: 'Live viola for a ceremony', note: 'Guide · 7 min' },
+      { href: '/music-for-media/music-clearance-for-small-film-projects/', label: 'Music clearance for film', note: 'Guide · 8 min' },
+      { href: '/services/', label: 'Book live viola', note: 'Work with us' },
+    ],
+  },
+  {
+    href: '/resources/', label: 'Resources',
+    children: [
+      { href: '/resources/tools/', label: 'All tools', note: 'Runs in your browser' },
+      { href: '/resources/tools/delay-and-reverb/', label: 'Delay & Reverb Time', note: 'BPM → ms · Hz' },
+      { href: '/resources/tools/note-frequency/', label: 'Note & Frequency', note: 'Note ⇄ Hz ⇄ MIDI' },
+      { href: '/resources/tools/sample-pitch/', label: 'Sample Pitch & Rate', note: 'Semitones → rate' },
+      { href: '/resources/glossary/', label: 'Glossary', note: '23 terms' },
+      { href: '/download/', label: 'Archive & downloads', note: 'Legacy records' },
+    ],
+  },
   { href: '/journal/', label: 'Journal' },
-  { href: '/music-production/', label: 'Production' },
-  { href: '/ableton/', label: 'Ableton' },
-  { href: '/sound-design/', label: 'Sound Design' },
-  { href: '/recording/', label: 'Recording' },
-  { href: '/music-for-media/', label: 'Media & Events' },
-  { href: '/resources/', label: 'Resources' },
-  { href: '/about/', label: 'About' },
+  {
+    href: '/about/', label: 'About',
+    children: [
+      { href: '/about/', label: 'About the publication' },
+      { href: '/authors/', label: 'Author' },
+      { href: '/about/editorial-policy/', label: 'Editorial policy' },
+      { href: '/about/history-and-relaunch/', label: 'History & relaunch' },
+      { href: '/contribute/', label: 'Pitch a guide', note: 'Curated guest guides' },
+      { href: '/contact/', label: 'Contact' },
+    ],
+  },
 ];
 const isCurrent = (href: string) => currentPath.startsWith(href);
 ---
 <a class="skip" href="#content">Skip to content</a>
-<header class="site-header" data-header>
+<header class="site-header" data-header data-over-dark={overDark ? '' : undefined}>
   <div class="shell site-header__inner">
     <a class="brand" href="/" aria-label="Auspicious Music — home"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".42"/></svg>Auspicious Music</a>
-    <nav class="nav" aria-label="Primary"><ul>{navigation.map(({href,label}) => <li><a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a></li>)}</ul></nav>
-    <div class="header-tools"><a class="icon-btn" href="/search/" aria-label="Search"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.75" stroke="currentColor" stroke-width="1.7"/><path d="M13.2 13.2 17 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></a><button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" data-sheet-open><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        {navigation.map(({ href, label, children }) => (
+          <li class={children ? 'nav-group' : undefined}>
+            <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>
+              {label}
+              {children && <svg class="nav-caret" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1.25 5 4.75 9 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+            </a>
+            {children && (
+              <div class="nav-drop">
+                <ul>
+                  {children.map((child) => (
+                    <li>
+                      <a href={child.href}>
+                        <span class="nav-drop__label">{child.label}</span>
+                        {child.note && <span class="nav-drop__note">{child.note}</span>}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="header-tools"><a class="header-cta btn btn--primary" href="/services/">Work with us</a><a class="icon-btn" href="/search/" aria-label="Search"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.75" stroke="currentColor" stroke-width="1.7"/><path d="M13.2 13.2 17 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></a><button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" data-sheet-open><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
   </div>
 </header>
 <div class="sheet" id="menu" data-sheet data-open="false" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
   <div class="shell sheet__head"><span class="brand"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".42"/></svg>Auspicious Music</span><button class="icon-btn" type="button" aria-label="Close menu" data-sheet-close><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
-  <nav class="shell" aria-label="Menu"><ul>{navigation.map(({href,label}) => <li><a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a></li>)}</ul></nav>
+  <nav class="shell sheet__nav" aria-label="Menu">
+    <ul>
+      <li><a class="sheet-link" href="/services/" aria-current={isCurrent('/services/') ? 'page' : undefined}>Work with us</a></li>
+      {navigation.map(({ href, label, children }) => (
+        <li>
+          {children ? (
+            <details class="sheet-group">
+              <summary>
+                <span>{label}</span>
+                <svg class="nav-caret" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1.25 5 4.75 9 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <ul>
+                <li><a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label} — overview</a></li>
+                {children.filter((child) => child.href !== href).map((child) => (
+                  <li><a href={child.href}>{child.label}</a></li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <a class="sheet-link" href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </nav>
   <div class="shell sheet__foot"><a href="/about/history-and-relaunch/" style="text-decoration:none">Independent relaunch · history &amp; ownership</a></div>
 </div>

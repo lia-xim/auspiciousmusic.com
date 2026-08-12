@@ -9,17 +9,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   lang={"en"}
   noindex={true}
   loadStringField={false}
+  headerOverDark={true}
 >
 <Fragment slot="head">
 <style is:global>
 @layer components {
-  /* Error pages: one column, left-aligned, no hero. The status code is stated
-     as fact in mono rather than dramatised as display type. */
-  .err { padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 6vw, 5rem); }
+  /* Error pages live entirely on the stage: the page you asked for is not
+     part of the publication, so the paper never appears. One column,
+     left-aligned; the status code is stated as fact in mono rather than
+     dramatised as display type. */
+  body { background: var(--stage); }
+  .err {
+    position: relative;
+    margin-top: calc(-1 * var(--header-h));
+    padding-top: var(--header-h);
+    background-color: var(--stage);
+    background-image: var(--light-stage);
+    color: var(--stage-text);
+    padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 6vw, 5rem);
+    min-height: calc(100svh - var(--header-h));
+  }
+  .err::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: var(--grain); background-size: 160px 160px;
+    opacity: 0.04; pointer-events: none;
+  }
+  .err > * { position: relative; }
+  .err :focus-visible { outline-color: var(--accent-on-dark); }
+  .err .lede { color: var(--stage-muted); }
+  .err .btn--quiet { border-color: var(--stage-line); color: var(--stage-text); }
+  .err .btn--quiet:hover { border-color: var(--stage-text); background: var(--stage-raised); }
   .err__code {
     font-family: var(--font-mono); font-size: var(--t-meta);
-    letter-spacing: var(--tr-meta); color: var(--muted);
-    padding-left: 0.875rem; border-left: 2px solid var(--line-strong);
+    letter-spacing: var(--tr-meta); color: var(--stage-muted);
+    padding-left: 0.875rem; border-left: 2px solid var(--stage-line);
     display: inline-block; line-height: 1.5;
   }
   .err h1 { font-size: clamp(2.25rem, 1.4rem + 3vw, 3.75rem); max-width: 16ch; margin-top: 1.5rem; }
@@ -28,35 +52,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .search { margin-top: clamp(2.5rem, 5vw, 3.5rem); max-width: 32rem; }
   .search label {
     display: block; font-family: var(--font-mono); font-size: var(--t-meta);
-    letter-spacing: var(--tr-meta); color: var(--muted); margin-bottom: 0.625rem;
+    letter-spacing: var(--tr-meta); color: var(--stage-muted); margin-bottom: 0.625rem;
   }
   .search__row { display: flex; gap: 0.625rem; }
   .search input {
     flex: 1; min-width: 0; min-height: 48px;
-    padding: 0 1rem; border-radius: var(--r-sm);
-    border: 1px solid var(--line-strong); background: var(--surface);
-    font-size: var(--t-ui); color: var(--ink);
+    padding: 0 1rem; border-radius: var(--r-control);
+    border: 1px solid var(--stage-line); background: var(--stage-raised);
+    font-size: var(--t-ui); color: var(--stage-text);
     transition: border-color var(--dur-fast) var(--ease);
   }
-  .search input::placeholder { color: var(--muted); }
-  .search input:hover { border-color: var(--ink-soft); }
-  .search__help { margin-top: 0.75rem; font-size: var(--t-ui-sm); color: var(--muted); line-height: 1.55; }
+  .search input::placeholder { color: var(--stage-muted); }
+  .search input:hover { border-color: var(--stage-muted); }
+  .search__help { margin-top: 0.75rem; font-size: var(--t-ui-sm); color: var(--stage-muted); line-height: 1.55; }
 
   .paths { margin-top: clamp(3rem, 6vw, 4.5rem); }
   .paths h2 {
     font-family: var(--font-mono); font-size: var(--t-meta); font-weight: 500;
-    letter-spacing: var(--tr-meta); color: var(--muted); margin-bottom: 0.5rem;
+    letter-spacing: var(--tr-meta); color: var(--stage-muted); margin-bottom: 0.5rem;
   }
-  .paths ul { border-top: 1px solid var(--line); max-width: 44rem; }
-  .paths li { border-bottom: 1px solid var(--line); }
+  .paths ul { border-top: 1px solid var(--stage-line); max-width: 44rem; }
+  .paths li { border-bottom: 1px solid var(--stage-line-soft); }
   .paths a {
     display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
     padding-block: 1rem; text-decoration: none;
     transition: color var(--dur-fast) var(--ease);
   }
-  .paths a:hover { color: var(--accent); }
+  .paths a:hover { color: var(--accent-on-dark); }
   .paths strong { font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.011em; }
-  .paths span { font-size: var(--t-ui-sm); color: var(--muted); text-align: right; }
+  .paths span { font-size: var(--t-ui-sm); color: var(--stage-muted); text-align: right; }
   .paths a:hover span { color: inherit; }
 }
 </style>
