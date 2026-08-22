@@ -1,8 +1,8 @@
 {
   "implementation": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-22T20:58:16.561Z",
-  "uniqueRoutesChecked": 54,
-  "routeViewportChecks": 116,
+  "checkedAt": "2026-08-22T21:57:21.950Z",
+  "uniqueRoutesChecked": 57,
+  "routeViewportChecks": 122,
   "observations": [
     {
       "route": "/",
@@ -355,6 +355,27 @@
       "axeViolations": 0
     },
     {
+      "route": "/viola/viola-oder-violine/",
+      "status": 200,
+      "title": "Viola oder Violine für Live-Musik? — Auspicious Music",
+      "viewport": "1440x900",
+      "axeViolations": 0
+    },
+    {
+      "route": "/eventmusik/live-streicher-draussen/",
+      "status": 200,
+      "title": "Live-Streicher draußen planen — Auspicious Music",
+      "viewport": "1440x900",
+      "axeViolations": 0
+    },
+    {
+      "route": "/tools/streicheraufnahme-briefing/",
+      "status": 200,
+      "title": "Streicheraufnahme-Briefing erstellen — Auspicious Music",
+      "viewport": "1440x900",
+      "axeViolations": 0
+    },
+    {
       "route": "/search/",
       "status": 200,
       "title": "Search — Auspicious Music",
@@ -729,6 +750,27 @@
       "route": "/eventmusik/unterricht/",
       "status": 200,
       "title": "Unterricht: Viola-Musik planen — Auspicious Music",
+      "viewport": "390x844",
+      "axeViolations": 0
+    },
+    {
+      "route": "/viola/viola-oder-violine/",
+      "status": 200,
+      "title": "Viola oder Violine für Live-Musik? — Auspicious Music",
+      "viewport": "390x844",
+      "axeViolations": 0
+    },
+    {
+      "route": "/eventmusik/live-streicher-draussen/",
+      "status": 200,
+      "title": "Live-Streicher draußen planen — Auspicious Music",
+      "viewport": "390x844",
+      "axeViolations": 0
+    },
+    {
+      "route": "/tools/streicheraufnahme-briefing/",
+      "status": 200,
+      "title": "Streicheraufnahme-Briefing erstellen — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },

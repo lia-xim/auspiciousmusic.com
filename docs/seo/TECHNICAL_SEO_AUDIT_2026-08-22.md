@@ -60,3 +60,13 @@ Each new indexable URL has one primary job, a self-canonical, unique title/descr
 - Google Search Console authentication and sitemap submission: **NOT PROVEN** in this task. No authenticated GSC session was available, so no submission or property claim was made.
 - Search demand, rankings and indexation response: hypotheses to measure after crawl and GSC data accumulate.
 - Production deployment and final live regression results are recorded in the Portfolio material-change entry after deployment.
+## Production verification - 2026-08-23
+
+- Commit `fa402b4` was pushed to `origin/main` and deployed as Vercel production deployment `dpl_A28s59h11xkAPrNNVbBni5zVGyZh` (`READY`). Apex and `www` aliases resolve to this build.
+- The live sitemap contains 45 URLs. All 45 returned `200`, a matching self-canonical, one H1, index/follow and valid JSON-LD. The crawl found 63 internal targets and no broken internal target.
+- Live browser QA passed 16 core routes at 1440, 390 and 320 pixels plus planner, Wunschstueck and recording-brief interactions. Full QA passed 57 production routes, 122 route/viewport checks, Axe, keyboard/mobile navigation, 200%/400% reflow, forced colors, reduced motion, search, canvas and calculator checks. Scroll/reveal QA passed.
+- `/download/` and `/services/` remain `200`/noindex. Unknown URLs return `404`; `/410/` returns `410` with `X-Robots-Tag: noindex, nofollow, noarchive`. `robots.txt` allows crawling and references the sitemap.
+- The ceremony-planner legacy route returns permanent `308` to `/tools/eventmusik-planer/` while preserving its query. Apex-to-`www` and HTTP-to-HTTPS redirects are permanent and preserve path/query.
+- Enforced CSP and HSTS remain present.
+- Final Lighthouse 13.4.1 on the live homepage: mobile 99 performance / 100 accessibility / 100 best practices / 100 SEO, LCP 1.8 s, CLS 0 and TBT 100 ms; desktop 100/100/100/100, LCP 0.5 s, CLS 0.001 and TBT 20 ms. The desktop CLI emitted a Windows temp-directory `EPERM` only during cleanup after writing the complete JSON report.
+- Google Search Console authentication and sitemap submission remain **NOT PROVEN**. No authenticated session was available and no submission was attempted.

@@ -1,10 +1,12 @@
 {
   "baseUrl": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-22T21:01:17.115Z",
+  "checkedAt": "2026-08-22T21:54:04.699Z",
   "routes": [
     "/",
     "/viola/",
+    "/viola/viola-oder-violine/",
     "/eventmusik/",
+    "/eventmusik/live-streicher-draussen/",
     "/eventmusik/hochzeit/",
     "/eventmusik/trauerfeier/",
     "/eventmusik/firmenevent/",
@@ -12,6 +14,7 @@
     "/recording/",
     "/tools/eventmusik-planer/",
     "/tools/wunschstueck-check/",
+    "/tools/streicheraufnahme-briefing/",
     "/resources/",
     "/download/",
     "/services/"
@@ -35,7 +38,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2764,
+      "bodyLength": 3061,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/viola/viola-oder-violine/",
+      "viewport": "1440x900",
+      "title": "Viola oder Violine für Live-Musik? — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 6161,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -46,7 +60,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2873,
+      "bodyLength": 2876,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/live-streicher-draussen/",
+      "viewport": "1440x900",
+      "title": "Live-Streicher draußen planen — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 5867,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -101,7 +126,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4255,
+      "bodyLength": 4669,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -124,6 +149,17 @@
       "main": 1,
       "overflow": 0,
       "bodyLength": 3817,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/tools/streicheraufnahme-briefing/",
+      "viewport": "1440x900",
+      "title": "Streicheraufnahme-Briefing erstellen — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 3270,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -178,7 +214,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2703,
+      "bodyLength": 3000,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/viola/viola-oder-violine/",
+      "viewport": "390x844",
+      "title": "Viola oder Violine für Live-Musik? — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 6100,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -189,7 +236,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2812,
+      "bodyLength": 2815,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/live-streicher-draussen/",
+      "viewport": "390x844",
+      "title": "Live-Streicher draußen planen — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 5806,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -244,7 +302,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4194,
+      "bodyLength": 4608,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -267,6 +325,17 @@
       "main": 1,
       "overflow": 0,
       "bodyLength": 3756,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/tools/streicheraufnahme-briefing/",
+      "viewport": "390x844",
+      "title": "Streicheraufnahme-Briefing erstellen — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 3209,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -321,7 +390,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2703,
+      "bodyLength": 3000,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/viola/viola-oder-violine/",
+      "viewport": "320x900",
+      "title": "Viola oder Violine für Live-Musik? — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 6100,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -332,7 +412,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2812,
+      "bodyLength": 2815,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/live-streicher-draussen/",
+      "viewport": "320x900",
+      "title": "Live-Streicher draußen planen — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 5806,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -387,7 +478,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4194,
+      "bodyLength": 4608,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -410,6 +501,17 @@
       "main": 1,
       "overflow": 0,
       "bodyLength": 3756,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/tools/streicheraufnahme-briefing/",
+      "viewport": "320x900",
+      "title": "Streicheraufnahme-Briefing erstellen — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 3209,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -449,5 +551,6 @@
   ],
   "plannerOutput": "Hochzeit / Trauung\nAnlass\nHochzeit / Trauung\nSetting\nInnenraum\nOrt oder Region\nCologne\nDatum oder Zeitraum\nNicht angegeben\nRolle der Musik\nDezente Begleitung\nGewünschter Klang\nSolo-Viola\nStimmung\nWarm und persönlich\nWeitere Wünsche\nWarm, lyrical references; final titles still open.\nStartsignal durch\nCeremony coordinator\nSpieldauer\nNicht angegeben\nAufbau, Wege und Wetter\nNicht angegeben\nNoch offen\nNicht angegeben\nVorgeschlagener Ablauf\nAnkunft der Gäste\nRuhige Musik, die auch bei verspäteter Ankunft flexibel weiterlaufen kann.\nEinzug\nStartsignal und Endpunkt mit Trauzeug:innen oder Zeremonieleitung abstimmen.\nRingtausch, Ja-Wort oder Unterschrift\nEine kürzbare oder wiederholbare Fassung einplanen.\nAuszug\nEin deutliches, tragfähiges Ende für Bewegung und Applaus wählen.\nRepertoire-Vorauswahl\nA Thousand Years\nPerfect\nAll of Me\nCan’t Help Falling in Love\nCanon in D\nOrdinary\nInterpretation oder Version bei der Anfrage angeben.\nWildest Dreams\nIm Gespräch klären\nWer gibt Einzug und Auszug live frei?\nGibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?\nWelche Wunschstücke sind unverzichtbar und welche nur Inspiration?\n\nWichtiger Planungshinweis: Dieser Plan bestätigt weder Termin noch Besetzung, konkrete Fassung, Notenlage, Arrangement, Rechte, Preis oder Buchung. Das wird direkt mit Kim-Marie geklärt.",
   "requestedSongOutput": "Bereit für die musikalische Prüfung\n\nPerfect\nTitel\nPerfect\nFassung\nEd Sheeran, studio version\nAnlass\nHochzeit / Trauung\nSpielmoment\nAnkunft der Gäste\nWiedererkennung\nvor allem die Melodie\nMelodie ohne Gesang\nvermutlich ja\nGewünschte Form\nflexible, gekürzte Fassung\nVorlauf\nmehr als sechs Wochen\nPersönlicher Kern\nDie Melodie verbindet das Paar mit einem gemeinsamen Moment.\nIm Gespräch klären\nWer gibt am Spielmoment das Start- und Endsignal?\nSind Veranstaltungsmeldung, Setlist und weitere Rechtefragen auf Veranstalterseite geklärt?\n\nGrenze: Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Rechte, Preis oder Buchung.",
+  "recordingBriefOutput": "Dokumentarfilm Cue 04\nProjekt / Cue\nDokumentarfilm Cue 04\nFunktion\nSolistische Melodie\nWirkung und Kontext\nEine warme Mittellage soll den Übergang tragen, ohne die Sprache zu verdecken.\nStartreferenz\n00:42 nach Sprecherpause\nTempo / Raster\nReferenzmix, aber kein Click\nArtikulation / Phrasierung\nGebunden, ruhiger Bogen, wenig Vibrato.\nVarianten\nHauptfassung plus freieres Ende.\nLieferumfang\nVollständige Takes plus markierte Favoriten\nProjektformat\n48 kHz / 24 Bit\nDateibenennung\nprojekt_cue_stimme_take\nÜbergabe / Review\nReview am 24. August durch Schnitt.\nTechnische Bedingungen\nTrockene Hauptspur plus Referenzbearbeitung.\nOffene Fragen\nSind Noten, Arrangement, Aufnahme und spätere Nutzung für den konkreten Zweck geklärt?\n\nGrenze: Dieses Werkzeug bestätigt weder Spielbarkeit, Termin, Preis, Rechte, Besetzung noch technische Machbarkeit.",
   "failures": []
 }
