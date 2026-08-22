@@ -1,8 +1,8 @@
 {
   "implementation": "http://localhost:4321",
-  "checkedAt": "2026-08-22T14:35:14.591Z",
-  "uniqueRoutesChecked": 52,
-  "routeViewportChecks": 112,
+  "checkedAt": "2026-08-22T15:55:18.611Z",
+  "uniqueRoutesChecked": 54,
+  "routeViewportChecks": 116,
   "observations": [
     {
       "route": "/",
@@ -103,7 +103,7 @@
     {
       "route": "/about/history-and-relaunch/",
       "status": 200,
-      "title": "History & new ownership — Auspicious Music",
+      "title": "Geschichte und Neuanfang — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -317,6 +317,18 @@
       "viewport": "1440x900"
     },
     {
+      "route": "/search/",
+      "status": 200,
+      "title": "Search — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/publishing-roadmap/",
+      "status": 200,
+      "title": "Draft route retired — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
       "route": "/",
       "status": 200,
       "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
@@ -415,7 +427,7 @@
     {
       "route": "/about/history-and-relaunch/",
       "status": 200,
-      "title": "History & new ownership — Auspicious Music",
+      "title": "Geschichte und Neuanfang — Auspicious Music",
       "viewport": "390x844"
     },
     {
@@ -614,6 +626,18 @@
       "route": "/eventmusik/unterricht/",
       "status": 200,
       "title": "Unterricht: Viola-Musik planen — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/search/",
+      "status": 200,
+      "title": "Search — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/publishing-roadmap/",
+      "status": 200,
+      "title": "Draft route retired — Auspicious Music",
       "viewport": "390x844"
     },
     {

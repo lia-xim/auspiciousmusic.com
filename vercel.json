@@ -4,7 +4,7 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/tools/ceremony-planner",
+      "source": "/tools/ceremony-planner/",
       "destination": "/tools/eventmusik-planer/",
       "permanent": true
     },
