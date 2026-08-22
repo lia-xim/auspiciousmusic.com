@@ -300,9 +300,16 @@
   },
   {
     "route": "/tools/eventmusik-planer/",
-    "title": "Eventmusik-Planer für Viola — Auspicious Music",
-    "description": "Ablauf, Repertoire-Ideen und E-Mail-Entwurf für Live-Viola bei unterschiedlichen Anlässen.",
-    "h1": "Plane die Musik, nicht nur die Titelliste.",
+    "title": "Eventmusik planen — Auspicious Music",
+    "description": "In drei kurzen Schritten einen Musikplan mit Anlass, Datum, Ort, Ablauf und Repertoire-Ideen erstellen.",
+    "h1": "Eventmusik planen",
+    "internal": false
+  },
+  {
+    "route": "/en/tools/event-music-planner/",
+    "title": "Plan event music — Auspicious Music",
+    "description": "Build an event-music plan in three short steps, covering occasion, date, place, running order and repertoire ideas.",
+    "h1": "Plan event music",
     "internal": false
   },
   {

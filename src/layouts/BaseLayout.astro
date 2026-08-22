@@ -15,6 +15,7 @@ interface Props {
   updated?: string;
   section?: string;
   headerOverDark?: boolean;
+  alternatePath?: string;
 }
 
 const {
@@ -29,12 +30,16 @@ const {
   updated,
   section,
   headerOverDark = false,
+  alternatePath,
 } = Astro.props;
 
 const siteIndexable = import.meta.env.SITE_INDEXABLE === 'true';
 const robots = siteIndexable && !noindex ? 'index,follow,max-image-preview:large' : 'noindex,nofollow,noarchive';
 const site = Astro.site ?? new URL('https://www.auspiciousmusic.com/');
 const canonical = new URL(canonicalPath, site);
+const alternate = alternatePath ? new URL(alternatePath, site) : undefined;
+const alternateLang = lang === 'de' ? 'en' : 'de';
+const xDefault = alternate ? (lang === 'de' ? canonical : alternate) : undefined;
 const image = new URL('/assets/hero-portrait-928.jpg', site);
 const locale = lang === 'de' ? 'de_DE' : 'en_US';
 const publisherId = new URL('/authors/#matthias-ramahi', site).href;
@@ -83,6 +88,9 @@ const identitySchema = {
     <meta name="author" content="Matthias Ramahi" />
     <meta name="robots" content={robots} />
     <link rel="canonical" href={canonical} />
+    {alternate && <link rel="alternate" hreflang={lang} href={canonical} />}
+    {alternate && <link rel="alternate" hreflang={alternateLang} href={alternate} />}
+    {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault} />}
     <link rel="alternate" type="application/rss+xml" title="Auspicious Music RSS" href="/rss.xml" />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/assets/inter.css" />
@@ -92,6 +100,7 @@ const identitySchema = {
     <meta property="og:type" content={contentType} />
     <meta property="og:site_name" content="Auspicious Music" />
     <meta property="og:locale" content={locale} />
+    {alternate && <meta property="og:locale:alternate" content={lang === 'de' ? 'en_US' : 'de_DE'} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -111,9 +120,9 @@ const identitySchema = {
     <slot name="head" />
   </head>
   <body>
-    <SiteHeader currentPath={Astro.url.pathname} overDark={headerOverDark} />
+    <SiteHeader currentPath={Astro.url.pathname} overDark={headerOverDark} lang={lang === 'en' ? 'en' : 'de'} alternatePath={alternatePath} />
     <slot />
-    <SiteFooter />
+    <SiteFooter lang={lang === 'en' ? 'en' : 'de'} />
     <script is:inline src="/assets/motion.js" defer></script>
     {loadStringField && <script is:inline src="/assets/string.js" defer></script>}
     <slot name="scripts" />

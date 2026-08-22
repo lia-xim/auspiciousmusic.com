@@ -18,7 +18,7 @@ const browser = await chromium.launch({
 });
 const failures = [];
 const observations = [];
-const routes = ['/', '/viola/', '/viola/viola-oder-violine/', '/eventmusik/', '/eventmusik/live-streicher-draussen/', '/eventmusik/hochzeit/', '/eventmusik/trauerfeier/', '/eventmusik/firmenevent/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/tools/wunschstueck-check/', '/tools/streicheraufnahme-briefing/', '/resources/', '/download/', '/services/'];
+const routes = ['/', '/viola/', '/viola/viola-oder-violine/', '/eventmusik/', '/eventmusik/live-streicher-draussen/', '/eventmusik/hochzeit/', '/eventmusik/trauerfeier/', '/eventmusik/firmenevent/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/en/tools/event-music-planner/', '/tools/wunschstueck-check/', '/tools/streicheraufnahme-briefing/', '/resources/', '/download/', '/services/'];
 
 async function inspect(route, viewport) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
@@ -52,36 +52,67 @@ const planner = await browser.newPage({ viewport: { width: 390, height: 844 }, d
 const plannerErrors = [];
 planner.on('pageerror', (error) => plannerErrors.push(error.message));
 planner.on('console', (message) => { if (message.type() === 'error') plannerErrors.push(message.text()); });
-await planner.goto(`${baseUrl}/tools/eventmusik-planer/`, { waitUntil: 'networkidle' });
-await planner.locator('[data-planner] button[type="submit"]').click();
-const requiredError = await planner.locator('[data-planner-error]').innerText();
-if (!/anlass|setting|spielmoment|occasion|moment/i.test(requiredError)) failures.push(`planner validation: unexpected required error "${requiredError}"`);
-await planner.locator('#occasion').selectOption('hochzeit');
-await planner.locator('#setting').selectOption('indoor');
-await planner.locator('#place').fill('Cologne');
-await planner.locator('input[name="moments"]').nth(1).check();
-await planner.locator('#references').fill('Warm, lyrical references; final titles still open.');
-await planner.locator('#cue').fill('Ceremony coordinator');
-await planner.locator('[data-planner] button[type="submit"]').click();
-const generated = await planner.locator('[data-brief-output]').innerText();
-const buttons = await planner.evaluate(() => ({
-  copyDisabled: document.querySelector('[data-copy]')?.disabled,
-  emailDisabled: document.querySelector('[data-email]')?.disabled,
-  downloadDisabled: document.querySelector('[data-download]')?.disabled,
-  state: document.querySelector('[data-brief-state]')?.textContent,
-  overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+await planner.goto(`${baseUrl}/tools/eventmusik-planer/?anlass=hochzeit`, { waitUntil: 'networkidle' });
+const plannerFoundation = await planner.evaluate(() => ({
+  selects: document.querySelectorAll('[data-planner-app] select').length,
+  locations: document.querySelectorAll('[data-location]').length,
+  dateTypes: [...document.querySelectorAll('[data-planner-app] input[type="date"]')].length,
+  htmlLang: document.documentElement.lang,
+  alternateEn: document.querySelector('link[rel="alternate"][hreflang="en"]')?.getAttribute('href'),
+  alternateDefault: document.querySelector('link[rel="alternate"][hreflang="x-default"]')?.getAttribute('href'),
+  languageHref: document.querySelector('.header-language')?.getAttribute('href'),
+  activeStep: document.querySelector('[data-step-button][aria-current="step"]')?.getAttribute('data-step-button'),
 }));
-for (const expected of ['Hochzeit / Trauung', 'Innenraum', 'Ceremony coordinator', 'Einzug', 'Auszug', 'A Thousand Years']) {
-  if (!generated.includes(expected)) failures.push(`planner generation: missing ${expected} in output: ${generated}`);
+if (plannerFoundation.selects !== 0 || plannerFoundation.locations !== 49 || plannerFoundation.dateTypes !== 3 || plannerFoundation.htmlLang !== 'de' || plannerFoundation.activeStep !== '2' || plannerFoundation.languageHref !== '/en/tools/event-music-planner/' || !plannerFoundation.alternateEn?.endsWith('/en/tools/event-music-planner/') || !plannerFoundation.alternateDefault?.endsWith('/tools/eventmusik-planer/')) failures.push(`planner foundation: ${JSON.stringify(plannerFoundation)}`);
+await planner.locator('#planner-location').fill('Köl');
+await planner.locator('[data-location="Köln"]').click();
+await planner.locator('input[name="dateExact"]').fill('2026-09-10');
+await planner.locator('input[name="setting"][value="indoor"]').check();
+await planner.locator('[data-next]').click();
+if ((await planner.locator('input[name="moments"]:checked').count()) < 3 || (await planner.locator('input[name="pieces"]:checked').count()) !== 3) failures.push('planner defaults: expected selected moments and three repertoire starters');
+await planner.locator('.optional-details summary').click();
+await planner.locator('textarea[name="wishes"]').fill('Warm, persönlich, genaue Fassung noch offen.');
+await planner.locator('[data-create]').click();
+const generated = await planner.locator('[data-result]').innerText();
+for (const expected of ['Dein Musikplan', 'Hochzeit / Trauung', '10.09.2026', 'Köln', 'Ablauf', 'Einzug', 'Repertoire', 'A Thousand Years', 'Noch zu klären']) {
+  if (!generated.includes(expected)) failures.push(`planner generation: missing ${expected}`);
 }
-if (buttons.copyDisabled || buttons.downloadDisabled || buttons.emailDisabled || buttons.overflow > 1 || !/bereit|ready/i.test(buttons.state ?? '')) failures.push(`planner generation: unexpected state ${JSON.stringify(buttons)}`);
+const plannerState = await planner.evaluate(() => ({ overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, resultVisible: !document.querySelector('[data-result]')?.hidden, workbenchHidden: document.querySelector('[data-workbench]')?.hidden }));
+if (plannerState.overflow > 1 || !plannerState.resultVisible || !plannerState.workbenchHidden) failures.push(`planner result state: ${JSON.stringify(plannerState)}`);
 await planner.screenshot({ path: path.join(output, 'relaunch-planner-mobile.png'), fullPage: true });
-await planner.locator('[data-reset]').click();
-if (await planner.locator('#occasion').inputValue()) failures.push('planner reset: occasion was not cleared');
-await planner.locator('[data-language="en"]').click();
-if ((await planner.locator('#occasion option[value="hochzeit"]').innerText()) !== 'Wedding ceremony') failures.push('planner language toggle: English occasion label missing');
+await planner.locator('[data-edit]').click();
+if (await planner.locator('[data-step="3"]').isHidden()) failures.push('planner edit: step 3 did not reopen');
+await planner.locator('[data-create]').click();
+await planner.locator('[data-restart]').click();
+if (await planner.locator('input[name="occasion"]:checked').count()) failures.push('planner reset: occasion was not cleared');
 for (const error of plannerErrors) failures.push(`planner runtime: ${error}`);
 await planner.close();
+
+const englishPlanner = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+const englishErrors = [];
+englishPlanner.on('pageerror', (error) => englishErrors.push(error.message));
+englishPlanner.on('console', (message) => { if (message.type() === 'error') englishErrors.push(message.text()); });
+await englishPlanner.goto(`${baseUrl}/en/tools/event-music-planner/`, { waitUntil: 'networkidle' });
+const englishFoundation = await englishPlanner.evaluate(() => ({
+  lang: document.documentElement.lang,
+  canonical: document.querySelector('link[rel="canonical"]')?.getAttribute('href'),
+  alternateDe: document.querySelector('link[rel="alternate"][hreflang="de"]')?.getAttribute('href'),
+  languageHref: document.querySelector('.header-language')?.getAttribute('href'),
+  selects: document.querySelectorAll('[data-planner-app] select').length,
+}));
+if (englishFoundation.lang !== 'en' || englishFoundation.selects !== 0 || englishFoundation.languageHref !== '/tools/eventmusik-planer/' || !englishFoundation.canonical?.endsWith('/en/tools/event-music-planner/') || !englishFoundation.alternateDe?.endsWith('/tools/eventmusik-planer/')) failures.push(`english planner foundation: ${JSON.stringify(englishFoundation)}`);
+await englishPlanner.locator('input[name="occasion"][value="hochzeit"]').check();
+await englishPlanner.locator('[data-next]').click();
+await englishPlanner.locator('#planner-location').fill('Cambridge');
+if (!/individually/i.test(await englishPlanner.locator('[data-location-state]').innerText())) failures.push('english planner: custom location state missing');
+await englishPlanner.locator('input[name="dateExact"]').fill('2026-10-12');
+await englishPlanner.locator('input[name="setting"][value="outdoor"]').check();
+await englishPlanner.locator('[data-next]').click();
+await englishPlanner.locator('[data-create]').click();
+const englishOutput = await englishPlanner.locator('[data-result]').innerText();
+for (const expected of ['Your music plan', 'Wedding ceremony', '12/10/2026', 'Cambridge', 'Running order', 'Repertoire', 'Still to clarify']) if (!englishOutput.includes(expected)) failures.push(`english planner generation: missing ${expected}`);
+for (const error of englishErrors) failures.push(`english planner runtime: ${error}`);
+await englishPlanner.close();
 const songCheck = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
 const songErrors = [];
 songCheck.on('pageerror', (error) => songErrors.push(error.message));

@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { occasionProfiles } from '../data/repertoire';
+import { plannerLocations } from '../data/planner-locations';
+
+interface Props { lang: 'de' | 'en'; }
+const { lang } = Astro.props;
+const de = lang === 'de';
+const canonicalPath = de ? '/tools/eventmusik-planer/' : '/en/tools/event-music-planner/';
+const alternatePath = de ? '/en/tools/event-music-planner/' : '/tools/eventmusik-planer/';
+const otherProfile = {
+  slug: 'other', labelDe: 'Anderer Anlass', labelEn: 'Another occasion',
+  moments: [
+    { de: 'Ankommen', en: 'Arrival', guidanceDe: 'Klären, ob Musik den Raum öffnet oder erst später beginnt.', guidanceEn: 'Clarify whether music opens the room or starts later.' },
+    { de: 'Musikalischer Schwerpunkt', en: 'Featured musical moment', guidanceDe: 'Startsignal, gewünschte Aufmerksamkeit und ein flexibles Ende festlegen.', guidanceEn: 'Set the cue, desired level of attention and a flexible ending.' },
+    { de: 'Übergang', en: 'Transition', guidanceDe: 'Musik mit Moderation, Service oder Ortswechsel verbinden.', guidanceEn: 'Connect the music with moderation, service or a location change.' },
+    { de: 'Abschluss', en: 'Closing', guidanceDe: 'Ein klares Ende und den nächsten Programmpunkt abstimmen.', guidanceEn: 'Agree a clear ending and the next programme item.' },
+  ],
+  questionsDe: ['Wer gibt vor Ort das Startsignal?', 'Welche Funktion soll die Musik erfüllen?', 'Welche räumlichen oder zeitlichen Grenzen sind bekannt?'],
+  questionsEn: ['Who gives the cue on site?', 'What function should the music fulfil?', 'Which spatial or timing constraints are already known?'],
+  pieces: [],
+};
+const plannerData = [...occasionProfiles.map(({ slug, labelDe, labelEn, moments, questionsDe, questionsEn, pieces }) => ({ slug, labelDe, labelEn, moments, questionsDe, questionsEn, pieces })), otherProfile];
+const copy = de ? {
+  title: 'Eventmusik planen', description: 'Erstelle in drei kurzen Schritten einen klaren Musikplan mit Anlass, Rahmen, Ablauf und Repertoire-Ideen.',
+  intro: 'Drei Entscheidungen bis zu einem Plan, den du wirklich lesen und weitergeben kannst.', privacy: 'Bleibt in diesem Browser. Keine Anmeldung, Speicherung oder automatische Anfrage.',
+  steps: ['Anlass', 'Rahmen', 'Musik'], stepLabel: 'Schritt', chooseOccasion: 'Was planst du?', chooseOccasionNote: 'Wähle den Rahmen, der deinem Termin am nächsten kommt.', other: 'Anderer Anlass', otherLabel: 'Anlass kurz benennen',
+  frame: 'Wann und wo findet es statt?', frameNote: 'Ort und Datum reichen zunächst. Alles Weitere kann später geklärt werden.', date: 'Datum', exact: 'Festes Datum', period: 'Zeitraum', openDate: 'Noch offen', from: 'Von', until: 'Bis',
+  location: 'Ort oder Region', locationPlaceholder: 'Ort eingeben oder unten auswählen', supported: 'Aktiv veröffentlichte Orte und Regionen', supportedNote: '49 belegte Orte und Regionen. Ein anderer Ort bleibt möglich und wird individuell geprüft.', otherLocation: 'Anderen Ort übernehmen',
+  setting: 'Setting', role: 'Rolle der Musik', sound: 'Klang / Besetzung', music: 'Welche Momente soll die Musik tragen?', musicNote: 'Die sinnvollen Startmomente sind bereits ausgewählt. Du kannst sie direkt anpassen.', repertoire: 'Repertoire-Kurzliste', repertoireNote: 'Drei Titel sind als Ausgangspunkt markiert. Das ist keine Zusage einer bestimmten Fassung.', wishes: 'Wunschstück oder kurze Notiz', wishesPlaceholder: 'Optional: Titel, Stil oder persönlicher Bezug', refine: 'Klangrichtung verfeinern',
+  back: 'Zurück', nextFrame: 'Weiter: Rahmen', nextMusic: 'Weiter: Musik', create: 'Musikplan anzeigen', edit: 'Plan bearbeiten', restart: 'Neu beginnen',
+  liveTitle: 'Dein Plan', empty: 'Noch keine Auswahl', waitingMoments: 'Noch keine Programmpunkte', waitingPieces: 'Noch keine Stücke',
+  resultTitle: 'Dein Musikplan', resultLead: 'Der Ablauf ist jetzt kompakt genug für die nächste Abstimmung.', overview: 'Rahmen', flow: 'Ablauf', shortlist: 'Repertoire', questions: 'Noch zu klären',
+  copyAction: 'Kopieren', copied: 'Kopiert', download: 'TXT laden', email: 'E-Mail vorbereiten', boundary: 'Dieser Plan bestätigt weder Termin, Besetzung, Fassung, Notenlage, Arrangement, Rechte, Preis noch Buchung. Das wird direkt mit Kim-Marie geklärt.',
+  requiredOccasion: 'Bitte wähle einen Anlass.', requiredOther: 'Bitte benenne den anderen Anlass kurz.', requiredLocation: 'Bitte gib einen Ort oder eine Region an.', requiredDate: 'Bitte wähle ein Datum oder markiere „Noch offen“.', requiredPeriod: 'Bitte wähle einen vollständigen, zeitlich korrekten Zeitraum.', requiredMoment: 'Bitte wähle mindestens einen Spielmoment.',
+  supportedStatus: 'veröffentlichte Region', customStatus: 'individuell zu prüfen', noDate: 'Noch offen', noPieces: 'Noch keine Titel gewählt', noWishes: 'Keine Zusatznotiz', emailSubject: 'Eventmusik-Anfrage',
+} : {
+  title: 'Plan event music', description: 'Build a clear event-music plan in three short steps, covering occasion, setting, running order and repertoire ideas.',
+  intro: 'Three decisions lead to a plan you can actually read and share.', privacy: 'Stays in this browser. No account, storage or automatic enquiry.',
+  steps: ['Occasion', 'Setting', 'Music'], stepLabel: 'Step', chooseOccasion: 'What are you planning?', chooseOccasionNote: 'Choose the option closest to your event.', other: 'Another occasion', otherLabel: 'Name the occasion briefly',
+  frame: 'When and where will it happen?', frameNote: 'Location and date are enough for now. Everything else can be clarified later.', date: 'Date', exact: 'Exact date', period: 'Date range', openDate: 'Not decided', from: 'From', until: 'Until',
+  location: 'Place or region', locationPlaceholder: 'Type a place or choose below', supported: 'Published locations and regions', supportedNote: '49 evidenced locations and regions. Another place is still possible and will be checked individually.', otherLocation: 'Use another place',
+  setting: 'Setting', role: 'Role of the music', sound: 'Sound / line-up', music: 'Which moments should the music support?', musicNote: 'Useful starting moments are preselected. Adjust them directly.', repertoire: 'Repertoire shortlist', repertoireNote: 'Three titles are marked as a starting point. This does not confirm a particular version.', wishes: 'Requested piece or short note', wishesPlaceholder: 'Optional: title, style or personal meaning', refine: 'Refine the musical character',
+  back: 'Back', nextFrame: 'Next: setting', nextMusic: 'Next: music', create: 'Show music plan', edit: 'Edit plan', restart: 'Start again',
+  liveTitle: 'Your plan', empty: 'No selection yet', waitingMoments: 'No programme moments yet', waitingPieces: 'No pieces yet',
+  resultTitle: 'Your music plan', resultLead: 'The running order is now compact enough for the next conversation.', overview: 'Setting', flow: 'Running order', shortlist: 'Repertoire', questions: 'Still to clarify',
+  copyAction: 'Copy', copied: 'Copied', download: 'Download TXT', email: 'Prepare email', boundary: 'This plan does not confirm date, line-up, version, notation, arrangement, rights, price or booking. Confirm these directly with Kim-Marie.',
+  requiredOccasion: 'Choose an occasion.', requiredOther: 'Name the other occasion briefly.', requiredLocation: 'Enter a place or region.', requiredDate: 'Choose a date or mark it as not decided.', requiredPeriod: 'Choose a complete date range in chronological order.', requiredMoment: 'Choose at least one musical moment.',
+  supportedStatus: 'published region', customStatus: 'to be checked individually', noDate: 'Not decided', noPieces: 'No titles selected', noWishes: 'No additional note', emailSubject: 'Event music enquiry',
+};
+const occasions = occasionProfiles.map((profile) => ({ value: profile.slug, label: de ? profile.labelDe : profile.labelEn, note: de && profile.slug === 'geburtstag' ? 'Überraschung, Geschenk oder Empfang' : de ? profile.shortDe : profile.shortEn }));
+const settings = de ? [
+  ['indoor', 'Innenraum', 'Akustik und Wege vor Ort'], ['outdoor', 'Draußen', 'Nur mit Schutz und Plan B'], ['both', 'Innen und draußen', 'Ortswechsel einplanen'], ['open', 'Noch offen', 'Im Gespräch festlegen'],
+] : [
+  ['indoor', 'Indoor', 'Room and access on site'], ['outdoor', 'Outdoor', 'Only with cover and Plan B'], ['both', 'Indoor and outdoor', 'Allow for a location change'], ['open', 'Not decided', 'Clarify in conversation'],
+];
+const roles = de ? [['background', 'Begleitend', 'Raum für Gespräche'], ['featured', 'Im Mittelpunkt', 'Eigener Programmpunkt'], ['both', 'Beides', 'Begleitung plus Akzent']] : [['background', 'Background', 'Leave room for conversation'], ['featured', 'Featured', 'A programme item of its own'], ['both', 'Both', 'Background plus a highlight']];
+const sounds = de ? [['solo', 'Solo-Viola'], ['accompanied', 'Viola mit Begleitung'], ['small', 'Kleine Besetzung, falls verfügbar'], ['recommend', 'Offen für Empfehlung']] : [['solo', 'Solo viola'], ['accompanied', 'Viola with accompaniment'], ['small', 'Small ensemble, if available'], ['recommend', 'Open to a recommendation']];
+const characters = de ? [['open', 'Offen'], ['warm', 'Warm'], ['calm', 'Ruhig'], ['bright', 'Leicht'], ['formal', 'Feierlich'], ['modern', 'Modern']] : [['open', 'Open'], ['warm', 'Warm'], ['calm', 'Calm'], ['bright', 'Light'], ['formal', 'Formal'], ['modern', 'Modern']];
+const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', name: copy.title, description: copy.description, url: `https://www.auspiciousmusic.com${canonicalPath}`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any', browserRequirements: 'JavaScript', inLanguage: lang, isAccessibleForFree: true };
+---
+
+<BaseLayout title={`${copy.title} — Auspicious Music`} description={copy.description} canonicalPath={canonicalPath} lang={lang} alternatePath={alternatePath}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <style is:global>
+      @layer components {
+        .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+        .planner-page { background: #f4f6f7; color: #17191f; padding-block: clamp(1.6rem, 4vw, 3rem) clamp(4rem, 8vw, 7rem); }
+        .planner-intro { display: flex; justify-content: space-between; align-items: end; gap: 1rem 3rem; padding-block: clamp(1.2rem, 3vw, 2.2rem); }
+        .planner-intro h1 { max-width: none; font-size: clamp(2rem, 1.5rem + 2vw, 3.25rem); letter-spacing: 0; }
+        .planner-intro p { max-width: 44rem; margin-top: .55rem; color: #58616b; }
+        .planner-privacy { max-width: 28rem; border-left: 2px solid #8f1d35; padding-left: 1rem; color: #58616b; font-size: .88rem; line-height: 1.55; }
+        .planner-app { border: 1px solid #cfd5da; background: #fff; box-shadow: 0 16px 50px rgba(23, 25, 31, .08); }
+        .planner-progress { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #dfe3e6; }
+        .planner-progress button { display: flex; align-items: center; gap: .65rem; min-height: 54px; padding: .7rem clamp(.7rem, 2vw, 1.2rem); border: 0; border-right: 1px solid #e3e6e8; background: #f8f9fa; color: #69727c; font: 600 .82rem/1.2 var(--font-sans); text-align: left; cursor: pointer; }
+        .planner-progress button:last-child { border-right: 0; }
+        .planner-progress button[aria-current="step"] { background: #fff; color: #17191f; box-shadow: inset 0 -3px #8f1d35; }
+        .planner-progress button:disabled { cursor: default; }
+        .planner-progress__number { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; flex: none; border: 1px solid #bfc6cc; border-radius: 50%; font-variant-numeric: tabular-nums; }
+        .planner-progress button[aria-current="step"] .planner-progress__number, .planner-progress button[data-complete="true"] .planner-progress__number { border-color: #8f1d35; background: #8f1d35; color: #fff; }
+        .planner-workbench { display: grid; min-height: 34rem; }
+        @media (min-width: 1000px) { .planner-workbench { grid-template-columns: minmax(0, 1.55fr) minmax(19rem, .75fr); } }
+        .planner-form { min-width: 0; padding: clamp(1.2rem, 3vw, 2.25rem); }
+        .planner-step[hidden], .planner-result[hidden], [data-date-fields][hidden], [data-other-occasion][hidden] { display: none; }
+        .planner-step__head { margin-bottom: 1.4rem; }
+        .planner-step__head h2 { font-size: clamp(1.5rem, 1.25rem + .8vw, 2rem); }
+        .planner-step__head p { max-width: 55ch; margin-top: .35rem; color: #68717b; }
+        .planner-section { margin-top: 1.5rem; padding-top: 1.4rem; border-top: 1px solid #e2e5e8; }
+        .planner-section:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
+        .planner-section legend, .planner-label { display: block; margin-bottom: .75rem; color: #292e35; font-size: .92rem; font-weight: 700; }
+        .planner-section fieldset { min-width: 0; border: 0; padding: 0; }
+        .option-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; }
+        @media (min-width: 680px) { .option-grid--occasion { grid-template-columns: repeat(4, minmax(0, 1fr)); } .option-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); } .option-grid--four { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+        .option { position: relative; display: grid; align-content: start; gap: .3rem; min-height: 74px; padding: .8rem .85rem; border: 1px solid #d6dbe0; border-radius: 4px; background: #fff; cursor: pointer; }
+        .option:hover { border-color: #7b858e; }
+        .option:has(input:checked) { border-color: #8f1d35; box-shadow: inset 0 0 0 1px #8f1d35; background: #fffafb; }
+        .option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+        .option strong { min-width: 0; font-size: .92rem; line-height: 1.25; overflow-wrap: anywhere; hyphens: auto; }
+        .option small { min-width: 0; color: #68717b; font-size: .76rem; line-height: 1.35; overflow-wrap: anywhere; hyphens: auto; }
+        .option:has(input:focus-visible) { outline: 3px solid color-mix(in srgb, #8f1d35 35%, transparent); outline-offset: 2px; }
+        .compact-options .option { min-height: 48px; align-content: center; }
+        .planner-input { width: 100%; min-height: 48px; border: 1px solid #bfc6cc; border-radius: 4px; background: #fff; color: #17191f; padding: .7rem .8rem; font: 500 1rem/1.4 var(--font-sans); }
+        .planner-input:focus { border-color: #8f1d35; outline: 3px solid color-mix(in srgb, #8f1d35 20%, transparent); }
+        .date-row { display: grid; gap: .7rem; }
+        @media (min-width: 620px) { .date-row--two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .field-label { display: grid; gap: .4rem; color: #424951; font-size: .82rem; font-weight: 650; }
+        .location-box { border: 1px solid #d6dbe0; border-radius: 4px; overflow: hidden; }
+        .location-box .planner-input { border: 0; border-bottom: 1px solid #d6dbe0; border-radius: 0; }
+        .location-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 1px; max-height: 14.5rem; overflow-y: auto; background: #e2e5e8; }
+        .location-list button { min-height: 42px; border: 0; background: #fff; color: #30363d; padding: .55rem .7rem; text-align: left; font: 550 .82rem/1.25 var(--font-sans); cursor: pointer; }
+        .location-list button:hover, .location-list button[aria-pressed="true"] { background: #eef5f3; color: #1e5c52; }
+        .location-list button:focus-visible { position: relative; z-index: 1; outline: 3px solid #8f1d35; outline-offset: -3px; }
+        .location-note { display: flex; justify-content: space-between; gap: .5rem 1rem; flex-wrap: wrap; margin-top: .5rem; color: #68717b; font-size: .78rem; line-height: 1.45; }
+        .planner-error { min-height: 1.4rem; margin-top: 1rem; color: #9b2837; font-weight: 650; }
+        .planner-nav { display: flex; justify-content: space-between; gap: .75rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e5e8; }
+        .planner-nav [hidden] { display: none; }
+        .planner-summary { border-left: 1px solid #dfe3e6; background: #f8f9fa; padding: clamp(1.1rem, 2.5vw, 1.6rem); }
+        .planner-summary h2 { font-size: 1.05rem; }
+        .summary-status { margin-left: .35rem; color: #626b74; font-size: .78rem; font-weight: 500; }
+        .summary-section { padding-block: 1rem; border-bottom: 1px solid #dfe3e6; }
+        .summary-section:last-child { border-bottom: 0; }
+        .summary-section h3 { margin-bottom: .55rem; font-size: .78rem; text-transform: uppercase; color: #626c75; }
+        .summary-list { display: grid; gap: .45rem; color: #30363d; font-size: .86rem; line-height: 1.4; }
+        .summary-list li { display: flex; justify-content: space-between; gap: 1rem; }
+        .summary-list span:last-child { color: #68717b; text-align: right; }
+        .check-grid { display: grid; gap: .45rem; }
+        .check-option { display: flex; gap: .65rem; align-items: start; padding: .65rem .7rem; border: 1px solid #d9dde1; border-radius: 4px; cursor: pointer; }
+        .check-option:has(input:checked) { border-color: #2c6d62; background: #f1f7f5; }
+        .check-option input { width: 1rem; height: 1rem; margin-top: .15rem; accent-color: #2c6d62; }
+        .check-option span { display: grid; gap: .15rem; font-size: .88rem; }
+        .check-option small { color: #68717b; line-height: 1.35; }
+        .optional-details { margin-top: 1rem; border-top: 1px solid #e2e5e8; padding-top: .9rem; }
+        .optional-details summary { cursor: pointer; color: #30363d; font-weight: 700; }
+        .optional-details > div { margin-top: .8rem; }
+        .planner-result { padding: clamp(1.2rem, 3vw, 2.3rem); }
+        .result-head { display: flex; justify-content: space-between; gap: 1rem 2rem; align-items: end; padding-bottom: 1.2rem; border-bottom: 1px solid #dfe3e6; }
+        .result-head h2 { font-size: clamp(1.7rem, 1.35rem + 1.2vw, 2.5rem); }
+        .result-head p { margin-top: .35rem; color: #68717b; }
+        .result-overview { display: grid; gap: 1px; background: #dfe3e6; margin-top: 1.2rem; border: 1px solid #dfe3e6; }
+        @media (min-width: 720px) { .result-overview { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+        .result-overview > div { background: #fff; padding: .9rem; }
+        .result-overview dt { color: #68717b; font-size: .75rem; }
+        .result-overview dd { margin-top: .25rem; font-weight: 700; line-height: 1.35; }
+        .result-grid { display: grid; gap: 0; margin-top: 1.2rem; border-block: 1px solid #dfe3e6; }
+        @media (min-width: 900px) { .result-grid { grid-template-columns: 1.1fr 1fr 1fr; } }
+        .result-section { padding: 1.2rem 0; }
+        @media (min-width: 900px) { .result-section { padding: 1.2rem; border-right: 1px solid #dfe3e6; } .result-section:first-child { padding-left: 0; } .result-section:last-child { border-right: 0; padding-right: 0; } }
+        .result-section h3 { margin-bottom: .9rem; font-size: 1rem; }
+        .timeline { display: grid; gap: 0; }
+        .timeline li { position: relative; padding: 0 0 1rem 1.2rem; border-left: 1px solid #8f1d35; }
+        .timeline li::before { content: ''; position: absolute; left: -4px; top: .3rem; width: 7px; height: 7px; border-radius: 50%; background: #8f1d35; }
+        .timeline li:last-child { padding-bottom: 0; }
+        .timeline strong, .repertoire-result strong { display: block; font-size: .9rem; }
+        .timeline small, .repertoire-result small { display: block; margin-top: .15rem; color: #68717b; line-height: 1.4; }
+        .repertoire-result, .questions-result { display: grid; gap: .65rem; }
+        .repertoire-result li, .questions-result li { padding-bottom: .6rem; border-bottom: 1px solid #e2e5e8; }
+        .questions-result li { padding-left: 1rem; border-left: 2px solid #2c6d62; }
+        .result-boundary { margin-top: 1.2rem; border-left: 2px solid #8f1d35; padding-left: .9rem; color: #606972; font-size: .82rem; line-height: 1.55; }
+        .result-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+        .result-actions .btn:last-child { margin-left: auto; }
+        @media (max-width: 999px) { .planner-summary { border-left: 0; border-top: 1px solid #dfe3e6; } }
+        @media (max-width: 620px) {
+          .planner-page { padding-top: .75rem; }
+          .planner-intro { display: block; }
+          .planner-privacy { margin-top: .9rem; }
+          .planner-progress button { justify-content: center; min-height: 48px; }
+          .planner-progress button span:last-child { display: none; }
+          .planner-form { padding: 1rem; }
+          .option { min-height: 66px; padding: .7rem; }
+          .planner-nav { position: sticky; bottom: 0; z-index: 3; margin-inline: -1rem; margin-bottom: -1rem; padding: .75rem 1rem max(.75rem, env(safe-area-inset-bottom)); background: rgba(255,255,255,.96); box-shadow: 0 -8px 24px rgba(23,25,31,.08); }
+          .planner-nav .btn { flex: 1; }
+          .result-head { display: block; }
+          .result-head .btn { margin-top: 1rem; }
+          .result-actions .btn { flex: 1 1 calc(50% - .4rem); }
+          .result-actions .btn:last-child { margin-left: 0; flex-basis: 100%; }
+        }
+      }
+    </style>
+  </Fragment>
+
+  <main id="content" class="planner-page">
+    <div class="shell">
+      <header class="planner-intro">
+        <div><h1>{copy.title}</h1><p>{copy.intro}</p></div>
+        <p class="planner-privacy">{copy.privacy}</p>
+      </header>
+
+      <section class="planner-app" data-planner-app aria-label={copy.title}>
+        <nav class="planner-progress" aria-label={`${copy.stepLabel} 1–3`}>
+          {copy.steps.map((label, index) => <button type="button" data-step-button={index + 1} aria-current={index === 0 ? 'step' : undefined} disabled={index > 0}><span class="planner-progress__number">{index + 1}</span><span>{label}</span></button>)}
+        </nav>
+
+        <div class="planner-workbench" data-workbench>
+          <form class="planner-form" data-planner novalidate>
+            <section class="planner-step" data-step="1">
+              <header class="planner-step__head"><h2>{copy.chooseOccasion}</h2><p>{copy.chooseOccasionNote}</p></header>
+              <fieldset class="planner-section"><legend class="sr-only">{copy.chooseOccasion}</legend><div class="option-grid option-grid--occasion">
+                {occasions.map((occasion) => <label class="option"><input type="radio" name="occasion" value={occasion.value} /><strong>{occasion.label}</strong><small>{occasion.note}</small></label>)}
+                <label class="option"><input type="radio" name="occasion" value="other" /><strong>{copy.other}</strong><small>+</small></label>
+              </div></fieldset>
+              <label class="field-label planner-section" data-other-occasion hidden>{copy.otherLabel}<input class="planner-input" name="occasionOther" maxlength="80" /></label>
+            </section>
+
+            <section class="planner-step" data-step="2" hidden>
+              <header class="planner-step__head"><h2>{copy.frame}</h2><p>{copy.frameNote}</p></header>
+              <fieldset class="planner-section"><legend>{copy.date}</legend><div class="option-grid option-grid--three compact-options">
+                <label class="option"><input type="radio" name="dateMode" value="exact" checked /><strong>{copy.exact}</strong></label>
+                <label class="option"><input type="radio" name="dateMode" value="period" /><strong>{copy.period}</strong></label>
+                <label class="option"><input type="radio" name="dateMode" value="open" /><strong>{copy.openDate}</strong></label>
+              </div><div class="date-row" data-date-fields="exact"><label class="field-label">{copy.date}<input class="planner-input" type="date" name="dateExact" /></label></div><div class="date-row date-row--two" data-date-fields="period" hidden><label class="field-label">{copy.from}<input class="planner-input" type="date" name="dateFrom" /></label><label class="field-label">{copy.until}<input class="planner-input" type="date" name="dateUntil" /></label></div></fieldset>
+
+              <section class="planner-section"><label class="planner-label" for="planner-location">{copy.location}</label><div class="location-box"><input id="planner-location" class="planner-input" name="location" maxlength="120" autocomplete="off" type="search" aria-controls="planner-location-list" aria-describedby="planner-location-note" placeholder={copy.locationPlaceholder} /><div class="location-list" id="planner-location-list" role="group" aria-label={copy.supported}>{plannerLocations.map((location) => <button type="button" data-location={location.label} data-location-slug={location.slug}>{location.label}</button>)}</div></div><p class="location-note" id="planner-location-note"><span>{copy.supportedNote}</span><span data-location-state>{copy.customStatus}</span></p></section>
+
+              <fieldset class="planner-section"><legend>{copy.setting}</legend><div class="option-grid option-grid--four">{settings.map(([value, label, note]) => <label class="option"><input type="radio" name="setting" value={value} /><strong>{label}</strong><small>{note}</small></label>)}</div></fieldset>
+              <fieldset class="planner-section"><legend>{copy.role}</legend><div class="option-grid option-grid--three">{roles.map(([value, label, note], index) => <label class="option"><input type="radio" name="role" value={value} checked={index === 0} /><strong>{label}</strong><small>{note}</small></label>)}</div></fieldset>
+              <fieldset class="planner-section"><legend>{copy.sound}</legend><div class="option-grid option-grid--four compact-options">{sounds.map(([value, label], index) => <label class="option"><input type="radio" name="sound" value={value} checked={index === 0} /><strong>{label}</strong></label>)}</div></fieldset>
+            </section>
+
+            <section class="planner-step" data-step="3" hidden>
+              <header class="planner-step__head"><h2>{copy.music}</h2><p>{copy.musicNote}</p></header>
+              <fieldset class="planner-section"><legend class="sr-only">{copy.music}</legend><div class="check-grid" data-moments></div></fieldset>
+              <fieldset class="planner-section"><legend>{copy.repertoire}</legend><p class="planner-step__note">{copy.repertoireNote}</p><div class="check-grid" data-pieces></div></fieldset>
+              <details class="optional-details"><summary>{copy.refine}</summary><div><div class="option-grid option-grid--three compact-options">{characters.map(([value, label], index) => <label class="option"><input type="radio" name="character" value={value} checked={index === 0} /><strong>{label}</strong></label>)}</div><label class="field-label planner-section">{copy.wishes}<textarea class="planner-input" name="wishes" rows="3" maxlength="500" placeholder={copy.wishesPlaceholder}></textarea></label></div></details>
+            </section>
+
+            <p class="planner-error" data-planner-error aria-live="polite"></p>
+            <div class="planner-nav"><button class="btn btn--quiet" type="button" data-back hidden>{copy.back}</button><button class="btn btn--primary" type="button" data-next>{copy.nextFrame}</button><button class="btn btn--primary" type="submit" data-create hidden>{copy.create}</button></div>
+          </form>
+
+          <aside class="planner-summary" aria-live="polite"><h2>{copy.liveTitle}<span class="summary-status" data-summary-status>({copy.empty})</span></h2><section class="summary-section"><h3>{copy.overview}</h3><ul class="summary-list" data-summary-frame><li><span>{copy.steps[0]}</span><span>—</span></li><li><span>{copy.date}</span><span>—</span></li><li><span>{copy.location}</span><span>—</span></li></ul></section><section class="summary-section"><h3>{copy.flow}</h3><p data-summary-moments>{copy.waitingMoments}</p></section><section class="summary-section"><h3>{copy.shortlist}</h3><p data-summary-pieces>{copy.waitingPieces}</p></section></aside>
+        </div>
+
+        <section class="planner-result" data-result hidden tabindex="-1">
+          <header class="result-head"><div><h2>{copy.resultTitle}</h2><p>{copy.resultLead}</p></div><button class="btn btn--quiet" type="button" data-edit>{copy.edit}</button></header>
+          <dl class="result-overview" data-result-overview></dl>
+          <div class="result-grid"><section class="result-section"><h3>{copy.flow}</h3><ol class="timeline" data-result-flow></ol></section><section class="result-section"><h3>{copy.shortlist}</h3><ul class="repertoire-result" data-result-pieces></ul></section><section class="result-section"><h3>{copy.questions}</h3><ul class="questions-result" data-result-questions></ul></section></div>
+          <p class="result-boundary">{copy.boundary}</p>
+          <div class="result-actions"><button class="btn btn--quiet" type="button" data-copy>{copy.copyAction}</button><button class="btn btn--quiet" type="button" data-download>{copy.download}</button><button class="btn btn--quiet" type="button" data-restart>{copy.restart}</button><button class="btn btn--primary" type="button" data-email>{copy.email}</button></div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <Fragment slot="scripts">
+    <script is:inline type="application/json" id={`planner-data-${lang}`} set:html={JSON.stringify({ profiles: plannerData, locations: plannerLocations, copy, lang })} />
+    <script is:inline>
+      (() => {
+        const dataNode = document.querySelector('script[id^="planner-data-"]');
+        const app = document.querySelector('[data-planner-app]');
+        if (!dataNode || !(app instanceof HTMLElement)) return;
+        const config = JSON.parse(dataNode.textContent || '{}');
+        const { profiles, locations, copy, lang } = config;
+        const bySlug = Object.fromEntries(profiles.map((profile) => [profile.slug, profile]));
+        const form = app.querySelector('[data-planner]');
+        const workbench = app.querySelector('[data-workbench]');
+        const result = app.querySelector('[data-result]');
+        const error = app.querySelector('[data-planner-error]');
+        const momentsRoot = app.querySelector('[data-moments]');
+        const piecesRoot = app.querySelector('[data-pieces]');
+        const locationInput = app.querySelector('#planner-location');
+        const locationList = app.querySelector('#planner-location-list');
+        const locationState = app.querySelector('[data-location-state]');
+        const nextButton = app.querySelector('[data-next]');
+        const backButton = app.querySelector('[data-back]');
+        const createButton = app.querySelector('[data-create]');
+        if (!(form instanceof HTMLFormElement) || !(workbench instanceof HTMLElement) || !(result instanceof HTMLElement) || !(error instanceof HTMLElement) || !(momentsRoot instanceof HTMLElement) || !(piecesRoot instanceof HTMLElement) || !(locationInput instanceof HTMLInputElement) || !(locationList instanceof HTMLElement) || !(locationState instanceof HTMLElement) || !(nextButton instanceof HTMLButtonElement) || !(backButton instanceof HTMLButtonElement) || !(createButton instanceof HTMLButtonElement)) return;
+        let step = 1;
+        let briefText = '';
+        const normalize = (value) => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+        const checked = (name) => form.querySelector(`input[name="${name}"]:checked`);
+        const checkedValue = (name) => checked(name)?.value || '';
+        const checkedLabel = (name) => checked(name)?.closest('label')?.querySelector('strong')?.textContent?.trim() || '—';
+        const profile = () => bySlug[checkedValue('occasion')];
+        const occasionLabel = () => checkedValue('occasion') === 'other' ? String(new FormData(form).get('occasionOther') || '').trim() || copy.other : (lang === 'de' ? profile()?.labelDe : profile()?.labelEn) || '—';
+        const formatDate = (value) => value ? new Intl.DateTimeFormat(lang === 'de' ? 'de-DE' : 'en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(`${value}T12:00:00`)) : '';
+        const dateLabel = () => { const data = new FormData(form); const mode = checkedValue('dateMode'); if (mode === 'open') return copy.noDate; if (mode === 'period') { const from = formatDate(data.get('dateFrom')); const until = formatDate(data.get('dateUntil')); return from && until ? `${from} – ${until}` : '—'; } return formatDate(data.get('dateExact')) || '—'; };
+        const selectedMoments = () => [...form.querySelectorAll('input[name="moments"]:checked')].map((input) => profile()?.moments[Number(input.value)]).filter(Boolean);
+        const selectedPieces = () => [...form.querySelectorAll('input[name="pieces"]:checked')].map((input) => profile()?.pieces[Number(input.value)]).filter(Boolean);
+        const minDate = (() => { const now = new Date(); return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`; })();
+        form.querySelectorAll('input[type="date"]').forEach((input) => input.min = minDate);
+
+        function renderProfileChoices() {
+          const selected = profile();
+          momentsRoot.innerHTML = selected ? selected.moments.map((moment, index) => `<label class="check-option"><input type="checkbox" name="moments" value="${index}" checked><span><strong>${escapeHtml(lang === 'de' ? moment.de : moment.en)}</strong><small>${escapeHtml(lang === 'de' ? moment.guidanceDe : moment.guidanceEn)}</small></span></label>`).join('') : '';
+          piecesRoot.innerHTML = selected ? selected.pieces.map((piece, index) => `<label class="check-option"><input type="checkbox" name="pieces" value="${index}" ${index < 3 ? 'checked' : ''}><span><strong>${escapeHtml(piece.title)}</strong>${(lang === 'de' ? piece.clarificationDe : piece.clarificationEn) ? `<small>${escapeHtml(lang === 'de' ? piece.clarificationDe : piece.clarificationEn)}</small>` : ''}</span></label>`).join('') : `<p>${escapeHtml(copy.noPieces)}</p>`;
+          updateSummary();
+        }
+
+        function renderLocations() {
+          const query = normalize(locationInput.value.trim());
+          const filtered = query ? locations.filter((location) => normalize(location.label).includes(query)) : locations;
+          locationList.querySelectorAll('[data-location]').forEach((button) => { const show = filtered.some((location) => location.label === button.dataset.location); button.hidden = !show; button.setAttribute('aria-pressed', String(normalize(button.dataset.location) === query)); });
+          const exact = locations.some((location) => normalize(location.label) === query);
+          locationState.textContent = exact ? copy.supportedStatus : copy.customStatus;
+        }
+
+        function updateDateFields() {
+          const mode = checkedValue('dateMode');
+          app.querySelectorAll('[data-date-fields]').forEach((node) => node.hidden = node.getAttribute('data-date-fields') !== mode);
+          updateSummary();
+        }
+
+        function updateSummary() {
+          const frame = app.querySelector('[data-summary-frame]');
+          const momentSummary = app.querySelector('[data-summary-moments]');
+          const pieceSummary = app.querySelector('[data-summary-pieces]');
+          const status = app.querySelector('[data-summary-status]');
+          const location = locationInput.value.trim() || '—';
+          if (frame) frame.innerHTML = `<li><span>${escapeHtml(copy.steps[0])}</span><span>${escapeHtml(occasionLabel())}</span></li><li><span>${escapeHtml(copy.date)}</span><span>${escapeHtml(dateLabel())}</span></li><li><span>${escapeHtml(copy.location)}</span><span>${escapeHtml(location)}</span></li>`;
+          const moments = selectedMoments(); const pieces = selectedPieces();
+          if (momentSummary) momentSummary.textContent = moments.length ? `${moments.length} ${copy.flow.toLowerCase()}` : copy.waitingMoments;
+          if (pieceSummary) pieceSummary.textContent = pieces.length ? pieces.map((piece) => piece.title).join(', ') : copy.waitingPieces;
+          if (status) status.textContent = occasionLabel() === '—' ? `(${copy.empty})` : `(${copy.steps[Math.min(step - 1, 2)]})`;
+        }
+
+        function setStep(next) {
+          step = Math.max(1, Math.min(3, next));
+          app.querySelectorAll('[data-step]').forEach((node) => node.hidden = Number(node.getAttribute('data-step')) !== step);
+          app.querySelectorAll('[data-step-button]').forEach((button) => { const value = Number(button.getAttribute('data-step-button')); button.disabled = value > step; button.toggleAttribute('aria-current', value === step); if (value === step) button.setAttribute('aria-current', 'step'); button.dataset.complete = String(value < step); });
+          backButton.hidden = step === 1;
+          nextButton.hidden = step === 3;
+          createButton.hidden = step !== 3;
+          nextButton.textContent = step === 1 ? copy.nextFrame : copy.nextMusic;
+          error.textContent = '';
+          updateSummary();
+          app.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        }
+
+        function validateStep(value) {
+          const data = new FormData(form);
+          if (value === 1) { if (!checkedValue('occasion')) return copy.requiredOccasion; if (checkedValue('occasion') === 'other' && !String(data.get('occasionOther') || '').trim()) return copy.requiredOther; }
+          if (value === 2) { if (!locationInput.value.trim()) return copy.requiredLocation; const mode = checkedValue('dateMode'); if (mode === 'exact' && !data.get('dateExact')) return copy.requiredDate; if (mode === 'period') { const from = String(data.get('dateFrom') || ''); const until = String(data.get('dateUntil') || ''); if (!from || !until || until < from) return copy.requiredPeriod; } if (!checkedValue('setting')) return lang === 'de' ? 'Bitte wähle ein Setting.' : 'Choose a setting.'; }
+          if (value === 3 && selectedMoments().length === 0) return copy.requiredMoment;
+          return '';
+        }
+
+        function createBrief() {
+          const data = new FormData(form); const selected = profile(); const moments = selectedMoments(); const pieces = selectedPieces();
+          const overview = [[copy.steps[0], occasionLabel()], [copy.date, dateLabel()], [copy.location, locationInput.value.trim()], [copy.role, checkedLabel('role')]];
+          app.querySelector('[data-result-overview]').innerHTML = overview.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('');
+          app.querySelector('[data-result-flow]').innerHTML = moments.map((moment) => `<li><strong>${escapeHtml(lang === 'de' ? moment.de : moment.en)}</strong><small>${escapeHtml(lang === 'de' ? moment.guidanceDe : moment.guidanceEn)}</small></li>`).join('');
+          app.querySelector('[data-result-pieces]').innerHTML = (pieces.length ? pieces : []).map((piece) => `<li><strong>${escapeHtml(piece.title)}</strong>${(lang === 'de' ? piece.clarificationDe : piece.clarificationEn) ? `<small>${escapeHtml(lang === 'de' ? piece.clarificationDe : piece.clarificationEn)}</small>` : ''}</li>`).join('') || `<li>${escapeHtml(copy.noPieces)}</li>`;
+          const questions = selected ? (lang === 'de' ? selected.questionsDe : selected.questionsEn) : [];
+          app.querySelector('[data-result-questions]').innerHTML = questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('');
+          const wishes = String(data.get('wishes') || '').trim() || copy.noWishes;
+          briefText = [`AUSPICIOUS MUSIC — ${copy.resultTitle.toUpperCase()}`, '', ...overview.map(([label, value]) => `${label}: ${value}`), `${copy.setting}: ${checkedLabel('setting')}`, `${copy.sound}: ${checkedLabel('sound')}`, `${copy.refine}: ${checkedLabel('character')}`, '', copy.flow.toUpperCase(), ...moments.map((moment, index) => `${index + 1}. ${lang === 'de' ? moment.de : moment.en} — ${lang === 'de' ? moment.guidanceDe : moment.guidanceEn}`), '', copy.shortlist.toUpperCase(), ...(pieces.length ? pieces.map((piece) => `- ${piece.title}`) : [`- ${copy.noPieces}`]), '', `${copy.wishes}: ${wishes}`, '', copy.questions.toUpperCase(), ...questions.map((question) => `- ${question}`), '', copy.boundary].join('\n');
+          workbench.hidden = true; result.hidden = false; result.focus();
+        }
+
+        form.addEventListener('change', (event) => {
+          if (event.target?.name === 'occasion') { app.querySelector('[data-other-occasion]').hidden = checkedValue('occasion') !== 'other'; renderProfileChoices(); }
+          if (event.target?.name === 'dateMode') updateDateFields();
+          updateSummary();
+        });
+        form.addEventListener('input', updateSummary);
+        locationInput.addEventListener('input', renderLocations);
+        locationList.addEventListener('click', (event) => { const button = event.target.closest('[data-location]'); if (!button) return; locationInput.value = button.dataset.location || ''; renderLocations(); updateSummary(); });
+        nextButton.addEventListener('click', () => { const message = validateStep(step); if (message) { error.textContent = message; return; } setStep(step + 1); });
+        backButton.addEventListener('click', () => setStep(step - 1));
+        app.querySelectorAll('[data-step-button]').forEach((button) => button.addEventListener('click', () => { const target = Number(button.getAttribute('data-step-button')); if (target <= step) setStep(target); }));
+        form.addEventListener('submit', (event) => { event.preventDefault(); const message = validateStep(3); if (message) { error.textContent = message; return; } createBrief(); });
+        app.querySelector('[data-edit]').addEventListener('click', () => { result.hidden = true; workbench.hidden = false; setStep(3); });
+        app.querySelector('[data-restart]').addEventListener('click', () => { form.reset(); locationInput.value = ''; momentsRoot.innerHTML = ''; piecesRoot.innerHTML = ''; app.querySelector('[data-other-occasion]').hidden = true; result.hidden = true; workbench.hidden = false; briefText = ''; updateDateFields(); renderLocations(); setStep(1); });
+        app.querySelector('[data-copy]').addEventListener('click', async (event) => { try { await navigator.clipboard.writeText(briefText); const button = event.currentTarget; button.textContent = copy.copied; setTimeout(() => { button.textContent = copy.copyAction; }, 1500); } catch { /* TXT remains available. */ } });
+        app.querySelector('[data-download]').addEventListener('click', () => { const url = URL.createObjectURL(new Blob([briefText], { type: 'text/plain;charset=utf-8' })); const link = document.createElement('a'); link.href = url; link.download = lang === 'de' ? 'eventmusik-plan.txt' : 'event-music-plan.txt'; link.click(); URL.revokeObjectURL(url); });
+        app.querySelector('[data-email]').addEventListener('click', () => { window.location.href = `mailto:kim-marie.borger@t-online.de?subject=${encodeURIComponent(`${copy.emailSubject}: ${occasionLabel()}`)}&body=${encodeURIComponent(briefText)}`; });
+        const requested = new URLSearchParams(location.search).get(lang === 'de' ? 'anlass' : 'occasion') || new URLSearchParams(location.search).get('anlass');
+        if (requested && bySlug[requested]) { const radio = form.querySelector(`input[name="occasion"][value="${CSS.escape(requested)}"]`); if (radio) { radio.checked = true; renderProfileChoices(); setStep(2); } }
+        renderLocations(); updateDateFields(); updateSummary();
+      })();
+    </script>
+  </Fragment>
+</BaseLayout>

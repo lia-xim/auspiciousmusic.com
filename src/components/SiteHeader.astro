@@ -1,37 +1,75 @@
 ---
 import { siteStrategy } from '../data/site-strategy';
 
-interface Props { currentPath: string; overDark?: boolean; }
-const { currentPath, overDark = false } = Astro.props;
+interface Props { currentPath: string; overDark?: boolean; lang?: 'de' | 'en'; alternatePath?: string; }
+const { currentPath, overDark = false, lang = 'de', alternatePath } = Astro.props;
 interface NavChild { href: string; label: string; note?: string; }
 interface NavItem { href: string; label: string; children?: readonly NavChild[]; }
 const navigation: readonly NavItem[] = siteStrategy.navigation;
-const isCurrent = (href: string) => currentPath.startsWith(href);
+const englishLabels: Record<string, string> = {
+  'Anlässe': 'Events', 'Alle Anlässe': 'All events', 'Live-Streicher draußen': 'Outdoor strings', 'Hochzeit / Trauung': 'Wedding ceremony', 'Trauerfeier': 'Funeral / memorial', 'Firmenevent': 'Corporate event', 'Geburtstag': 'Birthday',
+  'Viola im Einsatz': 'Using the viola', 'Viola oder Violine?': 'Viola or violin?', 'Mikrofonposition': 'Microphone placement', 'Live-Streicher oder Library?': 'Live strings or a library?',
+  'Repertoire nach Anlass': 'Repertoire by occasion', 'Wunschstück prüfen': 'Check a requested piece', 'Sektempfang': 'Drinks reception', 'Unterricht': 'Lessons',
+  'Aufnahme': 'Recording', 'Aufnahmebrief erstellen': 'Create a recording brief', 'Viola zuhause aufnehmen': 'Record viola at home', 'Viola-Mikrofonposition': 'Viola microphone placement',
+  'Planer': 'Planner', 'Wissen': 'Resources', 'Wissensbereich': 'Resource hub', 'Musik-Tools': 'Music tools', 'Über diese Seite': 'About this site', 'Geschichte & Neustart': 'History and relaunch',
+};
+const englishNotes: Record<string, string> = {
+  'Klang, Rolle und Praxis': 'Sound, role and practical use', 'Register und Wirkung entscheiden': 'Compare register and effect', 'Guide · 9 min · EN': 'Guide · 9 min · EN', 'Entscheidungshilfe · EN': 'Decision guide · EN',
+  'Ablauf, Ort und Repertoire': 'Running order, place and repertoire', 'Schutz, Akustik und Plan B': 'Protection, acoustics and Plan B', 'Einzug bis Auszug': 'Entrance through exit', 'Abschied behutsam planen': 'Plan a farewell with care', 'Empfang, Dinner, Highlight': 'Reception, dinner and highlight', 'Überraschung oder Empfang': 'Surprise or reception',
+  'Titel und offene Fassungen': 'Titles and versions to clarify', 'Fassung und offene Fragen': 'Version and open questions', 'Leicht und gesprächsfreundlich': 'Light and conversation-friendly', 'Zwischen Gängen und Reden': 'Between courses and speeches', 'Ziel, Werk und Übeplan': 'Goal, work and practice plan',
+  'Viola, Raum und Mikrofon': 'Viola, room and microphone', 'Browserlokales Werkzeug · DE': 'Browser-local tool · DE', 'Tools, Guides und Archiv': 'Tools, guides and archive', 'Laufen lokal im Browser': 'Run locally in the browser', 'Quellenbasierte Guides': 'Source-led guides', 'Expertise und Verantwortliche': 'Expertise and responsibility', 'Transparente neue Eigentümerschaft': 'Transparent new ownership',
+};
+const t = (value: string) => lang === 'en' ? englishLabels[value] ?? value : value;
+const note = (value?: string) => value && (lang === 'en' ? englishNotes[value] ?? value : value);
+const hrefFor = (href: string) => lang === 'en' && href === '/tools/eventmusik-planer/' ? '/en/tools/event-music-planner/' : href;
+const isCurrent = (href: string) => currentPath.startsWith(hrefFor(href)) || (href === '/tools/eventmusik-planer/' && currentPath === '/en/tools/event-music-planner/');
+const ui = lang === 'de' ? {
+  skip: 'Zum Inhalt springen', home: 'Startseite', nav: 'Hauptnavigation', plan: 'Event planen', search: 'Suche', open: 'Menü öffnen', close: 'Menü schließen', menu: 'Menü', overview: 'Übersicht', planner: 'Eventmusik-Plan erstellen', history: 'Neue unabhängige Fachseite · Geschichte und Eigentümerschaft', language: 'English version', languageCode: 'EN',
+} : {
+  skip: 'Skip to content', home: 'Home', nav: 'Main navigation', plan: 'Plan event music', search: 'Search', open: 'Open menu', close: 'Close menu', menu: 'Menu', overview: 'Overview', planner: 'Create an event-music plan', history: 'Independent new publication · History and ownership', language: 'Deutsche Version', languageCode: 'DE',
+};
 ---
-<a class="skip" href="#content">Zum Inhalt springen</a>
+<a class="skip" href="#content">{ui.skip}</a>
 <header class="site-header" data-header {...(overDark ? { 'data-over-dark': '' } : {})}>
   <div class="shell site-header__inner">
-    <a class="brand" href="/" aria-label="Auspicious Music Viola & Strings Lab — Startseite"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".42"/></svg><span>Auspicious Music<small class="brand__sub">Viola &amp; Strings Lab</small></span></a>
-    <nav class="nav" aria-label="Hauptnavigation">
+    <a class="brand" href="/" aria-label={`Auspicious Music Viola & Strings Lab — ${ui.home}`}><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".42"/></svg><span>Auspicious Music<small class="brand__sub">Viola &amp; Strings Lab</small></span></a>
+    <nav class="nav" aria-label={ui.nav}>
       <ul>
         {navigation.map(({ href, label, children }) => (
           <li class={children ? 'nav-group' : undefined}>
-            <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}{children && <svg class="nav-caret" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1.25 5 4.75 9 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}</a>
-            {children && <div class="nav-drop"><ul>{children.map((child) => <li><a href={child.href}><span class="nav-drop__label">{child.label}</span>{child.note && <span class="nav-drop__note">{child.note}</span>}</a></li>)}</ul></div>}
+            <a href={hrefFor(href)} aria-current={isCurrent(href) ? 'page' : undefined}>{t(label)}{children && <svg class="nav-caret" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1.25 5 4.75 9 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}</a>
+            {children && <div class="nav-drop"><ul>{children.map((child) => <li><a href={hrefFor(child.href)}><span class="nav-drop__label">{t(child.label)}</span>{child.note && <span class="nav-drop__note">{note(child.note)}</span>}</a></li>)}</ul></div>}
           </li>
         ))}
       </ul>
     </nav>
-    <div class="header-tools"><a class="header-cta btn btn--primary" href="/tools/eventmusik-planer/">Event planen</a><a class="icon-btn" href="/search/" aria-label="Suche"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.75" stroke="currentColor" stroke-width="1.7"/><path d="M13.2 13.2 17 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></a><button class="icon-btn menu-btn" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menu" data-sheet-open><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
+    <div class="header-tools">
+      {alternatePath && <a class="header-language" href={alternatePath} hreflang={lang === 'de' ? 'en' : 'de'} lang={lang === 'de' ? 'en' : 'de'} aria-label={ui.language}>{ui.languageCode}</a>}
+      <a class="header-cta btn btn--primary" href={hrefFor('/tools/eventmusik-planer/')}>{ui.plan}</a>
+      <a class="icon-btn" href="/search/" aria-label={ui.search}><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.75" stroke="currentColor" stroke-width="1.7"/><path d="M13.2 13.2 17 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></a>
+      <button class="icon-btn menu-btn" type="button" aria-label={ui.open} aria-expanded="false" aria-controls="menu" data-sheet-open><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
+    </div>
   </div>
 </header>
-<div class="sheet" id="menu" data-sheet data-open="false" role="dialog" aria-modal="true" aria-label="Menü" aria-hidden="true">
-  <div class="shell sheet__head"><span class="brand"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".42"/></svg><span>Auspicious Music<small class="brand__sub">Viola &amp; Strings Lab</small></span></span><button class="icon-btn" type="button" aria-label="Menü schließen" data-sheet-close><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
-  <nav class="shell sheet__nav" aria-label="Menü">
+<div class="sheet" id="menu" data-sheet data-open="false" role="dialog" aria-modal="true" aria-label={ui.menu} aria-hidden="true">
+  <div class="shell sheet__head"><span class="brand"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".42"/></svg><span>Auspicious Music<small class="brand__sub">Viola &amp; Strings Lab</small></span></span><button class="icon-btn" type="button" aria-label={ui.close} data-sheet-close><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
+  <nav class="shell sheet__nav" aria-label={ui.menu}>
     <ul>
-      <li><a class="sheet-link" href="/tools/eventmusik-planer/" aria-current={isCurrent('/tools/eventmusik-planer/') ? 'page' : undefined}>Eventmusik-Plan erstellen</a></li>
-      {navigation.map(({ href, label, children }) => <li>{children ? <details class="sheet-group"><summary><span>{label}</span><svg class="nav-caret" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1.25 5 4.75 9 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul><li><a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label} — Übersicht</a></li>{children.filter((child) => child.href !== href).map((child) => <li><a href={child.href}>{child.label}</a></li>)}</ul></details> : <a class="sheet-link" href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>}</li>)}
+      {alternatePath && <li><a class="sheet-link" href={alternatePath} hreflang={lang === 'de' ? 'en' : 'de'} lang={lang === 'de' ? 'en' : 'de'}>{ui.language}</a></li>}
+      <li><a class="sheet-link" href={hrefFor('/tools/eventmusik-planer/')} aria-current={isCurrent('/tools/eventmusik-planer/') ? 'page' : undefined}>{ui.planner}</a></li>
+      {navigation.map(({ href, label, children }) => <li>{children ? <details class="sheet-group"><summary><span>{t(label)}</span><svg class="nav-caret" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1.25 5 4.75 9 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul><li><a href={hrefFor(href)} aria-current={isCurrent(href) ? 'page' : undefined}>{t(label)} — {ui.overview}</a></li>{children.filter((child) => child.href !== href).map((child) => <li><a href={hrefFor(child.href)}>{t(child.label)}</a></li>)}</ul></details> : <a class="sheet-link" href={hrefFor(href)} aria-current={isCurrent(href) ? 'page' : undefined}>{t(label)}</a>}</li>)}
     </ul>
   </nav>
-  <div class="shell sheet__foot"><a href="/about/history-and-relaunch/" style="text-decoration:none">Neue unabhängige Fachseite · Geschichte und Eigentümerschaft</a></div>
+  <div class="shell sheet__foot"><a href="/about/history-and-relaunch/" style="text-decoration:none">{ui.history}</a></div>
 </div>
+
+<style>
+  .header-language { display: grid; place-items: center; min-width: 38px; min-height: 38px; border: 1px solid var(--line-strong); border-radius: var(--r-control); color: currentColor; font: 700 .74rem/1 var(--font-mono); text-decoration: none; }
+  .header-language:hover { border-color: currentColor; }
+  .site-header[data-over-dark] .header-language { border-color: var(--stage-line); }
+  @media (max-width: 760px) { .header-language { min-width: 36px; min-height: 36px; } }
+  @media (max-width: 360px) {
+    .site-header__inner { gap: .5rem; }
+    .header-tools > .header-language { display: none; }
+  }
+</style>
