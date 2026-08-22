@@ -1,5 +1,23 @@
 export const articles = [
   {
+    title: 'Viola oder Violine für Live-Musik?',
+    description: 'Nach Klanglage, Melodieführung, Raum, Besetzung und gewünschter Wirkung entscheiden.',
+    href: '/viola/viola-oder-violine/',
+    section: 'Viola',
+    minutes: 7,
+    published: '2026-08-22',
+    updated: '2026-08-22',
+  },
+  {
+    title: 'Live-Streicher draußen planen',
+    description: 'Schatten, trockenen Standort, Akustik, Cue und einen belastbaren Plan B vorbereiten.',
+    href: '/eventmusik/live-streicher-draussen/',
+    section: 'Eventmusik',
+    minutes: 8,
+    published: '2026-08-22',
+    updated: '2026-08-22',
+  },
+  {
     title: 'An Ableton project handoff that another computer can actually open',
     description: 'Collect media, expose plug-in dependencies, print safety stems and make the next decision obvious.',
     href: '/music-production/ableton-project-handoff/',

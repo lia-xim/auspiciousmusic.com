@@ -1,0 +1,83 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const sources = [
+  { label: 'Yamaha: Violin/Viola Owner’s Manual', href: 'https://usa.yamaha.com/files/download/other_assets/0/313360/02_violin_E_0702.pdf', note: 'Schutz vor direkter Sonne, extremen Temperaturen, Feuchte und abrupten Temperaturwechseln' },
+  { label: 'Deutscher Wetterdienst: Warnungen', href: 'https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html', note: 'Aktuelle amtliche Wetterwarnungen für die Veranstaltungsregion' },
+];
+const related = [
+  { title: 'Eventmusik nach Anlass planen', href: '/eventmusik/', description: 'Anlass, Ablauf, Ort und Repertoire als zusammenhängende Entscheidung betrachten.' },
+  { title: 'Hochzeit und Trauung musikalisch planen', href: '/eventmusik/hochzeit/', description: 'Einzug, zentraler Moment, Unterschrift und Auszug vorbereiten.' },
+  { title: 'Eventmusik-Planer', href: '/tools/eventmusik-planer/', description: 'Setting, Spielmomente, Cue und offene Bedingungen zu einem Brief verbinden.' },
+];
+---
+
+<ArticleLayout
+  title="Live-Streicher draußen planen"
+  seoTitle="Live-Streicher draußen planen"
+  description="Ein belastbarer Plan für Schatten, trockenen Standort, Wind, Akustik, Strom, Cue und den Wechsel nach drinnen — bevor das Wetter entscheidet."
+  canonicalPath="/eventmusik/live-streicher-draussen/"
+  section="Eventmusik"
+  sectionPath="/eventmusik/"
+  published="2026-08-22"
+  updated="2026-08-22"
+  readingTime="8 Min. Lesezeit"
+  lang="de"
+  method="Der Instrumentenschutz stützt sich auf die Herstellerhinweise von Yamaha. Wetterwarnungen werden nicht von dieser Seite bewertet; maßgeblich sind Location, Musikerin und die aktuellen amtlichen Informationen des Deutschen Wetterdienstes. Konkrete Grenzwerte werden hier nicht erfunden."
+  disclosure="Kim-Marie Borger ist die benannte Viola-Fachperson des von Matthias Ramahi betriebenen und herausgegebenen Projekts. Diese Seite bereitet Bedingungen vor, bestätigt aber weder Termin, Außenauftritt, Technik noch Buchung."
+  sources={sources}
+  related={related}
+>
+  <p><strong>Die wichtigste Entscheidung ist nicht „draußen oder drinnen“, sondern wann und durch wen umgeschaltet wird.</strong> Ein nutzbarer Außenplan nennt einen trockenen, ebenen und vollständig schattigen Spielort, einen gleichwertigen Ausweichort, eine verantwortliche Person und einen festen Entscheidungszeitpunkt.</p>
+
+  <h2>Der instrumentensichere Platz kommt zuerst</h2>
+  <p>Akustische Streichinstrumente bestehen aus empfindlichen Holz-, Leim- und Lackverbindungen. Yamaha warnt in den Pflegehinweisen für Violine und Viola unter anderem vor direkter Sonne, extremen Temperaturen, hoher oder niedriger Feuchte und plötzlichen Temperaturwechseln. Ein dekorativer Sonnenschirm, der im Tagesverlauf Schatten verliert, ist deshalb kein belastbarer Standort.</p>
+  <ul>
+    <li>vollständiger Schatten während Aufbau, Spielzeit und Pausen,</li>
+    <li>trockener, ebener und sicher erreichbarer Untergrund,</li>
+    <li>Schutz vor Regen, Spritzwasser und starkem Wind,</li>
+    <li>sicherer Platz für Koffer, Bogen, Noten und persönliche Gegenstände,</li>
+    <li>kurzer Weg zum vorbereiteten Innen- oder Überdachungsort.</li>
+  </ul>
+  <p>Ob die konkreten Bedingungen spielbar sind, entscheidet die Musikerin vor Ort beziehungsweise in der finalen Abstimmung. Dieser Guide setzt bewusst keine allgemeingültige Temperatur- oder Windgrenze.</p>
+
+  <h2>Ohne Raum verändert sich die Hörsituation</h2>
+  <p>Draußen fehlen viele Reflexionen, die in einem Saal Klang zurück in den Publikumsbereich tragen. Entfernung, Windrichtung, Gästezahl und Nebengeräusche werden dadurch wichtiger. Für einen kurzen solistischen Moment kann eine klare Sitz- und Blickachse mehr helfen als pauschal „mehr Lautstärke“.</p>
+  <ul>
+    <li>Wo stehen die wichtigsten Zuhörenden relativ zur Musikerin?</li>
+    <li>Bleiben Gespräche, Straße, Wasser oder Technik während des Stücks hörbar?</li>
+    <li>Ist Verstärkung tatsächlich nötig, und wer stellt sowie bedient sie?</li>
+    <li>Gibt es Strom nur für eine optional vereinbarte Technik oder wird rein akustisch geplant?</li>
+  </ul>
+  <p>Eine Verstärkung ist kein stillschweigender Bestandteil. Mikrofon, Halterung, Lautsprecher, Strom, Wetterschutz, Soundcheck und Bedienung müssen als eigener Technikpunkt bestätigt werden.</p>
+
+  <h2>Plan B als Ablauf, nicht als Satz</h2>
+  <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Zu klären</th><th>Belastbare Angabe</th></tr></thead>
+      <tbody>
+        <tr><td>Ausweichort</td><td>Konkreter Raum oder überdachte Fläche, nicht nur „wir gehen rein“.</td></tr>
+        <tr><td>Entscheidung</td><td>Name der verantwortlichen Person und spätester Umschaltzeitpunkt.</td></tr>
+        <tr><td>Aufbau</td><td>Wer versetzt Stuhl, Notenständer und gegebenenfalls Technik?</td></tr>
+        <tr><td>Information</td><td>Wie erfahren Musikerin, Moderation, Location und Cue-Person von der Änderung?</td></tr>
+        <tr><td>Ablauf</td><td>Bleiben Einzug, Startsignal und Endpunkt am Ersatzort gleich?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Wind betrifft Cue, Noten und Verständlichkeit</h2>
+  <p>Wind ist nicht nur ein Klangthema. Lose Noten, Programme und leichte Ständer können den Ablauf stören. Die praktische Lösung muss zum Instrument und zum Aufbau passen und darf keine improvisierte Befestigung am Instrument erfordern. Auch Moderation und Startsignal brauchen bei größerer Distanz eine sichtbare Alternative.</p>
+
+  <h2>Die letzte Abstimmung in acht Angaben</h2>
+  <ol>
+    <li>vollständige Adresse und genauer Außenbereich,</li>
+    <li>Aufbau- und Spielzeit,</li>
+    <li>trockener, ebener Schattenplatz,</li>
+    <li>konkreter Ausweichort,</li>
+    <li>Entscheidungsperson und Umschaltzeit,</li>
+    <li>rein akustisch oder separat bestätigte Technik,</li>
+    <li>Start- und Endsignal je Spielmoment,</li>
+    <li>Kontakt der Location am Veranstaltungstag.</li>
+  </ol>
+  <p>Diese Angaben lassen sich im <a href="/tools/eventmusik-planer/">Eventmusik-Planer</a> mit Anlass, Spielmomenten und Repertoirefragen verbinden. Für aktuelle Verfügbarkeit und konkrete Bedingungen verweist das Projekt transparent auf die <a href="https://kim-marie-borger.com/" rel="noopener">eigene Website von Kim-Marie Borger</a>.</p>
+</ArticleLayout>

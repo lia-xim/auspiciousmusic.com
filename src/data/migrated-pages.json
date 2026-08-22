@@ -362,6 +362,27 @@
     "internal": false
   },
   {
+    "route": "/viola/viola-oder-violine/",
+    "title": "Viola oder Violine für Live-Musik? — Auspicious Music",
+    "description": "Entscheidungshilfe nach Klanglage, Melodieführung, Raum, Besetzung und gewünschter Wirkung.",
+    "h1": "Viola oder Violine für Live-Musik?",
+    "internal": false
+  },
+  {
+    "route": "/eventmusik/live-streicher-draussen/",
+    "title": "Live-Streicher draußen planen — Auspicious Music",
+    "description": "Schatten, trockenen Standort, Wind, Akustik, Cue und einen belastbaren Plan B vorbereiten.",
+    "h1": "Live-Streicher draußen planen",
+    "internal": false
+  },
+  {
+    "route": "/tools/streicheraufnahme-briefing/",
+    "title": "Streicheraufnahme-Briefing erstellen — Auspicious Music",
+    "description": "Funktion, Timing, Spielweise, Takes, Dateiformat und offene Entscheidungen lokal im Browser ordnen.",
+    "h1": "Ein Briefing, bevor die Aufnahme läuft.",
+    "internal": false
+  },
+  {
     "route": "/search/",
     "title": "Search — Auspicious Music",
     "description": "Site search utility.",

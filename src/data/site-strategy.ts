@@ -17,6 +17,7 @@ export const siteStrategy = {
       label: 'Viola',
       children: [
         { href: '/viola/', label: 'Viola im Einsatz', note: 'Klang, Rolle und Praxis' },
+        { href: '/viola/viola-oder-violine/', label: 'Viola oder Violine?', note: 'Register und Wirkung entscheiden' },
         { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Mikrofonposition', note: 'Guide · 9 min · EN' },
         { href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', label: 'Live-Streicher oder Library?', note: 'Entscheidungshilfe · EN' },
       ],
@@ -26,6 +27,7 @@ export const siteStrategy = {
       label: 'Anlässe',
       children: [
         { href: '/eventmusik/', label: 'Alle Anlässe', note: 'Ablauf, Ort und Repertoire' },
+        { href: '/eventmusik/live-streicher-draussen/', label: 'Live-Streicher draußen', note: 'Schutz, Akustik und Plan B' },
         { href: '/eventmusik/hochzeit/', label: 'Hochzeit / Trauung', note: 'Einzug bis Auszug' },
         { href: '/eventmusik/trauerfeier/', label: 'Trauerfeier', note: 'Abschied behutsam planen' },
         { href: '/eventmusik/firmenevent/', label: 'Firmenevent', note: 'Empfang, Dinner, Highlight' },
@@ -47,7 +49,8 @@ export const siteStrategy = {
       href: '/recording/',
       label: 'Aufnahme',
       children: [
-        { href: '/recording/', label: 'Recording-Hub', note: 'Viola, Raum und Mikrofon · EN' },
+        { href: '/recording/', label: 'Recording-Hub', note: 'Viola, Raum und Mikrofon' },
+        { href: '/tools/streicheraufnahme-briefing/', label: 'Aufnahmebrief erstellen', note: 'Browserlokales Werkzeug · DE' },
         { href: '/recording/acoustic-instruments/recording-viola-at-home/', label: 'Viola zuhause aufnehmen', note: 'Guide · 9 min · EN' },
         { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Viola-Mikrofonposition', note: 'Guide · 9 min · EN' },
       ],

@@ -18,7 +18,7 @@ const browser = await chromium.launch({
 });
 const failures = [];
 const observations = [];
-const routes = ['/', '/viola/', '/eventmusik/', '/eventmusik/hochzeit/', '/eventmusik/trauerfeier/', '/eventmusik/firmenevent/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/tools/wunschstueck-check/', '/resources/', '/download/', '/services/'];
+const routes = ['/', '/viola/', '/viola/viola-oder-violine/', '/eventmusik/', '/eventmusik/live-streicher-draussen/', '/eventmusik/hochzeit/', '/eventmusik/trauerfeier/', '/eventmusik/firmenevent/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/tools/wunschstueck-check/', '/tools/streicheraufnahme-briefing/', '/resources/', '/download/', '/services/'];
 
 async function inspect(route, viewport) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
@@ -115,6 +115,40 @@ if (await songCheck.locator('#song-name').inputValue()) failures.push('requested
 for (const error of songErrors) failures.push('requested-song runtime: ' + error);
 await songCheck.close();
 
+const recordingBrief = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+const recordingErrors = [];
+recordingBrief.on('pageerror', (error) => recordingErrors.push(error.message));
+recordingBrief.on('console', (message) => { if (message.type() === 'error') recordingErrors.push(message.text()); });
+await recordingBrief.goto(baseUrl + '/tools/streicheraufnahme-briefing/', { waitUntil: 'networkidle' });
+await recordingBrief.locator('[data-record-form] button[type="submit"]').click();
+if (!/pflichtfelder/i.test(await recordingBrief.locator('[data-record-error]').innerText())) failures.push('recording brief validation: required-field message missing');
+await recordingBrief.locator('#record-project').fill('Dokumentarfilm Cue 04');
+await recordingBrief.locator('#record-role').selectOption('Solistische Melodie');
+await recordingBrief.locator('#record-purpose').fill('Eine warme Mittellage soll den Übergang tragen, ohne die Sprache zu verdecken.');
+await recordingBrief.locator('#record-entry').fill('00:42 nach Sprecherpause');
+await recordingBrief.locator('#record-tempo').selectOption('Referenzmix, aber kein Click');
+await recordingBrief.locator('#record-articulation').fill('Gebunden, ruhiger Bogen, wenig Vibrato.');
+await recordingBrief.locator('#record-variation').fill('Hauptfassung plus freieres Ende.');
+await recordingBrief.locator('#record-takes').selectOption('Vollständige Takes plus markierte Favoriten');
+await recordingBrief.locator('#record-format').selectOption('48 kHz / 24 Bit');
+await recordingBrief.locator('#record-deadline').fill('Review am 24. August durch Schnitt.');
+await recordingBrief.locator('#record-technical').fill('Trockene Hauptspur plus Referenzbearbeitung.');
+await recordingBrief.locator('[data-record-form] button[type="submit"]').click();
+const recordingOutput = await recordingBrief.locator('[data-record-result]').innerText();
+for (const expected of ['Dokumentarfilm Cue 04', 'Solistische Melodie', '00:42 nach Sprecherpause', '48 kHz / 24 Bit', 'Rechte']) {
+  if (!recordingOutput.includes(expected)) failures.push('recording brief generation: missing ' + expected);
+}
+const recordingState = await recordingBrief.evaluate(() => ({
+  copyDisabled: document.querySelector('[data-record-copy]')?.disabled,
+  downloadDisabled: document.querySelector('[data-record-download]')?.disabled,
+  overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+}));
+if (recordingState.copyDisabled || recordingState.downloadDisabled || recordingState.overflow > 1) failures.push('recording brief state: ' + JSON.stringify(recordingState));
+await recordingBrief.locator('[data-record-reset]').click();
+if (await recordingBrief.locator('#record-project').inputValue()) failures.push('recording brief reset: project was not cleared');
+for (const error of recordingErrors) failures.push('recording brief runtime: ' + error);
+await recordingBrief.close();
+
 for (const [name, route, viewport] of [
   ['relaunch-home-desktop.png', '/', { width: 1440, height: 900 }],
   ['relaunch-home-mobile.png', '/', { width: 390, height: 844 }],
@@ -126,7 +160,7 @@ for (const [name, route, viewport] of [
 }
 
 await browser.close();
-const report = { baseUrl, checkedAt: new Date().toISOString(), routes, observations, plannerOutput: generated, requestedSongOutput: songOutput, failures };
+const report = { baseUrl, checkedAt: new Date().toISOString(), routes, observations, plannerOutput: generated, requestedSongOutput: songOutput, recordingBriefOutput: recordingOutput, failures };
 await writeFile(path.join(output, 'browser-relaunch-qa.json'), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 
 if (failures.length) {
@@ -134,5 +168,5 @@ if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exitCode = 1;
 } else {
-  console.log(`Relaunch browser QA passed: ${routes.length} routes at 1440px, 390px and 320px, plus planner and requested-song validation, generation and reset.`);
+  console.log(`Relaunch browser QA passed: ${routes.length} routes at 1440px, 390px and 320px, plus planner, requested-song and recording-brief validation, generation and reset.`);
 }

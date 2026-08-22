@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const toolSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Streicheraufnahme-Briefing',
+  description: 'Ein browserlokales Werkzeug für musikalische Funktion, Timing, Takes, Dateiformat, Benennung und offene Fragen einer Streicheraufnahme.',
+  url: 'https://www.auspiciousmusic.com/tools/streicheraufnahme-briefing/',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  browserRequirements: 'JavaScript',
+  inLanguage: 'de',
+  isAccessibleForFree: true,
+};
+---
+
+<BaseLayout
+  title="Streicheraufnahme-Briefing erstellen — Auspicious Music"
+  description="Erstelle lokal im Browser ein klares Aufnahmebriefing für Funktion, Timing, Spielweise, Takes, Dateiformat, Benennung und offene Entscheidungen."
+  canonicalPath="/tools/streicheraufnahme-briefing/"
+  lang="de"
+  headerOverDark={true}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(toolSchema)} />
+    <style is:global>
+      @layer components {
+        .record-head { margin-top: calc(-1 * var(--header-h)); padding: calc(var(--header-h) + clamp(2.5rem, 7vh, 5rem)) 0 calc(var(--sheet-overlap) + clamp(3rem, 8vh, 6rem)); background: var(--stage); color: var(--stage-text); }
+        .record-head__grid { display: grid; gap: 2.5rem 5rem; align-items: end; }
+        @media (min-width: 920px) { .record-head__grid { grid-template-columns: minmax(0, 1.1fr) minmax(18rem, .7fr); } }
+        .record-head h1 { max-width: 15ch; color: var(--stage-text); font-size: clamp(2.7rem, 1.5rem + 4vw, 5rem); line-height: .98; }
+        .record-head .kicker { color: var(--stage-text); }
+        .record-head .lede { max-width: 62ch; margin-top: 1.3rem; color: var(--stage-muted); }
+        .record-head__limit { border-block: 1px solid var(--stage-line); padding-block: 1rem; color: var(--stage-muted); font: 500 var(--t-meta)/1.65 var(--font-mono); }
+        .record-head__limit strong { display: block; color: var(--stage-text); }
+        .record-shell { display: grid; gap: 2rem 3rem; align-items: start; }
+        @media (min-width: 1040px) { .record-shell { grid-template-columns: minmax(0, 1.02fr) minmax(23rem, .78fr); } }
+        .record-form { display: grid; gap: 2rem; }
+        .record-step { min-inline-size: 0; border: 0; border-top: 1px solid var(--line-strong); padding: 1.35rem 0 0; }
+        .record-step legend { padding: 0; font-size: 1.28rem; font-weight: 650; }
+        .record-step__note { max-width: 66ch; margin-top: .45rem; color: var(--muted); }
+        .record-fields { display: grid; gap: 1rem; margin-top: 1.2rem; }
+        @media (min-width: 660px) { .record-fields--two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .record-field { display: grid; gap: .45rem; min-inline-size: 0; }
+        .record-field label { color: var(--ink-soft); font: 550 var(--t-meta)/1.5 var(--font-mono); }
+        .record-field :is(input, select, textarea) { inline-size: 100%; min-block-size: 48px; border: 1px solid var(--line-strong); border-radius: var(--r-control); background: var(--canvas); color: var(--ink); padding: .75rem .9rem; font: 500 1rem/1.45 var(--font-sans); }
+        .record-field textarea { min-block-size: 6.5rem; resize: vertical; }
+        .record-error { min-block-size: 1.5rem; color: #a43a2d; font-size: .95rem; }
+        .record-actions { display: flex; flex-wrap: wrap; gap: .7rem; }
+        .record-output { position: sticky; top: calc(var(--header-h) + 1rem); overflow: hidden; scroll-margin-top: calc(var(--header-h) + 1rem); border-radius: var(--r-sm); background: var(--stage); color: var(--stage-text); box-shadow: var(--shadow-panel); }
+        .record-output__bar { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem 1rem; border-bottom: 1px solid var(--stage-line); color: var(--stage-muted); font: 500 var(--t-meta)/1.4 var(--font-mono); }
+        .record-output__body { min-block-size: 30rem; padding: 1.25rem; }
+        .record-output__empty { max-width: 34ch; color: var(--stage-muted); line-height: 1.65; }
+        .record-result { display: grid; gap: 1.2rem; }
+        .record-result h2, .record-result h3 { color: var(--stage-text); }
+        .record-result h2 { font-size: 1.5rem; }
+        .record-result h3 { font-size: 1rem; }
+        .record-result dl, .record-result ul { display: grid; gap: .65rem; }
+        .record-result dl > div { padding-bottom: .6rem; border-bottom: 1px solid var(--stage-line-soft); }
+        .record-result dt { color: var(--stage-muted); font: 500 var(--t-meta)/1.4 var(--font-mono); }
+        .record-result dd { margin-top: .22rem; color: var(--stage-text); }
+        .record-result li { padding-left: 1rem; border-left: 2px solid var(--stage-line); color: var(--stage-text); line-height: 1.5; }
+        .record-output__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--stage-line); }
+        .record-output__actions button { min-block-size: 42px; inline-size: 100%; justify-content: center; }
+        .record-output__actions .btn--quiet { border-color: var(--stage-line); color: var(--stage-text); }
+        .record-method { display: grid; gap: 2rem 4rem; }
+        @media (min-width: 840px) { .record-method { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); } }
+        .record-method ul { display: grid; gap: .8rem; margin-top: 1rem; }
+        .record-method li { color: var(--ink-soft); line-height: 1.6; }
+      }
+    </style>
+  </Fragment>
+
+  <main id="content">
+    <header class="record-head">
+      <div class="shell record-head__grid">
+        <div><p class="kicker">Browserlokales Aufnahme-Werkzeug</p><h1>Ein Briefing, bevor die Aufnahme läuft.</h1><p class="lede">Ordne musikalische Funktion, Timing, Spielweise, Takes, Dateiformat und Benennung. Das Ergebnis ist ein Arbeitsbrief, keine Buchung und keine automatische Produktionsfreigabe.</p></div>
+        <p class="record-head__limit"><strong>Keine Übertragung, kein Konto.</strong> Die Eingaben bleiben im Arbeitsspeicher dieses Browsers. Erst Kopieren oder TXT-Download gibt den Text an ein von Ihnen gewähltes Ziel weiter.</p>
+      </div>
+    </header>
+
+    <section class="band sheet-lift">
+      <div class="shell record-shell">
+        <form class="record-form" data-record-form novalidate>
+          <fieldset class="record-step"><legend>1. Rolle im Projekt</legend><p class="record-step__note">Beschreiben Sie, welche musikalische Information die Aufnahme liefern soll.</p><div class="record-fields record-fields--two">
+            <div class="record-field"><label for="record-project">Projekt oder Cue *</label><input id="record-project" name="project" required maxlength="100" autocomplete="off" /></div>
+            <div class="record-field"><label for="record-role">Funktion der Streicherstimme *</label><select id="record-role" name="role" required><option value="">Bitte wählen</option><option value="Solistische Melodie">Solistische Melodie</option><option value="Layer oder Doppelung">Layer oder Doppelung</option><option value="Harmonie oder Mittelstimme">Harmonie oder Mittelstimme</option><option value="Textur oder Klangfläche">Textur oder Klangfläche</option><option value="Übergang oder kurzer Cue">Übergang oder kurzer Cue</option><option value="Noch offen">Noch offen</option></select></div>
+            <div class="record-field" style="grid-column:1/-1"><label for="record-purpose">Gewünschte Wirkung und Kontext *</label><textarea id="record-purpose" name="purpose" required maxlength="500" placeholder="Was soll die Stimme im Arrangement verändern, und was darf sie nicht verdecken?"></textarea></div>
+          </div></fieldset>
+
+          <fieldset class="record-step"><legend>2. Timing und Spielanweisung</legend><p class="record-step__note">Ein eindeutiger Einstieg spart mehr Zeit als eine lange Klangbeschreibung.</p><div class="record-fields record-fields--two">
+            <div class="record-field"><label for="record-entry">Startreferenz *</label><input id="record-entry" name="entry" required maxlength="120" placeholder="z. B. Takt 17, 00:42 oder nach Sprecherpause" /></div>
+            <div class="record-field"><label for="record-tempo">Tempo- und Rasterbezug *</label><select id="record-tempo" name="tempo" required><option value="">Bitte wählen</option><option value="Click und Tempo sind verbindlich">Click und Tempo sind verbindlich</option><option value="Referenzmix, aber kein Click">Referenzmix, aber kein Click</option><option value="Rubato oder frei geführt">Rubato oder frei geführt</option><option value="Noch zu klären">Noch zu klären</option></select></div>
+            <div class="record-field"><label for="record-articulation">Artikulation und Phrasierung</label><textarea id="record-articulation" name="articulation" maxlength="350" placeholder="z. B. gebunden, kurze Anfänge, wenig Vibrato; musikalische Referenz statt unklarer Adjektivliste"></textarea></div>
+            <div class="record-field"><label for="record-variation">Gewünschte Varianten</label><textarea id="record-variation" name="variation" maxlength="350" placeholder="z. B. eine sichere Hauptfassung, eine freiere Alternative, zwei Enden"></textarea></div>
+          </div></fieldset>
+
+          <fieldset class="record-step"><legend>3. Takes und Übergabe</legend><p class="record-step__note">Die Session muss wissen, was erhalten bleibt und was später entschieden wird.</p><div class="record-fields record-fields--two">
+            <div class="record-field"><label for="record-takes">Lieferumfang *</label><select id="record-takes" name="takes" required><option value="">Bitte wählen</option><option value="Vollständige Takes plus markierte Favoriten">Vollständige Takes plus markierte Favoriten</option><option value="Comp plus vollständige Alternativen">Comp plus vollständige Alternativen</option><option value="Einzelphrasen ab gemeinsamer Startposition">Einzelphrasen ab gemeinsamer Startposition</option><option value="Noch zu klären">Noch zu klären</option></select></div>
+            <div class="record-field"><label for="record-format">Projektformat *</label><select id="record-format" name="format" required><option value="">Bitte wählen</option><option value="Projektformat wird vor Session bestätigt">Vor Session bestätigen</option><option value="44,1 kHz / 24 Bit">44,1 kHz / 24 Bit</option><option value="48 kHz / 24 Bit">48 kHz / 24 Bit</option><option value="96 kHz / 24 Bit">96 kHz / 24 Bit</option></select></div>
+            <div class="record-field"><label for="record-files">Dateibenennung *</label><input id="record-files" name="files" required maxlength="140" value="projekt_cue_stimme_take" /></div>
+            <div class="record-field"><label for="record-deadline">Übergabe oder Review-Zeitpunkt</label><input id="record-deadline" name="deadline" maxlength="120" placeholder="Datum, Zeitzone und wer Feedback bündelt" /></div>
+          </div></fieldset>
+
+          <fieldset class="record-step"><legend>4. Offene technische Bedingungen</legend><p class="record-step__note">Nur angeben, was wirklich bestätigt ist. Mikrofon, Raum und Bearbeitung bleiben sonst offene Produktionsentscheidungen.</p><div class="record-fields">
+            <div class="record-field"><label for="record-technical">Raum, Mikrofon, trockene Spur und Referenzbearbeitung</label><textarea id="record-technical" name="technical" maxlength="500" placeholder="z. B. trockene Hauptspur plus hörbare Referenz; genaue Mikrofonposition wird im Raum verglichen"></textarea></div>
+          </div></fieldset>
+
+          <p class="record-error" data-record-error aria-live="polite"></p>
+          <div class="record-actions"><button class="btn btn--primary" type="submit">Briefing erstellen</button><button class="btn btn--quiet" type="button" data-record-reset>Zurücksetzen</button></div>
+        </form>
+
+        <section class="record-output" data-record-output tabindex="-1" aria-labelledby="record-output-title">
+          <div class="record-output__bar"><span id="record-output-title">Aufnahmebrief</span><span data-record-state>Noch nicht erstellt</span></div>
+          <div class="record-output__body" data-record-result><p class="record-output__empty">Nach dem Ausfüllen erscheint hier ein kompakter Arbeitsbrief mit bestätigten Angaben und offenen Fragen.</p></div>
+          <div class="record-output__actions"><button class="btn btn--quiet" type="button" data-record-copy disabled>Kopieren</button><button class="btn btn--quiet" type="button" data-record-download disabled>TXT laden</button></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="band band-surface"><div class="shell record-method"><div><p class="kicker">Methode und Grenze</p><h2>Was dieses Werkzeug klärt</h2><p>Das Formular trennt musikalischen Auftrag, Startreferenz und Lieferumfang von noch offenen Produktionsentscheidungen. Es bewertet weder Spielbarkeit noch Kosten, Rechte, Verfügbarkeit oder Klangqualität.</p></div><div><h2>Quellen und Weiterarbeit</h2><ul><li><a href="https://www.dpamicrophones.com/de/mic-university/how-to-mic/how-to-mic-a-violin/" rel="noopener">DPA: Mikrofonierung von Violinen</a> — Platzierung ist abhängig von Anwendung und Umgebung.</li><li><a href="/recording/acoustic-instruments/viola-microphone-placement/">Viola-Mikrofonposition</a> — drei Startpunkte für einen fairen Vergleich.</li><li><a href="/recording/">Recording-Hub</a> — Raum, Session und Live-vs.-Library-Entscheidungen.</li><li><a href="https://kim-marie-borger.com/" rel="noopener">Kim-Marie Borger</a> ist die benannte Viola-Fachperson des Projekts; der Link ist transparent projektbezogen und keine unabhängige Empfehlung oder Aufnahmezusage.</li></ul></div></div></section>
+  </main>
+
+  <Fragment slot="scripts">
+    <script is:inline>
+      (() => {
+        const form = document.querySelector('[data-record-form]');
+        const result = document.querySelector('[data-record-result]');
+        const output = document.querySelector('[data-record-output]');
+        const state = document.querySelector('[data-record-state]');
+        const error = document.querySelector('[data-record-error]');
+        const copy = document.querySelector('[data-record-copy]');
+        const download = document.querySelector('[data-record-download]');
+        const reset = document.querySelector('[data-record-reset]');
+        if (!(form instanceof HTMLFormElement) || !(result instanceof HTMLElement) || !(output instanceof HTMLElement) || !(state instanceof HTMLElement) || !(error instanceof HTMLElement) || !(copy instanceof HTMLButtonElement) || !(download instanceof HTMLButtonElement) || !(reset instanceof HTMLButtonElement)) return;
+        const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+        let brief = '';
+        const read = (data, key) => String(data.get(key) || '').trim();
+
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          if (!form.checkValidity()) { error.textContent = 'Bitte füllen Sie alle markierten Pflichtfelder aus.'; form.reportValidity(); return; }
+          error.textContent = '';
+          const data = new FormData(form);
+          const rows = [
+            ['Projekt / Cue', read(data, 'project')], ['Funktion', read(data, 'role')], ['Wirkung und Kontext', read(data, 'purpose')],
+            ['Startreferenz', read(data, 'entry')], ['Tempo / Raster', read(data, 'tempo')], ['Artikulation / Phrasierung', read(data, 'articulation') || 'Noch offen'],
+            ['Varianten', read(data, 'variation') || 'Noch offen'], ['Lieferumfang', read(data, 'takes')], ['Projektformat', read(data, 'format')],
+            ['Dateibenennung', read(data, 'files')], ['Übergabe / Review', read(data, 'deadline') || 'Noch offen'], ['Technische Bedingungen', read(data, 'technical') || 'Noch offen'],
+          ];
+          const questions = [];
+          if (read(data, 'tempo') === 'Noch zu klären') questions.push('Wer bestätigt Tempo, Click oder freie Führung vor der Session?');
+          if (!read(data, 'articulation')) questions.push('Welche Artikulation und welcher Vibratoeinsatz sind musikalisch gemeint?');
+          if (!read(data, 'variation')) questions.push('Welche Alternative soll neben der sicheren Hauptfassung aufgenommen werden?');
+          if (read(data, 'takes') === 'Noch zu klären') questions.push('Wer entscheidet zwischen vollständigen Takes, Comp und Einzelphrasen?');
+          if (read(data, 'format') === 'Projektformat wird vor Session bestätigt') questions.push('Welche Sample-Rate, Bittiefe und Kanalstruktur gelten im Zielprojekt?');
+          if (!read(data, 'deadline')) questions.push('Wann wird übergeben, und wer bündelt das Feedback?');
+          if (!read(data, 'technical')) questions.push('Welche trockenen und bearbeiteten Spuren sollen erhalten bleiben?');
+          questions.push('Sind Noten, Arrangement, Aufnahme und spätere Nutzung für den konkreten Zweck geklärt?');
+          brief = ['AUSPICIOUS MUSIC — STREICHERAUFNAHME-BRIEF', '', ...rows.map(([label, value]) => `${label}: ${value}`), '', 'OFFENE FRAGEN', ...questions.map((question) => `- ${question}`), '', 'Grenze: Dieses Werkzeug bestätigt weder Spielbarkeit, Termin, Preis, Rechte, Besetzung noch technische Machbarkeit.'].join('\n');
+          result.innerHTML = `<div class="record-result"><h2>${escapeHtml(read(data, 'project'))}</h2><dl>${rows.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl><div><h3>Offene Fragen</h3><ul>${questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul></div><p><strong>Grenze:</strong> Dieses Werkzeug bestätigt weder Spielbarkeit, Termin, Preis, Rechte, Besetzung noch technische Machbarkeit.</p></div>`;
+          state.textContent = `${questions.length} offene ${questions.length === 1 ? 'Frage' : 'Fragen'}`;
+          copy.disabled = false; download.disabled = false;
+          if (matchMedia('(max-width: 1039px)').matches) output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        copy.addEventListener('click', async () => { if (!brief) return; try { await navigator.clipboard.writeText(brief); copy.textContent = 'Kopiert'; } catch { error.textContent = 'Kopieren ist in diesem Browser nicht verfügbar.'; } window.setTimeout(() => { copy.textContent = 'Kopieren'; }, 1600); });
+        download.addEventListener('click', () => { if (!brief) return; const url = URL.createObjectURL(new Blob([brief], { type: 'text/plain;charset=utf-8' })); const link = document.createElement('a'); link.href = url; link.download = 'streicheraufnahme-briefing.txt'; link.click(); URL.revokeObjectURL(url); });
+        reset.addEventListener('click', () => { form.reset(); brief = ''; error.textContent = ''; state.textContent = 'Noch nicht erstellt'; copy.disabled = true; download.disabled = true; result.innerHTML = '<p class="record-output__empty">Nach dem Ausfüllen erscheint hier ein kompakter Arbeitsbrief mit bestätigten Angaben und offenen Fragen.</p>'; });
+      })();
+    </script>
+  </Fragment>
+</BaseLayout>

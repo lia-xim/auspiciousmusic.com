@@ -15,6 +15,7 @@ interface Props {
   sources?: { label: string; href: string; note?: string }[];
   related?: { title: string; href: string; description: string }[];
   disclosure?: string;
+  lang?: 'de' | 'en';
 }
 
 const {
@@ -31,13 +32,14 @@ const {
   sources = [],
   related = [],
   disclosure,
+  lang = 'en',
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://www.auspiciousmusic.com/');
 const canonicalUrl = new URL(canonicalPath, site).href;
 const authorId = new URL('/authors/#matthias-ramahi', site).href;
 const websiteId = new URL('/#website', site).href;
-const formatDate = (value: string) => new Intl.DateTimeFormat('en-GB', {
+const formatDate = (value: string) => new Intl.DateTimeFormat(lang === 'de' ? 'de-DE' : 'en-GB', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
@@ -52,7 +54,7 @@ const schema = {
   description,
   ...(published ? { datePublished: published } : {}),
   ...(updated ? { dateModified: updated } : {}),
-  inLanguage: 'en',
+  inLanguage: lang,
   mainEntityOfPage: canonicalUrl,
   isPartOf: { '@id': websiteId },
   author: { '@id': authorId },
@@ -72,13 +74,24 @@ const breadcrumbSchema = {
 };
 const brandedTitle = `${seoTitle} — Auspicious Music`;
 const documentTitle = brandedTitle.length <= 70 ? brandedTitle : seoTitle;
+const labels = lang === 'de' ? {
+  home: 'Startseite', by: 'Von', published: 'Veröffentlicht', updated: 'Aktualisiert', current: 'Aktueller Leitfaden',
+  method: 'So ist dieser Leitfaden entstanden', disclosure: 'Transparenz zur Projektbeziehung', sources: 'Quellen und weiterführende Hinweise',
+  editorial: 'Redaktioneller Status', sourceBased: 'Quellenbasierter Leitfaden', noPlacement: 'Keine bezahlte Platzierung', corrections: 'Korrekturen',
+  continue: 'Weiterlesen', next: 'Nächster Schritt', related: 'Verwandte Leitfäden',
+} : {
+  home: 'Home', by: 'By', published: 'Published', updated: 'Updated', current: 'Current release guide',
+  method: 'How this guide was made', disclosure: 'Relationship disclosure', sources: 'Sources and further reading',
+  editorial: 'Editorial status', sourceBased: 'Source-based guide', noPlacement: 'No paid placement', corrections: 'Corrections',
+  continue: 'Continue reading', next: 'Next', related: 'Related guides',
+};
 ---
 
 <BaseLayout
   title={documentTitle}
   description={description}
   canonicalPath={canonicalPath}
-  lang="en"
+  lang={lang}
   contentType="article"
   published={published}
   updated={updated}
@@ -138,14 +151,14 @@ const documentTitle = brandedTitle.length <= 70 ? brandedTitle : seoTitle;
   <main id="content">
     <header class="article-head">
       <div class="shell article-head__inner">
-        <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href={sectionPath}>{section}</a></li><li>{title}</li></ol></nav>
+        <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">{labels.home}</a></li><li><a href={sectionPath}>{section}</a></li><li>{title}</li></ol></nav>
         <p class="kicker" style="margin-top:2rem">{section}</p>
         <h1>{title}</h1>
         <p class="lede">{description}</p>
         <div class="article-meta">
-          <span>By <a href="/authors/">Matthias Ramahi</a></span>
-          {published ? <time datetime={published}>Published {formatDate(published)}</time> : <span>Current release guide</span>}
-          {published && updated && updated !== published && <time datetime={updated}>Updated {formatDate(updated)}</time>}
+          <span>{labels.by} <a href="/authors/">Matthias Ramahi</a></span>
+          {published ? <time datetime={published}>{labels.published} {formatDate(published)}</time> : <span>{labels.current}</span>}
+          {published && updated && updated !== published && <time datetime={updated}>{labels.updated} {formatDate(updated)}</time>}
           <span>{readingTime}</span>
         </div>
       </div>
@@ -154,23 +167,23 @@ const documentTitle = brandedTitle.length <= 70 ? brandedTitle : seoTitle;
     <section class="band">
       <div class="shell article-grid">
         <article class="article">
-          <div class="method-box"><p><strong>How this guide was made</strong>{method}</p></div>
-          {disclosure && <div class="disclosure-box"><p><strong>Relationship disclosure</strong>{disclosure}</p></div>}
+          <div class="method-box"><p><strong>{labels.method}</strong>{method}</p></div>
+          {disclosure && <div class="disclosure-box"><p><strong>{labels.disclosure}</strong>{disclosure}</p></div>}
           <slot />
           {sources.length > 0 && (
             <section class="sources" aria-labelledby="sources-title">
-              <h2 id="sources-title">Sources and further reading</h2>
+              <h2 id="sources-title">{labels.sources}</h2>
               <ol>{sources.map((source) => <li><a href={source.href} rel="noopener">{source.label}</a>{source.note ? ` — ${source.note}` : ''}</li>)}</ol>
             </section>
           )}
         </article>
         <aside class="article-aside" aria-label="Article information">
-          <section><h2>Editorial status</h2><ul><li>Source-based guide</li><li>No paid placement</li><li>Corrections: <a href="mailto:info@matthiasramahi.de">info@matthiasramahi.de</a></li></ul></section>
-          <section><h2>Continue reading</h2><ul>{related.map((item) => <li><a href={item.href}>{item.title}</a></li>)}</ul></section>
+          <section><h2>{labels.editorial}</h2><ul><li>{labels.sourceBased}</li><li>{labels.noPlacement}</li><li>{labels.corrections}: <a href="mailto:info@matthiasramahi.de">info@matthiasramahi.de</a></li></ul></section>
+          <section><h2>{labels.continue}</h2><ul>{related.map((item) => <li><a href={item.href}>{item.title}</a></li>)}</ul></section>
         </aside>
       </div>
     </section>
 
-    {related.length > 0 && <section class="band band-surface"><div class="shell"><div class="section-head"><div><p class="kicker">Next</p><h2>Related guides</h2></div></div><ul class="related-list">{related.map((item) => <li><a href={item.href}><h3>{item.title}</h3><p>{item.description}</p></a></li>)}</ul></div></section>}
+    {related.length > 0 && <section class="band band-surface"><div class="shell"><div class="section-head"><div><p class="kicker">{labels.next}</p><h2>{labels.related}</h2></div></div><ul class="related-list">{related.map((item) => <li><a href={item.href}><h3>{item.title}</h3><p>{item.description}</p></a></li>)}</ul></div></section>}
   </main>
 </BaseLayout>

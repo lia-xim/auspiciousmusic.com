@@ -61,7 +61,7 @@ for (const file of htmlFiles) {
   if (!/<main\b/i.test(html)) failures.push(`${relative}: missing main landmark`);
   if (h1Count !== 1) failures.push(`${relative}: expected one h1, found ${h1Count}`);
   if (/href="#"/i.test(html)) failures.push(`${relative}: dead # link`);
-  if (/href="[^"#?]+\.html(?:[?#][^"]*)?"/i.test(html)) failures.push(`${relative}: legacy .html link remains`);
+  if (/href="(?:https:\/\/www\.auspiciousmusic\.com)?\/[^"#?]+\.html(?:[?#][^"]*)?"/i.test(html)) failures.push(`${relative}: internal legacy .html link remains`);
 
   const ids = [...html.matchAll(/\sid="([^"]+)"/gi)].map((match) => match[1]);
   const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);

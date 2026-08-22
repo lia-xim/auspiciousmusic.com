@@ -1,0 +1,76 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const sources = [
+  { label: 'Philharmonia Orchestra: Viola', href: 'https://philharmonia.co.uk/resources/instruments/viola/', note: 'Klangrolle, Stimmung und Register der Viola' },
+  { label: 'Yamaha: Die Viola in der Violinfamilie', href: 'https://www.yamaha.com/en/musical_instrument_guide/violin/structure/structure004.html', note: 'Bauform, Stimmung und klangliche Unterschiede zur Violine' },
+];
+const related = [
+  { title: 'Viola im Einsatz', href: '/viola/', description: 'Der Fachhub zu Viola, Anlass, Repertoire und Aufnahme.' },
+  { title: 'Repertoire nach Anlass', href: '/repertoire/', description: 'Titelideen nach Funktion erkunden und genaue Fassungen offenhalten.' },
+  { title: 'Wunschstück für Solo-Viola prüfen', href: '/tools/wunschstueck-check/', description: 'Fassung, Wiedererkennbarkeit und Spielmoment für die musikalische Prüfung vorbereiten.' },
+];
+---
+
+<ArticleLayout
+  title="Viola oder Violine für Live-Musik?"
+  seoTitle="Viola oder Violine für Live-Musik?"
+  description="Eine praktische Entscheidungshilfe nach Klanglage, Melodieführung, Raum, Besetzung und gewünschter Wirkung — ohne pauschales Instrumentenversprechen."
+  canonicalPath="/viola/viola-oder-violine/"
+  section="Viola"
+  sectionPath="/viola/"
+  published="2026-08-22"
+  updated="2026-08-22"
+  readingTime="7 Min. Lesezeit"
+  lang="de"
+  method="Die instrumentalen Unterschiede sind mit Quellen von Yamaha und dem Philharmonia Orchestra belegt. Die Entscheidungsmatrix übersetzt diese Eigenschaften in ein Planungsbriefing; sie ersetzt keine Prüfung des konkreten Stücks oder Arrangements."
+  disclosure="Kim-Marie Borger ist die benannte Viola-Fachperson dieses von Matthias Ramahi betriebenen und herausgegebenen Projekts. Ihr aktuelles Angebot und ihre Verfügbarkeit werden ausschließlich auf ihrer eigenen Website bestätigt; dieser Leitfaden ist keine unabhängige Dritt-Empfehlung."
+  sources={sources}
+  related={related}
+>
+  <p><strong>Die kurze Antwort:</strong> Eine Violine ist nicht automatisch die bessere Wahl für bekannte Melodien, und eine Viola nicht automatisch die ruhigere. Entscheidend sind die tatsächlich benötigte Lage, die prägende Kontur des Stücks, der Raum und die Rolle im Ablauf. Für eine warme Linie im mittleren Register kann die Viola sehr direkt wirken. Braucht ein Stück seine hohe, leuchtende Lage, muss eine Übertragung auf Viola musikalisch geprüft werden.</p>
+
+  <h2>Mit der Funktion beginnen, nicht mit dem Instrumentennamen</h2>
+  <p>Schreiben Sie zuerst einen Satz: „Die Musik soll diesen Moment tragen, ohne Gespräche zu überdecken“ oder „Die Melodie soll beim Einzug sofort erkennbar sein“. Erst danach lohnt die Instrumentenfrage. So wird aus einer Geschmacksdiskussion ein prüfbarer Auftrag.</p>
+  <ul>
+    <li><strong>Solistischer Moment:</strong> Wiedererkennbarkeit, Spannungsbogen und ein klares Ende sind wichtiger als maximale Lautstärke.</li>
+    <li><strong>Empfang oder Dinner:</strong> Register, Dynamik und Pausen müssen Gespräche und Raumwechsel mitdenken.</li>
+    <li><strong>Duo oder kleines Ensemble:</strong> Die Frage betrifft nicht nur ein Instrument, sondern die Verteilung von Melodie, Mittelstimme und Bassfunktion.</li>
+    <li><strong>Aufnahme:</strong> Arrangement, Mikrofonabstand und der Platz im Mix verändern die wahrgenommene Helligkeit stärker als ein Etikett allein.</li>
+  </ul>
+
+  <h2>Was sich belastbar unterscheiden lässt</h2>
+  <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Entscheidung</th><th>Viola als Ausgangspunkt</th><th>Violine als Ausgangspunkt</th></tr></thead>
+      <tbody>
+        <tr><td>Register</td><td>Reicht durch die C-Saite eine Quinte tiefer und trägt das Altregister.</td><td>Reicht höher und hält originale hohe Melodielagen oft ohne Oktavierung.</td></tr>
+        <tr><td>Klangidee</td><td>Dunklere, dichtere Mittellage; kann einem einzelnen Moment viel Körper geben.</td><td>Helleres, stärker hervorstechendes Oberregister; kann eine Kontur deutlicher über andere Schallquellen setzen.</td></tr>
+        <tr><td>Übertragung eines Songs</td><td>Prüfen, ob Lagewechsel den persönlichen Wiedererkennungsanker bewahren.</td><td>Prüfen, ob die Originalmelodie in einer geigerischen Lage natürlich bleibt.</td></tr>
+        <tr><td>Besetzung</td><td>Kann allein Melodie tragen oder im Ensemble die Mitte verbinden.</td><td>Kann allein Melodie tragen oder im Ensemble eine obere Stimme übernehmen.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Das Philharmonia Orchestra beschreibt die Viola als Altstimme der Streicherfamilie; Yamaha dokumentiert die Stimmung C–G–D–A und die tiefere Lage gegenüber der Violine. Daraus folgt keine automatische Eignung für ein bestimmtes Stück. Tonart, Tonumfang, Doppelgriffe, Begleitung und gewünschte Dauer bleiben konkrete Arrangementfragen.</p>
+
+  <h2>Drei Prüfungen für ein Wunschstück</h2>
+  <ol>
+    <li><strong>Was erkennen die Zuhörenden?</strong> Ist es die Melodie, der Text, der Beat oder vor allem die Produktion?</li>
+    <li><strong>Welche Lage trägt diesen Anker?</strong> Eine Oktavierung kann überzeugend sein, aber auch genau die erwartete Spannung verändern.</li>
+    <li><strong>Welche Form braucht der Moment?</strong> Ein Einzug benötigt oft einen flexiblen Endpunkt; ein Programmpunkt darf eine vollständigere Dramaturgie haben.</li>
+  </ol>
+  <p>Der <a href="/tools/wunschstueck-check/">Wunschstück-Check</a> sammelt diese Angaben, bestätigt aber bewusst weder Machbarkeit noch Notenlage, Termin oder Arrangementaufwand.</p>
+
+  <h2>Wann eine Hörprobe nötig wird</h2>
+  <p>Bei einer persönlichen Schlüsselmelodie reicht eine Beschreibung manchmal nicht. Dann ist ein kurzer, rechtegeklärter Vergleich der vorgesehenen Passage sinnvoll. Auspicious Music veröffentlicht derzeit keine solchen Beispiele, weil für jede Aufnahme Komposition, Arrangement, Performance, Master und Publikationsumfang getrennt geklärt werden müssen.</p>
+
+  <h2>Ein brauchbares Briefing in fünf Zeilen</h2>
+  <ul>
+    <li>genauer Titel und gemeinte Aufnahme oder Fassung,</li>
+    <li>Anlass und konkreter Spielmoment,</li>
+    <li>gewünschte Wirkung in einem Satz,</li>
+    <li>ungefähre Dauer und notwendige Flexibilität am Ende,</li>
+    <li>Viola, Violine oder offene Instrumentenprüfung.</li>
+  </ul>
+  <p>Für eine konkrete musikalische Einschätzung kann dieses Briefing anschließend mit der Musikerin besprochen werden. <a href="https://kim-marie-borger.com/" rel="noopener">Kim-Marie Borger</a> ist die aktuelle Viola-Fachperson des Projekts; die verlinkte Website ist ihre eigene Angebots- und Kontaktseite.</p>
+</ArticleLayout>

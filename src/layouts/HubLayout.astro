@@ -19,11 +19,25 @@ interface Props {
   tools?: HubTool[];
   /** Glossary terms this hub leans on, deep-linked into /resources/glossary/. */
   terms?: Term[];
+  lang?: 'de' | 'en';
 }
-const { title, description, canonicalPath, kicker, intro, articles, principles, situations = [], tools = [], terms = [] } = Astro.props;
+const { title, description, canonicalPath, kicker, intro, articles, principles, situations = [], tools = [], terms = [], lang = 'en' } = Astro.props;
+const labels = lang === 'de' ? {
+  guideCount: 'Leitfäden in diesem Hub', localTool: 'Browser-Werkzeug', localTools: 'Browser-Werkzeuge', terms: 'Schlüsselbegriffe',
+  pathsKicker: 'Von der Situation starten', pathsTitle: 'Was liegt gerade vor?', pathsNote: 'Jeder Einstieg führt zu einer bestehenden Seite — einem Leitfaden oder Werkzeug, nie zu einem Platzhalter.',
+  guidesKicker: 'Veröffentlichte Leitfäden', guidesTitle: 'Mit einer echten Entscheidung beginnen', guidesNote: 'Jeder Leitfaden ist veröffentlicht, quellengekennzeichnet und um eine konkrete Entscheidung gebaut. Unfertige Ideen bleiben aus der Liste.',
+  guide: 'Leitfaden', toolsTitle: 'Werkzeuge für diese Arbeit', allTools: 'Alle Werkzeuge →', termsTitle: 'Begriffe für diesen Hub', allTerms: 'Alle 23 Begriffe →',
+  boundary: 'Redaktionelle Grenze.', boundaryText: 'Diese Seiten unterscheiden dokumentierte Hinweise von eigenen Tests. Wenn Auspicious Music kein Produkt geprüft oder kein Beispiel aufgenommen hat, wird keine Evidenz erfunden.',
+} : {
+  guideCount: 'guides on this hub', localTool: 'in-browser tool', localTools: 'in-browser tools', terms: 'key terms',
+  pathsKicker: 'Start from the situation', pathsTitle: "What's in front of you", pathsNote: 'Each entry resolves to a page that already exists — a guide or a calculator, never a placeholder.',
+  guidesKicker: 'Published guides', guidesTitle: 'Start with a real decision', guidesNote: 'Every guide below is published, source-labelled and written around a concrete decision. Unfinished ideas stay out of the article list.',
+  guide: 'Guide', toolsTitle: 'Tools for this work', allTools: 'All tools →', termsTitle: 'Terms this hub leans on', allTerms: 'All 23 terms →',
+  boundary: 'Editorial boundary.', boundaryText: 'These pages distinguish documented guidance from first-hand testing. When Auspicious Music has not run a product or recorded an example, it says so instead of manufacturing evidence.',
+};
 ---
 
-<BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang="en" headerOverDark={true}>
+<BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang={lang} headerOverDark={true}>
   <Fragment slot="head">
     <style is:global>
       @layer components {
@@ -233,9 +247,9 @@ const { title, description, canonicalPath, kicker, intro, articles, principles, 
             <h1>{title}</h1>
             <p class="lede">{description}</p>
             <ul class="hub-stats">
-              <li class="stat-tile"><strong>{articles.length}</strong><span>guides on this hub</span></li>
-              {tools.length > 0 && <li class="stat-tile"><strong>{tools.length}</strong><span>in-browser {tools.length === 1 ? 'tool' : 'tools'}</span></li>}
-              {terms.length > 0 && <li class="stat-tile"><strong>{terms.length}</strong><span>key terms</span></li>}
+              <li class="stat-tile"><strong>{articles.length}</strong><span>{labels.guideCount}</span></li>
+              {tools.length > 0 && <li class="stat-tile"><strong>{tools.length}</strong><span>{tools.length === 1 ? labels.localTool : labels.localTools}</span></li>}
+              {terms.length > 0 && <li class="stat-tile"><strong>{terms.length}</strong><span>{labels.terms}</span></li>}
             </ul>
           </div>
           <div class="hub-motif-wrap">
@@ -257,8 +271,8 @@ const { title, description, canonicalPath, kicker, intro, articles, principles, 
       <section class="band band-surface band--glow" aria-labelledby="paths-title">
         <div class="shell">
           <div class="section-head">
-            <div><p class="kicker">Start from the situation</p><h2 id="paths-title">What's in front of you</h2></div>
-            <p>Each entry resolves to a page that already exists — a guide or a calculator, never a placeholder.</p>
+            <div><p class="kicker">{labels.pathsKicker}</p><h2 id="paths-title">{labels.pathsTitle}</h2></div>
+            <p>{labels.pathsNote}</p>
           </div>
           <div class="paths-grid" data-reveal-group>
             {situations.map((s) => (
@@ -276,8 +290,8 @@ const { title, description, canonicalPath, kicker, intro, articles, principles, 
     <section class="band band--glow" aria-labelledby="guides-title">
       <div class="shell">
         <div class="section-head">
-          <div><p class="kicker">Published guides</p><h2 id="guides-title">Start with a real decision</h2></div>
-          <p>Every guide below is published, source-labelled and written around a concrete decision. Unfinished ideas stay out of the article list.</p>
+          <div><p class="kicker">{labels.guidesKicker}</p><h2 id="guides-title">{labels.guidesTitle}</h2></div>
+          <p>{labels.guidesNote}</p>
         </div>
         <ul class="article-list">
           {articles.map((article) => (
@@ -288,7 +302,7 @@ const { title, description, canonicalPath, kicker, intro, articles, principles, 
                   <h2>{article.title}</h2>
                 </div>
                 <p>{article.description}</p>
-                <span class="meta">{article.label ?? 'Guide'} · {article.meta}</span>
+                <span class="meta">{article.label ?? labels.guide} · {article.meta}</span>
               </a>
             </li>
           ))}
@@ -303,7 +317,7 @@ const { title, description, canonicalPath, kicker, intro, articles, principles, 
           <div class="bench-grid">
             {tools.length > 0 && (
               <div>
-                <h2 aria-hidden="true">Tools for this work</h2>
+                <h2 aria-hidden="true">{labels.toolsTitle}</h2>
                 <ul class="bench-tools">
                   {tools.map((tool) => (
                     <li>
@@ -315,12 +329,12 @@ const { title, description, canonicalPath, kicker, intro, articles, principles, 
                     </li>
                   ))}
                 </ul>
-                <a class="bench-all" href="/resources/tools/">All tools →</a>
+                <a class="bench-all" href="/resources/tools/">{labels.allTools}</a>
               </div>
             )}
             {terms.length > 0 && (
               <div>
-                <h2 aria-hidden="true">Terms this hub leans on</h2>
+                <h2 aria-hidden="true">{labels.termsTitle}</h2>
                 <dl class="bench-terms">
                   {terms.map((t) => (
                     <div>
@@ -329,7 +343,7 @@ const { title, description, canonicalPath, kicker, intro, articles, principles, 
                     </div>
                   ))}
                 </dl>
-                <a class="bench-all" href="/resources/glossary/">All 23 terms →</a>
+                <a class="bench-all" href="/resources/glossary/">{labels.allTerms}</a>
               </div>
             )}
           </div>
@@ -337,6 +351,6 @@ const { title, description, canonicalPath, kicker, intro, articles, principles, 
       </section>
     )}
 
-    <section class="band"><div class="shell"><div class="hub-note"><p><strong>Editorial boundary.</strong> These pages distinguish documented guidance from first-hand testing. When Auspicious Music has not run a product or recorded an example, it says so instead of manufacturing evidence.</p></div></div></section>
+    <section class="band"><div class="shell"><div class="hub-note"><p><strong>{labels.boundary}</strong> {labels.boundaryText}</p></div></div></section>
   </main>
 </BaseLayout>

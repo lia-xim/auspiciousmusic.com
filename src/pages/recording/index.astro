@@ -1,34 +1,35 @@
 ---
 import HubLayout from '../../layouts/HubLayout.astro';
 const articles = [
-  { title: 'Viola microphone placement: three useful starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Compare a blended, close and room-aware position without claiming one universal distance.', meta: '9 min', answers: 'Where does the microphone start, before any EQ?' },
-  { title: 'A repeatable plan for recording viola at home', href: '/recording/acoustic-instruments/recording-viola-at-home/', description: 'Prepare the room, mark the setup, record fair comparisons and archive a clean handoff.', meta: '9 min', answers: 'How do I leave with takes I can still judge tomorrow?' },
-  { title: 'When to record strings instead of using a library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Spend session time where a performer adds musical information.', meta: '8 min', label: 'Decision guide', answers: 'Is a performer adding information here, or just cost?' },
+  { title: 'Viola-Mikrofonposition: drei sinnvolle Startpunkte', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Vergleiche eine ausgewogene, eine nahe und eine raumbewusste Position, ohne einen Universalabstand zu behaupten.', meta: '9 min', answers: 'Wo beginnt das Mikrofon, bevor überhaupt ein EQ arbeitet?' },
+  { title: 'Viola zuhause reproduzierbar aufnehmen', href: '/recording/acoustic-instruments/recording-viola-at-home/', description: 'Raum vorbereiten, Aufbau markieren, faire Vergleiche aufnehmen und eine verständliche Übergabe sichern.', meta: '9 min', answers: 'Wie entstehen Takes, die sich morgen noch fair beurteilen lassen?' },
+  { title: 'Wann Live-Streicher mehr leisten als eine Library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Sessionzeit dort einsetzen, wo eine Spielerin musikalische Information ergänzt.', meta: '8 min', label: 'Entscheidungshilfe', answers: 'Ergänzt eine Spielerin hier musikalische Information oder nur Aufwand?' },
 ];
 const principles = [
-  { title: 'Placement is a variable', text: 'Write down distance, angle, height and pattern so a result can be repeated.' },
-  { title: 'Level-match comparisons', text: 'A louder take is not automatically a better take.' },
-  { title: 'Performance before processing', text: 'Choose the phrase before EQ and reverb disguise the evidence.' },
+  { title: 'Position ist eine Variable', text: 'Abstand, Winkel, Höhe und Richtcharakteristik notieren, damit ein Ergebnis wiederholbar bleibt.' },
+  { title: 'Vergleiche auf gleiche Lautheit bringen', text: 'Ein lauterer Take ist nicht automatisch der bessere.' },
+  { title: 'Spiel vor Bearbeitung', text: 'Zuerst die Phrase wählen, bevor EQ und Hall die Unterschiede verdecken.' },
 ];
 const situations = [
-  { lead: 'First session with a bowed instrument in an untreated room.', outcome: 'Prepare the room, mark the setup and record comparisons fair enough to trust tomorrow.', href: '/recording/acoustic-instruments/recording-viola-at-home/', linkLabel: 'Session plan' },
-  { lead: 'The microphone is on the stand — but where, exactly?', outcome: 'Three starting positions with the trade-offs stated, instead of one “correct” distance.', href: '/recording/acoustic-instruments/viola-microphone-placement/', linkLabel: 'Placement guide' },
-  { lead: 'Booking a player or reaching for a library — undecided.', outcome: 'Decide by phrasing, transitions and revision risk before spending session money.', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', linkLabel: 'Decision guide' },
-  { lead: 'One note keeps booming louder than every other.', outcome: 'Find the note’s frequency and wavelength — the first step in reading a room mode.', href: '/resources/tools/note-frequency/', linkLabel: 'Calculator' },
-  { lead: 'The part needs a real player, not more reading.', outcome: 'Session viola, recorded with the documented setup and delivered as takes your session can use.', href: '/services/', linkLabel: 'Work with us' },
+  { lead: 'Erste Session mit einem Streichinstrument in einem unbehandelten Raum.', outcome: 'Raum vorbereiten, Aufbau markieren und Vergleiche so fair aufnehmen, dass sie morgen noch tragen.', href: '/recording/acoustic-instruments/recording-viola-at-home/', linkLabel: 'Sessionplan' },
+  { lead: 'Das Mikrofon steht — aber wo genau?', outcome: 'Drei Startpositionen mit sichtbaren Kompromissen statt eines angeblich richtigen Abstands.', href: '/recording/acoustic-instruments/viola-microphone-placement/', linkLabel: 'Positionsleitfaden' },
+  { lead: 'Spielerin aufnehmen oder zur Library greifen — noch offen.', outcome: 'Vor der Session nach Phrasierung, Übergängen und Änderungsrisiko entscheiden.', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', linkLabel: 'Entscheidungshilfe' },
+  { lead: 'Ein Ton dröhnt immer lauter als alle anderen.', outcome: 'Frequenz und Wellenlänge des Tons bestimmen — der erste Schritt zum Verständnis einer Raummode.', href: '/resources/tools/note-frequency/', linkLabel: 'Rechner' },
+  { lead: 'Die Stimme braucht ein klares Briefing, bevor aufgenommen wird.', outcome: 'Funktion, Timing, Varianten, Format und Dateibenennung zu einem belastbaren Aufnahmebrief ordnen.', href: '/tools/streicheraufnahme-briefing/', linkLabel: 'Aufnahmebrief erstellen' },
 ];
 const tools = [
-  { title: 'Note & Frequency', href: '/resources/tools/note-frequency/', io: 'Note ⇄ Hz · wavelength', note: 'Frequencies, cents deviation and wavelengths — useful when a room dimension misbehaves.' },
+  { title: 'Streicheraufnahme-Briefing', href: '/tools/streicheraufnahme-briefing/', io: 'Brief → TXT', note: 'Funktion, Timing, Takes, Projektformat und offene Fragen lokal im Browser ordnen.' },
+  { title: 'Note & Frequenz', href: '/resources/tools/note-frequency/', io: 'Note ⇄ Hz · wavelength', note: 'Frequenzen, Cent-Abweichung und Wellenlängen — hilfreich, wenn eine Raumdimension auffällig reagiert.' },
 ];
 const terms = [
-  { term: 'Proximity effect', def: 'The bass lift as a directional microphone moves closer — a tone control, once you know it is there.', href: '/resources/glossary/#proximity-effect' },
-  { term: 'Room mode', def: 'A standing wave whose wavelength fits a room dimension, making some notes far louder in some positions.', href: '/resources/glossary/#room-mode' },
-  { term: 'Gain staging', def: 'Setting level at every stage so nothing clips and nothing drowns in noise later.', href: '/resources/glossary/#gain-staging' },
-  { term: 'Headroom', def: 'The distance between the loudest part of a signal and the point at which it clips.', href: '/resources/glossary/#headroom' },
-  { term: 'Bit depth', def: 'How finely amplitude is stored — 24-bit makes conservative recording levels practical.', href: '/resources/glossary/#bit-depth' },
+  { term: 'Proximity effect', def: 'Die Bassanhebung eines gerichteten Mikrofons bei geringem Abstand — ein Klangfaktor, sobald er bewusst ist.', href: '/resources/glossary/#proximity-effect' },
+  { term: 'Room mode', def: 'Eine stehende Welle, deren Länge zu einer Raumdimension passt und einzelne Töne positionsabhängig verstärkt.', href: '/resources/glossary/#room-mode' },
+  { term: 'Gain staging', def: 'Pegel an jeder Stufe so setzen, dass nichts clippt und später nichts im Rauschen untergeht.', href: '/resources/glossary/#gain-staging' },
+  { term: 'Headroom', def: 'Der Abstand zwischen der lautesten Signalstelle und dem Clippingpunkt.', href: '/resources/glossary/#headroom' },
+  { term: 'Bit depth', def: 'Wie fein Amplitude gespeichert wird — 24 Bit erlaubt praxistaugliche Sicherheitsreserven.', href: '/resources/glossary/#bit-depth' },
 ];
 ---
-<HubLayout title="Recording" description="Room-aware, repeatable recording plans for acoustic instruments — beginning with bowed strings and honest comparison methods." canonicalPath="/recording/" kicker="Acoustic hub" intro="A domestic room can produce useful recordings when the setup is treated as evidence rather than folklore. These pages make the variables visible and avoid product claims that have not been earned by a real test." articles={articles} principles={principles} situations={situations} tools={tools} terms={terms}>
+<HubLayout title="Recording" description="Raumbewusste, wiederholbare Aufnahmepläne für akustische Instrumente — mit Streichern und fairen Vergleichsmethoden als Ausgangspunkt." canonicalPath="/recording/" kicker="Aufnahme-Hub" intro="Auch ein kleiner Raum kann brauchbare Aufnahmen ermöglichen, wenn der Aufbau als nachvollziehbarer Versuch statt als Rezept behandelt wird. Diese Seiten machen Variablen sichtbar und vermeiden Produkturteile ohne eigenen Test." articles={articles} principles={principles} situations={situations} tools={tools} terms={terms} lang="de">
   <figure class="hub-motif" slot="motif">
     <svg viewBox="0 0 360 240" fill="none" aria-hidden="true">
       <!-- instrument body, abstracted -->
@@ -49,6 +50,6 @@ const terms = [
       <text x="204" y="196" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">DISTANCE · ANGLE</text>
       <text x="204" y="212" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">HEIGHT · PATTERN</text>
     </svg>
-    <figcaption>Schematic: three starting positions, variables written down. Not a measured plot.</figcaption>
+    <figcaption>Schema: drei Startpositionen mit notierten Variablen. Keine Messkurve.</figcaption>
   </figure>
 </HubLayout>
