@@ -35,7 +35,7 @@ const siteIndexable = import.meta.env.SITE_INDEXABLE === 'true';
 const robots = siteIndexable && !noindex ? 'index,follow,max-image-preview:large' : 'noindex,nofollow,noarchive';
 const site = Astro.site ?? new URL('https://www.auspiciousmusic.com/');
 const canonical = new URL(canonicalPath, site);
-const image = new URL('/assets/hero-portrait.png', site);
+const image = new URL('/assets/hero-portrait-928.jpg', site);
 const locale = lang === 'de' ? 'de_DE' : 'en_US';
 const publisherId = new URL('/authors/#matthias-ramahi', site).href;
 const expertId = new URL('/authors/#kim-marie-borger', site).href;
@@ -97,7 +97,7 @@ const identitySchema = {
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={image} />
     <meta property="og:image:width" content="928" />
-    <meta property="og:image:height" content="1152" />
+    <meta property="og:image:height" content="742" />
     <meta property="og:image:alt" content="Auspicious Music editorial illustration of a metal block and a tensioned string" />
     {contentType === 'article' && published && <meta property="article:published_time" content={published} />}
     {contentType === 'article' && updated && <meta property="article:modified_time" content={updated} />}

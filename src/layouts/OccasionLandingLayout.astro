@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import ResponsiveEditorialImage from '../components/ResponsiveEditorialImage.astro';
 import type { OccasionProfile } from '../data/repertoire';
 
 interface Props { profile: OccasionProfile; }
@@ -28,6 +29,8 @@ const itemListSchema = {
         @media (min-width: 900px) { .occasion-head__grid { grid-template-columns: minmax(0, 1.05fr) minmax(18rem, .72fr); } }
         .occasion-head h1 { max-width: 14ch; color: var(--stage-text); font-size: clamp(2.7rem, 1.5rem + 4vw, 5rem); line-height: .98; }
         .occasion-head .lede { max-width: 58ch; margin-top: 1.25rem; color: var(--stage-muted); }
+        .occasion-head .kicker { color: var(--stage-text); }
+        .occasion-head .btn--quiet { color: var(--stage-text); border-color: var(--stage-line); }
         .occasion-head__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
         .occasion-figure { overflow: hidden; border-radius: var(--r-sm); border: 1px solid var(--stage-line); background: var(--stage-deep); }
         .occasion-figure img { inline-size: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
@@ -70,7 +73,7 @@ const itemListSchema = {
           </div>
         </div>
         <figure class="occasion-figure">
-          <img src="/assets/story-viola-back.png" width="1376" height="774" alt="Editoriale Darstellung einer Viola im Aufnahmeraum" />
+          <ResponsiveEditorialImage asset="story-viola-back" priority={true} sizes="(min-width: 900px) 44vw, 100vw" alt="Editoriale Darstellung einer Viola im Aufnahmeraum" />
           <figcaption>Planungshilfe für Live-Viola, kein Buchungsversprechen</figcaption>
         </figure>
       </div>

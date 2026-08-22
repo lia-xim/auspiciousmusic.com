@@ -1,0 +1,33 @@
+---
+interface Props {
+  asset: 'hero-portrait' | 'story-viola-back';
+  alt: string;
+  class?: string;
+  priority?: boolean;
+  sizes: string;
+}
+
+const { asset, alt, class: className, priority = false, sizes } = Astro.props;
+const variants = asset === 'hero-portrait'
+  ? { widths: [480, 760, 928], width: 928, height: 742 }
+  : { widths: [480, 800, 1200, 1376], width: 1376, height: 774 };
+const srcset = (extension: 'avif' | 'webp') => variants.widths
+  .map((width) => `/assets/${asset}-${width}.${extension} ${width}w`)
+  .join(', ');
+---
+
+<picture class={className}>
+  <source type="image/avif" srcset={srcset('avif')} sizes={sizes} />
+  <source type="image/webp" srcset={srcset('webp')} sizes={sizes} />
+  <img
+    src={`/assets/${asset}-${variants.widths[0]}.jpg`}
+    srcset={variants.widths.map((width) => `/assets/${asset}-${width}.jpg ${width}w`).join(', ')}
+    sizes={sizes}
+    width={variants.width}
+    height={variants.height}
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    decoding="async"
+    alt={alt}
+  />
+</picture>

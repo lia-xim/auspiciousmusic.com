@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ResponsiveEditorialImage from '../components/ResponsiveEditorialImage.astro';
 ---
 
 <BaseLayout
@@ -12,6 +13,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   headerOverDark={true}
 >
 <Fragment slot="head">
+<link
+  rel="preload"
+  as="image"
+  href="/assets/hero-portrait-760.avif"
+  imagesrcset="/assets/hero-portrait-480.avif 480w, /assets/hero-portrait-760.avif 760w, /assets/hero-portrait-928.avif 928w"
+  imagesizes="(min-width: 1000px) 53vw, 100vw"
+  type="image/avif"
+  fetchpriority="high"
+/>
 <style is:global>
 @layer components {
 
@@ -516,7 +526,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- 4 · featured method -->
   <section class="band band--wide band-dark lab" aria-labelledby="lab-title">
     <div class="shell lab__inner">
-      <figure class="lab__art" data-reveal><img src="/assets/hero-portrait.png" width="928" height="1152" loading="lazy" decoding="async" alt="Abstract editorial image of a metal block and a tensioned string."><figcaption class="kicker" style="padding:1rem">Editorial illustration — not a test photograph</figcaption></figure>
+      <figure class="lab__art" data-reveal><ResponsiveEditorialImage asset="hero-portrait" priority={true} sizes="(min-width: 1000px) 53vw, 100vw" alt="Abstract editorial image of a metal block and a tensioned string." /><figcaption class="kicker" style="padding:1rem">Editorial illustration — not a test photograph</figcaption></figure>
       <div data-reveal data-reveal-delay="120"><p class="kicker">Recording method</p><h2 id="lab-title" style="margin-top:.875rem">Record viola so tomorrow’s comparison is still fair</h2><p>Mark distance, angle, height and room position; record level-matched takes; keep the performance decision separate from processing. The result is a method another session can repeat.</p><p class="meta"><span>Viola</span><span>Room-aware workflow</span><span>9 min</span></p><a class="link" href="/recording/acoustic-instruments/recording-viola-at-home/">Read the recording plan →</a></div>
     </div>
   </section>
@@ -581,7 +591,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- 7 · strings and applications -->
   <section class="band band--wide story" aria-labelledby="story-title">
     <div class="shell">
-      <figure class="story__media" data-reveal><img src="/assets/story-viola-back.png" width="1376" height="774" loading="lazy" decoding="async" alt="Editorial illustration of a viola and microphone in a quiet room."><figcaption class="kicker" style="margin-top:.75rem">Editorial illustration — not a documented session</figcaption></figure>
+      <figure class="story__media" data-reveal><ResponsiveEditorialImage asset="story-viola-back" sizes="(min-width: 1440px) 1376px, 100vw" alt="Editorial illustration of a viola and microphone in a quiet room." /><figcaption class="kicker" style="margin-top:.75rem">Editorial illustration — not a documented session</figcaption></figure>
       <div class="story__body"><h2 id="story-title">Ein Instrument, mehrere konkrete Aufgaben</h2><div><p>Eine Viola kann einen persönlichen Moment tragen, als bewusster Programmpunkt auftreten oder eine exponierte Aufnahmespur sein. Mit der Aufgabe aendern sich Ablauf, Repertoire, Mikrofon, Rechte und Vorbereitung. Diese Seite macht die Entscheidungen sichtbar; Kim-Maries eigene Website bleibt die Quelle für aktuelle Auftritte und Buchungen.</p><div class="story__links"><a class="link" href="/viola/">Viola →</a><a class="link" href="/eventmusik/">Anlässe →</a><a class="link" href="/repertoire/">Repertoire →</a><a class="link" href="/recording/">Aufnahme →</a></div></div></div>
     </div>
   </section>

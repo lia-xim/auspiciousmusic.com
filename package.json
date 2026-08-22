@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "axe-core": "4.13.0",
     "typescript": "^5.9.3"
   },
   "packageManager": "pnpm@10.33.2"

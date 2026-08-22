@@ -7,9 +7,12 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const bundledNodeRoot = process.env.CODEX_BUNDLED_NODE_ROOT
   ?? 'C:\\Users\\matth\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node';
 const require = createRequire(path.join(bundledNodeRoot, 'package.json'));
+const projectRequire = createRequire(path.join(projectRoot, 'package.json'));
 const { chromium } = require('playwright');
+const axeSource = await readFile(projectRequire.resolve('axe-core/axe.min.js'), 'utf8');
 
 const implementation = process.env.QA_BASE_URL ?? 'http://localhost:4321';
+const localImplementation = ['localhost', '127.0.0.1'].includes(new URL(implementation).hostname);
 const reference = process.env.QA_REFERENCE_URL;
 const outputDirectory = process.env.QA_OUTPUT_DIR
   ? path.resolve(process.env.QA_OUTPUT_DIR)
@@ -43,6 +46,8 @@ async function checkRoute(route, viewport) {
   });
 
   const response = await page.goto(new URL(route, implementation).href, { waitUntil: 'networkidle' });
+  await page.evaluate(axeSource);
+  const axeResult = await page.evaluate(() => window.axe.run(document));
   const status = response?.status() ?? 0;
   const metrics = await page.evaluate(() => ({
     title: document.title,
@@ -76,7 +81,8 @@ async function checkRoute(route, viewport) {
     })(),
   }));
 
-  if (route === '/definitely-not-a-real-page/' ? status !== 404 : status >= 400) failures.push(`${route}: HTTP ${status}`);
+  const localGoneRoute = localImplementation && route === '/410/';
+  if (route === '/definitely-not-a-real-page/' || localGoneRoute ? status !== 404 : status >= 400) failures.push(`${route}: HTTP ${status}`);
   if (!metrics.title) failures.push(`${route}: blank title`);
   if (metrics.mainCount !== 1) failures.push(`${route}: ${metrics.mainCount} main landmarks`);
   if (metrics.h1Count !== 1) failures.push(`${route}: ${metrics.h1Count} h1 elements`);
@@ -88,15 +94,18 @@ async function checkRoute(route, viewport) {
   if (metrics.unlabeledControls) failures.push(`${route}: ${metrics.unlabeledControls} unlabeled form controls`);
   if (metrics.namelessInteractive) failures.push(`${route}: ${metrics.namelessInteractive} unnamed links or buttons`);
   if (metrics.headingSkips) failures.push(`${route}: ${metrics.headingSkips} heading-level skips inside main`);
+  for (const violation of axeResult.violations) {
+    failures.push(`${route}: axe ${violation.id} (${violation.impact ?? 'unknown'}) - ${violation.nodes.length} node(s)`);
+  }
   for (const error of runtimeErrors) {
-    if (route === '/definitely-not-a-real-page/' && /404/.test(error)) continue;
+    if ((route === '/definitely-not-a-real-page/' || localGoneRoute) && /404/.test(error)) continue;
     failures.push(`${route}: ${error}`);
   }
   for (const badResponse of badResponses) {
-    if (route === '/definitely-not-a-real-page/' && badResponse === '404 ' + new URL(route, implementation).href) continue;
+    if ((route === '/definitely-not-a-real-page/' || localGoneRoute) && badResponse === '404 ' + new URL(route, implementation).href) continue;
     failures.push(`${route}: response ${badResponse}`);
   }
-  observations.push({ route, status, title: metrics.title, viewport: `${viewport.width}x${viewport.height}` });
+  observations.push({ route, status, title: metrics.title, viewport: `${viewport.width}x${viewport.height}`, axeViolations: axeResult.violations.length });
   await page.close();
 }
 
@@ -229,5 +238,5 @@ if (failures.length) {
   failures.forEach((failure) => console.error(`- ${failure}`));
   process.exitCode = 1;
 } else {
-  console.log(`Browser QA passed: ${routes.length} routes across desktop/mobile plus 200%/400% reflow checks (${observations.length} route-viewport checks), keyboard/mobile navigation, forced-colors/reduced-motion, site search, canvas trigger, and delay calculator.`);
+  console.log(`Browser QA passed: ${routes.length} routes across desktop/mobile plus 200%/400% reflow checks (${observations.length} route-viewport checks), Axe, keyboard/mobile navigation, forced-colors/reduced-motion, site search, canvas trigger, and delay calculator.`);
 }
