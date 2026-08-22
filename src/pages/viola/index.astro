@@ -1,0 +1,21 @@
+---
+import ExpertHubLayout from '../../layouts/ExpertHubLayout.astro';
+const decisions = [
+  { title: 'Was soll die Viola leisten?', text: 'Eine solistische Linie bei einer Trauung, ein Programmpunkt im Firmenevent und eine exponierte Aufnahmespur brauchen andere Phrasierung, Projektion und Vorbereitung.', href: '/eventmusik/', label: 'Anlässe ansehen' },
+  { title: 'Braucht diese Stimme eine Spielerin?', text: 'Phrasierung, Übergänge und Änderungsrisiko zeigen, wann Live-Viola mehr leistet als eine Library.', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', label: 'Live und Sample vergleichen' },
+  { title: 'Wo beginnt das Mikrofon?', text: 'Abstand, Winkel, Höhe und Raumanteil werden zuerst variiert. Bearbeitung ist nicht der Ersatz für eine nachvollziehbare Aufnahmeentscheidung.', href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Zum Mikrofon-Guide' },
+];
+const evidence = [
+  { label: 'Benannte Expertin', text: 'Kim-Marie Borger ist die aktuelle Viola-Expertin dieser Fachseite. Biografie, Aufnahmen und aktuelle Buchungsinformationen bleiben auf ihrer eigenen Website.' },
+  { label: 'Neue, getrennte Arbeit', text: 'Guides, Tools und künftige Demonstrationen gehören zum heutigen Projekt. Sie werden nicht als Teil des früheren Auspicious-Music-Katalogs dargestellt.' },
+  { label: 'Medien erst nach Rechteprüfung', text: 'Aufnahmen, Fotos, Noten und Arrangements werden erst veröffentlicht, wenn alle notwendigen Nutzungs- und Publikationsrechte dokumentiert sind.' },
+];
+const related = [
+  { title: 'Eventmusik nach Anlass', description: 'Von Hochzeit und Trauerfeier bis Dinner, Firmenevent, Geburtstag und Unterricht.', href: '/eventmusik/', meta: '7 Anlassseiten' },
+  { title: 'Repertoire nach Anlass', description: 'Bestätigte Startlisten mit sichtbaren Klärpunkten für genaue Fassungen.', href: '/repertoire/', meta: '42 Nennungen' },
+  { title: 'Eventmusik-Planer', description: 'Ablauf, Repertoire, Cue und praktische Grenzen zu einem nutzbaren Brief verbinden.', href: '/tools/eventmusik-planer/', meta: 'DE / EN · lokal' },
+];
+---
+<ExpertHubLayout title="Viola im Einsatz" description="Praxiswissen zu Viola bei Anlässen, im Repertoire und in der Aufnahme mit Kim-Marie Borger als benannter Expertin." canonicalPath="/viola/" kicker="Viola-Fachseite · Kim-Marie Borger" intro="Die Viola ist hier kein dekoratives Etikett. Ausgangspunkt ist ihre konkrete Aufgabe: einen Moment tragen, einen Raum füllen, eine Melodie persönlich formen oder eine Aufnahme nachvollziehbar ergänzen." primary={{ href: '/tools/eventmusik-planer/', label: 'Eventmusik planen' }} secondary={{ href: 'https://kim-marie-borger.com/', label: 'Kim-Marie kennenlernen', external: true }} decisions={decisions} evidence={evidence} related={related} lang="de">
+  <figure class="expert-motif" slot="motif"><svg viewBox="0 0 420 240" fill="none" aria-hidden="true"><path d="M118 220C72 220 62 177 87 155C68 135 73 99 101 91C82 68 98 31 130 35C160 39 171 72 151 94C177 104 178 137 159 155C183 177 171 220 126 220Z" stroke="currentColor" stroke-width="1.4"/><path d="M119 100v66M137 100v66" stroke="currentColor" opacity=".5"/><path d="M190 70c57 20 97 63 122 128M206 51c69 22 121 74 151 151" stroke="currentColor" opacity=".24" stroke-dasharray="3 6"/><circle cx="212" cy="102" r="5" style="fill:var(--ember-bright)"/><circle cx="295" cy="155" r="5" fill="currentColor" opacity=".65"/></svg><figcaption>Instrument, Spielerin, Anlass und Raum gehören zusammen.</figcaption></figure>
+</ExpertHubLayout>

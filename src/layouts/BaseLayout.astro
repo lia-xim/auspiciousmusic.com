@@ -1,6 +1,7 @@
 ---
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { siteStrategy } from '../data/site-strategy';
 
 interface Props {
   title: string;
@@ -13,7 +14,6 @@ interface Props {
   published?: string;
   updated?: string;
   section?: string;
-  /** Page opens on the ink stage: the header starts transparent over it. */
   headerOverDark?: boolean;
 }
 
@@ -21,7 +21,7 @@ const {
   title,
   description,
   canonicalPath = Astro.url.pathname,
-  lang = 'en',
+  lang = 'de',
   noindex = false,
   loadStringField = false,
   contentType = 'website',
@@ -37,26 +37,36 @@ const site = Astro.site ?? new URL('https://www.auspiciousmusic.com/');
 const canonical = new URL(canonicalPath, site);
 const image = new URL('/assets/hero-portrait.png', site);
 const locale = lang === 'de' ? 'de_DE' : 'en_US';
-const authorId = new URL('/authors/#matthias-ramahi', site).href;
+const publisherId = new URL('/authors/#matthias-ramahi', site).href;
+const expertId = new URL('/authors/#kim-marie-borger', site).href;
 const identitySchema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'Person',
-      '@id': authorId,
-      name: 'Matthias Ramahi',
+      '@id': publisherId,
+      name: siteStrategy.publisher.name,
       url: new URL('/authors/', site).href,
       email: 'info@matthiasramahi.de',
       telephone: '+49 176 42 44 98 58',
-      sameAs: ['https://matthiasramahi.de/'],
+      sameAs: [siteStrategy.publisher.url],
+    },
+    {
+      '@type': 'Person',
+      '@id': expertId,
+      name: siteStrategy.expert.name,
+      jobTitle: siteStrategy.expert.role,
+      url: siteStrategy.expert.url,
+      sameAs: [siteStrategy.expert.url],
     },
     {
       '@type': 'WebSite',
       '@id': new URL('/#website', site).href,
-      name: 'Auspicious Music',
+      name: `${siteStrategy.name} — ${siteStrategy.subtitle}`,
       url: site.href,
-      inLanguage: 'en',
-      publisher: { '@id': authorId },
+      inLanguage: ['de', 'en'],
+      publisher: { '@id': publisherId },
+      about: { '@id': expertId },
     },
   ],
 };
@@ -77,6 +87,7 @@ const identitySchema = {
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/assets/inter.css" />
     <link rel="stylesheet" href="/assets/system.css" />
+    <link rel="stylesheet" href="/assets/strategy.css" />
     <meta name="theme-color" content={headerOverDark ? '#0d0f16' : '#f1eee6'} />
     <meta property="og:type" content={contentType} />
     <meta property="og:site_name" content="Auspicious Music" />

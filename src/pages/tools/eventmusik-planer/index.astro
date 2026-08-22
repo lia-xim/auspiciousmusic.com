@@ -1,0 +1,303 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { occasionProfiles } from '../../../data/repertoire';
+
+const plannerData = occasionProfiles.map((profile) => ({
+  slug: profile.slug,
+  labelDe: profile.labelDe,
+  labelEn: profile.labelEn,
+  planningDe: profile.planningDe,
+  planningEn: profile.planningEn,
+  moments: profile.moments,
+  questionsDe: profile.questionsDe,
+  questionsEn: profile.questionsEn,
+  pieces: profile.pieces,
+}));
+---
+<BaseLayout
+  title="Eventmusik-Planer für Viola — Auspicious Music"
+  description="Plane Live-Viola für Hochzeit, Trauerfeier, Empfang, Dinner, Firmenevent, Geburtstag oder Unterricht. Mit Ablauf, Repertoire-Ideen und E-Mail-Entwurf."
+  canonicalPath="/tools/eventmusik-planer/"
+  lang="de"
+  headerOverDark={true}
+>
+  <Fragment slot="head">
+    <style is:global>
+      @layer components {
+        .planner-head { margin-top: calc(-1 * var(--header-h)); padding: calc(var(--header-h) + clamp(2.5rem, 7vh, 5rem)) 0 calc(var(--sheet-overlap) + clamp(3rem, 7vh, 5rem)); background: var(--stage); color: var(--stage-text); }
+        .planner-head__grid { display: grid; gap: 2.5rem 6rem; align-items: end; }
+        @media (min-width: 940px) { .planner-head__grid { grid-template-columns: minmax(0, 1.1fr) minmax(18rem, .7fr); } }
+        .planner-head h1 { max-width: 15ch; color: var(--stage-text); font-size: clamp(2.8rem, 1.5rem + 4vw, 5.2rem); line-height: .98; letter-spacing: 0; }
+        .planner-head .lede { max-width: 58ch; margin-top: 1.35rem; color: var(--stage-muted); }
+        .planner-meta { display: grid; gap: 1rem; }
+        .language-switch { display: inline-grid; grid-template-columns: repeat(2, 1fr); gap: 2px; width: fit-content; padding: 3px; border: 1px solid var(--stage-line); border-radius: var(--r-control); }
+        .language-switch button { min-inline-size: 4rem; min-block-size: 40px; border: 0; border-radius: calc(var(--r-control) - 2px); background: transparent; color: var(--stage-muted); font: 650 var(--t-meta)/1 var(--font-mono); cursor: pointer; }
+        .language-switch button[aria-pressed="true"] { background: var(--canvas); color: var(--ink); }
+        .planner-privacy { border-block: 1px solid var(--stage-line); padding-block: 1rem; color: var(--stage-muted); font: 500 var(--t-meta)/1.65 var(--font-mono); }
+        .planner-privacy strong { display: block; margin-bottom: .3rem; color: var(--stage-text); }
+        .planner-shell { display: grid; gap: 2rem 3rem; align-items: start; }
+        @media (min-width: 1040px) { .planner-shell { grid-template-columns: minmax(0, 1.04fr) minmax(23rem, .74fr); } }
+        .planner-form { display: grid; gap: 2.15rem; }
+        .planner-step { min-inline-size: 0; border: 0; border-top: 1px solid var(--line-strong); padding: 1.35rem 0 0; }
+        .planner-step legend { padding: 0; font-size: 1.32rem; font-weight: 650; letter-spacing: 0; }
+        .planner-step__note { max-width: 64ch; margin-top: .45rem; color: var(--muted); }
+        .planner-fields { display: grid; gap: 1rem; margin-top: 1.2rem; }
+        @media (min-width: 660px) { .planner-fields--two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .planner-field { display: grid; gap: .45rem; min-inline-size: 0; }
+        .planner-field label, .planner-group-label { color: var(--ink-soft); font: 550 var(--t-meta)/1.5 var(--font-mono); }
+        .planner-field input, .planner-field select, .planner-field textarea { inline-size: 100%; min-block-size: 48px; border: 1px solid var(--line-strong); border-radius: var(--r-control); background: var(--canvas); color: var(--ink); padding: .75rem .9rem; font: 500 1rem/1.45 var(--font-sans); }
+        .planner-field textarea { min-block-size: 7rem; resize: vertical; }
+        .planner-field :is(input, select, textarea):hover { border-color: var(--muted); }
+        .choice-grid { display: grid; gap: .65rem; margin-top: .75rem; }
+        @media (min-width: 650px) { .choice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .choice { display: grid; grid-template-columns: 1.15rem minmax(0, 1fr); gap: .7rem; align-items: start; min-inline-size: 0; padding: .85rem .9rem; border: 1px solid var(--line); border-radius: var(--r-control); color: var(--ink-soft); cursor: pointer; }
+        .choice:has(input:checked) { border-color: var(--accent); background: var(--tint); color: var(--ink); }
+        .choice input { inline-size: 1rem; block-size: 1rem; margin-top: .18rem; accent-color: var(--accent); }
+        .choice small { display: block; margin-top: .25rem; color: var(--muted); line-height: 1.45; }
+        .planner-error { min-block-size: 1.5rem; color: #a43a2d; font-size: .95rem; }
+        .planner-output { position: sticky; top: calc(var(--header-h) + 1rem); overflow: hidden; scroll-margin-top: calc(var(--header-h) + 1rem); border-radius: var(--r-sm); background: var(--stage); color: var(--stage-text); box-shadow: var(--shadow-panel); }
+        .planner-output__bar { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem 1rem; border-bottom: 1px solid var(--stage-line); color: var(--stage-muted); font: 500 var(--t-meta)/1.4 var(--font-mono); }
+        .planner-output__body { min-block-size: 31rem; padding: 1.25rem; }
+        .planner-output__empty { max-width: 32ch; color: var(--stage-muted); line-height: 1.65; }
+        .brief { display: grid; gap: 1.35rem; }
+        .brief h2 { color: var(--stage-text); font-size: 1.55rem; }
+        .brief h3 { color: var(--stage-text); font-size: 1rem; }
+        .brief dl, .brief__flow, .brief__pieces, .brief__questions { display: grid; gap: .7rem; }
+        .brief dl > div { padding-bottom: .65rem; border-bottom: 1px solid var(--stage-line-soft); }
+        .brief dt { color: var(--stage-muted); font: 500 var(--t-meta)/1.4 var(--font-mono); }
+        .brief dd { margin-top: .25rem; color: var(--stage-text); line-height: 1.5; white-space: pre-wrap; }
+        .brief__flow li, .brief__pieces li, .brief__questions li { padding-left: 1rem; border-left: 2px solid var(--stage-line); color: var(--stage-text); line-height: 1.5; }
+        .brief__flow small, .brief__pieces small { display: block; margin-top: .2rem; color: var(--stage-muted); }
+        .brief__notice { color: var(--stage-muted); font-size: .88rem; line-height: 1.6; }
+        .planner-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--stage-line); }
+        .planner-actions button, .planner-actions a { min-block-size: 42px; inline-size: 100%; justify-content: center; text-align: center; }
+        .planner-actions .btn--quiet { border-color: var(--stage-line); color: var(--stage-text); }
+        .planner-actions .btn--quiet:hover { border-color: var(--stage-muted); }
+        .planner-actions [data-email] { grid-column: 1 / -1; }
+        .planner-next { display: grid; gap: 1rem 3rem; align-items: center; }
+        @media (min-width: 780px) { .planner-next { grid-template-columns: minmax(0, 1fr) auto; } }
+        .planner-next p { max-width: 64ch; color: var(--ink-soft); }
+        @media (max-width: 1039px) { .planner-output { position: static; } }
+      }
+    </style>
+  </Fragment>
+  <main id="content">
+    <section class="planner-head" data-stage-scene aria-labelledby="planner-title">
+      <div class="shell planner-head__grid">
+        <div>
+          <h1 id="planner-title" data-de="Plane die Musik, nicht nur die Titelliste." data-en="Plan the music, not just the song list.">Plane die Musik, nicht nur die Titelliste.</h1>
+          <p class="lede" data-de="Wähle Anlass, Spielmomente und Rahmenbedingungen. Du erhältst einen Ablauf, passende Repertoire-Ideen und einen fertigen E-Mail-Entwurf für Kim-Marie." data-en="Choose the occasion, musical moments and practical setting. You will get a running order, repertoire ideas and a ready email draft for Kim-Marie.">Wähle Anlass, Spielmomente und Rahmenbedingungen. Du erhältst einen Ablauf, passende Repertoire-Ideen und einen fertigen E-Mail-Entwurf für Kim-Marie.</p>
+        </div>
+        <div class="planner-meta">
+          <div class="language-switch" aria-label="Sprache / Language">
+            <button type="button" data-language="de" aria-pressed="true">DE</button>
+            <button type="button" data-language="en" aria-pressed="false">EN</button>
+          </div>
+          <div class="planner-privacy"><strong data-de="Privat im Browser" data-en="Private in your browser">Privat im Browser</strong><span data-de="Keine Anmeldung, keine Speicherung und kein automatischer Versand. Der E-Mail-Button öffnet nur einen Entwurf in deinem eigenen Mailprogramm." data-en="No account, storage or automatic sending. The email button only opens a draft in your own email app.">Keine Anmeldung, keine Speicherung und kein automatischer Versand. Der E-Mail-Button öffnet nur einen Entwurf in deinem eigenen Mailprogramm.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band sheet-lift band--glow">
+      <div class="shell planner-shell">
+        <form class="planner-form" data-planner novalidate>
+          <fieldset class="planner-step">
+            <legend data-de="1. Anlass und Rahmen" data-en="1. Occasion and setting">1. Anlass und Rahmen</legend>
+            <p class="planner-step__note" data-de="Die Pflichtfelder reichen für einen ersten sinnvollen Plan. Persönliche Kontaktdaten werden hier nicht abgefragt." data-en="The required fields are enough for a useful first plan. This tool does not ask for personal contact details.">Die Pflichtfelder reichen für einen ersten sinnvollen Plan. Persönliche Kontaktdaten werden hier nicht abgefragt.</p>
+            <div class="planner-fields planner-fields--two">
+              <div class="planner-field"><label for="occasion" data-de="Anlass *" data-en="Occasion *">Anlass *</label><select id="occasion" name="occasion" required><option value="" data-de="Bitte wählen" data-en="Choose one">Bitte wählen</option>{occasionProfiles.map((profile) => <option value={profile.slug} data-de={profile.labelDe} data-en={profile.labelEn}>{profile.labelDe}</option>)}<option value="other" data-de="Anderer Anlass" data-en="Other occasion">Anderer Anlass</option></select></div>
+              <div class="planner-field"><label for="setting" data-de="Setting *" data-en="Setting *">Setting *</label><select id="setting" name="setting" required><option value="" data-de="Bitte wählen" data-en="Choose one">Bitte wählen</option><option value="indoor" data-de="Innenraum" data-en="Indoor venue">Innenraum</option><option value="outdoor" data-de="Draussen mit Schlechtwetterplan" data-en="Outdoor with weather plan">Draussen mit Schlechtwetterplan</option><option value="both" data-de="Innen und draußen" data-en="Indoor and outdoor">Innen und draußen</option><option value="open" data-de="Noch offen" data-en="Not decided yet">Noch offen</option></select></div>
+              <div class="planner-field"><label for="place" data-de="Ort oder Region" data-en="Place or region">Ort oder Region</label><input id="place" name="place" type="text" maxlength="120" autocomplete="off" data-placeholder-de="Location, Stadt oder ungefähre Region" data-placeholder-en="Venue, city or rough region" placeholder="Location, Stadt oder ungefähre Region" /></div>
+              <div class="planner-field"><label for="date" data-de="Datum oder Zeitraum" data-en="Date or timeframe">Datum oder Zeitraum</label><input id="date" name="date" type="text" maxlength="90" autocomplete="off" data-placeholder-de="Konkretes Datum oder Planungsfenster" data-placeholder-en="Exact date or planning window" placeholder="Konkretes Datum oder Planungsfenster" /></div>
+              <div class="planner-field"><label for="role" data-de="Rolle der Musik" data-en="Role of the music">Rolle der Musik</label><select id="role" name="role"><option value="background" data-de="Dezente Begleitung" data-en="Subtle background">Dezente Begleitung</option><option value="featured" data-de="Bewusster Programmpunkt" data-en="Featured programme item">Bewusster Programmpunkt</option><option value="both" data-de="Beides" data-en="Both">Beides</option></select></div>
+              <div class="planner-field"><label for="ensemble" data-de="Gewünschter Klang" data-en="Preferred sound">Gewünschter Klang</label><select id="ensemble" name="ensemble"><option value="solo" data-de="Solo-Viola" data-en="Solo viola">Solo-Viola</option><option value="accompanied" data-de="Viola mit Begleitung" data-en="Viola with accompaniment">Viola mit Begleitung</option><option value="small" data-de="Duo oder kleine Besetzung, falls verfügbar" data-en="Duo or small ensemble, if available">Duo oder kleine Besetzung, falls verfügbar</option><option value="recommend" data-de="Offen für Empfehlung" data-en="Open to a recommendation">Offen für Empfehlung</option></select></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="planner-step" data-required-group="moments">
+            <legend data-de="2. Spielmomente auswählen" data-en="2. Choose the musical moments">2. Spielmomente auswählen</legend>
+            <p class="planner-step__note" data-de="Der gewählte Anlass bringt einen sinnvollen Startablauf mit. Entferne alles, was bei dir nicht gebraucht wird." data-en="The selected occasion provides a useful starting flow. Remove anything your event does not need.">Der gewählte Anlass bringt einen sinnvollen Startablauf mit. Entferne alles, was bei dir nicht gebraucht wird.</p>
+            <div class="choice-grid" data-moments><p class="planner-step__note" data-de="Wähle zuerst einen Anlass." data-en="Choose an occasion first.">Wähle zuerst einen Anlass.</p></div>
+          </fieldset>
+
+          <fieldset class="planner-step">
+            <legend data-de="3. Repertoire eingrenzen" data-en="3. Narrow the repertoire">3. Repertoire eingrenzen</legend>
+            <p class="planner-step__note" data-de="Die Vorschläge stammen aus Kims Anlass-Repertoire. Sie sind eine Vorauswahl, keine Verfügbarkeits- oder Arrangementzusage." data-en="The suggestions come from Kim's occasion repertoire. They are a shortlist, not confirmation of availability or arrangement.">Die Vorschläge stammen aus Kims Anlass-Repertoire. Sie sind eine Vorauswahl, keine Verfügbarkeits- oder Arrangementzusage.</p>
+            <div class="choice-grid" data-pieces><p class="planner-step__note" data-de="Nach der Anlasswahl erscheinen hier passende Titel." data-en="Choose an occasion to see suitable titles.">Nach der Anlasswahl erscheinen hier passende Titel.</p></div>
+            <div class="planner-fields planner-fields--two">
+              <div class="planner-field"><label for="character" data-de="Gewünschte Stimmung" data-en="Overall character">Gewünschte Stimmung</label><select id="character" name="character"><option value="warm" data-de="Warm und persönlich" data-en="Warm and personal">Warm und persönlich</option><option value="calm" data-de="Ruhig und reflektiert" data-en="Calm and reflective">Ruhig und reflektiert</option><option value="bright" data-de="Leicht und einladend" data-en="Light and welcoming">Leicht und einladend</option><option value="formal" data-de="Feierlich und klassisch" data-en="Formal and classical">Feierlich und klassisch</option><option value="modern" data-de="Modern und rhythmisch" data-en="Modern and rhythmic">Modern und rhythmisch</option><option value="mixed" data-de="Im Verlauf gemischt" data-en="Mixed across the event">Im Verlauf gemischt</option></select></div>
+              <div class="planner-field"><label for="references" data-de="Weitere Wünsche oder Lieblingsstücke" data-en="Other wishes or favourite pieces">Weitere Wünsche oder Lieblingsstücke</label><textarea id="references" name="references" maxlength="600" data-placeholder-de="Titel, Stil, persönlicher Bezug oder etwas, das nicht passen soll" data-placeholder-en="Titles, styles, personal meaning or anything to avoid" placeholder="Titel, Stil, persönlicher Bezug oder etwas, das nicht passen soll"></textarea></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="planner-step">
+            <legend data-de="4. Praktische Details" data-en="4. Practical details">4. Praktische Details</legend>
+            <div class="planner-fields planner-fields--two">
+              <div class="planner-field"><label for="cue" data-de="Wer gibt das Startsignal?" data-en="Who gives the live cue?">Wer gibt das Startsignal?</label><input id="cue" name="cue" type="text" maxlength="120" autocomplete="off" data-placeholder-de="Koordination, Traurede, Moderation oder andere Rolle" data-placeholder-en="Coordinator, celebrant, host or another role" placeholder="Koordination, Traurede, Moderation oder andere Rolle" /></div>
+              <div class="planner-field"><label for="duration" data-de="Ungefähre Spieldauer" data-en="Approximate music duration">Ungefähre Spieldauer</label><input id="duration" name="duration" type="text" maxlength="100" autocomplete="off" data-placeholder-de="Je Moment, Gesamtzeit oder Anzahl Blöcke" data-placeholder-en="Per moment, total time or number of sets" placeholder="Je Moment, Gesamtzeit oder Anzahl Blöcke" /></div>
+              <div class="planner-field"><label for="access" data-de="Aufbau, Wege und Wetter" data-en="Setup, access and weather">Aufbau, Wege und Wetter</label><textarea id="access" name="access" maxlength="600" data-placeholder-de="Zugang, Treppen, Raumwechsel, Soundcheck, Schatten oder Plan B" data-placeholder-en="Access, stairs, room changes, soundcheck, shade or Plan B" placeholder="Zugang, Treppen, Raumwechsel, Soundcheck, Schatten oder Plan B"></textarea></div>
+              <div class="planner-field"><label for="open" data-de="Was ist noch offen?" data-en="What is still open?">Was ist noch offen?</label><textarea id="open" name="open" maxlength="600" data-placeholder-de="Fragen an Musikerin, Location, Zeremonieleitung oder Organisation" data-placeholder-en="Questions for performer, venue, celebrant or organiser" placeholder="Fragen an Musikerin, Location, Zeremonieleitung oder Organisation"></textarea></div>
+            </div>
+          </fieldset>
+
+          <div><p class="planner-error" data-planner-error aria-live="polite"></p><button class="btn btn--primary" type="submit" data-de="Plan erstellen" data-en="Create the plan">Plan erstellen</button></div>
+        </form>
+
+        <aside class="planner-output" aria-label="Erstellter Eventmusik-Plan" data-output-panel>
+          <div class="planner-output__bar"><span>eventmusik-plan.txt</span><span data-brief-state>Wartet auf deine Auswahl</span></div>
+          <div class="planner-output__body" data-brief-output><p class="planner-output__empty">Wähle Anlass, Setting und mindestens einen Spielmoment. Dein Ablauf erscheint dann hier.</p></div>
+          <div class="planner-actions">
+            <button class="btn btn--primary" type="button" data-copy disabled>Kopieren</button>
+            <button class="btn btn--quiet" type="button" data-download disabled>TXT laden</button>
+            <button class="btn btn--quiet" type="button" data-reset>Zurücksetzen</button>
+            <button class="btn btn--primary" type="button" data-email disabled>E-Mail-Entwurf an Kim-Marie</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="band band-surface"><div class="shell planner-next"><div><h2 data-de="Der Plan bereitet das Gespräch vor." data-en="The plan prepares the conversation.">Der Plan bereitet das Gespräch vor.</h2><p data-de="Termin, Besetzung, konkrete Fassungen, Notenlage, Arrangement-Aufwand, Rechte und Preis werden erst im direkten Austausch bestätigt. Für aktuelle Buchungsinformationen bleibt Kim-Maries eigene Website die Quelle." data-en="Date, ensemble, exact versions, notation, arrangement effort, rights and price are only confirmed in direct conversation. Kim-Marie's own website remains the source for current booking information.">Termin, Besetzung, konkrete Fassungen, Notenlage, Arrangement-Aufwand, Rechte und Preis werden erst im direkten Austausch bestätigt. Für aktuelle Buchungsinformationen bleibt Kim-Maries eigene Website die Quelle.</p></div><a class="btn btn--primary" href="https://kim-marie-borger.com/" rel="noopener external" data-de="Kim-Maries Website öffnen" data-en="Open Kim-Marie's website">Kim-Maries Website öffnen</a></div></section>
+  </main>
+
+  <Fragment slot="scripts">
+    <script is:inline id="planner-data" type="application/json" set:html={JSON.stringify(plannerData).replaceAll('<', '\\u003c')} />
+    <script is:inline>
+      (() => {
+        const dataNode = document.querySelector('#planner-data');
+        const form = document.querySelector('[data-planner]');
+        const output = document.querySelector('[data-brief-output]');
+        const outputPanel = document.querySelector('[data-output-panel]');
+        const error = document.querySelector('[data-planner-error]');
+        const state = document.querySelector('[data-brief-state]');
+        const momentsRoot = document.querySelector('[data-moments]');
+        const piecesRoot = document.querySelector('[data-pieces]');
+        const occasionSelect = document.querySelector('#occasion');
+        const copyButton = document.querySelector('[data-copy]');
+        const downloadButton = document.querySelector('[data-download]');
+        const resetButton = document.querySelector('[data-reset]');
+        const emailButton = document.querySelector('[data-email]');
+        if (!dataNode || !(form instanceof HTMLFormElement) || !output || !outputPanel || !error || !state || !momentsRoot || !piecesRoot || !(occasionSelect instanceof HTMLSelectElement) || !(copyButton instanceof HTMLButtonElement) || !(downloadButton instanceof HTMLButtonElement) || !(resetButton instanceof HTMLButtonElement) || !(emailButton instanceof HTMLButtonElement)) return;
+
+        const profiles = JSON.parse(dataNode.textContent || '[]');
+        const bySlug = Object.fromEntries(profiles.map((profile) => [profile.slug, profile]));
+        const dictionaries = {
+          de: {
+            missing: 'Bitte wähle Anlass, Setting und mindestens einen Spielmoment.', waiting: 'Wartet auf deine Auswahl', ready: 'Bereit für deine Anfrage', empty: 'Wähle Anlass, Setting und mindestens einen Spielmoment. Dein Ablauf erscheint dann hier.', chooseOccasion: 'Wähle zuerst einen Anlass.', noPieces: 'Für diesen Anlass ist noch keine Titelliste hinterlegt. Nutze das Wunschfeld.',
+            title: 'AUSPICIOUS MUSIC - EVENTMUSIK-PLAN', occasion: 'Anlass', setting: 'Setting', place: 'Ort oder Region', date: 'Datum oder Zeitraum', role: 'Rolle der Musik', ensemble: 'Gewünschter Klang', character: 'Stimmung', references: 'Weitere Wünsche', cue: 'Startsignal durch', duration: 'Spieldauer', access: 'Aufbau, Wege und Wetter', open: 'Noch offen', notSet: 'Nicht angegeben',
+            flow: 'Vorgeschlagener Ablauf', pieces: 'Repertoire-Vorauswahl', questions: 'Im Gespräch klären', noticeTitle: 'Wichtiger Planungshinweis', notice: 'Dieser Plan bestätigt weder Termin noch Besetzung, konkrete Fassung, Notenlage, Arrangement, Rechte, Preis oder Buchung. Das wird direkt mit Kim-Marie geklärt.', copy: 'Kopieren', copied: 'Kopiert', download: 'TXT laden', reset: 'Zurücksetzen', email: 'E-Mail-Entwurf an Kim-Marie', emailSubject: 'Eventmusik-Anfrage', copyError: 'Kopieren ist in diesem Browser nicht verfügbar. Nutze stattdessen den TXT-Download.'
+          },
+          en: {
+            missing: 'Choose an occasion, setting and at least one musical moment.', waiting: 'Waiting for your choices', ready: 'Ready for your enquiry', empty: 'Choose an occasion, setting and at least one musical moment. Your plan will appear here.', chooseOccasion: 'Choose an occasion first.', noPieces: 'No title list is stored for this occasion yet. Use the request field.',
+            title: 'AUSPICIOUS MUSIC - EVENT MUSIC PLAN', occasion: 'Occasion', setting: 'Setting', place: 'Place or region', date: 'Date or timeframe', role: 'Role of the music', ensemble: 'Preferred sound', character: 'Character', references: 'Other wishes', cue: 'Live cue by', duration: 'Music duration', access: 'Setup, access and weather', open: 'Still open', notSet: 'Not specified',
+            flow: 'Suggested running order', pieces: 'Repertoire shortlist', questions: 'Clarify in conversation', noticeTitle: 'Important planning note', notice: 'This plan does not confirm date, ensemble, exact version, notation, arrangement, rights, price or booking. Confirm these directly with Kim-Marie.', copy: 'Copy', copied: 'Copied', download: 'Download TXT', reset: 'Reset', email: 'Email draft to Kim-Marie', emailSubject: 'Event music enquiry', copyError: 'Copying is unavailable in this browser. Use the TXT download instead.'
+          }
+        };
+        let language = 'de';
+        let briefText = '';
+
+        const t = () => dictionaries[language];
+        const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+        const selectedText = (select) => select?.selectedOptions?.[0]?.textContent?.trim() || t().notSet;
+        const fieldValue = (data, name) => String(data.get(name) || '').trim() || t().notSet;
+        const profileFor = () => bySlug[occasionSelect.value];
+
+        function renderChoices() {
+          const profile = profileFor();
+          if (!profile) {
+            momentsRoot.innerHTML = `<p class="planner-step__note">${escapeHtml(t().chooseOccasion)}</p>`;
+            piecesRoot.innerHTML = `<p class="planner-step__note">${escapeHtml(occasionSelect.value === 'other' ? t().noPieces : t().chooseOccasion)}</p>`;
+            return;
+          }
+          momentsRoot.innerHTML = profile.moments.map((moment, index) => {
+            const label = language === 'de' ? moment.de : moment.en;
+            const note = language === 'de' ? moment.guidanceDe : moment.guidanceEn;
+            return `<label class="choice"><input type="checkbox" name="moments" value="${index}" checked><span>${escapeHtml(label)}<small>${escapeHtml(note)}</small></span></label>`;
+          }).join('');
+          piecesRoot.innerHTML = profile.pieces.map((piece, index) => {
+            const note = language === 'de' ? piece.clarificationDe : piece.clarificationEn;
+            return `<label class="choice"><input type="checkbox" name="pieces" value="${index}" checked><span>${escapeHtml(piece.title)}${note ? `<small>${escapeHtml(note)}</small>` : ''}</span></label>`;
+          }).join('');
+        }
+
+        function setLanguage(nextLanguage) {
+          language = nextLanguage;
+          document.documentElement.lang = language;
+          document.querySelectorAll('[data-language]').forEach((button) => button.setAttribute('aria-pressed', String(button.getAttribute('data-language') === language)));
+          document.querySelectorAll('[data-de][data-en]').forEach((node) => { node.textContent = node.getAttribute(`data-${language}`) || ''; });
+          document.querySelectorAll('[data-placeholder-de]').forEach((node) => { if (node instanceof HTMLInputElement || node instanceof HTMLTextAreaElement) node.placeholder = node.getAttribute(`data-placeholder-${language}`) || ''; });
+          renderChoices();
+          state.textContent = briefText ? t().ready : t().waiting;
+          copyButton.textContent = t().copy;
+          downloadButton.textContent = t().download;
+          resetButton.textContent = t().reset;
+          emailButton.textContent = t().email;
+          if (!briefText) output.innerHTML = `<p class="planner-output__empty">${escapeHtml(t().empty)}</p>`;
+        }
+
+        function renderPlan(data) {
+          const profile = profileFor();
+          const selectedMomentIndexes = data.getAll('moments').map(Number);
+          const selectedPieceIndexes = data.getAll('pieces').map(Number);
+          const moments = profile ? selectedMomentIndexes.map((index) => profile.moments[index]).filter(Boolean) : [];
+          const pieces = profile ? selectedPieceIndexes.map((index) => profile.pieces[index]).filter(Boolean) : [];
+          const questions = profile ? (language === 'de' ? profile.questionsDe : profile.questionsEn) : [];
+          const occasionLabel = profile ? (language === 'de' ? profile.labelDe : profile.labelEn) : selectedText(occasionSelect);
+          const settingLabel = selectedText(document.querySelector('#setting'));
+          const rows = [
+            [t().occasion, occasionLabel], [t().setting, settingLabel], [t().place, fieldValue(data, 'place')], [t().date, fieldValue(data, 'date')],
+            [t().role, selectedText(document.querySelector('#role'))], [t().ensemble, selectedText(document.querySelector('#ensemble'))], [t().character, selectedText(document.querySelector('#character'))],
+            [t().references, fieldValue(data, 'references')], [t().cue, fieldValue(data, 'cue')], [t().duration, fieldValue(data, 'duration')], [t().access, fieldValue(data, 'access')], [t().open, fieldValue(data, 'open')],
+          ];
+          const momentLines = moments.length ? moments.map((moment, index) => `${String(index + 1).padStart(2, '0')}. ${language === 'de' ? moment.de : moment.en}\n   ${language === 'de' ? moment.guidanceDe : moment.guidanceEn}`) : [t().notSet];
+          const pieceLines = pieces.length ? pieces.map((piece) => `- ${piece.title}${(language === 'de' ? piece.clarificationDe : piece.clarificationEn) ? ` (${language === 'de' ? piece.clarificationDe : piece.clarificationEn})` : ''}`) : [`- ${t().notSet}`];
+          const questionLines = questions.length ? questions.map((question) => `- ${question}`) : [`- ${t().notSet}`];
+          briefText = [t().title, '', ...rows.flatMap(([label, text]) => [`${label}: ${text}`]), '', t().flow.toUpperCase(), ...momentLines, '', t().pieces.toUpperCase(), ...pieceLines, '', t().questions.toUpperCase(), ...questionLines, '', `${t().noticeTitle}:`, t().notice].join('\n');
+          output.innerHTML = `<div class="brief"><h2>${escapeHtml(occasionLabel)}</h2><dl>${rows.map(([label, text]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(text)}</dd></div>`).join('')}</dl><div><h3>${escapeHtml(t().flow)}</h3><ol class="brief__flow">${moments.map((moment) => `<li>${escapeHtml(language === 'de' ? moment.de : moment.en)}<small>${escapeHtml(language === 'de' ? moment.guidanceDe : moment.guidanceEn)}</small></li>`).join('')}</ol></div><div><h3>${escapeHtml(t().pieces)}</h3><ul class="brief__pieces">${pieces.map((piece) => `<li>${escapeHtml(piece.title)}${(language === 'de' ? piece.clarificationDe : piece.clarificationEn) ? `<small>${escapeHtml(language === 'de' ? piece.clarificationDe : piece.clarificationEn)}</small>` : ''}</li>`).join('') || `<li>${escapeHtml(t().notSet)}</li>`}</ul></div><div><h3>${escapeHtml(t().questions)}</h3><ul class="brief__questions">${questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('') || `<li>${escapeHtml(t().notSet)}</li>`}</ul></div><p class="brief__notice"><strong>${escapeHtml(t().noticeTitle)}:</strong> ${escapeHtml(t().notice)}</p></div>`;
+          state.textContent = t().ready;
+          copyButton.disabled = false;
+          downloadButton.disabled = false;
+          emailButton.disabled = false;
+        }
+
+        document.querySelectorAll('[data-language]').forEach((button) => button.addEventListener('click', () => setLanguage(button.getAttribute('data-language') || 'de')));
+        occasionSelect.addEventListener('change', renderChoices);
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const data = new FormData(form);
+          if (!form.checkValidity() || data.getAll('moments').length === 0) {
+            error.textContent = t().missing;
+            form.reportValidity();
+            return;
+          }
+          error.textContent = '';
+          renderPlan(data);
+          if (matchMedia('(max-width: 1039px)').matches) outputPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        copyButton.addEventListener('click', async () => {
+          if (!briefText) return;
+          try { await navigator.clipboard.writeText(briefText); copyButton.textContent = t().copied; }
+          catch { error.textContent = t().copyError; }
+          window.setTimeout(() => { copyButton.textContent = t().copy; }, 1600);
+        });
+        downloadButton.addEventListener('click', () => {
+          if (!briefText) return;
+          const url = URL.createObjectURL(new Blob([briefText], { type: 'text/plain;charset=utf-8' }));
+          const link = document.createElement('a'); link.href = url; link.download = 'auspicious-music-eventmusik-plan.txt'; link.click(); URL.revokeObjectURL(url);
+        });
+        emailButton.addEventListener('click', () => {
+          if (!briefText) return;
+          const profile = profileFor();
+          const label = profile ? (language === 'de' ? profile.labelDe : profile.labelEn) : '';
+          window.location.href = `mailto:kim-marie.borger@t-online.de?subject=${encodeURIComponent(`${t().emailSubject}: ${label}`)}&body=${encodeURIComponent(briefText)}`;
+        });
+        resetButton.addEventListener('click', () => {
+          form.reset(); briefText = ''; error.textContent = ''; state.textContent = t().waiting; output.innerHTML = `<p class="planner-output__empty">${escapeHtml(t().empty)}</p>`; copyButton.disabled = true; downloadButton.disabled = true; emailButton.disabled = true; renderChoices();
+        });
+
+        const requestedOccasion = new URLSearchParams(location.search).get('anlass');
+        if (requestedOccasion && bySlug[requestedOccasion]) occasionSelect.value = requestedOccasion;
+        setLanguage('de');
+      })();
+    </script>
+  </Fragment>
+</BaseLayout>

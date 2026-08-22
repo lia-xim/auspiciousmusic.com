@@ -5,7 +5,6 @@ export const articles = [
     href: '/music-production/ableton-project-handoff/',
     section: 'Music Production',
     minutes: 8,
-    published: '2026-08-11',
   },
   {
     title: 'Viola microphone placement: three useful starting positions',
@@ -13,7 +12,6 @@ export const articles = [
     href: '/recording/acoustic-instruments/viola-microphone-placement/',
     section: 'Recording',
     minutes: 9,
-    published: '2026-08-11',
   },
   {
     title: 'A repeatable plan for recording viola at home',
@@ -21,7 +19,6 @@ export const articles = [
     href: '/recording/acoustic-instruments/recording-viola-at-home/',
     section: 'Recording',
     minutes: 9,
-    published: '2026-08-11',
   },
   {
     title: 'Build a small sampled instrument in Ableton Live without losing the source',
@@ -29,7 +26,6 @@ export const articles = [
     href: '/sound-design/sampled-instruments/building-a-sampled-instrument/',
     section: 'Sound Design',
     minutes: 10,
-    published: '2026-08-11',
   },
   {
     title: 'When to record a string part instead of using a library',
@@ -37,7 +33,6 @@ export const articles = [
     href: '/sound-design/when-to-record-strings-instead-of-using-a-library/',
     section: 'Sound Design',
     minutes: 8,
-    published: '2026-08-11',
   },
   {
     title: 'MIDI Fighter Twister in Ableton: design the mapping before the knobs',
@@ -45,7 +40,6 @@ export const articles = [
     href: '/ableton/midi-fighter-twister-review/',
     section: 'Ableton',
     minutes: 8,
-    published: '2026-08-11',
   },
   {
     title: 'Planning live viola for a wedding ceremony',
@@ -53,7 +47,6 @@ export const articles = [
     href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/',
     section: 'Music for Media & Events',
     minutes: 7,
-    published: '2026-08-11',
   },
   {
     title: 'Music clearance for a small film before edit lock',
@@ -61,6 +54,5 @@ export const articles = [
     href: '/music-for-media/music-clearance-for-small-film-projects/',
     section: 'Music for Media & Events',
     minutes: 8,
-    published: '2026-08-11',
   },
 ] as const;

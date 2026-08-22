@@ -1,13 +1,13 @@
 {
-  "implementation": "http://127.0.0.1:4321",
-  "reference": "http://127.0.0.1:4171/index.html",
-  "checkedAt": "2026-08-11T21:23:47.682Z",
-  "routesChecked": 39,
+  "implementation": "http://localhost:4321",
+  "checkedAt": "2026-08-22T14:35:14.591Z",
+  "uniqueRoutesChecked": 52,
+  "routeViewportChecks": 112,
   "observations": [
     {
       "route": "/",
       "status": 200,
-      "title": "Auspicious Music — Practical guides for music production and creative audio",
+      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
       "viewport": "1440x900"
     },
     {
@@ -43,13 +43,13 @@
     {
       "route": "/resources/",
       "status": 200,
-      "title": "Music Production Resources — Auspicious Music",
+      "title": "Music Planning and Recording Resources — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/resources/tools/",
       "status": 200,
-      "title": "Music Production Tools and Calculators — Auspicious Music",
+      "title": "Music Planning Tools and Calculators — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -61,7 +61,7 @@
     {
       "route": "/download/",
       "status": 200,
-      "title": "Archive & download status — Auspicious Music",
+      "title": "Legacy resource status — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -79,13 +79,13 @@
     {
       "route": "/ableton/midi-fighter-twister-review/",
       "status": 200,
-      "title": "MIDI Fighter Twister in Ableton: design the mapping before the knobs — Auspicious Music",
+      "title": "MIDI Fighter Twister in Ableton: design the mapping before the knobs",
       "viewport": "1440x900"
     },
     {
       "route": "/sound-design/sampled-instruments/building-a-sampled-instrument/",
       "status": 200,
-      "title": "Build a small sampled instrument in Ableton Live without losing the source — Auspicious Music",
+      "title": "Build a sampled instrument in Ableton Live — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -103,7 +103,7 @@
     {
       "route": "/about/history-and-relaunch/",
       "status": 200,
-      "title": "History & relaunch — Auspicious Music",
+      "title": "History & new ownership — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -115,13 +115,25 @@
     {
       "route": "/authors/",
       "status": 200,
-      "title": "Author & publisher — Auspicious Music",
+      "title": "Expert & publisher — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/contribute/",
+      "status": 200,
+      "title": "Pitch a guide — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/services/",
+      "status": 200,
+      "title": "From brief to booking — Auspicious Music",
       "viewport": "1440x900"
     },
     {
       "route": "/contact/",
       "status": 200,
-      "title": "Contact — Auspicious Music",
+      "title": "Kontakt — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -199,19 +211,19 @@
     {
       "route": "/music-production/ableton-project-handoff/",
       "status": 200,
-      "title": "An Ableton project handoff that another computer can actually open — Auspicious Music",
+      "title": "An Ableton project handoff that another computer can actually open",
       "viewport": "1440x900"
     },
     {
       "route": "/recording/acoustic-instruments/viola-microphone-placement/",
       "status": 200,
-      "title": "Viola microphone placement: three useful starting positions — Auspicious Music",
+      "title": "Viola microphone placement: three useful starting positions",
       "viewport": "1440x900"
     },
     {
       "route": "/sound-design/when-to-record-strings-instead-of-using-a-library/",
       "status": 200,
-      "title": "When to record a string part instead of using a library — Auspicious Music",
+      "title": "When to record a string part instead of using a library",
       "viewport": "1440x900"
     },
     {
@@ -223,7 +235,73 @@
     {
       "route": "/music-for-media/music-clearance-for-small-film-projects/",
       "status": 200,
-      "title": "Music clearance for a small film: the questions to answer before edit lock — Auspicious Music",
+      "title": "Music clearance for a small film — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/viola/",
+      "status": 200,
+      "title": "Viola im Einsatz — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/eventmusik/",
+      "status": 200,
+      "title": "Eventmusik, die zum Ablauf passt — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/repertoire/",
+      "status": 200,
+      "title": "Repertoire nach Anlass — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/tools/eventmusik-planer/",
+      "status": 200,
+      "title": "Eventmusik-Planer für Viola — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/eventmusik/hochzeit/",
+      "status": 200,
+      "title": "Hochzeit / Trauung: Viola-Musik planen — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/eventmusik/sektempfang/",
+      "status": 200,
+      "title": "Sektempfang: Viola-Musik planen — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/eventmusik/trauerfeier/",
+      "status": 200,
+      "title": "Beerdigung / Trauerfeier: Viola-Musik planen — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/eventmusik/dinner/",
+      "status": 200,
+      "title": "Dinner: Viola-Musik planen — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/eventmusik/firmenevent/",
+      "status": 200,
+      "title": "Firmenevent: Viola-Musik planen — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/eventmusik/geburtstag/",
+      "status": 200,
+      "title": "Geburtstag: Viola-Musik planen — Auspicious Music",
+      "viewport": "1440x900"
+    },
+    {
+      "route": "/eventmusik/unterricht/",
+      "status": 200,
+      "title": "Unterricht: Viola-Musik planen — Auspicious Music",
       "viewport": "1440x900"
     },
     {
@@ -237,6 +315,366 @@
       "status": 200,
       "title": "Draft route retired — Auspicious Music",
       "viewport": "1440x900"
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/music-production/",
+      "status": 200,
+      "title": "Music Production — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/ableton/",
+      "status": 200,
+      "title": "Ableton Live — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/sound-design/",
+      "status": 200,
+      "title": "Sound Design — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/recording/",
+      "status": 200,
+      "title": "Recording — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/music-for-media/",
+      "status": 200,
+      "title": "Music for Media & Events — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/resources/",
+      "status": 200,
+      "title": "Music Planning and Recording Resources — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/resources/tools/",
+      "status": 200,
+      "title": "Music Planning Tools and Calculators — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/resources/glossary/",
+      "status": 200,
+      "title": "Glossary — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/download/",
+      "status": 200,
+      "title": "Legacy resource status — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/legacy/the-spy-guitar/",
+      "status": 200,
+      "title": "The Spy Guitar — archive record — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/legacy/bang-my-twister/",
+      "status": 200,
+      "title": "Bang My Twister — archive record — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/ableton/midi-fighter-twister-review/",
+      "status": 200,
+      "title": "MIDI Fighter Twister in Ableton: design the mapping before the knobs",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/sound-design/sampled-instruments/building-a-sampled-instrument/",
+      "status": 200,
+      "title": "Build a sampled instrument in Ableton Live — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/recording/acoustic-instruments/recording-viola-at-home/",
+      "status": 200,
+      "title": "A repeatable plan for recording viola at home — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "title": "About Auspicious Music — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/about/history-and-relaunch/",
+      "status": 200,
+      "title": "History & new ownership — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/about/editorial-policy/",
+      "status": 200,
+      "title": "Editorial policy — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/authors/",
+      "status": 200,
+      "title": "Expert & publisher — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/contribute/",
+      "status": 200,
+      "title": "Pitch a guide — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/services/",
+      "status": 200,
+      "title": "From brief to booking — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/contact/",
+      "status": 200,
+      "title": "Kontakt — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/legal/",
+      "status": 200,
+      "title": "Impressum — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/privacy/",
+      "status": 200,
+      "title": "Datenschutzerklärung — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/accessibility/",
+      "status": 200,
+      "title": "Barrierefreiheit — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/sitemap/",
+      "status": 200,
+      "title": "Sitemap — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/resources/tools/delay-and-reverb/",
+      "status": 200,
+      "title": "Delay and Reverb Time Calculator — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/resources/tools/note-frequency/",
+      "status": 200,
+      "title": "Note and Frequency Calculator — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/resources/tools/sample-pitch/",
+      "status": 200,
+      "title": "Sample Pitch and Rate Calculator — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/definitely-not-a-real-page/",
+      "status": 404,
+      "title": "Page not found — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/410/",
+      "status": 200,
+      "title": "This address was removed — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/internal/design-concept/",
+      "status": 200,
+      "title": "Design concept — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/internal/mobile-matrix/",
+      "status": 200,
+      "title": "Mobile concepts — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/journal/",
+      "status": 200,
+      "title": "Journal — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/music-production/ableton-project-handoff/",
+      "status": 200,
+      "title": "An Ableton project handoff that another computer can actually open",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/recording/acoustic-instruments/viola-microphone-placement/",
+      "status": 200,
+      "title": "Viola microphone placement: three useful starting positions",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/sound-design/when-to-record-strings-instead-of-using-a-library/",
+      "status": 200,
+      "title": "When to record a string part instead of using a library",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/music-for-media/planning-live-viola-for-a-wedding-ceremony/",
+      "status": 200,
+      "title": "Planning live viola for a wedding ceremony — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/music-for-media/music-clearance-for-small-film-projects/",
+      "status": 200,
+      "title": "Music clearance for a small film — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/viola/",
+      "status": 200,
+      "title": "Viola im Einsatz — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/eventmusik/",
+      "status": 200,
+      "title": "Eventmusik, die zum Ablauf passt — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/repertoire/",
+      "status": 200,
+      "title": "Repertoire nach Anlass — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/tools/eventmusik-planer/",
+      "status": 200,
+      "title": "Eventmusik-Planer für Viola — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/eventmusik/hochzeit/",
+      "status": 200,
+      "title": "Hochzeit / Trauung: Viola-Musik planen — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/eventmusik/sektempfang/",
+      "status": 200,
+      "title": "Sektempfang: Viola-Musik planen — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/eventmusik/trauerfeier/",
+      "status": 200,
+      "title": "Beerdigung / Trauerfeier: Viola-Musik planen — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/eventmusik/dinner/",
+      "status": 200,
+      "title": "Dinner: Viola-Musik planen — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/eventmusik/firmenevent/",
+      "status": 200,
+      "title": "Firmenevent: Viola-Musik planen — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/eventmusik/geburtstag/",
+      "status": 200,
+      "title": "Geburtstag: Viola-Musik planen — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/eventmusik/unterricht/",
+      "status": 200,
+      "title": "Unterricht: Viola-Musik planen — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/search/",
+      "status": 200,
+      "title": "Search — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/publishing-roadmap/",
+      "status": 200,
+      "title": "Draft route retired — Auspicious Music",
+      "viewport": "390x844"
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "viewport": "640x900"
+    },
+    {
+      "route": "/music-production/ableton-project-handoff/",
+      "status": 200,
+      "title": "An Ableton project handoff that another computer can actually open",
+      "viewport": "640x900"
+    },
+    {
+      "route": "/resources/tools/delay-and-reverb/",
+      "status": 200,
+      "title": "Delay and Reverb Time Calculator — Auspicious Music",
+      "viewport": "640x900"
+    },
+    {
+      "route": "/legal/",
+      "status": 200,
+      "title": "Impressum — Auspicious Music",
+      "viewport": "640x900"
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "viewport": "320x900"
+    },
+    {
+      "route": "/music-production/ableton-project-handoff/",
+      "status": 200,
+      "title": "An Ableton project handoff that another computer can actually open",
+      "viewport": "320x900"
+    },
+    {
+      "route": "/resources/tools/delay-and-reverb/",
+      "status": 200,
+      "title": "Delay and Reverb Time Calculator — Auspicious Music",
+      "viewport": "320x900"
+    },
+    {
+      "route": "/legal/",
+      "status": 200,
+      "title": "Impressum — Auspicious Music",
+      "viewport": "320x900"
     }
   ],
   "failures": []

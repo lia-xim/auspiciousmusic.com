@@ -3,10 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title={"Auspicious Music — Independent music production guides"}
-  description={"An independent publication for music production, Ableton, recording, sound design, and music for media."}
+  title={"Auspicious Music — Viola, Eventmusik und Repertoire"}
+  description={"Die neue Viola-Fachseite für Eventmusik, Repertoireplanung und Aufnahme mit Kim-Marie Borger."}
   canonicalPath={"/"}
-  lang={"en"}
+  lang={"de"}
   noindex={false}
   loadStringField={true}
   headerOverDark={true}
@@ -427,21 +427,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="hero__grid">
         <div>
           <h1 id="hero-title" class="hero__title">
-            <span>Make sound</span>
-            <span>with intent.</span>
+            <span>Viola, Anlässe</span>
+            <span>und die Entscheidungen dazwischen.</span>
           </h1>
           <p class="hero__note">
-            Practical, source-labelled guides for music production, Ableton, recording,
-            sound design and music for media. Each page tells you what was tested, researched or preserved.
+            Auspicious Music ist eine neue Viola-Fachseite mit Kim-Marie Borger — für konkrete Eventablaeufe, Repertoireentscheidungen und Aufnahmepraxis, nicht als Fortsetzung des früheren Katalogs.
           </p>
           <div class="hero__actions">
-            <a class="btn btn--primary" href="/services/">Work with us</a>
-            <a class="btn btn--quiet" href="/ableton/">Explore the guides</a>
+            <a class="btn btn--primary" href="/tools/eventmusik-planer/">Eventmusik planen</a>
+            <a class="btn btn--quiet" href="/viola/">Viola-Fachseite entdecken</a>
           </div>
           <ul class="hero__stats">
-            <li class="stat-tile"><strong>8</strong><span>source-labelled guides</span></li>
-            <li class="stat-tile"><strong>3</strong><span>in-browser tools</span></li>
-            <li class="stat-tile"><strong>23</strong><span>glossary terms</span></li>
+            <li class="stat-tile"><strong>Viola</strong><span>benannte aktuelle Expertise</span></li>
+            <li class="stat-tile"><strong>Local</strong><span>Planerdaten bleiben im Browser</span></li>
+            <li class="stat-tile"><strong>Neu</strong><span>klar getrennte Eigentümerschaft und Arbeit</span></li>
           </ul>
         </div>
 
@@ -449,26 +448,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="app-frame hero__console">
             <div class="app-frame__bar">
               <span class="app-frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="app-frame__title">delay-and-reverb — live</span>
+              <span class="app-frame__title">eventmusik-plan — lokales Tool</span>
             </div>
             <div class="console-live">
-              <div>
-                <label for="live-bpm">Your tempo · BPM</label>
-                <input id="live-bpm" type="number" value="120" min="20" max="300" step="1" inputmode="decimal" autocomplete="off" />
-              </div>
-              <dl class="console-live__grid" aria-live="polite">
-                <div><dt>1/4 note</dt><dd><span data-live-q>500.0</span><small>ms</small></dd></div>
-                <div><dt>1/8 note</dt><dd><span data-live-e>250.0</span><small>ms</small></dd></div>
-                <div><dt>1/4 dotted</dt><dd><span data-live-d>750.0</span><small>ms</small></dd></div>
-                <div><dt>1/4 as rate</dt><dd><span data-live-hz>2.00</span><small>Hz</small></dd></div>
+              <dl class="console-live__grid">
+                <div><dt>01 · Anlass</dt><dd>Rahmen setzen</dd></div>
+                <div><dt>02 · Momente</dt><dd>Signale planen</dd></div>
+                <div><dt>03 · Richtung</dt><dd>Klang benennen</dd></div>
+                <div><dt>04 · Praxis</dt><dd>Grenzen festhalten</dd></div>
               </dl>
               <div class="console-live__wave" aria-hidden="true">
-                <i style="--h:22%"></i><i style="--h:58%"></i><i style="--h:36%"></i><i style="--h:74%"></i><i style="--h:48%"></i><i style="--h:82%"></i><i style="--h:30%"></i><i style="--h:64%"></i><i style="--h:42%"></i><i style="--h:70%"></i><i style="--h:26%"></i><i style="--h:54%"></i><i style="--h:38%"></i><i style="--h:60%"></i><i style="--h:20%"></i><i style="--h:46%"></i>
+                <i style="--h:22%"></i><i style="--h:58%"></i><i style="--h:36%"></i><i style="--h:74%"></i><i style="--h:48%"></i><i style="--h:82%"></i><i style="--h:30%"></i><i style="--h:64%"></i><i style="--h:42%"></i><i style="--h:70%"></i><i style="--h:26%"></i><i style="--h:54%"></i>
               </div>
-              <p class="console-live__foot">
-                <span>Runs locally · nothing leaves the browser</span>
-                <a href="/resources/tools/delay-and-reverb/">Full calculator →</a>
-              </p>
+              <p class="console-live__foot"><span>Kein Konto · kein Upload</span><a href="/tools/eventmusik-planer/">Planer öffnen →</a></p>
             </div>
           </div>
         </div>
@@ -476,7 +468,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <div class="hero__foot">
         <p class="hero__hint">
-          <button type="button" data-string-pluck>Play the strings</button> — drag one and the others answer.
+          <button type="button" data-string-pluck>Saiten anspielen</button> — zieh eine an, die anderen reagieren.
         </p>
       </div>
     </div>
@@ -486,24 +478,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="band band--tight sheet-lift band--glow" aria-labelledby="portals-title">
     <div class="shell" style="position:relative">
       <span class="rail" data-rail style="left:calc(var(--gutter) * -0.55)" aria-hidden="true"></span>
-      <h2 id="portals-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Where to start by topic</h2>
+      <h2 id="portals-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Einstieg nach Thema</h2>
       <div class="topic-grid" data-reveal-group>
-        <a class="card topic-card" href="/ableton/" data-reveal>
-          <svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><rect x="2" y="4" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><rect x="24" y="4" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><rect x="46" y="4" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><rect x="2" y="18" width="16" height="9" rx="2" style="stroke:var(--ember-bright)" fill="var(--ember-bright)" fill-opacity=".12"/><rect x="24" y="18" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><rect x="46" y="18" width="16" height="9" rx="2" stroke="currentColor" stroke-opacity=".35"/><path d="M10 27 C 10 38, 30 34, 34 39" style="stroke:var(--ember-bright)"/><circle cx="37" cy="39" r="3.5" stroke="currentColor" stroke-opacity=".55"/></svg>
-          <h3>Ableton</h3><p>File management, Sampler and controller systems grounded in official behavior — with test limits stated where hardware experience is missing.</p><span class="topic-card__go">Open hub <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-        <a class="card topic-card" href="/recording/" data-reveal>
-          <svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M10 40 C 4 40, 3 32, 7 29 C 3 26, 4 18, 9 17 C 6 13, 8 7, 13 7 C 18 7, 20 13, 17 17 C 22 18, 23 26, 19 29 C 23 32, 22 40, 16 40 Z" stroke="currentColor" stroke-opacity=".5"/><path d="M30 36 A 18 18 0 0 0 30 8" stroke="currentColor" stroke-opacity=".3" stroke-dasharray="2 4"/><path d="M46 42 A 30 30 0 0 0 46 2" stroke="currentColor" stroke-opacity=".3" stroke-dasharray="2 4"/><circle cx="33" cy="16" r="3.5" style="fill:var(--ember-bright)"/><circle cx="50" cy="10" r="3.5" fill="currentColor" fill-opacity=".55"/></svg>
-          <h3>Recording</h3><p>Repeatable room and microphone decisions for acoustic instruments, beginning with viola and domestic spaces.</p><span class="topic-card__go">Open hub <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-        <a class="card topic-card" href="/sound-design/" data-reveal>
-          <svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M2 12 C 8 2, 12 20, 18 12 C 23 5, 27 17, 33 12 C 39 7, 43 15, 49 12 C 55 9, 58 13, 62 12" stroke="currentColor" stroke-opacity=".5"/><rect x="2" y="24" width="9" height="14" stroke="currentColor" stroke-opacity=".3"/><rect x="13" y="24" width="9" height="14" stroke="currentColor" stroke-opacity=".3"/><rect x="24" y="24" width="16" height="14" style="stroke:var(--ember-bright)" fill="var(--ember-bright)" fill-opacity=".12"/><rect x="42" y="24" width="9" height="14" stroke="currentColor" stroke-opacity=".3"/><rect x="53" y="24" width="9" height="14" stroke="currentColor" stroke-opacity=".3"/></svg>
-          <h3>Sound Design</h3><p>Sampling workflows that keep source recordings, edits and mappings understandable instead of hiding them behind a preset.</p><span class="topic-card__go">Open hub <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-        <a class="card topic-card" href="/music-for-media/" data-reveal>
-          <svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M2 22 H 62" stroke="currentColor" stroke-opacity=".5"/><path d="M2 18 V 26 M22 18 V 26 M42 18 V 26 M62 18 V 26" stroke="currentColor" stroke-opacity=".35"/><circle cx="22" cy="22" r="3.5" fill="currentColor" fill-opacity=".55"/><circle cx="42" cy="22" r="3.5" style="fill:var(--ember-bright)"/><path d="M34 32 h -4 v 6 h 4 M50 32 h 4 v 6 h -4" style="stroke:var(--ember-bright)"/><path d="M33 35 H 51" style="stroke:var(--ember-bright)" stroke-opacity=".55" stroke-dasharray="2 3"/></svg>
-          <h3>Music for Media</h3><p>Briefing, rights and live-performance planning for films, ceremonies and projects governed by a larger timeline.</p><span class="topic-card__go">Open hub <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        <a class="card topic-card" href="/viola/" data-reveal><svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M14 41C6 41 5 32 10 28C6 24 8 17 13 16C9 11 13 4 19 5C25 6 27 12 23 17C29 20 28 26 25 29C29 33 26 41 19 41Z" stroke="currentColor"/><path d="M42 3v36M48 3v36" style="stroke:var(--ember-bright)"/><path d="M35 9h20M35 35h20" stroke="currentColor" opacity=".35"/></svg><h3>Viola</h3><p>Die Viola über ihre konkrete Aufgabe bei Anlass, Arrangement oder Aufnahme verstehen — mit Kim-Marie Borger als benannter Expertin.</p><span class="topic-card__go">Bereich öffnen →</span></a>
+        <a class="card topic-card" href="/eventmusik/" data-reveal><svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M2 22h60M2 17v10M22 17v10M42 17v10M62 17v10" stroke="currentColor" opacity=".5"/><circle cx="22" cy="22" r="4" style="fill:var(--ember-bright)"/><circle cx="42" cy="22" r="4" fill="currentColor" opacity=".6"/></svg><h3>Eventmusik</h3><p>Spielmomente, Signale, flexible Laengen und Raumbedingungen planen, bevor Titel oder Angebot feststehen.</p><span class="topic-card__go">Bereich öffnen →</span></a>
+        <a class="card topic-card" href="/repertoire/" data-reveal><svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M4 10h56M4 16h56M4 22h56M4 28h56M4 34h56" stroke="currentColor" opacity=".3"/><path d="M22 7v22c0 7-12 9-12 2 0-5 8-8 12-4M44 15v22c0 7-12 9-12 2 0-5 8-8 12-4" style="stroke:var(--ember-bright)"/></svg><h3>Repertoire</h3><p>Nach Funktion, Tonumfang, Arrangement-Aufwand und Rechten wählen, statt einen Titel als automatische Zusage zu behandeln.</p><span class="topic-card__go">Bereich öffnen →</span></a>
+        <a class="card topic-card" href="/recording/" data-reveal><svg viewBox="0 0 64 44" fill="none" aria-hidden="true"><path d="M10 40C4 40 3 32 7 29C3 26 4 18 9 17C6 13 8 7 13 7C18 7 20 13 17 17C22 18 23 26 19 29C23 32 22 40 16 40Z" stroke="currentColor" opacity=".55"/><path d="M30 36A18 18 0 0 0 30 8M46 42A30 30 0 0 0 46 2" stroke="currentColor" opacity=".3" stroke-dasharray="2 4"/><circle cx="33" cy="16" r="3.5" style="fill:var(--ember-bright)"/></svg><h3>Recording</h3><p>Nachvollziehbare Raum- und Mikrofonentscheidungen für Viola und akustische Streicher, mit sichtbaren Variablen und Testgrenzen.</p><span class="topic-card__go">Bereich öffnen →</span></a>
       </div>
     </div>
   </section>
@@ -512,22 +492,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="band band--glow" aria-labelledby="start-title">
     <div class="shell">
       <div class="staff" style="--staff-node-x:26%;margin-bottom:clamp(2rem,4vw,3rem)" aria-hidden="true"></div>
-      <div class="section-head"><h2 id="start-title">Start with the work in front of you</h2><p>Eight published guides. Each one starts with a real task and shows its method, sources and limits.</p></div>
+      <div class="section-head"><h2 id="start-title">Mit dem konkreten Anlass beginnen</h2><p>Beginne mit dem neuen Planer und nutze die Guides dort, wo eine musikalische oder technische Entscheidung mehr Tiefe braucht.</p></div>
       <div class="start">
         <article class="start__lead" data-reveal>
-          <a href="/music-production/ableton-project-handoff/">
-            <div class="ph" aria-hidden="true"><span class="ph__label"><strong>Project map</strong><br>Set · collected media · dependency note · reference mix · stems</span></div>
-            <h3>An Ableton project handoff another computer can actually open</h3>
-            <p>Collect media, expose plug-in dependencies, print safety stems and make the next decision obvious.</p>
-            <p class="meta"><span>Music Production</span><span>8 min</span><span>Source-based guide</span></p>
+          <a href="/tools/eventmusik-planer/">
+            <div class="ph" aria-hidden="true"><span class="ph__label"><strong>Eventmusik-Plan</strong><br>Anlass · Momente · Signale · Repertoire · praktische Grenzen</span></div>
+            <h3>Erst den Ablauf, dann die Stücke</h3>
+            <p>Verbinde Ablauf und Raum zu einer brauchbaren ersten Anfrage, ohne Daten an einen Server zu senden.</p>
+            <p class="meta"><span>Eventmusik</span><span>Lokales Browser-Tool</span><span>Kein Konto</span></p>
           </a>
         </article>
         <ol class="numbered" data-reveal-group>
           <li data-reveal><a href="/recording/acoustic-instruments/viola-microphone-placement/"><span class="numbered__n">01</span><h4>Viola microphone placement: three useful starting positions</h4><p class="meta"><span>Recording</span><span>9 min</span></p></a></li>
           <li data-reveal><a href="/sound-design/when-to-record-strings-instead-of-using-a-library/"><span class="numbered__n">02</span><h4>When to record a string part instead of using a library</h4><p class="meta"><span>Sound Design</span><span>8 min</span></p></a></li>
-          <li data-reveal><a href="/music-for-media/music-clearance-for-small-film-projects/"><span class="numbered__n">03</span><h4>Music clearance for a small film before edit lock</h4><p class="meta"><span>Music for Media</span><span>8 min</span></p></a></li>
+          <li data-reveal><a href="/repertoire/"><span class="numbered__n">03</span><h4>Repertoire nach Funktion und Machbarkeit wählen</h4><p class="meta"><span>Repertoire</span><span>Decision hub</span></p></a></li>
           <li data-reveal><a href="/music-for-media/planning-live-viola-for-a-wedding-ceremony/"><span class="numbered__n">04</span><h4>Planning live viola for a wedding ceremony</h4><p class="meta"><span>Events</span><span>7 min</span></p></a></li>
-          <li data-reveal><a href="/ableton/midi-fighter-twister-review/"><span class="numbered__n">05</span><h4>Design a controller mapping before the knobs</h4><p class="meta"><span>Ableton</span><span>8 min</span></p></a></li>
+          <li data-reveal><a href="/recording/acoustic-instruments/recording-viola-at-home/"><span class="numbered__n">05</span><h4>A repeatable plan for recording viola at home</h4><p class="meta"><span>Recording</span><span>9 min</span></p></a></li>
         </ol>
       </div>
     </div>
@@ -537,25 +517,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="band band--wide band-dark lab" aria-labelledby="lab-title">
     <div class="shell lab__inner">
       <figure class="lab__art" data-reveal><img src="/assets/hero-portrait.png" width="928" height="1152" loading="lazy" decoding="async" alt="Abstract editorial image of a metal block and a tensioned string."><figcaption class="kicker" style="padding:1rem">Editorial illustration — not a test photograph</figcaption></figure>
-      <div data-reveal data-reveal-delay="120"><p class="kicker">Method guide</p><h2 id="lab-title" style="margin-top:.875rem">Build a small sampled instrument without losing the source</h2><p>Define the range, keep source and edits separate, map one dimension at a time and package the Project so the samples travel with it. The workflow is designed to be repeated with recordings you own.</p><p class="meta"><span>Ableton Live 12 documentation</span><span>Sampler</span><span>10 min</span></p><a class="link" href="/sound-design/sampled-instruments/building-a-sampled-instrument/">Read the workflow →</a></div>
+      <div data-reveal data-reveal-delay="120"><p class="kicker">Recording method</p><h2 id="lab-title" style="margin-top:.875rem">Record viola so tomorrow’s comparison is still fair</h2><p>Mark distance, angle, height and room position; record level-matched takes; keep the performance decision separate from processing. The result is a method another session can repeat.</p><p class="meta"><span>Viola</span><span>Room-aware workflow</span><span>9 min</span></p><a class="link" href="/recording/acoustic-instruments/recording-viola-at-home/">Read the recording plan →</a></div>
     </div>
   </section>
 
   <!-- 5 · tools -->
   <section class="band tools-band" aria-labelledby="tools-title">
     <div class="shell">
-      <div class="section-head"><h2 id="tools-title">Small tools, local answers</h2><p>No account, tracking or server round-trip. These calculators run in the browser.</p></div>
+      <div class="section-head"><h2 id="tools-title">Kleine Tools, konkrete Antworten</h2><p>Eventmusik-Planer und Musikrechner laufen ohne Konto oder Upload direkt im Browser.</p></div>
       <div class="tools-grid" data-reveal-group>
-        <a class="card tool-app" href="/resources/tools/delay-and-reverb/" data-reveal>
+        <a class="card tool-app" href="/tools/eventmusik-planer/" data-reveal>
           <div class="tool-app__head">
-            <span class="app-frame__title">delay-and-reverb</span>
-            <span class="tool-app__value">500.0<small>ms</small></span>
-            <span class="tool-app__ctx">1/4 note at 120 BPM</span>
+            <span class="app-frame__title">ceremony-brief</span>
+            <span class="tool-app__value">4<small>decision steps</small></span>
+            <span class="tool-app__ctx">Occasion · moments · sound · limits</span>
           </div>
           <div class="tool-app__body">
-            <h3>Delay &amp; Reverb Time</h3>
-            <p>Convert tempo and note divisions into milliseconds and hertz — straight, dotted and triplet.</p>
-            <span class="tool-app__io">BPM → ms · Hz</span>
+            <h3>Eventmusik-Planer</h3>
+            <p>Erstelle einen kopierbaren oder herunterladbaren Plan, ohne persönliche Daten an einen Server zu senden.</p>
+            <span class="tool-app__io">Entscheidungen → brauchbarer Plan</span>
           </div>
         </a>
         <a class="card tool-app" href="/resources/tools/note-frequency/" data-reveal>
@@ -590,7 +570,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- 6 · archive -->
   <section class="band" aria-labelledby="legacy-title">
     <div class="shell">
-      <div class="section-head"><h2 id="legacy-title">The archive is context, not borrowed identity</h2><p>Old addresses stay useful where the historic intent can be verified. Former files and authorship are not claimed by the new publisher.</p></div>
+      <div class="section-head"><h2 id="legacy-title">Das Archiv ist Kontext, keine geliehene Identität</h2><p>Alte Adressen bleiben dort hilfreich, wo sich ihre frühere Absicht belegen lässt. Dateien und Urheberschaft des früheren Betreibers werden nicht beansprucht.</p></div>
       <div class="records-grid" data-reveal-group>
         <article class="card record" data-reveal><div class="record__grid"><div><span class="flag">Historical resource</span><h3>The Spy Guitar</h3></div><div><p>A documented former Ableton sampler instrument. The current page explains what can be verified and why no unlicensed file is redistributed.</p><dl class="record__facts"><div class="fact"><dt>Rights</dt><dd>Not transferred with the domain</dd></div><div class="fact"><dt>Status</dt><dd><span class="status" data-state="unavailable">Documentation only</span></dd></div></dl><a class="link" href="/legacy/the-spy-guitar/">Read the archive record →</a></div></div></article>
         <article class="card record" data-reveal><div class="record__grid"><div><span class="flag">Historical resource</span><h3>Bang My Twister</h3></div><div><p>A former Max for Live/Twister project documented without claiming the previous operator’s work. External records are linked at their source.</p><dl class="record__facts"><div class="fact"><dt>Rights</dt><dd>Remain with their respective owners</dd></div><div class="fact"><dt>Status</dt><dd><span class="status" data-state="external">External records</span></dd></div></dl><a class="link" href="/legacy/bang-my-twister/">Read the archive record →</a></div></div></article>
@@ -602,52 +582,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="band band--wide story" aria-labelledby="story-title">
     <div class="shell">
       <figure class="story__media" data-reveal><img src="/assets/story-viola-back.png" width="1376" height="774" loading="lazy" decoding="async" alt="Editorial illustration of a viola and microphone in a quiet room."><figcaption class="kicker" style="margin-top:.75rem">Editorial illustration — not a documented session</figcaption></figure>
-      <div class="story__body"><h2 id="story-title">One instrument, three different jobs</h2><div><p>A viola can be a live ceremonial voice, an exposed recording or source material for a playable instrument. The useful workflow changes with the job — and so do timing, microphone, rights and delivery decisions. All three jobs are real here: the same practice the guides describe can be booked.</p><div class="story__links"><a class="link" href="/services/">Work with us →</a><a class="link" href="/recording/">Recording →</a><a class="link" href="/music-for-media/">Music for Media →</a><a class="link" href="/sound-design/">Sound Design →</a></div></div></div>
+      <div class="story__body"><h2 id="story-title">Ein Instrument, mehrere konkrete Aufgaben</h2><div><p>Eine Viola kann einen persönlichen Moment tragen, als bewusster Programmpunkt auftreten oder eine exponierte Aufnahmespur sein. Mit der Aufgabe aendern sich Ablauf, Repertoire, Mikrofon, Rechte und Vorbereitung. Diese Seite macht die Entscheidungen sichtbar; Kim-Maries eigene Website bleibt die Quelle für aktuelle Auftritte und Buchungen.</p><div class="story__links"><a class="link" href="/viola/">Viola →</a><a class="link" href="/eventmusik/">Anlässe →</a><a class="link" href="/repertoire/">Repertoire →</a><a class="link" href="/recording/">Aufnahme →</a></div></div></div>
     </div>
   </section>
 
   <!-- 8 · latest -->
   <section class="band band-surface band--glow" aria-labelledby="latest-title">
     <div class="shell">
-      <div class="section-head"><h2 id="latest-title">Published for the relaunch</h2><p><a class="link" href="/journal/">Open the journal →</a></p></div>
+      <div class="section-head"><h2 id="latest-title">Neu für den Relaunch</h2><p><a class="link" href="/journal/">Journal öffnen →</a></p></div>
       <ul class="index index--panel" data-reveal-group>
-        <li data-reveal><a href="/music-production/ableton-project-handoff/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>An Ableton project handoff another computer can open</h3><p>A delivery checklist for media, dependencies, stems and the next decision.</p></div><div class="index__tail"><span class="index__topic">Production · 8 min</span></div></a></li>
-        <li data-reveal><a href="/recording/acoustic-instruments/viola-microphone-placement/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>Viola microphone placement: three useful starting positions</h3><p>Compare distance and angle before trying to repair the room with EQ.</p></div><div class="index__tail"><span class="index__topic">Recording · 9 min</span></div></a></li>
-        <li data-reveal><a href="/music-for-media/planning-live-viola-for-a-wedding-ceremony/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>Planning live viola for a wedding ceremony</h3><p>Musical moments, timing ranges, cue ownership and practical conditions.</p></div><div class="index__tail"><span class="index__topic">Events · 7 min</span></div></a></li>
-        <li data-reveal><a href="/sound-design/when-to-record-strings-instead-of-using-a-library/"><time class="index__date" datetime="2026-08-11">11 Aug 2026</time><div><h3>When to record strings instead of using a library</h3><p>Choose live, sampled or hybrid by musical function.</p></div><div class="index__tail"><span class="index__topic">Sound Design · 8 min</span></div></a></li>
+        <li data-reveal><a href="/tools/eventmusik-planer/"><span class="index__date">Neu</span><div><h3>Eventmusik-Planer für Viola</h3><p>Ein lokales Tool für Ablauf, Signale, Repertoire und praktische Bedingungen.</p></div><div class="index__tail"><span class="index__topic">Tool · local</span></div></a></li>
+        <li data-reveal><a href="/recording/acoustic-instruments/viola-microphone-placement/"><span class="index__date">Guide</span><div><h3>Viola microphone placement: three useful starting positions</h3><p>Compare distance and angle before trying to repair the room with EQ.</p></div><div class="index__tail"><span class="index__topic">Recording · 9 min</span></div></a></li>
+        <li data-reveal><a href="/music-for-media/planning-live-viola-for-a-wedding-ceremony/"><span class="index__date">Guide</span><div><h3>Planning live viola for a wedding ceremony</h3><p>Musical moments, timing ranges, cue ownership and practical conditions.</p></div><div class="index__tail"><span class="index__topic">Events · 7 min</span></div></a></li>
+        <li data-reveal><a href="/sound-design/when-to-record-strings-instead-of-using-a-library/"><span class="index__date">Guide</span><div><h3>When to record strings instead of using a library</h3><p>Choose live, sampled or hybrid by musical function.</p></div><div class="index__tail"><span class="index__topic">Sound Design · 8 min</span></div></a></li>
       </ul>
     </div>
   </section>
 
   <!-- 9 · relaunch -->
-  <section><div class="shell relaunch"><p>Auspicious Music is an independent publication on a domain with an earlier history. The former operator is not involved in the current site.</p><a class="link" href="/about/history-and-relaunch/">How the archive and relaunch are handled →</a></div></section>
+  <section><div class="shell relaunch"><p>Auspicious Music ist eine neue unabhängige Viola-Fachseite mit Kim-Marie Borger als aktueller Expertin. Der frühere Betreiber und Katalog sind nicht beteiligt.</p><a class="link" href="/about/history-and-relaunch/">So werden Archiv und Neustart getrennt →</a></div></section>
 
 </main>
-<Fragment slot="scripts">
-<script is:inline>
-/* Live tempo strip — the same arithmetic as the full calculator, inline so
-   the homepage tool band is something you use, not something described. */
-(function () {
-  "use strict";
-  var input = document.getElementById("live-bpm");
-  if (!input) return;
-  var q = document.querySelector("[data-live-q]");
-  var e = document.querySelector("[data-live-e]");
-  var d = document.querySelector("[data-live-d]");
-  var hz = document.querySelector("[data-live-hz]");
-  var render = function () {
-    var bpm = parseFloat(input.value);
-    if (!isFinite(bpm) || bpm <= 0) return;
-    bpm = Math.min(300, Math.max(20, bpm));
-    var quarter = 60000 / bpm;
-    q.textContent = quarter.toFixed(1);
-    e.textContent = (quarter / 2).toFixed(1);
-    d.textContent = (quarter * 1.5).toFixed(1);
-    hz.textContent = (1000 / quarter).toFixed(2);
-  };
-  input.addEventListener("input", render);
-  render();
-})();
-</script>
-</Fragment>
 </BaseLayout>

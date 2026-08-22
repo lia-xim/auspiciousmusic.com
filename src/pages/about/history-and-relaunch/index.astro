@@ -1,26 +1,48 @@
 ---
 import InfoLayout from '../../../layouts/InfoLayout.astro';
 ---
-<InfoLayout title="History & relaunch" description="What is known about the former website, what changed in 2026 and how historic URLs are handled." canonicalPath="/about/history-and-relaunch/" lede="The domain has a history. The current publisher does not borrow the former operator’s identity, files or authorship.">
-  <h2 style="margin-top:0">What can be verified</h2>
-  <p>Archived references and surviving external links show that this domain previously published music-technology material, including Ableton, Max for Live, controller mappings and sampled-instrument projects. Those records help explain why old links still exist. They do not transfer copyright or prove that every file attributed to the former site can legally be republished.</p>
-  <p>The later backlink profile also contains large amounts of unrelated, low-quality and spam-like material. Auspicious Music does not treat backlink volume as editorial authority and will not create pages merely to capture those links.</p>
+<InfoLayout title="Geschichte und Neuanfang" description="Belegte Stationen der früheren Website, die heutige Herausgeberschaft und der transparente Umgang mit alten URLs und Rechten." canonicalPath="/about/history-and-relaunch/" lang="de" kicker="Domainhistorie" lede="Diese Webadresse hat eine Vorgeschichte. Das heutige Auspicious Music ist ein neues redaktionelles Projekt mit anderen Verantwortlichen, neuen Inhalten und klaren Rechtegrenzen.">
+  <h2 style="margin-top:0">Was die Quellen tatsächlich belegen</h2>
+  <p>Der öffentliche CDX-Index des Internet Archive enthält in der geprüften, auf erfolgreiche HTML-Antworten begrenzten Stichprobe 226 unterschiedliche URLs dieser Domain. Die erste darin sichtbare Aufnahme der Startseite stammt aus dem Jahr 2002. Das belegt die damalige Existenz einer Website unter dieser Adresse, aber weder eine durchgehende Veröffentlichung noch heutige Rechte an damaligen Inhalten.</p>
 
-  <h2>What changed in 2026</h2>
-  <ol>
-    <li><strong>August 2026:</strong> Matthias Ramahi won the expired domain at auction and paid the required renewal fees.</li>
-    <li><strong>Rebuild:</strong> the site was recreated as a new Astro publication, with new authorship, source-labelled guides and rights-aware archive records.</li>
-    <li><strong>Release control:</strong> previews remain noindex. Search indexing is enabled only on the verified production build after ownership, legal, redirect and crawl checks pass.</li>
-  </ol>
+  <dl class="facts">
+    <div><dt>2002</dt><dd>Früheste in der geprüften Wayback-Stichprobe sichtbare Aufnahme der damaligen Startseite.</dd></div>
+    <div><dt>2013–2015</dt><dd>Archivierte Pfade zeigen einen deutlichen Schwerpunkt auf Ableton Live, Max for Live, Controller-Mappings, Sample-Instrumenten und Musikproduktion.</dd></div>
+    <div><dt>2014</dt><dd>„Bang My Twister“ ist als Ableton-Live-Mapping von Antonio Sage in einem weiterhin erreichbaren Datensatz bei DJ TechTools dokumentiert. Der externe Datensatz nennt außerdem Aaron Levitz als Entwickler des zugehörigen Geräts.</dd></div>
+    <div><dt>Spätere Phase</dt><dd>Die frühere Veröffentlichung endete. Ein exaktes Ende, ein lückenloser Betreiberverlauf und der Zeitpunkt des späteren Domainübergangs sind aus den geprüften Quellen nicht sicher ableitbar.</dd></div>
+    <div><dt>Heute</dt><dd>Matthias Ramahi betreibt die neue Website und verantwortet sie als Herausgeber. Kim-Marie Borger ist die aktuelle Fachperson für Viola, Repertoire, Eventmusik und die musikalische Einordnung des Planers.</dd></div>
+  </dl>
 
-  <h2>How old URLs are handled</h2>
+  <h2>Die frühere Ausrichtung</h2>
+  <p>Archivierte Kategorien und Seitentitel nennen unter anderem Ableton Live, The Spy Guitar, Audio Outlaw, NoisR, MIDI Fighter Twister und Warner Chappell Production Music. Historische Seiten nennen Antonio Sage als Autor. Diese Angaben werden hier als Quellenbefund wiedergegeben, nicht als Behauptung einer heutigen Zusammenarbeit oder Rechteübertragung.</p>
+  <p>Zwei alte Projekte lassen sich besonders klar einordnen: <strong>The Spy Guitar</strong> wurde als Sample-Instrument geführt; <strong>Bang My Twister</strong> als Hilfsmittel für den MIDI Fighter Twister in Ableton Live. Die heutige Website besitzt nach gegenwärtigem Nachweis keine Verbreitungsrechte an damaligen Dateien, Aufnahmen, Bildern oder Texten. Deshalb werden keine alten Downloads gespiegelt oder rekonstruiert.</p>
+
+  <h2>Der heutige Neuanfang</h2>
+  <p>Das heutige Auspicious Music ist keine Fortführung der damaligen Redaktion und gibt keine historische Autorenschaft vor. Es ist eine neue Fachpublikation rund um Viola, Live-Streicher, Repertoire, Eventmusikplanung und Recording. Matthias Ramahi ist Betreiber und Herausgeber; Kim-Marie Borger bringt die aktuelle musikalische Fachperspektive ein. Neue Texte, Tools und Empfehlungen entstehen für dieses Projekt und werden nicht ehemaligen Betreibern zugeschrieben.</p>
+  <p>Mit dem Besitz der Domain wurden keine Urheberrechte, Markenrechte, Kundenbeziehungen, Newsletter-Einwilligungen oder Lizenzen an fremden Archivinhalten behauptet oder übernommen. Hinweise auf eine andere Provenienz werden geprüft und bei belastbarem Nachweis korrigiert.</p>
+
+  <h2>Was mit bekannten alten URLs passiert</h2>
+  <dl class="facts">
+    <div><dt><code>/download/</code></dt><dd>Bleibt als dauerhaft nicht indexierbare Statusseite erreichbar. Das auffällige Spam-Backlinkprofil wird nicht auf die Startseite, Kim-Marie oder aktuelle Inhalte umgeleitet.</dd></div>
+    <div><dt>Spy-Guitar-Pfade</dt><dd>Bekannte Varianten führen dauerhaft zum neutralen, nicht indexierbaren <a href="/legacy/the-spy-guitar/">Archivvermerk</a>. Er bietet keinen Download.</dd></div>
+    <div><dt>Bang-My-Twister-Pfad</dt><dd>Führt dauerhaft zum nicht indexierbaren <a href="/legacy/bang-my-twister/">Archivvermerk</a> mit Link auf den externen DJ-TechTools-Datensatz.</dd></div>
+    <div><dt><code>/about.html</code></dt><dd>Führt auf diese Geschichtsseite, weil sie die damalige und heutige Identität ausdrücklich auseinanderhält.</dd></div>
+    <div><dt><code>/photo.html</code> und <code>/video.html</code></dt><dd>Bleiben ohne sachgleichen Ersatz. Sie werden nicht auf aktuelle Foto-, Video- oder Musikangebote umgeleitet.</dd></div>
+    <div><dt>Unbekannte oder manipulierte Pfade</dt><dd>Erhalten 404 statt einer pauschalen Weiterleitung. So werden fremde Spam-Intentionen nicht in das neue Projekt übernommen.</dd></div>
+  </dl>
+
+  <h2>Was die Backlinkprüfung ergeben hat</h2>
+  <p>Eine DataForSEO-Abfrage vom 22. August 2026 meldete für den alten Zielpfad <code>/download/</code> 90.831 Backlinks aus 688 verweisenden Domains. Die untersuchte Stichprobe von 100 Domains bestand nahezu vollständig aus themenfremden, automatisierten oder kompromittiert wirkenden Verweisen, darunter Glücksspiel-Anker und nicht zusammenhängende Domainnamen.</p>
+  <p>Diese Zahlen werden deshalb nicht als redaktionelle Autorität interpretiert. Sinnvolle historische Direktpfade werden nur dort erhalten, wo die Nutzerabsicht belegt ist; der Spamcluster bleibt von den heutigen Fachseiten getrennt.</p>
+
+  <h2>Quellen und Grenzen</h2>
   <ul>
-    <li>A historic URL with identifiable music-related intent may receive an archive record explaining what is and is not available.</li>
-    <li>A useful old topic may receive a genuinely new guide at a semantically appropriate address.</li>
-    <li>Unrelated gambling, adult, hacked or doorway-style paths should return 404 or 410, not a homepage redirect.</li>
-    <li>No former download is rehosted unless rights and file integrity are established.</li>
+    <li><a href="https://web.archive.org/cdx/search/cdx?url=auspiciousmusic.com%2F%2A&amp;output=json&amp;fl=timestamp%2Coriginal%2Cstatuscode%2Cmimetype&amp;filter=statuscode%3A200&amp;filter=mimetype%3Atext%2Fhtml&amp;collapse=urlkey&amp;limit=500" rel="noopener">Internet Archive: geprüfter CDX-Index</a></li>
+    <li><a href="https://web.archive.org/web/*/http://www.auspiciousmusic.com/" rel="noopener">Internet Archive: Aufnahmen der früheren Startseite</a></li>
+    <li><a href="https://maps.djtechtools.com/mappings/2929" rel="noopener">DJ TechTools: „Bang my Twister“ von Antonio Sage</a></li>
+    <li><a href="/download/">Methodik und Entscheidung zum alten Download-Ziel</a></li>
   </ul>
-  <p>Known archive records currently include <a href="/legacy/the-spy-guitar/">The Spy Guitar</a> and <a href="/legacy/bang-my-twister/">Bang My Twister</a>. Their pages are documentation, not a claim that the current publisher created the original work.</p>
+  <p>Webarchive sind unvollständig und können auch spätere Fremd- oder Spaminhalte enthalten. Die Zeitleiste beschränkt sich daher auf nachvollziehbare Jahresbereiche, erhaltene Seitentitel und unabhängige externe Datensätze. Sie ist keine vollständige Firmen-, Rechte- oder Veröffentlichungschronik.</p>
 
-  <div class="note"><p><strong>Former operator</strong>The former operator is not affiliated with, employed by or represented by the current Auspicious Music publication. Rights or attribution questions can be sent to <a href="mailto:info@matthiasramahi.de?subject=Auspicious%20Music%20rights">info@matthiasramahi.de</a>.</p></div>
+  <div class="note"><p><strong>Rechte- oder Herkunftshinweis</strong>Der frühere Betreiber ist nicht mit der heutigen Website verbunden. Belegbare Korrekturen zu Zuschreibung, Herkunft oder Rechten bitte an <a href="mailto:info@matthiasramahi.de?subject=Auspicious%20Music%20Rechte">info@matthiasramahi.de</a>.</p></div>
 </InfoLayout>

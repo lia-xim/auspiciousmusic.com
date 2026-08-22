@@ -1,0 +1,16 @@
+@layer components {
+  .brand > span { display: grid; line-height: 1.05; }
+  .brand__sub {
+    margin-top: 0.2rem;
+    font: 500 0.58rem/1 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: currentColor;
+    opacity: 0.62;
+  }
+
+  .header-tools .header-cta { display: none; }
+  @media (min-width: 1240px) {
+    .header-tools .header-cta { display: inline-flex; }
+  }
+}

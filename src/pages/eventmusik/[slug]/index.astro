@@ -1,0 +1,12 @@
+---
+import OccasionLandingLayout from '../../../layouts/OccasionLandingLayout.astro';
+import { occasionProfiles, type OccasionProfile } from '../../../data/repertoire';
+
+export function getStaticPaths() {
+  return occasionProfiles.map((profile) => ({ params: { slug: profile.slug }, props: { profile } }));
+}
+
+interface Props { profile: OccasionProfile; }
+const { profile } = Astro.props;
+---
+<OccasionLandingLayout profile={profile} />

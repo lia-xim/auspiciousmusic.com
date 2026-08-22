@@ -8,6 +8,6 @@ const searchPath = path.join(root, 'public', 'search-index.json');
 const excludedRoutes = new Set(['/404/', '/410/', '/publishing-roadmap/']);
 
 const records = JSON.parse(await readFile(registryPath, 'utf8'));
-const searchable = records.filter((record) => !record.internal && !excludedRoutes.has(record.route));
+const searchable = records.filter((record) => !record.internal && record.indexable !== false && !excludedRoutes.has(record.route));
 await writeFile(searchPath, `${JSON.stringify(searchable, null, 2)}\n`, 'utf8');
 console.log(`Synced ${searchable.length} searchable routes from ${records.length} registry records.`);

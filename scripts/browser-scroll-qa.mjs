@@ -8,7 +8,7 @@ const bundledNodeRoot = process.env.CODEX_BUNDLED_NODE_ROOT
   ?? 'C:\\Users\\matth\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node';
 const require = createRequire(path.join(bundledNodeRoot, 'package.json'));
 const { chromium } = require('playwright');
-const baseUrl = process.env.QA_BASE_URL ?? 'http://127.0.0.1:4321';
+const baseUrl = process.env.QA_BASE_URL ?? 'http://localhost:4321';
 const outputDirectory = process.env.QA_OUTPUT_DIR
   ? path.resolve(process.env.QA_OUTPUT_DIR)
   : path.join(projectRoot, 'docs', 'qa');
@@ -47,7 +47,7 @@ for (const [label, viewport] of [
     overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     revealCount: document.querySelectorAll('[data-reveal]').length,
     hiddenRevealCount: document.querySelectorAll('[data-reveal].will-reveal').length,
-    visiblePortalCount: [...document.querySelectorAll('.portal')].filter((element) => getComputedStyle(element).opacity !== '0').length,
+    visiblePortalCount: [...document.querySelectorAll('.topic-card')].filter((element) => getComputedStyle(element).opacity !== '0').length,
     visibleArticleCount: [...document.querySelectorAll('.index li')].filter((element) => getComputedStyle(element).opacity !== '0').length,
   }));
   if (metrics.overflow > 1 || metrics.hiddenRevealCount > 0 || metrics.visiblePortalCount < 4 || metrics.visibleArticleCount < 4) {

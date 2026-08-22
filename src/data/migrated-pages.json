@@ -1,9 +1,9 @@
 [
   {
     "route": "/",
-    "title": "Auspicious Music — Independent music production guides",
-    "description": "Independent, source-labelled guides for music production, recording, sound design, Ableton and music for media.",
-    "h1": "Make sound with intent.",
+    "title": "Auspicious Music Strings Lab — Viola, events and recording",
+    "description": "A new expert resource for viola, live strings, event-music planning, repertoire decisions and recording with Kim-Marie Borger.",
+    "h1": "Make musical decisions before they become production problems.",
     "internal": false
   },
   {
@@ -43,15 +43,15 @@
   },
   {
     "route": "/resources/",
-    "title": "Music Production Resources — Auspicious Music",
-    "description": "Browser-based music calculators, a working glossary and rights-aware records for verified resources formerly associated with this domain.",
+    "title": "Music Planning and Recording Resources — Auspicious Music",
+    "description": "A local ceremony planner, practical music calculators and rights-aware legacy records.",
     "h1": "Resources",
     "internal": false
   },
   {
     "route": "/resources/tools/",
-    "title": "Music Production Tools and Calculators — Auspicious Music",
-    "description": "Free calculators for delay and reverb times, note frequencies and sample transposition. No sign-up, nothing stored, nothing sent anywhere.",
+    "title": "Music Planning Tools and Calculators — Auspicious Music",
+    "description": "A local ceremony brief planner and practical music calculators. No sign-up and no upload.",
     "h1": "Tools",
     "internal": false
   },
@@ -65,23 +65,26 @@
   {
     "route": "/download/",
     "title": "Legacy Resource Status — Auspicious Music",
-    "description": "Rights and availability notes for the former music-technology resources that can still be verified.",
-    "h1": "Legacy Downloads &amp; Current Music Production Resources",
-    "internal": false
+    "description": "A non-indexed status page for verified historic Auspicious Music resource references.",
+    "h1": "Legacy resource status",
+    "internal": false,
+    "indexable": false
   },
   {
     "route": "/legacy/the-spy-guitar/",
     "title": "The Spy Guitar Archive Record — Auspicious Music",
     "description": "A rights-aware record of a sampled-instrument project formerly associated with this domain.",
     "h1": "The Spy Guitar",
-    "internal": false
+    "internal": false,
+    "indexable": false
   },
   {
     "route": "/legacy/bang-my-twister/",
     "title": "Bang My Twister Archive Record — Auspicious Music",
     "description": "A rights-aware record of a former Max for Live and MIDI Fighter Twister project associated with this domain.",
     "h1": "Bang My Twister",
-    "internal": false
+    "internal": false,
+    "indexable": false
   },
   {
     "route": "/ableton/midi-fighter-twister-review/",
@@ -141,10 +144,11 @@
   },
   {
     "route": "/services/",
-    "title": "Live Viola & String Recording — Auspicious Music",
-    "description": "Book live viola for ceremonies and events, session viola recording, or music for small productions — the practice behind this publication's guides.",
-    "h1": "The practice behind the guides.",
-    "internal": false
+    "title": "Work with Kim-Marie Borger — Auspicious Music",
+    "description": "A non-indexed bridge to Kim-Marie Borger’s current official project and performance site.",
+    "h1": "Work with Kim-Marie Borger",
+    "internal": false,
+    "indexable": false
   },
   {
     "route": "/contact/",
@@ -271,5 +275,98 @@
     "description": "Identify the work, recording, media, territory, term and evidence before delivery.",
     "h1": "Music clearance for a small film before edit lock",
     "internal": false
+  },
+  {
+    "route": "/viola/",
+    "title": "Viola im Einsatz — Auspicious Music",
+    "description": "Praxiswissen zu Viola bei Anlaessen, im Repertoire und in der Aufnahme mit Kim-Marie Borger.",
+    "h1": "Viola im Einsatz",
+    "internal": false
+  },
+  {
+    "route": "/eventmusik/",
+    "title": "Eventmusik planen — Auspicious Music",
+    "description": "Live-Viola fuer Hochzeit, Trauerfeier, Empfang, Dinner, Firmenevent, Geburtstag und Unterricht planen.",
+    "h1": "Eventmusik, die zum Ablauf passt",
+    "internal": false
+  },
+  {
+    "route": "/repertoire/",
+    "title": "Repertoire nach Anlass — Auspicious Music",
+    "description": "Repertoire-Ideen fuer Live-Viola nach Anlass, Funktion und Machbarkeit.",
+    "h1": "Repertoire nach Anlass",
+    "internal": false
+  },
+  {
+    "route": "/tools/eventmusik-planer/",
+    "title": "Eventmusik-Planer für Viola — Auspicious Music",
+    "description": "Ablauf, Repertoire-Ideen und E-Mail-Entwurf für Live-Viola bei unterschiedlichen Anlässen.",
+    "h1": "Plane die Musik, nicht nur die Titelliste.",
+    "internal": false
+  },
+  {
+    "route": "/eventmusik/hochzeit/",
+    "title": "Hochzeit / Trauung: Viola-Musik planen — Auspicious Music",
+    "description": "Ablauf und Repertoire-Ideen fuer Hochzeit / Trauung mit Kim-Marie Borger.",
+    "h1": "Hochzeit / Trauung musikalisch planen",
+    "internal": false
+  },
+  {
+    "route": "/eventmusik/sektempfang/",
+    "title": "Sektempfang: Viola-Musik planen — Auspicious Music",
+    "description": "Ablauf und Repertoire-Ideen fuer Sektempfang mit Kim-Marie Borger.",
+    "h1": "Sektempfang musikalisch planen",
+    "internal": false
+  },
+  {
+    "route": "/eventmusik/trauerfeier/",
+    "title": "Beerdigung / Trauerfeier: Viola-Musik planen — Auspicious Music",
+    "description": "Ablauf und Repertoire-Ideen fuer Beerdigung / Trauerfeier mit Kim-Marie Borger.",
+    "h1": "Beerdigung / Trauerfeier musikalisch planen",
+    "internal": false
+  },
+  {
+    "route": "/eventmusik/dinner/",
+    "title": "Dinner: Viola-Musik planen — Auspicious Music",
+    "description": "Ablauf und Repertoire-Ideen fuer Dinner mit Kim-Marie Borger.",
+    "h1": "Dinner musikalisch planen",
+    "internal": false
+  },
+  {
+    "route": "/eventmusik/firmenevent/",
+    "title": "Firmenevent: Viola-Musik planen — Auspicious Music",
+    "description": "Ablauf und Repertoire-Ideen fuer Firmenevent mit Kim-Marie Borger.",
+    "h1": "Firmenevent musikalisch planen",
+    "internal": false
+  },
+  {
+    "route": "/eventmusik/geburtstag/",
+    "title": "Geburtstag: Viola-Musik planen — Auspicious Music",
+    "description": "Ablauf und Repertoire-Ideen fuer Geburtstag mit Kim-Marie Borger.",
+    "h1": "Geburtstag musikalisch planen",
+    "internal": false
+  },
+  {
+    "route": "/eventmusik/unterricht/",
+    "title": "Unterricht: Viola-Musik planen — Auspicious Music",
+    "description": "Ablauf und Repertoire-Ideen fuer Unterricht mit Kim-Marie Borger.",
+    "h1": "Unterricht musikalisch planen",
+    "internal": false
+  },
+  {
+    "route": "/search/",
+    "title": "Search — Auspicious Music",
+    "description": "Site search utility.",
+    "h1": "Search",
+    "internal": true,
+    "indexable": false
+  },
+  {
+    "route": "/publishing-roadmap/",
+    "title": "Publishing roadmap — Auspicious Music",
+    "description": "Internal publishing roadmap.",
+    "h1": "Publishing roadmap",
+    "internal": true,
+    "indexable": false
   }
 ]

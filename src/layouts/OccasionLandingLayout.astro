@@ -1,0 +1,112 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { OccasionProfile } from '../data/repertoire';
+
+interface Props { profile: OccasionProfile; }
+const { profile } = Astro.props;
+const plannerHref = `/tools/eventmusik-planer/?anlass=${profile.slug}`;
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `Repertoire-Ideen für ${profile.labelDe}`,
+  itemListElement: profile.pieces.map((piece, index) => ({ '@type': 'ListItem', position: index + 1, name: piece.title })),
+};
+---
+<BaseLayout
+  title={`${profile.labelDe}: Viola-Musik planen — Auspicious Music`}
+  description={`${profile.labelDe}: Ablauf, Spielmomente und Repertoire-Ideen für Live-Viola mit Kim-Marie Borger.`}
+  canonicalPath={`/eventmusik/${profile.slug}/`}
+  lang="de"
+  headerOverDark={true}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+    <style is:global>
+      @layer components {
+        .occasion-head { margin-top: calc(-1 * var(--header-h)); padding: calc(var(--header-h) + clamp(2.5rem, 7vh, 5rem)) 0 calc(var(--sheet-overlap) + clamp(3rem, 8vh, 6rem)); background: var(--stage); color: var(--stage-text); }
+        .occasion-head__grid { display: grid; gap: 2.5rem 5rem; align-items: center; }
+        @media (min-width: 900px) { .occasion-head__grid { grid-template-columns: minmax(0, 1.05fr) minmax(18rem, .72fr); } }
+        .occasion-head h1 { max-width: 14ch; color: var(--stage-text); font-size: clamp(2.7rem, 1.5rem + 4vw, 5rem); line-height: .98; }
+        .occasion-head .lede { max-width: 58ch; margin-top: 1.25rem; color: var(--stage-muted); }
+        .occasion-head__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+        .occasion-figure { overflow: hidden; border-radius: var(--r-sm); border: 1px solid var(--stage-line); background: var(--stage-deep); }
+        .occasion-figure img { inline-size: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+        .occasion-figure figcaption { padding: .8rem 1rem; color: var(--stage-muted); font: 500 var(--t-meta)/1.5 var(--font-mono); }
+        .occasion-intro { display: grid; gap: 1.5rem 4rem; align-items: start; }
+        @media (min-width: 820px) { .occasion-intro { grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); } }
+        .occasion-intro > p { color: var(--ink-soft); font-size: 1.1rem; line-height: 1.75; }
+        .occasion-flow { border-top: 1px solid var(--line-strong); }
+        .occasion-flow li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--line); }
+        .occasion-flow li::before { content: counter(list-item, decimal-leading-zero); color: var(--ember); font: 500 var(--t-meta)/1.5 var(--font-mono); }
+        .occasion-flow h3 { font-size: 1.15rem; }
+        .occasion-flow p { max-width: 64ch; margin-top: .35rem; color: var(--muted); }
+        .occasion-repertoire { display: grid; gap: 2.25rem 4rem; }
+        @media (min-width: 820px) { .occasion-repertoire { grid-template-columns: minmax(16rem, .7fr) minmax(0, 1.3fr); } }
+        .piece-list { border-top: 1px solid var(--line-strong); }
+        .piece-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .75rem 1.5rem; align-items: baseline; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+        .piece-list strong { font-size: 1.05rem; }
+        .piece-list span { max-width: 34ch; color: var(--muted); font-size: .9rem; text-align: right; }
+        @media (max-width: 560px) { .piece-list li { grid-template-columns: 1fr; } .piece-list span { text-align: left; } }
+        .occasion-questions { display: grid; gap: 1px; border-block: 1px solid var(--line); background: var(--line); }
+        @media (min-width: 720px) { .occasion-questions { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        .occasion-questions li { padding: 1.35rem; background: var(--canvas); color: var(--ink-soft); line-height: 1.6; }
+        .occasion-questions li::before { content: '?'; display: block; margin-bottom: .6rem; color: var(--ember); font: 650 1.15rem/1 var(--font-mono); }
+        .occasion-cta { display: grid; gap: 1.25rem 3rem; align-items: center; }
+        @media (min-width: 760px) { .occasion-cta { grid-template-columns: minmax(0, 1fr) auto; } }
+        .occasion-cta p { max-width: 62ch; color: var(--ink-soft); }
+      }
+    </style>
+  </Fragment>
+  <main id="content">
+    <section class="occasion-head" data-stage-scene aria-labelledby="occasion-title">
+      <div class="shell occasion-head__grid">
+        <div>
+          <p class="kicker">Viola mit Kim-Marie Borger</p>
+          <h1 id="occasion-title">{profile.labelDe} musikalisch planen</h1>
+          <p class="lede">{profile.introDe}</p>
+          <div class="occasion-head__actions">
+            <a class="btn btn--primary" href={plannerHref}>Diesen Anlass planen</a>
+            <a class="btn btn--quiet" href="/repertoire/">Zum Repertoire</a>
+          </div>
+        </div>
+        <figure class="occasion-figure">
+          <img src="/assets/story-viola-back.png" width="1376" height="774" alt="Editoriale Darstellung einer Viola im Aufnahmeraum" />
+          <figcaption>Planungshilfe für Live-Viola, kein Buchungsversprechen</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="band sheet-lift band--glow" aria-labelledby="ablauf-title">
+      <div class="shell occasion-intro">
+        <div class="section-head"><h2 id="ablauf-title">Ein Ablauf, der vor Ort funktioniert</h2></div>
+        <div>
+          <p>{profile.planningDe}</p>
+          <ol class="occasion-flow">
+            {profile.moments.map((moment) => <li><div><h3>{moment.de}</h3><p>{moment.guidanceDe}</p></div></li>)}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-surface" aria-labelledby="repertoire-title">
+      <div class="shell occasion-repertoire">
+        <div class="section-head">
+          <h2 id="repertoire-title">Repertoire-Ideen für {profile.labelDe}</h2>
+          <p>Diese Titel sind ein Ausgangspunkt. Verfügbarkeit, konkrete Fassung, Notenlage, Arrangement-Aufwand und Termin werden direkt mit Kim-Marie geklärt.</p>
+        </div>
+        <ul class="piece-list">
+          {profile.pieces.map((piece) => <li><strong>{piece.title}</strong>{piece.clarificationDe && <span>{piece.clarificationDe}</span>}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="fragen-title">
+      <div class="shell">
+        <div class="section-head"><h2 id="fragen-title">Vor der Anfrage klären</h2><p>Der Planer nimmt diese Punkte in den fertigen Ablauf auf.</p></div>
+        <ul class="occasion-questions">{profile.questionsDe.map((question) => <li>{question}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="band band-surface"><div class="shell occasion-cta"><div><h2>Aus den Ideen einen brauchbaren Plan machen</h2><p>Der Eventmusik-Planer verbindet Anlass, Ort, Spielmomente, Repertoire und offene Fragen zu einem kopierbaren Brief. Alles bleibt lokal im Browser.</p></div><a class="btn btn--primary" href={plannerHref}>Plan für {profile.labelDe} erstellen</a></div></section>
+  </main>
+</BaseLayout>

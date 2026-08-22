@@ -1,6 +1,6 @@
 {
-  "baseUrl": "http://127.0.0.1:4321",
-  "checkedAt": "2026-08-11T21:35:42.735Z",
+  "baseUrl": "http://localhost:4321",
+  "checkedAt": "2026-08-22T14:35:34.166Z",
   "observations": [
     {
       "page": "homepage",

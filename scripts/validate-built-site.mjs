@@ -6,7 +6,14 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const distRoot = path.join(projectRoot, 'dist');
 const failures = [];
 const indexableMode = process.env.SITE_INDEXABLE === 'true';
-const permanentlyNoindex = new Set(['/404/', '/410/', '/search/', '/publishing-roadmap/']);
+const routeRegistry = JSON.parse(await readFile(path.join(projectRoot, 'src', 'data', 'migrated-pages.json'), 'utf8'));
+const permanentlyNoindex = new Set([
+  '/404/',
+  '/410/',
+  ...routeRegistry
+    .filter((record) => record.internal || record.indexable === false)
+    .map((record) => record.route),
+]);
 
 async function walk(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -41,7 +48,9 @@ for (const file of htmlFiles) {
   const expectedRobots = indexableMode && !mustRemainNoindex
     ? 'index,follow,max-image-preview:large'
     : 'noindex,nofollow,noarchive';
+  const isRedirect = /<meta[^>]+http-equiv=[\"']refresh[\"']/i.test(html);
   const h1Count = (html.match(/<h1\b/gi) ?? []).length;
+  if (isRedirect) continue;
   if (!/<title>[^<]+<\/title>/i.test(html)) failures.push(`${relative}: missing title`);
   if (!/<meta\s+name="description"\s+content="[^"]+"/i.test(html)) failures.push(`${relative}: missing description`);
   if (!html.includes(`<meta name="robots" content="${expectedRobots}"`)) {

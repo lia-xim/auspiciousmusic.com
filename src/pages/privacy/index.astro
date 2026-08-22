@@ -1,13 +1,13 @@
 ---
 import InfoLayout from '../../layouts/InfoLayout.astro';
 ---
-<InfoLayout title="Datenschutzerklärung" description="Informationen zur Verarbeitung personenbezogener Daten beim Besuch von Auspicious Music." canonicalPath="/privacy/" lang="de" kicker="Datenschutz" lede="Die Website ist derzeit eine statische Lesepublikation ohne Nutzerkonten, Analyse-Tracking oder Kontaktformular.">
+<InfoLayout title="Datenschutzerklärung" description="Informationen zur Verarbeitung personenbezogener Daten beim Besuch von Auspicious Music und bei der Nutzung des Eventmusik-Planers." canonicalPath="/privacy/" lang="de" kicker="Datenschutz" lede="Die Website ist statisch und hat keine Nutzerkonten, Webanalyse oder serverseitigen Formulare. Der Eventmusik-Planer verarbeitet Eingaben im Browser.">
   <h2 style="margin-top:0">1. Verantwortlicher</h2>
   <address>Matthias Ramahi<br>Kempener Straße 44<br>40699 Erkrath<br>Deutschland</address>
   <p>E-Mail: <a href="mailto:info@matthiasramahi.de">info@matthiasramahi.de</a><br>Telefon: <a href="tel:+4917642449858">+49 176 42 44 98 58</a></p>
 
   <h2>2. Hosting und Server-Protokolle</h2>
-  <p>Die Website wird über Vercel bereitgestellt. Beim Abruf verarbeitet die Hosting-Infrastruktur technisch erforderliche Verbindungsdaten. Dazu können insbesondere IP-Adresse, Datum und Uhrzeit, angeforderte URL, HTTP-Status, übertragene Datenmenge, Referrer sowie Browser- und Betriebssystemangaben gehören.</p>
+  <p>Die Website wird über Vercel bereitgestellt. Beim Abruf verarbeitet die Hosting-Infrastruktur technisch erforderliche Verbindungsdaten. Dazu können insbesondere IP-Adresse, Datum und Uhrzeit, angeforderte URL einschließlich eines vorhandenen Queryparameters, HTTP-Status, übertragene Datenmenge, Referrer sowie Browser- und Betriebssystemangaben gehören.</p>
   <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt in der sicheren, stabilen und fehlerfreien Bereitstellung der Website sowie in der Abwehr missbräuchlicher Zugriffe.</p>
   <dl class="facts">
     <div><dt>Dienstleister</dt><dd>Vercel Inc., USA</dd></div>
@@ -17,23 +17,30 @@ import InfoLayout from '../../layouts/InfoLayout.astro';
   </dl>
   <p>Eine konkrete, vom Betreiber selbst eingestellte Speicherfrist für Plattform-Protokolle wird hier nicht behauptet. Maßgeblich sind die eingesetzte Vercel-Konfiguration, der Vertrag und die jeweils aktuellen Anbieterinformationen. Sicherheitsrelevante Daten können länger verarbeitet werden, soweit dies zur Untersuchung eines Vorfalls oder zur Erfüllung gesetzlicher Pflichten erforderlich ist.</p>
 
-  <h2>3. Lokal bereitgestellte Schriften und Skripte</h2>
-  <p>Schriftdateien, Stylesheets und die für Navigation, Suche und Rechner notwendigen Skripte werden von dieser Website selbst ausgeliefert. Beim Seitenaufbau wird hierfür keine Verbindung zu Google Fonts oder einem vergleichbaren Schriftanbieter hergestellt.</p>
+  <h2>3. Lokal bereitgestellte Schriften, Styles und Skripte</h2>
+  <p>Schriftdateien, Stylesheets und die für Navigation, Suche, Rechner und Planer notwendigen Skripte werden von dieser Website selbst ausgeliefert. Beim Seitenaufbau wird keine Verbindung zu Google Fonts oder einem vergleichbaren Schriftanbieter hergestellt.</p>
 
-  <h2>4. Cookies, Local Storage und Reichweitenmessung</h2>
-  <p>Die aktuelle Website setzt keine Analyse-, Marketing- oder Personalisierungs-Cookies und verwendet keine Webanalyse. Es findet keine profilbildende Reichweitenmessung statt. Die Seitensuche lädt einen statischen Suchindex und wertet die Eingabe im Browser aus; der Suchbegriff wird nicht an einen Suchdienst übertragen.</p>
+  <h2>4. Cookies, Browser-Speicher und Reichweitenmessung</h2>
+  <p>Der eigene Website-Code setzt keine Analyse-, Marketing- oder Personalisierungs-Cookies und bindet keine Webanalyse ein. Es findet keine profilbildende Reichweitenmessung statt. Die Website verwendet weder Local Storage noch Session Storage noch IndexedDB, um Eingaben oder Präferenzen zu speichern.</p>
+  <p>Die Seitensuche lädt einen statischen Suchindex und wertet die Eingabe im Browser aus. Suchbegriffe werden nicht an einen externen Suchdienst übertragen.</p>
 
-  <h2>5. Kontakt per E-Mail oder Telefon</h2>
-  <p>Wenn Sie Kontakt aufnehmen, verarbeiten wir die übermittelten Kontakt- und Inhaltsdaten, um die Anfrage zu bearbeiten. Rechtsgrundlage ist je nach Inhalt Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. Die Daten werden gelöscht, wenn die Anfrage abgeschlossen ist und keine gesetzlichen Aufbewahrungspflichten oder berechtigten Nachweisinteressen entgegenstehen.</p>
+  <h2>5. Eventmusik-Planer und Musikrechner</h2>
+  <p>Der Eventmusik-Planer verarbeitet Anlass, Ort, Zeitraum, Spielmomente, Repertoireauswahl und frei eingegebene Hinweise ausschließlich im Arbeitsspeicher des Browsers. Die Website sendet diese Formularinhalte nicht an einen Server und speichert sie nicht in einem Browser-Speicher.</p>
+  <p>Ein Aufruf mit <code>?anlass=…</code> verwendet nur den gewählten Anlass zur Vorauswahl. Dieser Queryparameter ist Teil der aufgerufenen URL und kann daher wie andere Abrufdaten in Hosting-Protokollen erscheinen. Die übrigen Planerfelder werden nicht in die URL geschrieben.</p>
+  <p>Die Funktion „Kopieren“ übergibt den erzeugten Text nach dem Klick an die Zwischenablage des Geräts. „TXT laden“ erzeugt im Browser eine Textdatei und startet einen lokalen Download. Auch die Musikrechner arbeiten ausschließlich im Browser und legen keine Eingaben dauerhaft ab.</p>
 
-  <h2>6. Externe Links</h2>
+  <h2>6. Kontakt über E-Mail-Links und den Planer</h2>
+  <p>Die Website enthält keine serverseitigen Kontaktformulare. Ein <code>mailto:</code>-Link öffnet das auf dem Gerät eingerichtete E-Mail-Programm. Beim Planer werden Betreff und Plantext erst nach dem ausdrücklichen Klick in einen E-Mail-Entwurf übernommen. Die Website versendet diese Nachricht nicht automatisch.</p>
+  <p>Erst wenn die Nachricht im E-Mail-Programm versendet wird, verarbeiten die beteiligten E-Mail-Anbieter und die jeweilige empfangende Person die übermittelten Kontakt- und Inhaltsdaten. Für redaktionelle Anfragen ist Matthias Ramahi Empfänger; Planer-Anfragen richten sich an Kim-Marie Borger. Rechtsgrundlage ist je nach Inhalt Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. Daten werden gelöscht, wenn die Anfrage abgeschlossen ist und keine gesetzlichen Aufbewahrungspflichten oder berechtigten Nachweisinteressen entgegenstehen.</p>
+
+  <h2>7. Externe Links und Medien</h2>
   <p>Beim Anklicken eines externen Links verlassen Sie diese Website. Der jeweilige externe Anbieter verarbeitet den anschließenden Abruf eigenverantwortlich. Auspicious Music bindet derzeit keine externen Video-, Audio- oder Social-Media-Player automatisch ein.</p>
 
-  <h2>7. Ihre Rechte</h2>
+  <h2>8. Ihre Rechte</h2>
   <p>Nach Maßgabe der gesetzlichen Voraussetzungen bestehen insbesondere Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Eine erteilte Einwilligung kann mit Wirkung für die Zukunft widerrufen werden.</p>
   <p>Beschwerden können an eine Datenschutzaufsichtsbehörde gerichtet werden. Zuständig für den Sitz des Verantwortlichen ist insbesondere die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213 Düsseldorf, <a href="mailto:poststelle@ldi.nrw.de">poststelle@ldi.nrw.de</a>.</p>
 
-  <h2>8. Stand und Änderungen</h2>
-  <p>Stand: 11. August 2026. Die Erklärung wird angepasst, wenn zusätzliche Formulare, Analysewerkzeuge, eingebettete Medien oder andere Verarbeitungen hinzukommen.</p>
-  <div class="note"><p><strong>Konfigurationsabgleich</strong>Vor jeder wesentlichen technischen Änderung werden Hosting, Protokollierung und eingebundene Dienste mit dieser Erklärung abgeglichen. Neue Formulare, Analysewerkzeuge oder externe Einbettungen dürfen nicht unbemerkt hinzukommen.</p></div>
+  <h2>9. Stand und Änderungen</h2>
+  <p>Stand: 22. August 2026. Die Erklärung wird angepasst, wenn Formulare, Analysewerkzeuge, externe Einbettungen, dauerhafte Browser-Speicherung oder andere Verarbeitungen hinzukommen.</p>
+  <div class="note"><p><strong>Konfigurationsabgleich</strong>Vor jeder wesentlichen technischen Änderung werden Hosting, Protokollierung, externe Dienste und Browser-Speicherung mit dieser Erklärung abgeglichen.</p></div>
 </InfoLayout>

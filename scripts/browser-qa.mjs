@@ -9,7 +9,7 @@ const bundledNodeRoot = process.env.CODEX_BUNDLED_NODE_ROOT
 const require = createRequire(path.join(bundledNodeRoot, 'package.json'));
 const { chromium } = require('playwright');
 
-const implementation = process.env.QA_BASE_URL ?? 'http://127.0.0.1:4321';
+const implementation = process.env.QA_BASE_URL ?? 'http://localhost:4321';
 const reference = process.env.QA_REFERENCE_URL;
 const outputDirectory = process.env.QA_OUTPUT_DIR
   ? path.resolve(process.env.QA_OUTPUT_DIR)
@@ -192,7 +192,7 @@ const mediaState = await mediaPage.evaluate(() => ({
   focusedControl: document.activeElement?.getAttribute('aria-label'),
   bodyText: document.body.innerText.trim().length,
 }));
-if (!mediaState.forcedColors || !mediaState.reducedMotion || mediaState.overflow > 1 || mediaState.focusedControl !== 'Open menu' || mediaState.bodyText < 80) {
+if (!mediaState.forcedColors || !mediaState.reducedMotion || mediaState.overflow > 1 || !['Open menu', 'Menü öffnen'].includes(mediaState.focusedControl) || mediaState.bodyText < 80) {
   failures.push(`forced-colors/reduced-motion: unexpected state ${JSON.stringify(mediaState)}`);
 }
 for (const error of mediaErrors) failures.push(`forced-colors/reduced-motion: ${error}`);

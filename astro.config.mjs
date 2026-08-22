@@ -4,6 +4,9 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://www.auspiciousmusic.com',
   trailingSlash: 'always',
+  redirects: {
+    '/tools/ceremony-planner/': '/tools/eventmusik-planer/',
+  },
   build: {
     format: 'directory',
   },

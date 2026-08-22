@@ -4,6 +4,11 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/tools/ceremony-planner",
+      "destination": "/tools/eventmusik-planer/",
+      "permanent": true
+    },
+    {
       "source": "/download",
       "destination": "/download/",
       "permanent": true
@@ -56,6 +61,16 @@
     {
       "source": "/news/category/spy-guitar",
       "destination": "/legacy/the-spy-guitar/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/history",
+      "destination": "/about/history-and-relaunch/",
       "permanent": true
     }
   ],

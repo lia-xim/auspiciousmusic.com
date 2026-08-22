@@ -92,6 +92,8 @@ const descriptionOwners = new Map();
 for (const file of htmlFiles) {
   const html = await readFile(file, 'utf8');
   const route = canonicalPath(html) || `/${path.relative(dist, file).replaceAll('\\', '/')}`;
+  const isRedirect = /<meta[^>]+http-equiv=[\"']refresh[\"']/i.test(html);
+  if (isRedirect) continue;
   const isPublic = publicRoutes.has(route);
   const title = match(html, /<title>([\s\S]*?)<\/title>/i);
   const description = match(html, /<meta\s+name="description"\s+content="([^"]*)"/i);
@@ -142,8 +144,11 @@ for (const file of htmlFiles) {
     if (ogType === 'article') {
       if (!types.has('Article')) failures.push(`${route}: article page missing Article schema`);
       if (!types.has('BreadcrumbList')) failures.push(`${route}: article page missing BreadcrumbList schema`);
-      const sitemapEntry = sitemapEntries.find((entry) => new URL(entry.url).pathname === route);
-      if (!sitemapEntry?.lastmod) failures.push(`${route}: article missing sitemap lastmod`);
+      const articleSchema = schemas.find((node) => node?.['@type'] === 'Article');
+      if (articleSchema?.datePublished) {
+        const sitemapEntry = sitemapEntries.find((entry) => new URL(entry.url).pathname === route);
+        if (!sitemapEntry?.lastmod) failures.push(`${route}: dated article missing sitemap lastmod`);
+      }
     }
 
     const visibleText = html
@@ -187,8 +192,11 @@ if (indexableMode && !/^User-agent: \*\r?\nAllow: \/\r?\nSitemap: /m.test(robots
 if (!indexableMode && !/^User-agent: \*\r?\nDisallow: \/\r?\n?$/m.test(robotsText)) failures.push('robots.txt: preview mode does not disallow crawling');
 
 const rss = await readFile(path.join(dist, 'rss.xml'), 'utf8');
-if (!rss.includes('rel="self"') || !rss.includes('<lastBuildDate>') || !rss.includes('<language>en</language>')) {
-  failures.push('rss.xml: missing self link, language or lastBuildDate');
+if (!rss.includes('rel="self"') || !rss.includes('<language>en</language>')) {
+  failures.push('rss.xml: missing self link or language');
+}
+if (rss.includes('<pubDate>') && !rss.includes('<lastBuildDate>')) {
+  failures.push('rss.xml: dated items require lastBuildDate');
 }
 
 if (warnings.length) {

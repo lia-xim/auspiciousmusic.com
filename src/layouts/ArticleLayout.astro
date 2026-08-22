@@ -24,8 +24,8 @@ const {
   canonicalPath,
   section,
   sectionPath,
-  published = '2026-08-11',
-  updated = published,
+  published,
+  updated,
   readingTime,
   method,
   sources = [],
@@ -50,8 +50,8 @@ const schema = {
   url: canonicalUrl,
   headline: title,
   description,
-  datePublished: published,
-  dateModified: updated,
+  ...(published ? { datePublished: published } : {}),
+  ...(updated ? { dateModified: updated } : {}),
   inLanguage: 'en',
   mainEntityOfPage: canonicalUrl,
   isPartOf: { '@id': websiteId },
@@ -144,8 +144,8 @@ const documentTitle = brandedTitle.length <= 70 ? brandedTitle : seoTitle;
         <p class="lede">{description}</p>
         <div class="article-meta">
           <span>By <a href="/authors/">Matthias Ramahi</a></span>
-          <time datetime={published}>Published {formatDate(published)}</time>
-          {updated !== published && <time datetime={updated}>Updated {formatDate(updated)}</time>}
+          {published ? <time datetime={published}>Published {formatDate(published)}</time> : <span>Current release guide</span>}
+          {published && updated && updated !== published && <time datetime={updated}>Updated {formatDate(updated)}</time>}
           <span>{readingTime}</span>
         </div>
       </div>
