@@ -7,6 +7,8 @@ const distRoot = path.join(projectRoot, 'dist');
 const failures = [];
 const indexableMode = process.env.SITE_INDEXABLE === 'true';
 const routeRegistry = JSON.parse(await readFile(path.join(projectRoot, 'src', 'data', 'migrated-pages.json'), 'utf8'));
+const vercelConfig = JSON.parse(await readFile(path.join(projectRoot, 'vercel.json'), 'utf8'));
+const rewrittenRoutes = new Set((vercelConfig.rewrites ?? []).map((rewrite) => rewrite.source));
 const permanentlyNoindex = new Set([
   '/404/',
   '/410/',
@@ -69,7 +71,8 @@ for (const file of htmlFiles) {
   for (const reference of references) {
     if (reference.startsWith('//')) continue;
     const target = targetFor(reference);
-    if (!(await exists(target))) failures.push(`${relative}: missing local target ${reference}`);
+    const referencePath = reference.split(/[?#]/, 1)[0];
+    if (!(await exists(target)) && !rewrittenRoutes.has(referencePath)) failures.push(relative + ': missing local target ' + reference);
   }
 }
 
