@@ -25,6 +25,8 @@ const routes = [
   '/search/',
   '/publishing-roadmap/',
 ];
+// Production keeps a strict no-frame policy; the self-framing internal matrix is local QA only.
+const checkedRoutes = localImplementation ? routes : routes.filter((route) => route !== '/internal/mobile-matrix/');
 
 const failures = [];
 const observations = [];
@@ -81,8 +83,10 @@ async function checkRoute(route, viewport) {
     })(),
   }));
 
-  const localGoneRoute = localImplementation && route === '/410/';
-  if (route === '/definitely-not-a-real-page/' || localGoneRoute ? status !== 404 : status >= 400) failures.push(`${route}: HTTP ${status}`);
+  const expectedErrorStatus = route === '/definitely-not-a-real-page/'
+    ? 404
+    : route === '/410/' ? (localImplementation ? 404 : 410) : null;
+  if (expectedErrorStatus ? status !== expectedErrorStatus : status >= 400) failures.push(`${route}: HTTP ${status}`);
   if (!metrics.title) failures.push(`${route}: blank title`);
   if (metrics.mainCount !== 1) failures.push(`${route}: ${metrics.mainCount} main landmarks`);
   if (metrics.h1Count !== 1) failures.push(`${route}: ${metrics.h1Count} h1 elements`);
@@ -98,19 +102,19 @@ async function checkRoute(route, viewport) {
     failures.push(`${route}: axe ${violation.id} (${violation.impact ?? 'unknown'}) - ${violation.nodes.length} node(s)`);
   }
   for (const error of runtimeErrors) {
-    if ((route === '/definitely-not-a-real-page/' || localGoneRoute) && /404/.test(error)) continue;
+    if (expectedErrorStatus && new RegExp(String(expectedErrorStatus)).test(error)) continue;
     failures.push(`${route}: ${error}`);
   }
   for (const badResponse of badResponses) {
-    if ((route === '/definitely-not-a-real-page/' || localGoneRoute) && badResponse === '404 ' + new URL(route, implementation).href) continue;
+    if (expectedErrorStatus && badResponse === expectedErrorStatus + ' ' + new URL(route, implementation).href) continue;
     failures.push(`${route}: response ${badResponse}`);
   }
   observations.push({ route, status, title: metrics.title, viewport: `${viewport.width}x${viewport.height}`, axeViolations: axeResult.violations.length });
   await page.close();
 }
 
-for (const route of routes) await checkRoute(route, { width: 1440, height: 900 });
-for (const route of routes) await checkRoute(route, { width: 390, height: 844 });
+for (const route of checkedRoutes) await checkRoute(route, { width: 1440, height: 900 });
+for (const route of checkedRoutes) await checkRoute(route, { width: 390, height: 844 });
 const reflowRoutes = [
   '/',
   '/music-production/ableton-project-handoff/',
@@ -226,7 +230,7 @@ const report = {
   implementation,
   reference,
   checkedAt: new Date().toISOString(),
-  uniqueRoutesChecked: routes.length,
+  uniqueRoutesChecked: checkedRoutes.length,
   routeViewportChecks: observations.length,
   observations,
   failures,
@@ -238,5 +242,5 @@ if (failures.length) {
   failures.forEach((failure) => console.error(`- ${failure}`));
   process.exitCode = 1;
 } else {
-  console.log(`Browser QA passed: ${routes.length} routes across desktop/mobile plus 200%/400% reflow checks (${observations.length} route-viewport checks), Axe, keyboard/mobile navigation, forced-colors/reduced-motion, site search, canvas trigger, and delay calculator.`);
+  console.log(`Browser QA passed: ${checkedRoutes.length} routes across desktop/mobile plus 200%/400% reflow checks (${observations.length} route-viewport checks), Axe, keyboard/mobile navigation, forced-colors/reduced-motion, site search, canvas trigger, and delay calculator.`);
 }
