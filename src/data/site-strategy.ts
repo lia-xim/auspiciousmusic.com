@@ -37,6 +37,7 @@ export const siteStrategy = {
       label: 'Repertoire',
       children: [
         { href: '/repertoire/', label: 'Repertoire nach Anlass', note: 'Titel und offene Fassungen' },
+        { href: '/tools/wunschstueck-check/', label: 'Wunschstück prüfen', note: 'Fassung und offene Fragen' },
         { href: '/eventmusik/sektempfang/', label: 'Sektempfang', note: 'Leicht und gesprächsfreundlich' },
         { href: '/eventmusik/dinner/', label: 'Dinner', note: 'Zwischen Gängen und Reden' },
         { href: '/eventmusik/unterricht/', label: 'Unterricht', note: 'Ziel, Werk und Übeplan' },

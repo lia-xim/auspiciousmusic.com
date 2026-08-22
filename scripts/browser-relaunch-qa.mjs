@@ -18,7 +18,7 @@ const browser = await chromium.launch({
 });
 const failures = [];
 const observations = [];
-const routes = ['/', '/viola/', '/eventmusik/', '/eventmusik/hochzeit/', '/eventmusik/trauerfeier/', '/eventmusik/firmenevent/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/resources/', '/download/', '/services/'];
+const routes = ['/', '/viola/', '/eventmusik/', '/eventmusik/hochzeit/', '/eventmusik/trauerfeier/', '/eventmusik/firmenevent/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/tools/wunschstueck-check/', '/resources/', '/download/', '/services/'];
 
 async function inspect(route, viewport) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
@@ -82,6 +82,38 @@ await planner.locator('[data-language="en"]').click();
 if ((await planner.locator('#occasion option[value="hochzeit"]').innerText()) !== 'Wedding ceremony') failures.push('planner language toggle: English occasion label missing');
 for (const error of plannerErrors) failures.push(`planner runtime: ${error}`);
 await planner.close();
+const songCheck = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+const songErrors = [];
+songCheck.on('pageerror', (error) => songErrors.push(error.message));
+songCheck.on('console', (message) => { if (message.type() === 'error') songErrors.push(message.text()); });
+await songCheck.goto(baseUrl + '/tools/wunschstueck-check/', { waitUntil: 'networkidle' });
+await songCheck.locator('[data-song-form] button[type="submit"]').click();
+if (!/pflichtfelder/i.test(await songCheck.locator('[data-song-error]').innerText())) failures.push('requested-song validation: required-field message missing');
+await songCheck.locator('#song-name').fill('Perfect');
+await songCheck.locator('#song-version').fill('Ed Sheeran, studio version');
+await songCheck.locator('#song-occasion').selectOption('hochzeit');
+await songCheck.locator('#song-moment').selectOption({ index: 1 });
+await songCheck.locator('#song-recognition').selectOption('melody');
+await songCheck.locator('#song-melody').selectOption('yes');
+await songCheck.locator('#song-length').selectOption('flexible');
+await songCheck.locator('#song-lead').selectOption('long');
+await songCheck.locator('#song-meaning').fill('Die Melodie verbindet das Paar mit einem gemeinsamen Moment.');
+await songCheck.locator('[data-song-form] button[type="submit"]').click();
+const songOutput = await songCheck.locator('[data-song-result]').innerText();
+for (const expected of ['Bereit für die musikalische Prüfung', 'Perfect', 'Ed Sheeran', 'Start- und Endsignal']) {
+  if (!songOutput.includes(expected)) failures.push('requested-song generation: missing ' + expected);
+}
+const songState = await songCheck.evaluate(() => ({
+  copyDisabled: document.querySelector('[data-copy]')?.disabled,
+  emailDisabled: document.querySelector('[data-email]')?.disabled,
+  plannerHref: document.querySelector('[data-planner-link]')?.getAttribute('href'),
+  overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+}));
+if (songState.copyDisabled || songState.emailDisabled || songState.plannerHref !== '/tools/eventmusik-planer/?anlass=hochzeit' || songState.overflow > 1) failures.push('requested-song state: ' + JSON.stringify(songState));
+await songCheck.locator('[data-reset]').click();
+if (await songCheck.locator('#song-name').inputValue()) failures.push('requested-song reset: title was not cleared');
+for (const error of songErrors) failures.push('requested-song runtime: ' + error);
+await songCheck.close();
 
 for (const [name, route, viewport] of [
   ['relaunch-home-desktop.png', '/', { width: 1440, height: 900 }],
@@ -94,7 +126,7 @@ for (const [name, route, viewport] of [
 }
 
 await browser.close();
-const report = { baseUrl, checkedAt: new Date().toISOString(), routes, observations, plannerOutput: generated, failures };
+const report = { baseUrl, checkedAt: new Date().toISOString(), routes, observations, plannerOutput: generated, requestedSongOutput: songOutput, failures };
 await writeFile(path.join(output, 'browser-relaunch-qa.json'), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 
 if (failures.length) {
@@ -102,5 +134,5 @@ if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exitCode = 1;
 } else {
-  console.log(`Relaunch browser QA passed: ${routes.length} routes at 1440px, 390px and 320px, plus planner validation, generation and reset.`);
+  console.log(`Relaunch browser QA passed: ${routes.length} routes at 1440px, 390px and 320px, plus planner and requested-song validation, generation and reset.`);
 }

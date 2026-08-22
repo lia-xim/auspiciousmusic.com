@@ -1,7 +1,7 @@
 ---
 import InfoLayout from '../../layouts/InfoLayout.astro';
 ---
-<InfoLayout title="Datenschutzerklärung" description="Informationen zur Verarbeitung personenbezogener Daten beim Besuch von Auspicious Music und bei der Nutzung des Eventmusik-Planers." canonicalPath="/privacy/" lang="de" kicker="Datenschutz" lede="Die Website ist statisch und hat keine Nutzerkonten, Webanalyse oder serverseitigen Formulare. Der Eventmusik-Planer verarbeitet Eingaben im Browser.">
+<InfoLayout title="Datenschutzerklärung" description="Informationen zur Verarbeitung personenbezogener Daten beim Besuch von Auspicious Music und bei der Nutzung der browserlokalen Musik-Planungswerkzeuge." canonicalPath="/privacy/" lang="de" kicker="Datenschutz" lede="Die Website ist statisch und hat keine Nutzerkonten, Webanalyse oder serverseitigen Formulare. Die Musik-Planungswerkzeuge verarbeiten Eingaben im Browser.">
   <h2 style="margin-top:0">1. Verantwortlicher</h2>
   <address>Matthias Ramahi<br>Kempener Straße 44<br>40699 Erkrath<br>Deutschland</address>
   <p>E-Mail: <a href="mailto:info@matthiasramahi.de">info@matthiasramahi.de</a><br>Telefon: <a href="tel:+4917642449858">+49 176 42 44 98 58</a></p>
@@ -24,14 +24,14 @@ import InfoLayout from '../../layouts/InfoLayout.astro';
   <p>Der eigene Website-Code setzt keine Analyse-, Marketing- oder Personalisierungs-Cookies und bindet keine Webanalyse ein. Es findet keine profilbildende Reichweitenmessung statt. Die Website verwendet weder Local Storage noch Session Storage noch IndexedDB, um Eingaben oder Präferenzen zu speichern.</p>
   <p>Die Seitensuche lädt einen statischen Suchindex und wertet die Eingabe im Browser aus. Suchbegriffe werden nicht an einen externen Suchdienst übertragen.</p>
 
-  <h2>5. Eventmusik-Planer und Musikrechner</h2>
-  <p>Der Eventmusik-Planer verarbeitet Anlass, Ort, Zeitraum, Spielmomente, Repertoireauswahl und frei eingegebene Hinweise ausschließlich im Arbeitsspeicher des Browsers. Die Website sendet diese Formularinhalte nicht an einen Server und speichert sie nicht in einem Browser-Speicher.</p>
+  <h2>5. Eventmusik-Planer, Wunschstück-Check und Musikrechner</h2>
+  <p>Der Eventmusik-Planer verarbeitet Anlass, Ort, Zeitraum, Spielmomente, Repertoireauswahl und frei eingegebene Hinweise ausschließlich im Arbeitsspeicher des Browsers. Der Wunschstück-Check verarbeitet Titel, Fassung, Anlass, Spielmoment, Einschätzungen zur Wiedererkennbarkeit, gewünschte Form, Vorlauf und einen optionalen persönlichen Bezug ebenfalls nur im Arbeitsspeicher. Die Website sendet diese Formularinhalte nicht an einen Server und speichert sie nicht in einem Browser-Speicher.</p>
   <p>Ein Aufruf mit <code>?anlass=…</code> verwendet nur den gewählten Anlass zur Vorauswahl. Dieser Queryparameter ist Teil der aufgerufenen URL und kann daher wie andere Abrufdaten in Hosting-Protokollen erscheinen. Die übrigen Planerfelder werden nicht in die URL geschrieben.</p>
-  <p>Die Funktion „Kopieren“ übergibt den erzeugten Text nach dem Klick an die Zwischenablage des Geräts. „TXT laden“ erzeugt im Browser eine Textdatei und startet einen lokalen Download. Auch die Musikrechner arbeiten ausschließlich im Browser und legen keine Eingaben dauerhaft ab.</p>
+  <p>Die Funktion „Kopieren“ übergibt den erzeugten Text nach dem Klick an die Zwischenablage des Geräts. „TXT laden“ erzeugt im Eventmusik-Planer eine Textdatei und startet einen lokalen Download. Auch der Wunschstück-Check und die Musikrechner arbeiten ausschließlich im Browser und legen keine Eingaben dauerhaft ab.</p>
 
   <h2>6. Kontakt über E-Mail-Links und den Planer</h2>
-  <p>Die Website enthält keine serverseitigen Kontaktformulare. Ein <code>mailto:</code>-Link öffnet das auf dem Gerät eingerichtete E-Mail-Programm. Beim Planer werden Betreff und Plantext erst nach dem ausdrücklichen Klick in einen E-Mail-Entwurf übernommen. Die Website versendet diese Nachricht nicht automatisch.</p>
-  <p>Erst wenn die Nachricht im E-Mail-Programm versendet wird, verarbeiten die beteiligten E-Mail-Anbieter und die jeweilige empfangende Person die übermittelten Kontakt- und Inhaltsdaten. Für redaktionelle Anfragen ist Matthias Ramahi Empfänger; Planer-Anfragen richten sich an Kim-Marie Borger. Rechtsgrundlage ist je nach Inhalt Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. Daten werden gelöscht, wenn die Anfrage abgeschlossen ist und keine gesetzlichen Aufbewahrungspflichten oder berechtigten Nachweisinteressen entgegenstehen.</p>
+  <p>Die Website enthält keine serverseitigen Kontaktformulare. Ein <code>mailto:</code>-Link öffnet das auf dem Gerät eingerichtete E-Mail-Programm. Beim Eventmusik-Planer und beim Wunschstück-Check werden Betreff und der jeweils erzeugte Prüf- oder Plantext erst nach dem ausdrücklichen Klick in einen E-Mail-Entwurf übernommen. Die Website versendet diese Nachricht nicht automatisch.</p>
+  <p>Erst wenn die Nachricht im E-Mail-Programm versendet wird, verarbeiten die beteiligten E-Mail-Anbieter und die jeweilige empfangende Person die übermittelten Kontakt- und Inhaltsdaten. Für redaktionelle Anfragen ist Matthias Ramahi Empfänger; Planer- und Wunschstück-Anfragen richten sich an Kim-Marie Borger. Rechtsgrundlage ist je nach Inhalt Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. Daten werden gelöscht, wenn die Anfrage abgeschlossen ist und keine gesetzlichen Aufbewahrungspflichten oder berechtigten Nachweisinteressen entgegenstehen.</p>
 
   <h2>7. Externe Links und Medien</h2>
   <p>Beim Anklicken eines externen Links verlassen Sie diese Website. Der jeweilige externe Anbieter verarbeitet den anschließenden Abruf eigenverantwortlich. Auspicious Music bindet derzeit keine externen Video-, Audio- oder Social-Media-Player automatisch ein.</p>

@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { occasionProfiles } from '../../../data/repertoire';
+
+const toolData = occasionProfiles.map((profile) => ({
+  slug: profile.slug,
+  label: profile.labelDe,
+  moments: profile.moments.map((moment) => moment.de),
+}));
+const toolSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Wunschstück-Check für Solo-Viola',
+  description: 'Ein browserlokaler Vorab-Check für Fassung, Spielmoment, Wiedererkennbarkeit, Länge und Vorlauf eines Wunschstücks.',
+  url: 'https://www.auspiciousmusic.com/tools/wunschstueck-check/',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  browserRequirements: 'JavaScript',
+  inLanguage: 'de',
+  isAccessibleForFree: true,
+};
+---
+
+<BaseLayout
+  title="Wunschstück für Solo-Viola prüfen — Auspicious Music"
+  description="Bereite ein persönliches Wunschlied für die musikalische Prüfung vor: Fassung, Spielmoment, Wiedererkennbarkeit, Länge, Vorlauf und offene Fragen."
+  canonicalPath="/tools/wunschstueck-check/"
+  lang="de"
+  headerOverDark={true}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(toolSchema)} />
+    <style is:global>
+      @layer components {
+        .song-head { margin-top: calc(-1 * var(--header-h)); padding: calc(var(--header-h) + clamp(2.5rem, 7vh, 5rem)) 0 calc(var(--sheet-overlap) + clamp(3rem, 8vh, 6rem)); background: var(--stage); color: var(--stage-text); }
+        .song-head__grid { display: grid; gap: 2.5rem 5rem; align-items: end; }
+        @media (min-width: 920px) { .song-head__grid { grid-template-columns: minmax(0, 1.1fr) minmax(18rem, .7fr); } }
+        .song-head h1 { max-width: 15ch; color: var(--stage-text); font-size: clamp(2.7rem, 1.5rem + 4vw, 5rem); line-height: .98; }
+        .song-head .kicker { color: var(--stage-text); }
+        .song-head .lede { max-width: 60ch; margin-top: 1.3rem; color: var(--stage-muted); }
+        .song-head__limit { border-block: 1px solid var(--stage-line); padding-block: 1rem; color: var(--stage-muted); font: 500 var(--t-meta)/1.65 var(--font-mono); }
+        .song-head__limit strong { display: block; color: var(--stage-text); }
+        .song-shell { display: grid; gap: 2rem 3rem; align-items: start; }
+        @media (min-width: 1040px) { .song-shell { grid-template-columns: minmax(0, 1.02fr) minmax(23rem, .78fr); } }
+        .song-form { display: grid; gap: 2rem; }
+        .song-step { min-inline-size: 0; border: 0; border-top: 1px solid var(--line-strong); padding: 1.35rem 0 0; }
+        .song-step legend { padding: 0; font-size: 1.28rem; font-weight: 650; }
+        .song-step__note { max-width: 64ch; margin-top: .45rem; color: var(--muted); }
+        .song-fields { display: grid; gap: 1rem; margin-top: 1.2rem; }
+        @media (min-width: 660px) { .song-fields--two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .song-field { display: grid; gap: .45rem; min-inline-size: 0; }
+        .song-field label { color: var(--ink-soft); font: 550 var(--t-meta)/1.5 var(--font-mono); }
+        .song-field :is(input, select, textarea) { inline-size: 100%; min-block-size: 48px; border: 1px solid var(--line-strong); border-radius: var(--r-control); background: var(--canvas); color: var(--ink); padding: .75rem .9rem; font: 500 1rem/1.45 var(--font-sans); }
+        .song-field textarea { min-block-size: 6.5rem; resize: vertical; }
+        .song-field :is(input, select, textarea):hover { border-color: var(--muted); }
+        .song-error { min-block-size: 1.5rem; color: #a43a2d; font-size: .95rem; }
+        .song-output { position: sticky; top: calc(var(--header-h) + 1rem); overflow: hidden; scroll-margin-top: calc(var(--header-h) + 1rem); border-radius: var(--r-sm); background: var(--stage); color: var(--stage-text); box-shadow: var(--shadow-panel); }
+        .song-output__bar { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem 1rem; border-bottom: 1px solid var(--stage-line); color: var(--stage-muted); font: 500 var(--t-meta)/1.4 var(--font-mono); }
+        .song-output__body { min-block-size: 28rem; padding: 1.25rem; }
+        .song-output__empty { max-width: 34ch; color: var(--stage-muted); line-height: 1.65; }
+        .song-result { display: grid; gap: 1.2rem; }
+        .song-result h2, .song-result h3 { color: var(--stage-text); }
+        .song-result h2 { font-size: 1.5rem; }
+        .song-result h3 { font-size: 1rem; }
+        .song-status { width: fit-content; border: 1px solid var(--stage-line); border-radius: 999px; padding: .35rem .65rem; color: var(--stage-text); font: 600 var(--t-meta)/1.3 var(--font-mono); }
+        .song-result dl, .song-result ul { display: grid; gap: .65rem; }
+        .song-result dl > div { padding-bottom: .6rem; border-bottom: 1px solid var(--stage-line-soft); }
+        .song-result dt { color: var(--stage-muted); font: 500 var(--t-meta)/1.4 var(--font-mono); }
+        .song-result dd { margin-top: .22rem; color: var(--stage-text); }
+        .song-result li { padding-left: 1rem; border-left: 2px solid var(--stage-line); color: var(--stage-text); line-height: 1.5; }
+        .song-result__notice { color: var(--stage-muted); font-size: .88rem; line-height: 1.6; }
+        .song-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--stage-line); }
+        .song-actions :is(button, a) { min-block-size: 42px; inline-size: 100%; justify-content: center; text-align: center; }
+        .song-actions .btn--quiet { border-color: var(--stage-line); color: var(--stage-text); }
+        .song-actions [data-email] { grid-column: 1 / -1; }
+        .method-grid { display: grid; gap: 2rem 4rem; }
+        @media (min-width: 840px) { .method-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); } }
+        .method-list { border-top: 1px solid var(--line-strong); }
+        .method-list li { padding-block: 1rem; border-bottom: 1px solid var(--line); color: var(--ink-soft); line-height: 1.6; }
+        .source-list { display: grid; gap: .8rem; margin-top: 1.2rem; }
+        .source-list a { font-weight: 600; }
+        .source-list span { display: block; color: var(--muted); font-size: .9rem; }
+        @media (max-width: 1039px) { .song-output { position: static; } }
+      }
+    </style>
+  </Fragment>
+
+  <main id="content">
+    <section class="song-head" data-stage-scene aria-labelledby="song-title">
+      <div class="shell song-head__grid">
+        <div>
+          <p class="kicker">Browserlokale Entscheidungshilfe</p>
+          <h1 id="song-title">Wunschstück für Solo-Viola vorbereiten</h1>
+          <p class="lede">Der Check sammelt die Angaben, die vor einer ehrlichen musikalischen Prüfung gebraucht werden. Er entscheidet nicht automatisch, ob ein Titel spielbar ist.</p>
+        </div>
+        <div class="song-head__limit"><strong>Kein Machbarkeits- oder Buchungsversprechen</strong>Melodie, Tonumfang, konkrete Fassung, Notenlage, Arrangement, Vorbereitungszeit, Termin und Rechte werden erst von der Musikerin geprüft.</div>
+      </div>
+    </section>
+
+    <section class="band sheet-lift band--glow">
+      <div class="shell song-shell">
+        <form class="song-form" data-song-form novalidate>
+          <fieldset class="song-step">
+            <legend>1. Titel und Einsatz</legend>
+            <p class="song-step__note">Je genauer die gemeinte Aufnahme oder Interpretation benannt ist, desto weniger muss im ersten Gespräch geraten werden.</p>
+            <div class="song-fields song-fields--two">
+              <div class="song-field"><label for="song-name">Titel *</label><input id="song-name" name="song" type="text" maxlength="160" required autocomplete="off" placeholder="Zum Beispiel: Liedtitel" /></div>
+              <div class="song-field"><label for="song-version">Interpret:in oder genaue Fassung</label><input id="song-version" name="version" type="text" maxlength="160" autocomplete="off" placeholder="Welche Aufnahme oder Version ist gemeint?" /></div>
+              <div class="song-field"><label for="song-occasion">Anlass *</label><select id="song-occasion" name="occasion" required><option value="">Bitte wählen</option>{occasionProfiles.map((profile) => <option value={profile.slug}>{profile.labelDe}</option>)}<option value="other">Anderer Anlass</option></select></div>
+              <div class="song-field"><label for="song-moment">Spielmoment *</label><select id="song-moment" name="moment" required disabled><option value="">Zuerst Anlass wählen</option></select></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="song-step">
+            <legend>2. Wiedererkennung und Form</legend>
+            <p class="song-step__note">Diese Selbsteinschätzung ersetzt keine musikalische Prüfung. Sie zeigt, welche Frage zuerst geklärt werden sollte.</p>
+            <div class="song-fields song-fields--two">
+              <div class="song-field"><label for="song-recognition">Was trägt die Wiedererkennung? *</label><select id="song-recognition" name="recognition" required><option value="">Bitte wählen</option><option value="melody">Vor allem die Melodie</option><option value="voice">Vor allem Stimme oder Text</option><option value="beat">Vor allem Beat oder Bass</option><option value="production">Vor allem Produktion oder Klangfläche</option><option value="unknown">Noch unklar</option></select></div>
+              <div class="song-field"><label for="song-melody">Bleibt die Melodie ohne Gesang erkennbar? *</label><select id="song-melody" name="melody" required><option value="">Bitte wählen</option><option value="yes">Vermutlich ja</option><option value="no">Vermutlich nicht</option><option value="unknown">Weiß ich noch nicht</option></select></div>
+              <div class="song-field"><label for="song-length">Gewünschte Form</label><select id="song-length" name="length"><option value="flexible">Flexible, gekürzte Fassung ist möglich</option><option value="short">Nur ein kurzer, prägnender Ausschnitt</option><option value="full">Möglichst vollständig wie das Original</option><option value="unknown">Noch offen</option></select></div>
+              <div class="song-field"><label for="song-lead">Zeit bis zum Termin</label><select id="song-lead" name="lead"><option value="long">Mehr als sechs Wochen</option><option value="medium">Zwei bis sechs Wochen</option><option value="short">Weniger als zwei Wochen</option><option value="unknown">Termin oder Vorlauf noch offen</option></select></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="song-step">
+            <legend>3. Persönlicher Bezug</legend>
+            <p class="song-step__note">Der Bezug hilft bei der Auswahl einer passenden Alternative, falls die gewünschte Fassung nicht sinnvoll übertragbar ist.</p>
+            <div class="song-fields">
+              <div class="song-field"><label for="song-meaning">Was soll von diesem Titel im Moment erhalten bleiben?</label><textarea id="song-meaning" name="meaning" maxlength="500" placeholder="Zum Beispiel: gemeinsame Erinnerung, eine bestimmte Melodie oder eine ruhige Wirkung"></textarea></div>
+            </div>
+          </fieldset>
+
+          <div><p class="song-error" data-song-error aria-live="polite"></p><button class="btn btn--primary" type="submit">Prüfbrief erstellen</button></div>
+        </form>
+
+        <aside class="song-output" aria-label="Ergebnis des Wunschstück-Checks" data-song-output>
+          <div class="song-output__bar"><span>wunschstueck-pruefbrief.txt</span><span data-song-state>Wartet auf Angaben</span></div>
+          <div class="song-output__body" data-song-result><p class="song-output__empty">Füllen Sie Titel, Anlass, Spielmoment und die beiden Fragen zur Wiedererkennung aus. Danach erscheint hier ein Prüfbrief, keine automatische Zusage.</p></div>
+          <div class="song-actions">
+            <button class="btn btn--primary" type="button" data-copy disabled>Kopieren</button>
+            <button class="btn btn--quiet" type="button" data-reset>Zurücksetzen</button>
+            <a class="btn btn--quiet" href="/tools/eventmusik-planer/" data-planner-link>Im Planer weiter</a>
+            <button class="btn btn--primary" type="button" data-email disabled>E-Mail-Entwurf an Kim-Marie</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="band band-surface" aria-labelledby="method-title">
+      <div class="shell method-grid">
+        <div class="section-head"><p class="kicker">Methode und Grenzen</p><h2 id="method-title">Was der Check prüft</h2><p>Die Regeln sind sichtbar und korrigierbar. Es gibt keinen verdeckten Score und keine Aussage über die tatsächliche Verfügbarkeit.</p></div>
+        <div>
+          <ul class="method-list">
+            <li><strong>Genaue Fassung:</strong> Ein Titel allein reicht bei mehreren Interpretationen oder Arrangements oft nicht.</li>
+            <li><strong>Musikalische Identität:</strong> Eine klare Melodie lässt sich anders reduzieren als ein Titel, der vor allem von Stimme, Beat oder Produktion lebt.</li>
+            <li><strong>Funktion im Ablauf:</strong> Einzug, stiller Moment und Auszug brauchen unterschiedliche Länge, Energie und Endpunkte.</li>
+            <li><strong>Vorlauf:</strong> Ein neues Arrangement braucht Prüfung und Vorbereitung. Der Check erfindet dafür keine pauschale Frist.</li>
+            <li><strong>Rechte getrennt betrachten:</strong> Musikalische Eignung ersetzt keine Klärung der öffentlichen Nutzung, Noten, Aufnahme oder Videoverwendung.</li>
+          </ul>
+          <div class="source-list">
+            <p><a href="https://kim-marie-borger.com/ratgeber/wunschmusik-hochzeit/" rel="noopener external">Kim Marie Borger: Wunschmusik bei der Hochzeit</a><span>Aktuelle Fachgrundlage zu Melodie, Länge, Anlass und Arrangement. Kims Website und diese Publikation gehören zum selben Projektportfolio; der Link ist keine unabhängige Empfehlung.</span></p>
+            <p><a href="https://www.gema.de/de/musiknutzer/veranstaltungen" rel="noopener external">GEMA: Veranstaltungen mit Musik</a><span>Offizielle Orientierung für Veranstalter zur öffentlichen Musiknutzung und Setlist. Keine individuelle Rechtsberatung.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Fragment slot="scripts">
+    <script is:inline id="song-tool-data" type="application/json" set:html={JSON.stringify(toolData).replaceAll('<', '\\u003c')} />
+    <script is:inline>
+      (() => {
+        const form = document.querySelector('[data-song-form]');
+        const dataNode = document.querySelector('#song-tool-data');
+        const occasion = document.querySelector('#song-occasion');
+        const moment = document.querySelector('#song-moment');
+        const result = document.querySelector('[data-song-result]');
+        const output = document.querySelector('[data-song-output]');
+        const state = document.querySelector('[data-song-state]');
+        const error = document.querySelector('[data-song-error]');
+        const copy = document.querySelector('[data-copy]');
+        const email = document.querySelector('[data-email]');
+        const reset = document.querySelector('[data-reset]');
+        const planner = document.querySelector('[data-planner-link]');
+        if (!(form instanceof HTMLFormElement) || !dataNode || !(occasion instanceof HTMLSelectElement) || !(moment instanceof HTMLSelectElement) || !result || !output || !state || !error || !(copy instanceof HTMLButtonElement) || !(email instanceof HTMLButtonElement) || !(reset instanceof HTMLButtonElement) || !(planner instanceof HTMLAnchorElement)) return;
+
+        const profiles = JSON.parse(dataNode.textContent || '[]');
+        const bySlug = Object.fromEntries(profiles.map((profile) => [profile.slug, profile]));
+        const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+        const labels = {
+          recognition: { melody: 'vor allem die Melodie', voice: 'vor allem Stimme oder Text', beat: 'vor allem Beat oder Bass', production: 'vor allem Produktion oder Klangfläche', unknown: 'noch unklar' },
+          melody: { yes: 'vermutlich ja', no: 'vermutlich nicht', unknown: 'noch unklar' },
+          length: { flexible: 'flexible, gekürzte Fassung', short: 'kurzer, prägnender Ausschnitt', full: 'möglichst vollständige Fassung', unknown: 'noch offen' },
+          lead: { long: 'mehr als sechs Wochen', medium: 'zwei bis sechs Wochen', short: 'weniger als zwei Wochen', unknown: 'noch offen' },
+        };
+        let brief = '';
+
+        function renderMoments() {
+          const profile = bySlug[occasion.value];
+          const options = profile?.moments ?? (occasion.value === 'other' ? ['Ankunft oder Auftakt', 'Zentraler Moment', 'Übergang oder Abschluss', 'Noch offen'] : []);
+          moment.disabled = options.length === 0;
+          moment.innerHTML = options.length ? `<option value="">Bitte wählen</option>${options.map((label) => `<option value="${escapeHtml(label)}">${escapeHtml(label)}</option>`).join('')}` : '<option value="">Zuerst Anlass wählen</option>';
+          planner.href = occasion.value && bySlug[occasion.value] ? `/tools/eventmusik-planer/?anlass=${encodeURIComponent(occasion.value)}` : '/tools/eventmusik-planer/';
+        }
+
+        function build(data) {
+          const song = String(data.get('song') || '').trim();
+          const version = String(data.get('version') || '').trim();
+          const recognition = String(data.get('recognition') || 'unknown');
+          const melody = String(data.get('melody') || 'unknown');
+          const length = String(data.get('length') || 'unknown');
+          const lead = String(data.get('lead') || 'unknown');
+          const meaning = String(data.get('meaning') || '').trim();
+          const occasionLabel = occasion.selectedOptions[0]?.textContent?.trim() || 'Nicht angegeben';
+          const momentLabel = moment.selectedOptions[0]?.textContent?.trim() || 'Nicht angegeben';
+          const questions = [];
+          let caution = false;
+
+          if (!version) questions.push('Welche Aufnahme, Interpretin oder Fassung ist genau gemeint?');
+          if (recognition === 'unknown') questions.push('Was macht den Titel für Sie sofort wiedererkennbar: Melodie, Stimme, Beat oder Produktion?');
+          if (recognition !== 'melody' && recognition !== 'unknown') { caution = true; questions.push('Welche melodische Idee soll die Viola übernehmen, wenn die Originalwirkung stark von Stimme, Beat oder Produktion lebt?'); }
+          if (melody === 'unknown') questions.push('Bleibt die Melodie ohne Gesang für die wichtigsten Zuhörenden erkennbar?');
+          if (melody === 'no') { caution = true; questions.push('Welche Alternative bewahrt den persönlichen Bezug, wenn eine Solo-Fassung nicht überzeugt?'); }
+          if (length === 'full') questions.push('Kann eine gekürzte Form den Spielmoment besser treffen, ohne den persönlichen Kern zu verlieren?');
+          if (length === 'unknown') questions.push('Soll der Titel vollständig, gekürzt oder mit flexiblem Endpunkt gespielt werden?');
+          if (lead === 'short') { caution = true; questions.push('Gibt es bei knappem Vorlauf ein vorhandenes Repertoirestück als belastbare Alternative?'); }
+          if (lead === 'unknown') questions.push('Welches Datum setzt den realen Vorbereitungsrahmen?');
+          questions.push('Wer gibt am Spielmoment das Start- und Endsignal?');
+          questions.push('Sind Veranstaltungsmeldung, Setlist und weitere Rechtefragen auf Veranstalterseite geklärt?');
+
+          const needsClarification = !version || recognition === 'unknown' || melody === 'unknown' || length === 'unknown' || lead === 'unknown';
+          const status = caution ? 'Alternative gleich mitprüfen' : needsClarification ? 'Prüfbrief zuerst schärfen' : 'Bereit für die musikalische Prüfung';
+          const rows = [
+            ['Titel', song], ['Fassung', version || 'Noch nicht benannt'], ['Anlass', occasionLabel], ['Spielmoment', momentLabel],
+            ['Wiedererkennung', labels.recognition[recognition]], ['Melodie ohne Gesang', labels.melody[melody]], ['Gewünschte Form', labels.length[length]], ['Vorlauf', labels.lead[lead]], ['Persönlicher Kern', meaning || 'Noch nicht beschrieben'],
+          ];
+          brief = ['AUSPICIOUS MUSIC — WUNSCHSTÜCK-PRÜFBRIEF', `Status: ${status}`, '', ...rows.map(([label, value]) => `${label}: ${value}`), '', 'IM GESPRAECH KLAEREN', ...questions.map((question) => `- ${question}`), '', 'Hinweis: Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Rechte, Preis oder Buchung.'].join('\n');
+          result.innerHTML = `<div class="song-result"><p class="song-status">${escapeHtml(status)}</p><h2>${escapeHtml(song)}</h2><dl>${rows.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl><div><h3>Im Gespräch klären</h3><ul>${questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul></div><p class="song-result__notice"><strong>Grenze:</strong> Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Rechte, Preis oder Buchung.</p></div>`;
+          state.textContent = status;
+          copy.disabled = false;
+          email.disabled = false;
+        }
+
+        occasion.addEventListener('change', renderMoments);
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          if (!form.checkValidity()) { error.textContent = 'Bitte füllen Sie alle markierten Pflichtfelder aus.'; form.reportValidity(); return; }
+          error.textContent = '';
+          build(new FormData(form));
+          if (matchMedia('(max-width: 1039px)').matches) output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        copy.addEventListener('click', async () => {
+          if (!brief) return;
+          try { await navigator.clipboard.writeText(brief); copy.textContent = 'Kopiert'; }
+          catch { error.textContent = 'Kopieren ist in diesem Browser nicht verfügbar.'; }
+          window.setTimeout(() => { copy.textContent = 'Kopieren'; }, 1600);
+        });
+        reset.addEventListener('click', () => {
+          form.reset();
+          brief = '';
+          error.textContent = '';
+          state.textContent = 'Wartet auf Angaben';
+          result.innerHTML = '<p class="song-output__empty">Füllen Sie Titel, Anlass, Spielmoment und die beiden Fragen zur Wiedererkennung aus. Danach erscheint hier ein Prüfbrief, keine automatische Zusage.</p>';
+          copy.disabled = true;
+          email.disabled = true;
+          renderMoments();
+        });        email.addEventListener('click', () => {
+          if (!brief) return;
+          const song = String(new FormData(form).get('song') || '').trim();
+          window.location.href = `mailto:kim-marie.borger@t-online.de?subject=${encodeURIComponent(`Wunschstück-Prüfung: ${song}`)}&body=${encodeURIComponent(brief)}`;
+        });
+        renderMoments();
+      })();
+    </script>
+  </Fragment>
+</BaseLayout>

@@ -183,7 +183,8 @@
     "title": "Sitemap — Auspicious Music",
     "description": "Every public editorial, resource, archive and publication page on Auspicious Music.",
     "h1": "Sitemap",
-    "internal": false
+    "internal": false,
+    "indexable": false
   },
   {
     "route": "/resources/tools/delay-and-reverb/",
@@ -302,6 +303,13 @@
     "title": "Eventmusik-Planer für Viola — Auspicious Music",
     "description": "Ablauf, Repertoire-Ideen und E-Mail-Entwurf für Live-Viola bei unterschiedlichen Anlässen.",
     "h1": "Plane die Musik, nicht nur die Titelliste.",
+    "internal": false
+  },
+  {
+    "route": "/tools/wunschstueck-check/",
+    "title": "Wunschstück für Solo-Viola prüfen — Auspicious Music",
+    "description": "Fassung, Spielmoment, Wiedererkennbarkeit, Länge und Vorlauf eines persönlichen Wunschstücks für die musikalische Prüfung vorbereiten.",
+    "h1": "Wunschstück für Solo-Viola vorbereiten",
     "internal": false
   },
   {

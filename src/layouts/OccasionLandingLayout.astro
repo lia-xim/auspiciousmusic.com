@@ -95,7 +95,7 @@ const itemListSchema = {
       <div class="shell occasion-repertoire">
         <div class="section-head">
           <h2 id="repertoire-title">Repertoire-Ideen für {profile.labelDe}</h2>
-          <p>Diese Titel sind ein Ausgangspunkt. Verfügbarkeit, konkrete Fassung, Notenlage, Arrangement-Aufwand und Termin werden direkt mit Kim-Marie geklärt.</p>
+          <p>Diese Titel sind ein Ausgangspunkt. Verfügbarkeit, konkrete Fassung, Notenlage, Arrangement-Aufwand und Termin werden direkt mit Kim-Marie geklärt. Ein eigener Titel lässt sich vorher im <a href="/tools/wunschstueck-check/">Wunschstück-Check</a> als Prüfbrief vorbereiten.</p>
         </div>
         <ul class="piece-list">
           {profile.pieces.map((piece) => <li><strong>{piece.title}</strong>{piece.clarificationDe && <span>{piece.clarificationDe}</span>}</li>)}

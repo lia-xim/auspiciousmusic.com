@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://localhost:4321",
-  "checkedAt": "2026-08-22T15:52:48.765Z",
+  "checkedAt": "2026-08-22T20:51:24.251Z",
   "routes": [
     "/",
     "/viola/",
@@ -11,6 +11,7 @@
     "/repertoire/",
     "/recording/",
     "/tools/eventmusik-planer/",
+    "/tools/wunschstueck-check/",
     "/resources/",
     "/download/",
     "/services/"
@@ -23,7 +24,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5902,
+      "bodyLength": 5885,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -34,7 +35,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2781,
+      "bodyLength": 2764,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -45,7 +46,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2890,
+      "bodyLength": 2873,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -56,7 +57,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2434,
+      "bodyLength": 2501,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -67,7 +68,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2391,
+      "bodyLength": 2458,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -78,7 +79,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2289,
+      "bodyLength": 2356,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -89,7 +90,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2894,
+      "bodyLength": 2885,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -100,7 +101,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4272,
+      "bodyLength": 4255,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -111,7 +112,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2819,
+      "bodyLength": 2837,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/tools/wunschstueck-check/",
+      "viewport": "1440x900",
+      "title": "Wunschstück für Solo-Viola prüfen — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 3817,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -122,7 +134,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3228,
+      "bodyLength": 3211,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -133,7 +145,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2322,
+      "bodyLength": 2305,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -144,7 +156,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1809,
+      "bodyLength": 1792,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -155,7 +167,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5841,
+      "bodyLength": 5824,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -166,7 +178,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2720,
+      "bodyLength": 2703,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -177,7 +189,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2829,
+      "bodyLength": 2812,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -188,7 +200,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2373,
+      "bodyLength": 2440,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -199,7 +211,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2330,
+      "bodyLength": 2397,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -210,7 +222,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2228,
+      "bodyLength": 2295,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -221,7 +233,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2833,
+      "bodyLength": 2824,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -232,7 +244,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4211,
+      "bodyLength": 4194,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -243,7 +255,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2758,
+      "bodyLength": 2776,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/tools/wunschstueck-check/",
+      "viewport": "390x844",
+      "title": "Wunschstück für Solo-Viola prüfen — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 3756,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -254,7 +277,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3167,
+      "bodyLength": 3150,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -265,7 +288,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2261,
+      "bodyLength": 2244,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -276,7 +299,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1748,
+      "bodyLength": 1731,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -287,7 +310,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5841,
+      "bodyLength": 5824,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -298,7 +321,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2720,
+      "bodyLength": 2703,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -309,7 +332,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2829,
+      "bodyLength": 2812,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -320,7 +343,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2373,
+      "bodyLength": 2440,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -331,7 +354,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2330,
+      "bodyLength": 2397,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -342,7 +365,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2228,
+      "bodyLength": 2295,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -353,7 +376,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2833,
+      "bodyLength": 2824,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -364,7 +387,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4211,
+      "bodyLength": 4194,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -375,7 +398,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2758,
+      "bodyLength": 2776,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/tools/wunschstueck-check/",
+      "viewport": "320x900",
+      "title": "Wunschstück für Solo-Viola prüfen — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 3756,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -386,7 +420,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3167,
+      "bodyLength": 3150,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -397,7 +431,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2261,
+      "bodyLength": 2244,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -408,11 +442,12 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1748,
+      "bodyLength": 1731,
       "emptyLinks": 0,
       "unlabeledFields": 0
     }
   ],
   "plannerOutput": "Hochzeit / Trauung\nAnlass\nHochzeit / Trauung\nSetting\nInnenraum\nOrt oder Region\nCologne\nDatum oder Zeitraum\nNicht angegeben\nRolle der Musik\nDezente Begleitung\nGewünschter Klang\nSolo-Viola\nStimmung\nWarm und persönlich\nWeitere Wünsche\nWarm, lyrical references; final titles still open.\nStartsignal durch\nCeremony coordinator\nSpieldauer\nNicht angegeben\nAufbau, Wege und Wetter\nNicht angegeben\nNoch offen\nNicht angegeben\nVorgeschlagener Ablauf\nAnkunft der Gäste\nRuhige Musik, die auch bei verspäteter Ankunft flexibel weiterlaufen kann.\nEinzug\nStartsignal und Endpunkt mit Trauzeug:innen oder Zeremonieleitung abstimmen.\nRingtausch, Ja-Wort oder Unterschrift\nEine kürzbare oder wiederholbare Fassung einplanen.\nAuszug\nEin deutliches, tragfähiges Ende für Bewegung und Applaus wählen.\nRepertoire-Vorauswahl\nA Thousand Years\nPerfect\nAll of Me\nCan’t Help Falling in Love\nCanon in D\nOrdinary\nInterpretation oder Version bei der Anfrage angeben.\nWildest Dreams\nIm Gespräch klären\nWer gibt Einzug und Auszug live frei?\nGibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?\nWelche Wunschstücke sind unverzichtbar und welche nur Inspiration?\n\nWichtiger Planungshinweis: Dieser Plan bestätigt weder Termin noch Besetzung, konkrete Fassung, Notenlage, Arrangement, Rechte, Preis oder Buchung. Das wird direkt mit Kim-Marie geklärt.",
+  "requestedSongOutput": "Bereit für die musikalische Prüfung\n\nPerfect\nTitel\nPerfect\nFassung\nEd Sheeran, studio version\nAnlass\nHochzeit / Trauung\nSpielmoment\nAnkunft der Gäste\nWiedererkennung\nvor allem die Melodie\nMelodie ohne Gesang\nvermutlich ja\nGewünschte Form\nflexible, gekürzte Fassung\nVorlauf\nmehr als sechs Wochen\nPersönlicher Kern\nDie Melodie verbindet das Paar mit einem gemeinsamen Moment.\nIm Gespräch klären\nWer gibt am Spielmoment das Start- und Endsignal?\nSind Veranstaltungsmeldung, Setlist und weitere Rechtefragen auf Veranstalterseite geklärt?\n\nGrenze: Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Rechte, Preis oder Buchung.",
   "failures": []
 }
