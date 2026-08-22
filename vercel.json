@@ -105,5 +105,11 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/410/",
+      "destination": "/api/gone"
+    }
   ]
 }
