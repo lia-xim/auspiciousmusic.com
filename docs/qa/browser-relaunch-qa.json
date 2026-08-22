@@ -1,6 +1,6 @@
 {
-  "baseUrl": "http://localhost:4321",
-  "checkedAt": "2026-08-22T20:51:24.251Z",
+  "baseUrl": "https://www.auspiciousmusic.com",
+  "checkedAt": "2026-08-22T20:55:21.113Z",
   "routes": [
     "/",
     "/viola/",

@@ -1,8 +1,8 @@
 {
-  "implementation": "http://localhost:4321",
-  "checkedAt": "2026-08-22T20:47:14.613Z",
-  "uniqueRoutesChecked": 55,
-  "routeViewportChecks": 118,
+  "implementation": "https://www.auspiciousmusic.com",
+  "checkedAt": "2026-08-22T20:58:16.561Z",
+  "uniqueRoutesChecked": 54,
+  "routeViewportChecks": 116,
   "observations": [
     {
       "route": "/",
@@ -216,8 +216,8 @@
     },
     {
       "route": "/410/",
-      "status": 404,
-      "title": "Page not found — Auspicious Music",
+      "status": 410,
+      "title": "Adresse dauerhaft entfernt — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -225,13 +225,6 @@
       "route": "/internal/design-concept/",
       "status": 200,
       "title": "Design concept — Auspicious Music",
-      "viewport": "1440x900",
-      "axeViolations": 0
-    },
-    {
-      "route": "/internal/mobile-matrix/",
-      "status": 200,
-      "title": "Mobile concepts — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -601,8 +594,8 @@
     },
     {
       "route": "/410/",
-      "status": 404,
-      "title": "Page not found — Auspicious Music",
+      "status": 410,
+      "title": "Adresse dauerhaft entfernt — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -610,13 +603,6 @@
       "route": "/internal/design-concept/",
       "status": 200,
       "title": "Design concept — Auspicious Music",
-      "viewport": "390x844",
-      "axeViolations": 0
-    },
-    {
-      "route": "/internal/mobile-matrix/",
-      "status": 200,
-      "title": "Mobile concepts — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
