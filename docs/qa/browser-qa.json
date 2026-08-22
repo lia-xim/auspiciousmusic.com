@@ -1,8 +1,8 @@
 {
   "implementation": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-22T21:57:21.950Z",
-  "uniqueRoutesChecked": 57,
-  "routeViewportChecks": 122,
+  "checkedAt": "2026-08-22T23:47:45.603Z",
+  "uniqueRoutesChecked": 58,
+  "routeViewportChecks": 124,
   "observations": [
     {
       "route": "/",
@@ -294,7 +294,14 @@
     {
       "route": "/tools/eventmusik-planer/",
       "status": 200,
-      "title": "Eventmusik-Planer für Viola — Auspicious Music",
+      "title": "Eventmusik planen — Auspicious Music",
+      "viewport": "1440x900",
+      "axeViolations": 0
+    },
+    {
+      "route": "/en/tools/event-music-planner/",
+      "status": 200,
+      "title": "Plan event music — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -693,7 +700,14 @@
     {
       "route": "/tools/eventmusik-planer/",
       "status": 200,
-      "title": "Eventmusik-Planer für Viola — Auspicious Music",
+      "title": "Eventmusik planen — Auspicious Music",
+      "viewport": "390x844",
+      "axeViolations": 0
+    },
+    {
+      "route": "/en/tools/event-music-planner/",
+      "status": 200,
+      "title": "Plan event music — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },

@@ -1,6 +1,6 @@
 {
   "baseUrl": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-22T21:54:04.699Z",
+  "checkedAt": "2026-08-22T23:44:43.182Z",
   "routes": [
     "/",
     "/viola/",
@@ -13,6 +13,7 @@
     "/repertoire/",
     "/recording/",
     "/tools/eventmusik-planer/",
+    "/en/tools/event-music-planner/",
     "/tools/wunschstueck-check/",
     "/tools/streicheraufnahme-briefing/",
     "/resources/",
@@ -133,11 +134,22 @@
     {
       "route": "/tools/eventmusik-planer/",
       "viewport": "1440x900",
-      "title": "Eventmusik-Planer für Viola — Auspicious Music",
+      "title": "Eventmusik planen — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2837,
+      "bodyLength": 1608,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/en/tools/event-music-planner/",
+      "viewport": "1440x900",
+      "title": "Plan event music — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 1584,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -170,7 +182,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3211,
+      "bodyLength": 3204,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -181,7 +193,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2305,
+      "bodyLength": 2298,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -192,7 +204,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1792,
+      "bodyLength": 1785,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -309,11 +321,22 @@
     {
       "route": "/tools/eventmusik-planer/",
       "viewport": "390x844",
-      "title": "Eventmusik-Planer für Viola — Auspicious Music",
+      "title": "Eventmusik planen — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2776,
+      "bodyLength": 1527,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/en/tools/event-music-planner/",
+      "viewport": "390x844",
+      "title": "Plan event music — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 1492,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -346,7 +369,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3150,
+      "bodyLength": 3135,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -357,7 +380,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2244,
+      "bodyLength": 2229,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -368,7 +391,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1731,
+      "bodyLength": 1716,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -485,11 +508,22 @@
     {
       "route": "/tools/eventmusik-planer/",
       "viewport": "320x900",
-      "title": "Eventmusik-Planer für Viola — Auspicious Music",
+      "title": "Eventmusik planen — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2776,
+      "bodyLength": 1524,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/en/tools/event-music-planner/",
+      "viewport": "320x900",
+      "title": "Plan event music — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 1489,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -522,7 +556,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3150,
+      "bodyLength": 3135,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -533,7 +567,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2244,
+      "bodyLength": 2229,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -544,12 +578,12 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1731,
+      "bodyLength": 1716,
       "emptyLinks": 0,
       "unlabeledFields": 0
     }
   ],
-  "plannerOutput": "Hochzeit / Trauung\nAnlass\nHochzeit / Trauung\nSetting\nInnenraum\nOrt oder Region\nCologne\nDatum oder Zeitraum\nNicht angegeben\nRolle der Musik\nDezente Begleitung\nGewünschter Klang\nSolo-Viola\nStimmung\nWarm und persönlich\nWeitere Wünsche\nWarm, lyrical references; final titles still open.\nStartsignal durch\nCeremony coordinator\nSpieldauer\nNicht angegeben\nAufbau, Wege und Wetter\nNicht angegeben\nNoch offen\nNicht angegeben\nVorgeschlagener Ablauf\nAnkunft der Gäste\nRuhige Musik, die auch bei verspäteter Ankunft flexibel weiterlaufen kann.\nEinzug\nStartsignal und Endpunkt mit Trauzeug:innen oder Zeremonieleitung abstimmen.\nRingtausch, Ja-Wort oder Unterschrift\nEine kürzbare oder wiederholbare Fassung einplanen.\nAuszug\nEin deutliches, tragfähiges Ende für Bewegung und Applaus wählen.\nRepertoire-Vorauswahl\nA Thousand Years\nPerfect\nAll of Me\nCan’t Help Falling in Love\nCanon in D\nOrdinary\nInterpretation oder Version bei der Anfrage angeben.\nWildest Dreams\nIm Gespräch klären\nWer gibt Einzug und Auszug live frei?\nGibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?\nWelche Wunschstücke sind unverzichtbar und welche nur Inspiration?\n\nWichtiger Planungshinweis: Dieser Plan bestätigt weder Termin noch Besetzung, konkrete Fassung, Notenlage, Arrangement, Rechte, Preis oder Buchung. Das wird direkt mit Kim-Marie geklärt.",
+  "plannerOutput": "Dein Musikplan\n\nDer Ablauf ist jetzt kompakt genug für die nächste Abstimmung.\n\nPlan bearbeiten\nAnlass\nHochzeit / Trauung\nDatum\n10.09.2026\nOrt oder Region\nKöln\nRolle der Musik\nBegleitend\nAblauf\nAnkunft der Gäste\nRuhige Musik, die auch bei verspäteter Ankunft flexibel weiterlaufen kann.\nEinzug\nStartsignal und Endpunkt mit Trauzeug:innen oder Zeremonieleitung abstimmen.\nRingtausch, Ja-Wort oder Unterschrift\nEine kürzbare oder wiederholbare Fassung einplanen.\nAuszug\nEin deutliches, tragfähiges Ende für Bewegung und Applaus wählen.\nRepertoire\nA Thousand Years\nPerfect\nAll of Me\nNoch zu klären\nWer gibt Einzug und Auszug live frei?\nGibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?\nWelche Wunschstücke sind unverzichtbar und welche nur Inspiration?\n\nDieser Plan bestätigt weder Termin, Besetzung, Fassung, Notenlage, Arrangement, Rechte, Preis noch Buchung. Das wird direkt mit Kim-Marie geklärt.\n\nKopieren\nTXT laden\nNeu beginnen\nE-Mail vorbereiten",
   "requestedSongOutput": "Bereit für die musikalische Prüfung\n\nPerfect\nTitel\nPerfect\nFassung\nEd Sheeran, studio version\nAnlass\nHochzeit / Trauung\nSpielmoment\nAnkunft der Gäste\nWiedererkennung\nvor allem die Melodie\nMelodie ohne Gesang\nvermutlich ja\nGewünschte Form\nflexible, gekürzte Fassung\nVorlauf\nmehr als sechs Wochen\nPersönlicher Kern\nDie Melodie verbindet das Paar mit einem gemeinsamen Moment.\nIm Gespräch klären\nWer gibt am Spielmoment das Start- und Endsignal?\nSind Veranstaltungsmeldung, Setlist und weitere Rechtefragen auf Veranstalterseite geklärt?\n\nGrenze: Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Rechte, Preis oder Buchung.",
   "recordingBriefOutput": "Dokumentarfilm Cue 04\nProjekt / Cue\nDokumentarfilm Cue 04\nFunktion\nSolistische Melodie\nWirkung und Kontext\nEine warme Mittellage soll den Übergang tragen, ohne die Sprache zu verdecken.\nStartreferenz\n00:42 nach Sprecherpause\nTempo / Raster\nReferenzmix, aber kein Click\nArtikulation / Phrasierung\nGebunden, ruhiger Bogen, wenig Vibrato.\nVarianten\nHauptfassung plus freieres Ende.\nLieferumfang\nVollständige Takes plus markierte Favoriten\nProjektformat\n48 kHz / 24 Bit\nDateibenennung\nprojekt_cue_stimme_take\nÜbergabe / Review\nReview am 24. August durch Schnitt.\nTechnische Bedingungen\nTrockene Hauptspur plus Referenzbearbeitung.\nOffene Fragen\nSind Noten, Arrangement, Aufnahme und spätere Nutzung für den konkreten Zweck geklärt?\n\nGrenze: Dieses Werkzeug bestätigt weder Spielbarkeit, Termin, Preis, Rechte, Besetzung noch technische Machbarkeit.",
   "failures": []
