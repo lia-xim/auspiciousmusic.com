@@ -35,15 +35,15 @@
      */
 
     /* Paper — the editorial world */
-    --canvas: #f1eee6;          /* soft ivory · ink 15.7:1 */
-    --surface: #f9f7f2;         /* lifted band */
+    --canvas: #f4f5f6;          /* neutral reading surface */
+    --surface: #eceff1;         /* quiet section contrast */
     --surface-bright: #ffffff;  /* brightest step, used sparingly */
-    --tint: #e5dfd1;            /* warm workbench plane · ink 13.7:1 */
-    --ink: #14151c;             /* ink with the stage's blue cast */
-    --ink-soft: #34353f;
-    --muted: #5d5e69;           /* 5.5:1 on canvas · 4.8:1 on tint */
-    --line: rgba(20, 21, 28, 0.14);
-    --line-strong: rgba(20, 21, 28, 0.26);
+    --tint: #e3e6e9;            /* neutral workbench plane */
+    --ink: #17191f;
+    --ink-soft: #383d44;
+    --muted: #5c636b;
+    --line: rgba(23, 25, 31, 0.14);
+    --line-strong: rgba(23, 25, 31, 0.28);
 
     /* Stage — the ink-black theatre */
     --stage: #0d0f16;           /* near-black with a navy/ink cast */
@@ -56,15 +56,15 @@
     --stage-line-soft: rgba(243, 240, 233, 0.07);
 
     /* Action axis — cool signal blue, links and CTAs only */
-    --accent: #2b4fd7;          /* 5.7:1 on canvas · 4.9:1 on tint */
-    --accent-hover: #2340b8;
+    --accent: #8f1d35;
+    --accent-hover: #74172b;
     --accent-on: #ffffff;       /* 6.6:1 on accent */
-    --accent-on-dark: #9db4ff;  /* 9.5:1 on stage */
+    --accent-on-dark: #f0a5b5;
 
     /* Material axis — copper, the colour of a wound string */
-    --ember: #9c4513;           /* text weight · 5.5:1 canvas · 4.8:1 tint */
-    --ember-bright: #c4681f;    /* fills, markers, the string's glow */
-    --ember-on-dark: #e0995c;   /* 8.1:1 on stage */
+    --ember: #765a1f;
+    --ember-bright: #ae8640;
+    --ember-on-dark: #d7b66e;
 
     /* Legacy aliases — every page written against revision 2 keeps
        working; the values now point into the stage model. */
@@ -84,11 +84,7 @@
        high centre like a rehearsal room; paper takes no gradient at all,
        it is matte by definition. Grain is a hand-authored SVG turbulence
        tile at ~4% so large dark planes read as material, not as #000. */
-    --light-stage:
-      radial-gradient(120% 90% at 50% -20%,
-        rgba(243, 240, 233, 0.085), transparent 62%),
-      radial-gradient(80% 60% at 85% 110%,
-        rgba(43, 79, 215, 0.05), transparent 70%);
+    --light-stage: none;
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 
     /* Type families */
@@ -122,11 +118,11 @@
     --measure: min(74ch, 46rem); /* ~736px reading column */
     --gutter: clamp(1.25rem, 4vw, 3rem);
 
-    --r-sm: 12px;
-    --r-md: 16px;
-    --r-lg: 20px;
-    --r-media: 28px;
-    --r-control: 12px;           /* inputs, selects, search fields */
+    --r-sm: 4px;
+    --r-md: 6px;
+    --r-lg: 8px;
+    --r-media: 8px;
+    --r-control: 4px;
 
     /* How far a paper section pulls itself over a stage plane */
     --sheet-overlap: 3.5rem;
@@ -317,8 +313,7 @@
 
   .app-frame {
     position: relative;
-    background:
-      linear-gradient(178deg, var(--stage-raised), var(--stage) 62%);
+    background: var(--stage-raised);
     color: var(--stage-text);
     border: 1px solid var(--stage-line-soft);
     border-radius: var(--r-lg);

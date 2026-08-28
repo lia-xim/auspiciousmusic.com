@@ -167,9 +167,13 @@ if (keyboardClosedMenu.open !== 'false' || keyboardClosedMenu.hidden !== 'true' 
   failures.push('mobile menu: keyboard open, Escape close or focus restoration is incorrect ' + JSON.stringify(keyboardClosedMenu));
 }
 
-const canvas = interactionPage.locator('[data-string]');
-if (await canvas.count() !== 1) failures.push('homepage: interactive string canvas missing');
-await interactionPage.locator('[data-string-pluck]').click();
+const homeProduct = await interactionPage.evaluate(() => ({
+  hero: document.querySelectorAll('.focus-hero').length,
+  occasionStarts: document.querySelectorAll('.occasion-start a').length,
+  plannerHref: document.querySelector('.focus-hero__actions a')?.getAttribute('href'),
+  languageHref: document.querySelector('.header-language')?.getAttribute('href'),
+}));
+if (homeProduct.hero !== 1 || homeProduct.occasionStarts !== 6 || homeProduct.plannerHref !== '/tools/eventmusik-planer/' || homeProduct.languageHref !== '/en/') failures.push('homepage: focused planner entry is incomplete ' + JSON.stringify(homeProduct));
 await interactionPage.screenshot({ path: path.join(outputDirectory, 'implementation-home-mobile.png'), fullPage: true });
 await interactionPage.close();
 
@@ -242,5 +246,5 @@ if (failures.length) {
   failures.forEach((failure) => console.error(`- ${failure}`));
   process.exitCode = 1;
 } else {
-  console.log(`Browser QA passed: ${checkedRoutes.length} routes across desktop/mobile plus 200%/400% reflow checks (${observations.length} route-viewport checks), Axe, keyboard/mobile navigation, forced-colors/reduced-motion, site search, canvas trigger, and delay calculator.`);
+  console.log(`Browser QA passed: ${checkedRoutes.length} routes across desktop/mobile plus 200%/400% reflow checks (${observations.length} route-viewport checks), Axe, keyboard/mobile navigation, forced-colors/reduced-motion, focused planner entry, site search, and calculator behavior.`);
 }

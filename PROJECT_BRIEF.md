@@ -2,18 +2,18 @@
 
 ## Positioning
 
-Auspicious Music is a new German-first Viola & Strings Lab: an expert reference and planning site for live viola, event-music workflows, repertoire decisions and acoustic-string recording. Kim-Marie Borger is the named current expert. Matthias Ramahi is the current publisher.
+Auspicious Music is a new German-first planning publication for ceremony and event music, supported by focused viola, repertoire and acoustic-string recording guidance. Kim-Marie Borger is the named current expert. Matthias Ramahi is the current publisher.
 
 It is a modern successor on a historic domain, not a continuation of the former operator, catalogue, downloads, authorship or clients.
 
 ## Product priorities
 
-1. Help visitors turn an occasion into a usable event-music plan with moments, cues, practical limits and repertoire ideas.
+1. Help visitors turn an occasion into three reasoned repertoire suggestions, a usable running order and the questions needed for personal review.
 2. Maintain one source-backed repertoire inventory by occasion rather than duplicating title lists across pages.
-3. Keep every German-first user journey consistently German. Provide English through `/en/`, the English planner and a curated technical library; do not create automatic translation duplicates.
-4. Open a prefilled email draft to Kim-Marie only after the visitor has reviewed the plan. The site never sends or stores the enquiry itself.
+3. Keep every German-first user journey consistently German. `/en/` and the English planner use the same product structure as their German counterparts; do not create automatic translation fan-out.
+4. After the visitor reviews the plan, offer Kim-Marie's verified contact section and a prefilled email draft. The site never sends or stores the enquiry itself.
 5. Explain viola and string decisions through musical function and practical constraints.
-6. Connect relevant visitors to Kim-Marie Borger's current official site without duplicating her commercial booking pages or unsupported service claims.
+6. Connect relevant visitors to Kim-Marie Borger's current official contact section without duplicating her commercial booking pages or unsupported service claims.
 7. Preserve only exact, legitimate historic references with transparent rights and availability notes.
 
 ## Core routes
@@ -38,12 +38,14 @@ It is a modern successor on a historic domain, not a continuation of the former 
 
 Photography and videography are not independent clusters unless future evidence supports a real current offer and publishable assets.
 
+`/eventmusik/unterricht/` and the former production/tool magazine routes remain accessible for readers following an old or direct link, but are no longer search landing pages or part of the core navigation. Unterricht is not an event-planner job.
+
 ## Booking boundary
 
 - Auspicious Music creates a preparation plan, not a quote or booking.
 - A named title is a planning suggestion, not confirmation of an exact version, notation, arrangement, date or performance right.
 - Availability, ensemble, preparation effort, rights, price and contract are confirmed directly with Kim-Marie.
-- The email action uses `mailto:` and opens a draft in the visitor's own email application. It does not submit data to this site.
+- The contact action copies the reviewed plan and opens `https://kim-marie-borger.com/#kontakt`. The email action uses `mailto:` as an alternative. Neither submits data to this site.
 
 ## Release gates
 

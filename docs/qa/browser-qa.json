@@ -1,13 +1,20 @@
 {
-  "implementation": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-22T23:47:45.603Z",
-  "uniqueRoutesChecked": 58,
-  "routeViewportChecks": 124,
+  "implementation": "http://localhost:4321",
+  "checkedAt": "2026-08-28T16:10:32.168Z",
+  "uniqueRoutesChecked": 60,
+  "routeViewportChecks": 128,
   "observations": [
     {
       "route": "/",
       "status": 200,
-      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "title": "Auspicious Music — Musik für Trauung und Event planen",
+      "viewport": "1440x900",
+      "axeViolations": 0
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "title": "Auspicious Music — Plan music for ceremonies and events",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -35,7 +42,7 @@
     {
       "route": "/recording/",
       "status": 200,
-      "title": "Recording — Auspicious Music",
+      "title": "Viola und Streicher aufnehmen — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -105,14 +112,14 @@
     {
       "route": "/recording/acoustic-instruments/recording-viola-at-home/",
       "status": 200,
-      "title": "A repeatable plan for recording viola at home — Auspicious Music",
+      "title": "Viola zuhause nachvollziehbar aufnehmen — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/about/",
       "status": 200,
-      "title": "About Auspicious Music — Auspicious Music",
+      "title": "Über Auspicious Music — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -126,14 +133,14 @@
     {
       "route": "/about/editorial-policy/",
       "status": 200,
-      "title": "Editorial policy — Auspicious Music",
+      "title": "Redaktionelle Regeln — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/authors/",
       "status": 200,
-      "title": "Expert & publisher — Auspicious Music",
+      "title": "Fachperson und Herausgeber — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -210,14 +217,14 @@
     {
       "route": "/definitely-not-a-real-page/",
       "status": 404,
-      "title": "Page not found — Auspicious Music",
+      "title": "Seite nicht gefunden — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/410/",
-      "status": 410,
-      "title": "Adresse dauerhaft entfernt — Auspicious Music",
+      "status": 404,
+      "title": "Seite nicht gefunden — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -225,6 +232,13 @@
       "route": "/internal/design-concept/",
       "status": 200,
       "title": "Design concept — Auspicious Music",
+      "viewport": "1440x900",
+      "axeViolations": 0
+    },
+    {
+      "route": "/internal/mobile-matrix/",
+      "status": 200,
+      "title": "Mobile concepts — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -245,14 +259,14 @@
     {
       "route": "/recording/acoustic-instruments/viola-microphone-placement/",
       "status": 200,
-      "title": "Viola microphone placement: three useful starting positions",
+      "title": "Viola-Mikrofonposition: drei sinnvolle Startpunkte — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/sound-design/when-to-record-strings-instead-of-using-a-library/",
       "status": 200,
-      "title": "When to record a string part instead of using a library",
+      "title": "Live-Streicher oder Sample-Library? — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -294,14 +308,14 @@
     {
       "route": "/tools/eventmusik-planer/",
       "status": 200,
-      "title": "Eventmusik planen — Auspicious Music",
+      "title": "Musikempfehlungen für dein Event — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/en/tools/event-music-planner/",
       "status": 200,
-      "title": "Plan event music — Auspicious Music",
+      "title": "Music suggestions for your event — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -385,7 +399,7 @@
     {
       "route": "/search/",
       "status": 200,
-      "title": "Search — Auspicious Music",
+      "title": "Suche — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -399,7 +413,7 @@
     {
       "route": "/search/",
       "status": 200,
-      "title": "Search — Auspicious Music",
+      "title": "Suche — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -413,7 +427,14 @@
     {
       "route": "/",
       "status": 200,
-      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "title": "Auspicious Music — Musik für Trauung und Event planen",
+      "viewport": "390x844",
+      "axeViolations": 0
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "title": "Auspicious Music — Plan music for ceremonies and events",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -441,7 +462,7 @@
     {
       "route": "/recording/",
       "status": 200,
-      "title": "Recording — Auspicious Music",
+      "title": "Viola und Streicher aufnehmen — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -511,14 +532,14 @@
     {
       "route": "/recording/acoustic-instruments/recording-viola-at-home/",
       "status": 200,
-      "title": "A repeatable plan for recording viola at home — Auspicious Music",
+      "title": "Viola zuhause nachvollziehbar aufnehmen — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/about/",
       "status": 200,
-      "title": "About Auspicious Music — Auspicious Music",
+      "title": "Über Auspicious Music — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -532,14 +553,14 @@
     {
       "route": "/about/editorial-policy/",
       "status": 200,
-      "title": "Editorial policy — Auspicious Music",
+      "title": "Redaktionelle Regeln — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/authors/",
       "status": 200,
-      "title": "Expert & publisher — Auspicious Music",
+      "title": "Fachperson und Herausgeber — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -616,14 +637,14 @@
     {
       "route": "/definitely-not-a-real-page/",
       "status": 404,
-      "title": "Page not found — Auspicious Music",
+      "title": "Seite nicht gefunden — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/410/",
-      "status": 410,
-      "title": "Adresse dauerhaft entfernt — Auspicious Music",
+      "status": 404,
+      "title": "Seite nicht gefunden — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -631,6 +652,13 @@
       "route": "/internal/design-concept/",
       "status": 200,
       "title": "Design concept — Auspicious Music",
+      "viewport": "390x844",
+      "axeViolations": 0
+    },
+    {
+      "route": "/internal/mobile-matrix/",
+      "status": 200,
+      "title": "Mobile concepts — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -651,14 +679,14 @@
     {
       "route": "/recording/acoustic-instruments/viola-microphone-placement/",
       "status": 200,
-      "title": "Viola microphone placement: three useful starting positions",
+      "title": "Viola-Mikrofonposition: drei sinnvolle Startpunkte — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/sound-design/when-to-record-strings-instead-of-using-a-library/",
       "status": 200,
-      "title": "When to record a string part instead of using a library",
+      "title": "Live-Streicher oder Sample-Library? — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -700,14 +728,14 @@
     {
       "route": "/tools/eventmusik-planer/",
       "status": 200,
-      "title": "Eventmusik planen — Auspicious Music",
+      "title": "Musikempfehlungen für dein Event — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/en/tools/event-music-planner/",
       "status": 200,
-      "title": "Plan event music — Auspicious Music",
+      "title": "Music suggestions for your event — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -791,7 +819,7 @@
     {
       "route": "/search/",
       "status": 200,
-      "title": "Search — Auspicious Music",
+      "title": "Suche — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -805,7 +833,7 @@
     {
       "route": "/search/",
       "status": 200,
-      "title": "Search — Auspicious Music",
+      "title": "Suche — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -819,7 +847,7 @@
     {
       "route": "/",
       "status": 200,
-      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "title": "Auspicious Music — Musik für Trauung und Event planen",
       "viewport": "640x900",
       "axeViolations": 0
     },
@@ -847,7 +875,7 @@
     {
       "route": "/",
       "status": 200,
-      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "title": "Auspicious Music — Musik für Trauung und Event planen",
       "viewport": "320x900",
       "axeViolations": 0
     },

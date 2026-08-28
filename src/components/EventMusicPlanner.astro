@@ -20,35 +20,36 @@ const otherProfile = {
   questionsEn: ['Who gives the cue on site?', 'What function should the music fulfil?', 'Which spatial or timing constraints are already known?'],
   pieces: [],
 };
-const plannerData = [...occasionProfiles.map(({ slug, labelDe, labelEn, moments, questionsDe, questionsEn, pieces }) => ({ slug, labelDe, labelEn, moments, questionsDe, questionsEn, pieces })), otherProfile];
+const eventProfiles = occasionProfiles.filter((profile) => profile.slug !== 'unterricht');
+const plannerData = [...eventProfiles.map(({ slug, labelDe, labelEn, moments, questionsDe, questionsEn, pieces }) => ({ slug, labelDe, labelEn, moments, questionsDe, questionsEn, pieces })), otherProfile];
 const copy = de ? {
-  title: 'Eventmusik planen', description: 'Erstelle in drei kurzen Schritten einen klaren Musikplan mit Anlass, Rahmen, Ablauf und Repertoire-Ideen.',
-  intro: 'Drei Entscheidungen bis zu einem Plan, den du wirklich lesen und weitergeben kannst.', privacy: 'Bleibt in diesem Browser. Keine Anmeldung, Speicherung oder automatische Anfrage.',
-  steps: ['Anlass', 'Rahmen', 'Musik'], stepLabel: 'Schritt', chooseOccasion: 'Was planst du?', chooseOccasionNote: 'Wähle den Rahmen, der deinem Termin am nächsten kommt.', other: 'Anderer Anlass', otherLabel: 'Anlass kurz benennen',
+  title: 'Musikempfehlungen für dein Event', description: 'Erhalte in drei kurzen Schritten drei begründete Repertoire-Ideen mit passenden Spielmomenten und einem kompakten Ablauf.',
+  intro: 'Anlass und Wirkung auswählen. Der Planer macht daraus echte Vorschläge statt nur deine Eingaben zu wiederholen.', privacy: 'Bleibt in diesem Browser. Keine Anmeldung, Speicherung oder automatische Anfrage.',
+  steps: ['Anlass', 'Rahmen', 'Wirkung'], stepLabel: 'Schritt', chooseOccasion: 'Was planst du?', chooseOccasionNote: 'Wähle den Rahmen, der deinem Termin am nächsten kommt.', other: 'Anderer Anlass', otherLabel: 'Anlass kurz benennen',
   frame: 'Wann und wo findet es statt?', frameNote: 'Ort und Datum reichen zunächst. Alles Weitere kann später geklärt werden.', date: 'Datum', exact: 'Festes Datum', period: 'Zeitraum', openDate: 'Noch offen', from: 'Von', until: 'Bis',
   location: 'Ort oder Region', locationPlaceholder: 'Ort eingeben oder unten auswählen', supported: 'Aktiv veröffentlichte Orte und Regionen', supportedNote: '49 belegte Orte und Regionen. Ein anderer Ort bleibt möglich und wird individuell geprüft.', otherLocation: 'Anderen Ort übernehmen',
-  setting: 'Setting', role: 'Rolle der Musik', sound: 'Klang / Besetzung', music: 'Welche Momente soll die Musik tragen?', musicNote: 'Die sinnvollen Startmomente sind bereits ausgewählt. Du kannst sie direkt anpassen.', repertoire: 'Repertoire-Kurzliste', repertoireNote: 'Drei Titel sind als Ausgangspunkt markiert. Das ist keine Zusage einer bestimmten Fassung.', wishes: 'Wunschstück oder kurze Notiz', wishesPlaceholder: 'Optional: Titel, Stil oder persönlicher Bezug', refine: 'Klangrichtung verfeinern',
-  back: 'Zurück', nextFrame: 'Weiter: Rahmen', nextMusic: 'Weiter: Musik', create: 'Musikplan anzeigen', edit: 'Plan bearbeiten', restart: 'Neu beginnen',
-  liveTitle: 'Dein Plan', empty: 'Noch keine Auswahl', waitingMoments: 'Noch keine Programmpunkte', waitingPieces: 'Noch keine Stücke',
-  resultTitle: 'Dein Musikplan', resultLead: 'Der Ablauf ist jetzt kompakt genug für die nächste Abstimmung.', overview: 'Rahmen', flow: 'Ablauf', shortlist: 'Repertoire', questions: 'Noch zu klären',
-  copyAction: 'Kopieren', copied: 'Kopiert', download: 'TXT laden', email: 'E-Mail vorbereiten', boundary: 'Dieser Plan bestätigt weder Termin, Besetzung, Fassung, Notenlage, Arrangement, Rechte, Preis noch Buchung. Das wird direkt mit Kim-Marie geklärt.',
+  setting: 'Ortssituation', role: 'Rolle der Musik', sound: 'Klang / Besetzung', music: 'Welche Momente soll die Musik tragen?', musicNote: 'Die typischen Momente für diesen Anlass sind vorausgewählt. Nimm nur die auf, die wirklich stattfinden.', wishes: 'Wunschstück oder kurze Notiz', wishesPlaceholder: 'Optional: Titel, Stil oder persönlicher Bezug', refine: 'Gewünschte Wirkung',
+  back: 'Zurück', nextFrame: 'Weiter: Rahmen', nextMusic: 'Weiter: Wirkung', create: 'Empfehlungen anzeigen', edit: 'Auswahl ändern', restart: 'Neu beginnen',
+  liveTitle: 'Dein Plan', empty: 'Noch keine Auswahl', waitingMoments: 'Noch keine Programmpunkte', waitingPieces: 'Wird aus deiner Auswahl berechnet',
+  resultTitle: 'Drei Vorschläge für deinen Ablauf', resultLead: 'Jeder Titel ist einem gewählten Moment zugeordnet. Die konkrete Fassung bleibt Teil der persönlichen Abstimmung.', overview: 'Rahmen', flow: 'Ablauf', shortlist: 'Unsere Vorschläge', questions: 'Noch zu klären',
+  copyAction: 'Plan kopieren', copied: 'Plan kopiert', download: 'TXT laden', email: 'E-Mail mit Plan öffnen', contact: 'Plan kopieren & Kontakt öffnen', forMoment: 'Vorgeschlagen für', boundary: 'Die Vorschläge beruhen auf Anlass, Moment und gewünschter Wirkung. Sie bestätigen weder Termin, Besetzung, konkrete Fassung, Notenlage, Arrangement, Rechte, Preis noch Buchung.',
   requiredOccasion: 'Bitte wähle einen Anlass.', requiredOther: 'Bitte benenne den anderen Anlass kurz.', requiredLocation: 'Bitte gib einen Ort oder eine Region an.', requiredDate: 'Bitte wähle ein Datum oder markiere „Noch offen“.', requiredPeriod: 'Bitte wähle einen vollständigen, zeitlich korrekten Zeitraum.', requiredMoment: 'Bitte wähle mindestens einen Spielmoment.',
   supportedStatus: 'veröffentlichte Region', customStatus: 'individuell zu prüfen', noDate: 'Noch offen', noPieces: 'Noch keine Titel gewählt', noWishes: 'Keine Zusatznotiz', emailSubject: 'Eventmusik-Anfrage',
 } : {
-  title: 'Plan event music', description: 'Build a clear event-music plan in three short steps, covering occasion, setting, running order and repertoire ideas.',
-  intro: 'Three decisions lead to a plan you can actually read and share.', privacy: 'Stays in this browser. No account, storage or automatic enquiry.',
-  steps: ['Occasion', 'Setting', 'Music'], stepLabel: 'Step', chooseOccasion: 'What are you planning?', chooseOccasionNote: 'Choose the option closest to your event.', other: 'Another occasion', otherLabel: 'Name the occasion briefly',
+  title: 'Music suggestions for your event', description: 'Get three reasoned repertoire ideas with suitable musical moments and a compact running order in three short steps.',
+  intro: 'Choose the occasion and desired character. The planner turns them into suggestions rather than repeating your entries.', privacy: 'Stays in this browser. No account, storage or automatic enquiry.',
+  steps: ['Occasion', 'Setting', 'Character'], stepLabel: 'Step', chooseOccasion: 'What are you planning?', chooseOccasionNote: 'Choose the option closest to your event.', other: 'Another occasion', otherLabel: 'Name the occasion briefly',
   frame: 'When and where will it happen?', frameNote: 'Location and date are enough for now. Everything else can be clarified later.', date: 'Date', exact: 'Exact date', period: 'Date range', openDate: 'Not decided', from: 'From', until: 'Until',
   location: 'Place or region', locationPlaceholder: 'Type a place or choose below', supported: 'Published locations and regions', supportedNote: '49 evidenced locations and regions. Another place is still possible and will be checked individually.', otherLocation: 'Use another place',
-  setting: 'Setting', role: 'Role of the music', sound: 'Sound / line-up', music: 'Which moments should the music support?', musicNote: 'Useful starting moments are preselected. Adjust them directly.', repertoire: 'Repertoire shortlist', repertoireNote: 'Three titles are marked as a starting point. This does not confirm a particular version.', wishes: 'Requested piece or short note', wishesPlaceholder: 'Optional: title, style or personal meaning', refine: 'Refine the musical character',
-  back: 'Back', nextFrame: 'Next: setting', nextMusic: 'Next: music', create: 'Show music plan', edit: 'Edit plan', restart: 'Start again',
+  setting: 'Location setting', role: 'Role of the music', sound: 'Sound / line-up', music: 'Which moments should the music support?', musicNote: 'Typical moments are preselected. Keep only those that will actually happen.', wishes: 'Requested piece or short note', wishesPlaceholder: 'Optional: title, style or personal meaning', refine: 'Desired character',
+  back: 'Back', nextFrame: 'Next: setting', nextMusic: 'Next: character', create: 'Show suggestions', edit: 'Change selection', restart: 'Start again',
   liveTitle: 'Your plan', empty: 'No selection yet', waitingMoments: 'No programme moments yet', waitingPieces: 'No pieces yet',
-  resultTitle: 'Your music plan', resultLead: 'The running order is now compact enough for the next conversation.', overview: 'Setting', flow: 'Running order', shortlist: 'Repertoire', questions: 'Still to clarify',
-  copyAction: 'Copy', copied: 'Copied', download: 'Download TXT', email: 'Prepare email', boundary: 'This plan does not confirm date, line-up, version, notation, arrangement, rights, price or booking. Confirm these directly with Kim-Marie.',
+  resultTitle: 'Three suggestions for your running order', resultLead: 'Each title is connected to one of your selected moments. The exact version remains part of the personal review.', overview: 'Setting', flow: 'Running order', shortlist: 'Our suggestions', questions: 'Still to clarify',
+  copyAction: 'Copy plan', copied: 'Plan copied', download: 'Download TXT', email: 'Open email with plan', contact: 'Copy plan & open contact', forMoment: 'Suggested for', boundary: 'Suggestions are based on occasion, moment and desired character. They do not confirm date, line-up, exact version, notation, arrangement, rights, price or booking.',
   requiredOccasion: 'Choose an occasion.', requiredOther: 'Name the other occasion briefly.', requiredLocation: 'Enter a place or region.', requiredDate: 'Choose a date or mark it as not decided.', requiredPeriod: 'Choose a complete date range in chronological order.', requiredMoment: 'Choose at least one musical moment.',
   supportedStatus: 'published region', customStatus: 'to be checked individually', noDate: 'Not decided', noPieces: 'No titles selected', noWishes: 'No additional note', emailSubject: 'Event music enquiry',
 };
-const occasions = occasionProfiles.map((profile) => ({ value: profile.slug, label: de ? profile.labelDe : profile.labelEn, note: de && profile.slug === 'geburtstag' ? 'Überraschung, Geschenk oder Empfang' : de ? profile.shortDe : profile.shortEn }));
+const occasions = eventProfiles.map((profile) => ({ value: profile.slug, label: de ? profile.labelDe : profile.labelEn, note: de && profile.slug === 'geburtstag' ? 'Überraschung, Geschenk oder Empfang' : de ? profile.shortDe : profile.shortEn }));
 const settings = de ? [
   ['indoor', 'Innenraum', 'Akustik und Wege vor Ort'], ['outdoor', 'Draußen', 'Nur mit Schutz und Plan B'], ['both', 'Innen und draußen', 'Ortswechsel einplanen'], ['open', 'Noch offen', 'Im Gespräch festlegen'],
 ] : [
@@ -66,12 +67,12 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
     <style is:global>
       @layer components {
         .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-        .planner-page { background: #f4f6f7; color: #17191f; padding-block: clamp(1.6rem, 4vw, 3rem) clamp(4rem, 8vw, 7rem); }
+        .planner-page { background: #f3f4f5; color: #17191f; padding-block: clamp(1.6rem, 4vw, 3rem) clamp(4rem, 8vw, 7rem); }
         .planner-intro { display: flex; justify-content: space-between; align-items: end; gap: 1rem 3rem; padding-block: clamp(1.2rem, 3vw, 2.2rem); }
         .planner-intro h1 { max-width: none; font-size: clamp(2rem, 1.5rem + 2vw, 3.25rem); letter-spacing: 0; }
         .planner-intro p { max-width: 44rem; margin-top: .55rem; color: #58616b; }
         .planner-privacy { max-width: 28rem; border-left: 2px solid #8f1d35; padding-left: 1rem; color: #58616b; font-size: .88rem; line-height: 1.55; }
-        .planner-app { border: 1px solid #cfd5da; background: #fff; box-shadow: 0 16px 50px rgba(23, 25, 31, .08); }
+        .planner-app { max-width: 68rem; margin-inline: auto; border: 1px solid #c8cdd2; border-radius: 6px; background: #fff; box-shadow: 0 16px 44px rgba(23, 25, 31, .08); overflow: hidden; }
         .planner-progress { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #dfe3e6; }
         .planner-progress button { display: flex; align-items: center; gap: .65rem; min-height: 54px; padding: .7rem clamp(.7rem, 2vw, 1.2rem); border: 0; border-right: 1px solid #e3e6e8; background: #f8f9fa; color: #69727c; font: 600 .82rem/1.2 var(--font-sans); text-align: left; cursor: pointer; }
         .planner-progress button:last-child { border-right: 0; }
@@ -79,9 +80,8 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         .planner-progress button:disabled { cursor: default; }
         .planner-progress__number { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; flex: none; border: 1px solid #bfc6cc; border-radius: 50%; font-variant-numeric: tabular-nums; }
         .planner-progress button[aria-current="step"] .planner-progress__number, .planner-progress button[data-complete="true"] .planner-progress__number { border-color: #8f1d35; background: #8f1d35; color: #fff; }
-        .planner-workbench { display: grid; min-height: 34rem; }
-        @media (min-width: 1000px) { .planner-workbench { grid-template-columns: minmax(0, 1.55fr) minmax(19rem, .75fr); } }
-        .planner-form { min-width: 0; padding: clamp(1.2rem, 3vw, 2.25rem); }
+        .planner-workbench { display: block; min-height: 30rem; }
+        .planner-form { min-width: 0; max-width: 58rem; margin-inline: auto; padding: clamp(1.2rem, 3vw, 2.25rem); }
         .planner-workbench[hidden], .planner-step[hidden], .planner-result[hidden], [data-date-fields][hidden], [data-other-occasion][hidden] { display: none !important; }
         .planner-step__head { margin-bottom: 1.4rem; }
         .planner-step__head h2 { font-size: clamp(1.5rem, 1.25rem + .8vw, 2rem); }
@@ -107,7 +107,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         .field-label { display: grid; gap: .4rem; color: #424951; font-size: .82rem; font-weight: 650; }
         .location-box { border: 1px solid #d6dbe0; border-radius: 4px; overflow: hidden; }
         .location-box .planner-input { border: 0; border-bottom: 1px solid #d6dbe0; border-radius: 0; }
-        .location-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 1px; max-height: 14.5rem; overflow-y: auto; background: #e2e5e8; }
+        .location-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.25rem, 1fr)); gap: 1px; max-height: 9rem; overflow-y: auto; background: #e2e5e8; }
         .location-list button { min-height: 42px; border: 0; background: #fff; color: #30363d; padding: .55rem .7rem; text-align: left; font: 550 .82rem/1.25 var(--font-sans); cursor: pointer; }
         .location-list button:hover, .location-list button[aria-pressed="true"] { background: #eef5f3; color: #1e5c52; }
         .location-list button:focus-visible { position: relative; z-index: 1; outline: 3px solid #8f1d35; outline-offset: -3px; }
@@ -133,17 +133,17 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         .optional-details { margin-top: 1rem; border-top: 1px solid #e2e5e8; padding-top: .9rem; }
         .optional-details summary { cursor: pointer; color: #30363d; font-weight: 700; }
         .optional-details > div { margin-top: .8rem; }
-        .planner-result { padding: clamp(1.2rem, 3vw, 2.3rem); }
+        .planner-result { padding: clamp(1.2rem, 3vw, 2.3rem); scroll-margin-top: calc(var(--header-h) + .75rem); }
         .result-head { display: flex; justify-content: space-between; gap: 1rem 2rem; align-items: end; padding-bottom: 1.2rem; border-bottom: 1px solid #dfe3e6; }
         .result-head h2 { font-size: clamp(1.7rem, 1.35rem + 1.2vw, 2.5rem); }
         .result-head p { margin-top: .35rem; color: #68717b; }
-        .result-overview { display: grid; gap: 1px; background: #dfe3e6; margin-top: 1.2rem; border: 1px solid #dfe3e6; }
+        .result-overview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: #dfe3e6; margin-top: 1.2rem; border: 1px solid #dfe3e6; }
         @media (min-width: 720px) { .result-overview { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
         .result-overview > div { background: #fff; padding: .9rem; }
         .result-overview dt { color: #68717b; font-size: .75rem; }
         .result-overview dd { margin-top: .25rem; font-weight: 700; line-height: 1.35; }
         .result-grid { display: grid; gap: 0; margin-top: 1.2rem; border-block: 1px solid #dfe3e6; }
-        @media (min-width: 900px) { .result-grid { grid-template-columns: 1.1fr 1fr 1fr; } }
+        @media (min-width: 900px) { .result-grid { grid-template-columns: .9fr 1.25fr .85fr; } }
         .result-section { padding: 1.2rem 0; }
         @media (min-width: 900px) { .result-section { padding: 1.2rem; border-right: 1px solid #dfe3e6; } .result-section:first-child { padding-left: 0; } .result-section:last-child { border-right: 0; padding-right: 0; } }
         .result-section h3 { margin-bottom: .9rem; font-size: 1rem; }
@@ -154,7 +154,8 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         .timeline strong, .repertoire-result strong { display: block; font-size: .9rem; }
         .timeline small, .repertoire-result small { display: block; margin-top: .15rem; color: #68717b; line-height: 1.4; }
         .repertoire-result, .questions-result { display: grid; gap: .65rem; }
-        .repertoire-result li, .questions-result li { padding-bottom: .6rem; border-bottom: 1px solid #e2e5e8; }
+        .repertoire-result li, .questions-result li { padding-bottom: .75rem; border-bottom: 1px solid #e2e5e8; }
+        .repertoire-result em { display: block; margin-top: .3rem; color: #8f1d35; font-size: .76rem; font-style: normal; font-weight: 700; text-transform: uppercase; }
         .questions-result li { padding-left: 1rem; border-left: 2px solid #2c6d62; }
         .result-boundary { margin-top: 1.2rem; border-left: 2px solid #8f1d35; padding-left: .9rem; color: #606972; font-size: .82rem; line-height: 1.55; }
         .result-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
@@ -220,23 +221,22 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
             <section class="planner-step" data-step="3" hidden>
               <header class="planner-step__head"><h2>{copy.music}</h2><p>{copy.musicNote}</p></header>
               <fieldset class="planner-section"><legend class="sr-only">{copy.music}</legend><div class="check-grid" data-moments></div></fieldset>
-              <fieldset class="planner-section"><legend>{copy.repertoire}</legend><p class="planner-step__note">{copy.repertoireNote}</p><div class="check-grid" data-pieces></div></fieldset>
-              <details class="optional-details"><summary>{copy.refine}</summary><div><div class="option-grid option-grid--three compact-options">{characters.map(([value, label], index) => <label class="option"><input type="radio" name="character" value={value} checked={index === 0} /><strong>{label}</strong></label>)}</div><label class="field-label planner-section">{copy.wishes}<textarea class="planner-input" name="wishes" rows="3" maxlength="500" placeholder={copy.wishesPlaceholder}></textarea></label></div></details>
+              <fieldset class="planner-section"><legend>{copy.refine}</legend><div class="option-grid option-grid--three compact-options">{characters.map(([value, label], index) => <label class="option"><input type="radio" name="character" value={value} checked={index === 0} /><strong>{label}</strong></label>)}</div></fieldset>
+              <label class="field-label planner-section">{copy.wishes}<textarea class="planner-input" name="wishes" rows="3" maxlength="500" placeholder={copy.wishesPlaceholder}></textarea></label>
             </section>
 
             <p class="planner-error" data-planner-error aria-live="polite"></p>
             <div class="planner-nav"><button class="btn btn--quiet" type="button" data-back hidden>{copy.back}</button><button class="btn btn--primary" type="button" data-next>{copy.nextFrame}</button><button class="btn btn--primary" type="submit" data-create hidden>{copy.create}</button></div>
           </form>
 
-          <aside class="planner-summary" aria-live="polite"><h2>{copy.liveTitle}<span class="summary-status" data-summary-status>({copy.empty})</span></h2><section class="summary-section"><h3>{copy.overview}</h3><ul class="summary-list" data-summary-frame><li><span>{copy.steps[0]}</span><span>—</span></li><li><span>{copy.date}</span><span>—</span></li><li><span>{copy.location}</span><span>—</span></li></ul></section><section class="summary-section"><h3>{copy.flow}</h3><p data-summary-moments>{copy.waitingMoments}</p></section><section class="summary-section"><h3>{copy.shortlist}</h3><p data-summary-pieces>{copy.waitingPieces}</p></section></aside>
         </div>
 
         <section class="planner-result" data-result hidden tabindex="-1">
           <header class="result-head"><div><h2>{copy.resultTitle}</h2><p>{copy.resultLead}</p></div><button class="btn btn--quiet" type="button" data-edit>{copy.edit}</button></header>
           <dl class="result-overview" data-result-overview></dl>
-          <div class="result-grid"><section class="result-section"><h3>{copy.flow}</h3><ol class="timeline" data-result-flow></ol></section><section class="result-section"><h3>{copy.shortlist}</h3><ul class="repertoire-result" data-result-pieces></ul></section><section class="result-section"><h3>{copy.questions}</h3><ul class="questions-result" data-result-questions></ul></section></div>
+          <div class="result-grid"><section class="result-section"><h3>{copy.shortlist}</h3><ul class="repertoire-result" data-result-pieces></ul></section><section class="result-section"><h3>{copy.flow}</h3><ol class="timeline" data-result-flow></ol></section><section class="result-section"><h3>{copy.questions}</h3><ul class="questions-result" data-result-questions></ul></section></div>
           <p class="result-boundary">{copy.boundary}</p>
-          <div class="result-actions"><button class="btn btn--quiet" type="button" data-copy>{copy.copyAction}</button><button class="btn btn--quiet" type="button" data-download>{copy.download}</button><button class="btn btn--quiet" type="button" data-restart>{copy.restart}</button><button class="btn btn--primary" type="button" data-email>{copy.email}</button></div>
+          <div class="result-actions"><button class="btn btn--quiet" type="button" data-copy>{copy.copyAction}</button><button class="btn btn--quiet" type="button" data-email>{copy.email}</button><a class="btn btn--primary" href="https://kim-marie-borger.com/#kontakt" target="_blank" rel="noopener" data-contact>{copy.contact}</a></div>
         </section>
       </section>
     </div>
@@ -257,14 +257,13 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         const result = app.querySelector('[data-result]');
         const error = app.querySelector('[data-planner-error]');
         const momentsRoot = app.querySelector('[data-moments]');
-        const piecesRoot = app.querySelector('[data-pieces]');
         const locationInput = app.querySelector('#planner-location');
         const locationList = app.querySelector('#planner-location-list');
         const locationState = app.querySelector('[data-location-state]');
         const nextButton = app.querySelector('[data-next]');
         const backButton = app.querySelector('[data-back]');
         const createButton = app.querySelector('[data-create]');
-        if (!(form instanceof HTMLFormElement) || !(workbench instanceof HTMLElement) || !(result instanceof HTMLElement) || !(error instanceof HTMLElement) || !(momentsRoot instanceof HTMLElement) || !(piecesRoot instanceof HTMLElement) || !(locationInput instanceof HTMLInputElement) || !(locationList instanceof HTMLElement) || !(locationState instanceof HTMLElement) || !(nextButton instanceof HTMLButtonElement) || !(backButton instanceof HTMLButtonElement) || !(createButton instanceof HTMLButtonElement)) return;
+        if (!(form instanceof HTMLFormElement) || !(workbench instanceof HTMLElement) || !(result instanceof HTMLElement) || !(error instanceof HTMLElement) || !(momentsRoot instanceof HTMLElement) || !(locationInput instanceof HTMLInputElement) || !(locationList instanceof HTMLElement) || !(locationState instanceof HTMLElement) || !(nextButton instanceof HTMLButtonElement) || !(backButton instanceof HTMLButtonElement) || !(createButton instanceof HTMLButtonElement)) return;
         let step = 1;
         let briefText = '';
         const normalize = (value) => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -277,14 +276,30 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         const formatDate = (value) => value ? new Intl.DateTimeFormat(lang === 'de' ? 'de-DE' : 'en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(`${value}T12:00:00`)) : '';
         const dateLabel = () => { const data = new FormData(form); const mode = checkedValue('dateMode'); if (mode === 'open') return copy.noDate; if (mode === 'period') { const from = formatDate(data.get('dateFrom')); const until = formatDate(data.get('dateUntil')); return from && until ? `${from} – ${until}` : '—'; } return formatDate(data.get('dateExact')) || '—'; };
         const selectedMoments = () => [...form.querySelectorAll('input[name="moments"]:checked')].map((input) => profile()?.moments[Number(input.value)]).filter(Boolean);
-        const selectedPieces = () => [...form.querySelectorAll('input[name="pieces"]:checked')].map((input) => profile()?.pieces[Number(input.value)]).filter(Boolean);
+        const selectedMomentIndexes = () => [...form.querySelectorAll('input[name="moments"]:checked')].map((input) => Number(input.value));
+        const recommendations = () => {
+          const selected = profile();
+          if (!selected?.pieces?.length) return [];
+          const chosenMoments = selectedMomentIndexes();
+          const character = checkedValue('character');
+          const ranked = selected.pieces.map((piece, index) => {
+            const matchingMoments = (piece.moments || []).filter((moment) => chosenMoments.includes(moment));
+            const characterFit = character !== 'open' && (piece.characters || []).includes(character);
+            return { piece, index, matchingMoments, score: matchingMoments.length * 4 + (characterFit ? 5 : 0) + (selected.pieces.length - index) / 100 };
+          }).sort((a, b) => b.score - a.score);
+          const usedMoments = new Set();
+          return ranked.slice(0, 3).map((item, index) => {
+            const momentIndex = item.matchingMoments.find((value) => !usedMoments.has(value)) ?? item.matchingMoments[0] ?? chosenMoments[index % Math.max(chosenMoments.length, 1)] ?? 0;
+            usedMoments.add(momentIndex);
+            return { ...item, momentIndex };
+          });
+        };
         const minDate = (() => { const now = new Date(); return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`; })();
         form.querySelectorAll('input[type="date"]').forEach((input) => input.min = minDate);
 
         function renderProfileChoices() {
           const selected = profile();
           momentsRoot.innerHTML = selected ? selected.moments.map((moment, index) => `<label class="check-option"><input type="checkbox" name="moments" value="${index}" checked><span><strong>${escapeHtml(lang === 'de' ? moment.de : moment.en)}</strong><small>${escapeHtml(lang === 'de' ? moment.guidanceDe : moment.guidanceEn)}</small></span></label>`).join('') : '';
-          piecesRoot.innerHTML = selected ? selected.pieces.map((piece, index) => `<label class="check-option"><input type="checkbox" name="pieces" value="${index}" ${index < 3 ? 'checked' : ''}><span><strong>${escapeHtml(piece.title)}</strong>${(lang === 'de' ? piece.clarificationDe : piece.clarificationEn) ? `<small>${escapeHtml(lang === 'de' ? piece.clarificationDe : piece.clarificationEn)}</small>` : ''}</span></label>`).join('') : `<p>${escapeHtml(copy.noPieces)}</p>`;
           updateSummary();
         }
 
@@ -303,16 +318,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         }
 
         function updateSummary() {
-          const frame = app.querySelector('[data-summary-frame]');
-          const momentSummary = app.querySelector('[data-summary-moments]');
-          const pieceSummary = app.querySelector('[data-summary-pieces]');
-          const status = app.querySelector('[data-summary-status]');
-          const location = locationInput.value.trim() || '—';
-          if (frame) frame.innerHTML = `<li><span>${escapeHtml(copy.steps[0])}</span><span>${escapeHtml(occasionLabel())}</span></li><li><span>${escapeHtml(copy.date)}</span><span>${escapeHtml(dateLabel())}</span></li><li><span>${escapeHtml(copy.location)}</span><span>${escapeHtml(location)}</span></li>`;
-          const moments = selectedMoments(); const pieces = selectedPieces();
-          if (momentSummary) momentSummary.textContent = moments.length ? `${moments.length} ${copy.flow.toLowerCase()}` : copy.waitingMoments;
-          if (pieceSummary) pieceSummary.textContent = pieces.length ? pieces.map((piece) => piece.title).join(', ') : copy.waitingPieces;
-          if (status) status.textContent = occasionLabel() === '—' ? `(${copy.empty})` : `(${copy.steps[Math.min(step - 1, 2)]})`;
+          // The former live sidebar repeated form values and made the tool feel denser.
         }
 
         function setStep(next) {
@@ -337,16 +343,28 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         }
 
         function createBrief() {
-          const data = new FormData(form); const selected = profile(); const moments = selectedMoments(); const pieces = selectedPieces();
+          const data = new FormData(form); const selected = profile(); const moments = selectedMoments(); const pieces = recommendations();
           const overview = [[copy.steps[0], occasionLabel()], [copy.date, dateLabel()], [copy.location, locationInput.value.trim()], [copy.role, checkedLabel('role')]];
           app.querySelector('[data-result-overview]').innerHTML = overview.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('');
           app.querySelector('[data-result-flow]').innerHTML = moments.map((moment) => `<li><strong>${escapeHtml(lang === 'de' ? moment.de : moment.en)}</strong><small>${escapeHtml(lang === 'de' ? moment.guidanceDe : moment.guidanceEn)}</small></li>`).join('');
-          app.querySelector('[data-result-pieces]').innerHTML = (pieces.length ? pieces : []).map((piece) => `<li><strong>${escapeHtml(piece.title)}</strong>${(lang === 'de' ? piece.clarificationDe : piece.clarificationEn) ? `<small>${escapeHtml(lang === 'de' ? piece.clarificationDe : piece.clarificationEn)}</small>` : ''}</li>`).join('') || `<li>${escapeHtml(copy.noPieces)}</li>`;
+          app.querySelector('[data-result-pieces]').innerHTML = pieces.map(({ piece, momentIndex }) => {
+            const moment = selected?.moments[momentIndex];
+            const momentLabel = moment ? (lang === 'de' ? moment.de : moment.en) : occasionLabel();
+            const characterLabel = checkedLabel('character');
+            const reason = lang === 'de'
+              ? `Aus dem Repertoire für ${occasionLabel()}, priorisiert nach „${characterLabel}“ und deinen gewählten Spielmomenten.`
+              : `From the repertoire for ${occasionLabel()}, prioritised by “${characterLabel}” and your selected musical moments.`;
+            const clarification = lang === 'de' ? piece.clarificationDe : piece.clarificationEn;
+            return `<li><strong>${escapeHtml(piece.title)}</strong><em>${escapeHtml(copy.forMoment)}: ${escapeHtml(momentLabel)}</em><small>${escapeHtml(reason)}</small>${clarification ? `<small>${escapeHtml(clarification)}</small>` : ''}</li>`;
+          }).join('') || `<li>${escapeHtml(copy.noPieces)}</li>`;
           const questions = selected ? (lang === 'de' ? selected.questionsDe : selected.questionsEn) : [];
           app.querySelector('[data-result-questions]').innerHTML = questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('');
           const wishes = String(data.get('wishes') || '').trim() || copy.noWishes;
-          briefText = [`AUSPICIOUS MUSIC — ${copy.resultTitle.toUpperCase()}`, '', ...overview.map(([label, value]) => `${label}: ${value}`), `${copy.setting}: ${checkedLabel('setting')}`, `${copy.sound}: ${checkedLabel('sound')}`, `${copy.refine}: ${checkedLabel('character')}`, '', copy.flow.toUpperCase(), ...moments.map((moment, index) => `${index + 1}. ${lang === 'de' ? moment.de : moment.en} — ${lang === 'de' ? moment.guidanceDe : moment.guidanceEn}`), '', copy.shortlist.toUpperCase(), ...(pieces.length ? pieces.map((piece) => `- ${piece.title}`) : [`- ${copy.noPieces}`]), '', `${copy.wishes}: ${wishes}`, '', copy.questions.toUpperCase(), ...questions.map((question) => `- ${question}`), '', copy.boundary].join('\n');
-          workbench.hidden = true; result.hidden = false; result.focus();
+          briefText = [lang === 'de' ? 'MUSIKPLAN ZUR ABSTIMMUNG' : 'MUSIC PLAN FOR REVIEW', '', ...overview.map(([label, value]) => `${label}: ${value}`), `${copy.setting}: ${checkedLabel('setting')}`, `${copy.sound}: ${checkedLabel('sound')}`, `${copy.refine}: ${checkedLabel('character')}`, '', copy.flow.toUpperCase(), ...moments.map((moment, index) => `${index + 1}. ${lang === 'de' ? moment.de : moment.en} — ${lang === 'de' ? moment.guidanceDe : moment.guidanceEn}`), '', copy.shortlist.toUpperCase(), ...(pieces.length ? pieces.map(({ piece, momentIndex }) => `- ${piece.title} — ${copy.forMoment}: ${lang === 'de' ? selected?.moments[momentIndex]?.de : selected?.moments[momentIndex]?.en}`) : [`- ${copy.noPieces}`]), '', `${copy.wishes}: ${wishes}`, '', copy.questions.toUpperCase(), ...questions.map((question) => `- ${question}`), '', copy.boundary].join('\n');
+          workbench.hidden = true;
+          result.hidden = false;
+          result.focus({ preventScroll: true });
+          requestAnimationFrame(() => result.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }));
         }
 
         form.addEventListener('change', (event) => {
@@ -362,10 +380,9 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         app.querySelectorAll('[data-step-button]').forEach((button) => button.addEventListener('click', () => { const target = Number(button.getAttribute('data-step-button')); if (target <= step) setStep(target); }));
         form.addEventListener('submit', (event) => { event.preventDefault(); const message = validateStep(3); if (message) { error.textContent = message; return; } createBrief(); });
         app.querySelector('[data-edit]').addEventListener('click', () => { result.hidden = true; workbench.hidden = false; setStep(3); });
-        app.querySelector('[data-restart]').addEventListener('click', () => { form.reset(); locationInput.value = ''; momentsRoot.innerHTML = ''; piecesRoot.innerHTML = ''; app.querySelector('[data-other-occasion]').hidden = true; result.hidden = true; workbench.hidden = false; briefText = ''; updateDateFields(); renderLocations(); setStep(1); });
         app.querySelector('[data-copy]').addEventListener('click', async (event) => { try { await navigator.clipboard.writeText(briefText); const button = event.currentTarget; button.textContent = copy.copied; setTimeout(() => { button.textContent = copy.copyAction; }, 1500); } catch { /* TXT remains available. */ } });
-        app.querySelector('[data-download]').addEventListener('click', () => { const url = URL.createObjectURL(new Blob([briefText], { type: 'text/plain;charset=utf-8' })); const link = document.createElement('a'); link.href = url; link.download = lang === 'de' ? 'eventmusik-plan.txt' : 'event-music-plan.txt'; link.click(); URL.revokeObjectURL(url); });
         app.querySelector('[data-email]').addEventListener('click', () => { window.location.href = `mailto:kim-marie.borger@t-online.de?subject=${encodeURIComponent(`${copy.emailSubject}: ${occasionLabel()}`)}&body=${encodeURIComponent(briefText)}`; });
+        app.querySelector('[data-contact]').addEventListener('click', async () => { try { await navigator.clipboard.writeText(briefText); } catch { /* The contact page still opens. */ } });
         const requested = new URLSearchParams(location.search).get(lang === 'de' ? 'anlass' : 'occasion') || new URLSearchParams(location.search).get('anlass');
         if (requested && bySlug[requested]) { const radio = form.querySelector(`input[name="occasion"][value="${CSS.escape(requested)}"]`); if (radio) { radio.checked = true; renderProfileChoices(); setStep(2); } }
         renderLocations(); updateDateFields(); updateSummary();

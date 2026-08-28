@@ -1,16 +1,16 @@
 [
   {
     "route": "/",
-    "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
-    "description": "Unabhängige Entscheidungshilfe für Viola, Eventmusik, Repertoireplanung und Aufnahme mit Kim-Marie Borger als heutiger musikalischer Fachperson.",
-    "h1": "Viola und Eventmusik verständlich planen.",
+    "title": "Auspicious Music — Musik für Trauung und Event planen",
+    "description": "Ein kostenloser Musikplaner für Trauung, Trauerfeier und Event mit begründeten Repertoire-Ideen.",
+    "h1": "Musik, die zu eurem Moment passt.",
     "internal": false
   },
   {
     "route": "/en/",
-    "title": "Auspicious Music in English — Event planning and strings",
-    "description": "The English entry to the event-music planner and selected technical guides about strings, recording and music production.",
-    "h1": "Plan the music. Understand the string decision.",
+    "title": "Auspicious Music — Plan music for ceremonies and events",
+    "description": "A free music planner for ceremonies and events with reasoned repertoire suggestions.",
+    "h1": "Music that fits the moment.",
     "internal": false
   },
   {
@@ -307,16 +307,16 @@
   },
   {
     "route": "/tools/eventmusik-planer/",
-    "title": "Eventmusik planen — Auspicious Music",
-    "description": "In drei kurzen Schritten einen Musikplan mit Anlass, Datum, Ort, Ablauf und Repertoire-Ideen erstellen.",
-    "h1": "Eventmusik planen",
+    "title": "Musikempfehlungen für dein Event — Auspicious Music",
+    "description": "In drei kurzen Schritten drei begründete Repertoire-Ideen mit passenden Spielmomenten erhalten.",
+    "h1": "Musikempfehlungen für dein Event",
     "internal": false
   },
   {
     "route": "/en/tools/event-music-planner/",
-    "title": "Plan event music — Auspicious Music",
-    "description": "Build an event-music plan in three short steps, covering occasion, date, place, running order and repertoire ideas.",
-    "h1": "Plan event music",
+    "title": "Music suggestions for your event — Auspicious Music",
+    "description": "Get three reasoned repertoire ideas with suitable musical moments in three short steps.",
+    "h1": "Music suggestions for your event",
     "internal": false
   },
   {

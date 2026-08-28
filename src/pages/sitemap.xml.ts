@@ -1,16 +1,17 @@
 import type { APIRoute } from 'astro';
 import records from '../data/migrated-pages.json';
 import { articles } from '../data/articles';
+import { isSearchLanding } from '../data/index-policy';
 
 const site = 'https://www.auspiciousmusic.com';
-const extraRoutes = ['/journal/', '/contribute/'];
+const extraRoutes: string[] = [];
 function escapeXml(value: string) { return value.replace(/[<>&'"]/g, (character) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' })[character] ?? character); }
 
 export const GET: APIRoute = () => {
   const publicRoutes = records
-    .filter((record) => !record.internal && record.indexable !== false && !['/404/', '/410/', '/publishing-roadmap/'].includes(record.route))
+    .filter((record) => !record.internal && record.indexable !== false && isSearchLanding(record.route) && !['/404/', '/410/', '/publishing-roadmap/'].includes(record.route))
     .map((record) => ({ route: record.route }));
-  const articleRoutes = articles.map((article) => ({
+  const articleRoutes = articles.filter((article) => isSearchLanding(article.href)).map((article) => ({
     route: article.href,
     lastmod: 'updated' in article ? article.updated : 'published' in article ? article.published : undefined,
   }));

@@ -2,6 +2,8 @@ export interface RepertoirePiece {
   title: string;
   clarificationDe?: string;
   clarificationEn?: string;
+  characters?: Array<'warm' | 'calm' | 'bright' | 'formal' | 'modern'>;
+  moments?: number[];
 }
 
 export interface OccasionMoment {
@@ -45,10 +47,13 @@ export const occasionProfiles: OccasionProfile[] = [
     questionsDe: ['Wer gibt Einzug und Auszug live frei?', 'Gibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?', 'Welche Wunschstücke sind unverzichtbar und welche nur Inspiration?'],
     questionsEn: ['Who gives the live cue for entrance and exit?', 'For an outdoor setting, is there a dry shaded place and a reliable Plan B?', 'Which requested pieces are essential and which are references only?'],
     pieces: [
-      { title: 'A Thousand Years' }, { title: 'Perfect' }, { title: 'All of Me' },
-      { title: 'Can\u2019t Help Falling in Love' }, { title: 'Canon in D' },
-      { title: 'Ordinary', clarificationDe: 'Interpretation oder Version bei der Anfrage angeben.', clarificationEn: 'Name the intended artist or version in the enquiry.' },
-      { title: 'Wildest Dreams' },
+      { title: 'A Thousand Years', characters: ['warm', 'modern'], moments: [1, 2] },
+      { title: 'Perfect', characters: ['warm', 'modern'], moments: [1, 3] },
+      { title: 'All of Me', characters: ['warm', 'calm'], moments: [1, 2] },
+      { title: 'Can\u2019t Help Falling in Love', characters: ['warm', 'calm'], moments: [0, 2] },
+      { title: 'Canon in D', characters: ['formal', 'bright'], moments: [0, 1, 3] },
+      { title: 'Ordinary', clarificationDe: 'Interpretation oder Version bei der Anfrage angeben.', clarificationEn: 'Name the intended artist or version in the enquiry.', characters: ['modern', 'warm'], moments: [1, 2] },
+      { title: 'Wildest Dreams', characters: ['modern', 'bright'], moments: [2, 3] },
     ],
   },
   {
@@ -68,7 +73,14 @@ export const occasionProfiles: OccasionProfile[] = [
     ],
     questionsDe: ['Wie lange dauert der Empfang realistisch?', 'Soll die Musik durchgehend oder in Blöcken spielen?', 'Wo stehen Gäste, Service und Musikerin zueinander?'],
     questionsEn: ['How long will the reception realistically last?', 'Should the music run continuously or in sets?', 'Where will guests, service staff and performer stand?'],
-    pieces: [{ title: 'Viva La Vida' }, { title: 'Marry You' }, { title: 'Despacito' }, { title: 'Dancing Queen' }, { title: 'Shut Up and Dance' }, { title: 'La Vie en Rose' }],
+    pieces: [
+      { title: 'Viva La Vida', characters: ['bright', 'modern'], moments: [0, 3] },
+      { title: 'Marry You', characters: ['bright', 'modern'], moments: [0, 1] },
+      { title: 'Despacito', characters: ['bright', 'modern'], moments: [1, 2] },
+      { title: 'Dancing Queen', characters: ['bright'], moments: [1, 3] },
+      { title: 'Shut Up and Dance', characters: ['bright', 'modern'], moments: [2, 3] },
+      { title: 'La Vie en Rose', characters: ['warm', 'calm'], moments: [0, 2] },
+    ],
   },
   {
     slug: 'trauerfeier',
@@ -88,9 +100,12 @@ export const occasionProfiles: OccasionProfile[] = [
     questionsDe: ['Wer koordiniert den Ablauf vor Ort?', 'Welche persönliche Bedeutung hat das Wunschstück?', 'Wird an einem oder mehreren Orten gespielt?'],
     questionsEn: ['Who coordinates the service on site?', 'What personal meaning does the requested piece carry?', 'Will the performance take place in one or several locations?'],
     pieces: [
-      { title: 'Hallelujah' },
-      { title: 'Ave Maria', clarificationDe: 'Komponist oder Fassung bei der Anfrage abstimmen.', clarificationEn: 'Confirm the composer or version in the enquiry.' },
-      { title: 'Der Schwan' }, { title: 'You Raise Me Up' }, { title: 'Somewhere Over the Rainbow' }, { title: 'Tears in Heaven' },
+      { title: 'Hallelujah', characters: ['calm', 'warm'], moments: [0, 2, 3] },
+      { title: 'Ave Maria', clarificationDe: 'Komponist oder Fassung bei der Anfrage abstimmen.', clarificationEn: 'Confirm the composer or version in the enquiry.', characters: ['formal', 'calm'], moments: [0, 1, 2] },
+      { title: 'Der Schwan', characters: ['formal', 'calm'], moments: [0, 2] },
+      { title: 'You Raise Me Up', characters: ['warm', 'formal'], moments: [1, 3] },
+      { title: 'Somewhere Over the Rainbow', characters: ['warm', 'bright'], moments: [2, 3] },
+      { title: 'Tears in Heaven', characters: ['calm', 'warm'], moments: [1, 2] },
     ],
   },
   {
@@ -110,7 +125,13 @@ export const occasionProfiles: OccasionProfile[] = [
     ],
     questionsDe: ['Wie viele Gänge und Reden sind geplant?', 'Soll die Musik rein begleitend oder einmal bewusst im Mittelpunkt sein?', 'Ist Verstärkung im Raum notwendig oder unerwünscht?'],
     questionsEn: ['How many courses and speeches are planned?', 'Should the music remain background or take focus once?', 'Is amplification necessary or unwanted in the room?'],
-    pieces: [{ title: 'La Vie en Rose' }, { title: 'Sar\u00e0 perch\u00e9 ti amo' }, { title: 'Fly Me to the Moon' }, { title: 'Moon River' }, { title: 'Salut d\u2019Amour' }],
+    pieces: [
+      { title: 'La Vie en Rose', characters: ['warm', 'calm'], moments: [0, 1] },
+      { title: 'Sar\u00e0 perch\u00e9 ti amo', characters: ['bright', 'modern'], moments: [1, 3] },
+      { title: 'Fly Me to the Moon', characters: ['bright', 'warm'], moments: [0, 2] },
+      { title: 'Moon River', characters: ['calm', 'warm'], moments: [0, 1, 3] },
+      { title: 'Salut d\u2019Amour', characters: ['formal', 'warm'], moments: [0, 2] },
+    ],
   },
   {
     slug: 'firmenevent',
@@ -129,7 +150,15 @@ export const occasionProfiles: OccasionProfile[] = [
     ],
     questionsDe: ['Wer ist am Veranstaltungstag entscheidungsbefugt?', 'Welche Technik und Aufbauzeit sind vor Ort verfügbar?', 'Ist die Musik Hintergrund, Programmpunkt oder beides?'],
     questionsEn: ['Who can make decisions on the event day?', 'Which technical setup and setup time are available?', 'Is the music background, a featured item, or both?'],
-    pieces: [{ title: 'Viva La Vida' }, { title: 'Skyfall' }, { title: 'Titanium' }, { title: 'Shape of You' }, { title: 'Wake Me Up' }, { title: 'Experience' }, { title: 'Game of Thrones Theme' }],
+    pieces: [
+      { title: 'Viva La Vida', characters: ['bright', 'modern'], moments: [0, 1] },
+      { title: 'Skyfall', characters: ['formal', 'modern'], moments: [1, 3] },
+      { title: 'Titanium', characters: ['modern', 'bright'], moments: [1, 3] },
+      { title: 'Shape of You', characters: ['modern', 'bright'], moments: [0, 2] },
+      { title: 'Wake Me Up', characters: ['bright', 'modern'], moments: [0, 3] },
+      { title: 'Experience', characters: ['formal', 'modern'], moments: [1, 3] },
+      { title: 'Game of Thrones Theme', characters: ['formal', 'modern'], moments: [1, 3] },
+    ],
   },
   {
     slug: 'geburtstag',
@@ -148,7 +177,17 @@ export const occasionProfiles: OccasionProfile[] = [
     ],
     questionsDe: ['Ist der Auftritt eine Überraschung?', 'Wer kann Ankunft und Startsignal diskret koordinieren?', 'Welche Musik verbindet die gefeierte Person mit den Gästen?'],
     questionsEn: ['Is the performance a surprise?', 'Who can coordinate arrival and cue discreetly?', 'Which music connects the guest of honour with the guests?'],
-    pieces: [{ title: 'Happy Birthday' }, { title: 'Schön, dass du geboren bist' }, { title: 'Dancing Queen' }, { title: 'Mamma Mia' }, { title: 'Lieblingsmensch' }, { title: 'Applaus, Applaus' }, { title: 'Birthday \u2013 The Lumineers' }, { title: 'Happy Birthday \u2013 Stevie Wonder' }, { title: 'Tage wie diese' }],
+    pieces: [
+      { title: 'Happy Birthday', characters: ['bright'], moments: [0, 2, 3] },
+      { title: 'Schön, dass du geboren bist', characters: ['bright', 'warm'], moments: [0, 2] },
+      { title: 'Dancing Queen', characters: ['bright'], moments: [1, 3] },
+      { title: 'Mamma Mia', characters: ['bright', 'modern'], moments: [1, 3] },
+      { title: 'Lieblingsmensch', characters: ['warm', 'modern'], moments: [0, 2] },
+      { title: 'Applaus, Applaus', characters: ['warm', 'bright'], moments: [2, 3] },
+      { title: 'Birthday \u2013 The Lumineers', characters: ['modern', 'warm'], moments: [1, 2] },
+      { title: 'Happy Birthday \u2013 Stevie Wonder', characters: ['bright', 'modern'], moments: [0, 3] },
+      { title: 'Tage wie diese', characters: ['bright', 'modern'], moments: [1, 3] },
+    ],
   },
   {
     slug: 'unterricht',

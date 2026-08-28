@@ -7,7 +7,7 @@ Project role: modern successor, not a continuation of the former operator or cat
 
 ## Objective
 
-Build Auspicious Music as a German-first expert reference and planning layer around viola, event music, repertoire decisions and acoustic-string recording. Kim-Marie Borger is the named current expert; her own site remains the authoritative destination for current availability, offers and performance enquiries. The planner supports German and English without turning every editorial route into an automatically translated duplicate.
+Build Auspicious Music as a German-first planning layer for ceremony and event music, supported by focused viola, repertoire and acoustic-string recording guidance. Kim-Marie Borger is the named current expert; her own site remains the authoritative destination for current availability, offers and performance enquiries. The planner supports German and English through the same product structure without turning every editorial route into an automatically translated duplicate.
 
 The site must earn visibility through useful decisions, tools and first-hand evidence. It must not borrow the former operator's identity, downloads, media, clients or authorship.
 
@@ -42,13 +42,11 @@ Home (German-first, reciprocal language alternate with `/en/`)
 
 English entry (`/en/`)
 ├── Event-music planner (EN, reciprocal alternate with DE planner)
-└── Curated English technical library
-    ├── Music production and Ableton
-    ├── Sound design and music for media
-    └── Technical browser tools
+├── Wedding-ceremony guide
+└── Selected strings and recording guidance
 ```
 
-German navigation does not send readers into English editorial pages without an explicit language cue. English technical routes keep their established URLs; moving them merely to create a language folder would add migration risk without creating user value. `hreflang` is emitted only for true localized counterparts: `/` ↔ `/en/` and the two planner routes. Other language buttons lead to the relevant language home without falsely declaring page equivalence.
+German navigation does not send readers into English editorial pages without an explicit language cue. Older technical routes keep their established URLs but are no longer treated as search landing pages or primary navigation because they dilute the event-music job. `hreflang` is emitted only for true localized counterparts: `/` ↔ `/en/` and the two planner routes. Other language buttons lead to the relevant language home without falsely declaring page equivalence.
 
 Photography and videography are not standalone clusters. They may be mentioned only when they are a real adjacent production need, never as an implied current service or as a reconstruction of old `/photo.html` and `/video.html` pages.
 
@@ -61,6 +59,8 @@ Photography and videography are not standalone clusters. They may be mentioned o
 | `/tools/eventmusik-planer/` | Index after production gate | Distinct bilingual planning utility, local-only |
 | `/en/`, `/en/tools/event-music-planner/` | Index after production gate | Defined English entry and genuine localized planner counterpart |
 | Current articles and relevant calculators | Index after production gate | Useful supporting tasks |
+| Older Ableton, production, generic sound-design, film-clearance, calculator and journal routes | Accessible, noindex, excluded from sitemap and search | Retained for direct readers without presenting an unfocused magazine as the current strategy |
+| `/eventmusik/unterricht/` | Accessible, noindex, excluded from planner, sitemap and core navigation | Unterricht is not an event-music planning job |
 | `/download/` | Permanent noindex | Status page receives the dominant spam backlink cluster |
 | `/services/` | Permanent noindex | Thin bridge to Kim-Marie's authoritative current site |
 | Verified `/legacy/` records | Index cautiously | Exact historic references with explicit rights boundary |

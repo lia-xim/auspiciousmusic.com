@@ -1,24 +1,24 @@
 {
-  "baseUrl": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-22T23:48:04.435Z",
+  "baseUrl": "http://localhost:4321",
+  "checkedAt": "2026-08-28T16:10:40.092Z",
   "observations": [
     {
       "page": "homepage",
       "viewport": "desktop",
       "overflow": 0,
-      "revealCount": 22,
+      "revealCount": 0,
       "hiddenRevealCount": 0,
-      "visiblePortalCount": 4,
-      "visibleArticleCount": 4
+      "visibleStepCount": 3,
+      "visiblePathCount": 4
     },
     {
       "page": "homepage",
       "viewport": "mobile",
       "overflow": 0,
-      "revealCount": 22,
+      "revealCount": 0,
       "hiddenRevealCount": 0,
-      "visiblePortalCount": 4,
-      "visibleArticleCount": 4
+      "visibleStepCount": 3,
+      "visiblePathCount": 4
     },
     {
       "page": "article",
@@ -26,8 +26,8 @@
       "overflow": 0,
       "articleCount": 1,
       "headingCount": 7,
-      "sourceLinkCount": 2,
-      "bodyTextLength": 4242
+      "sourceLinkCount": 3,
+      "bodyTextLength": 4266
     }
   ],
   "failures": []

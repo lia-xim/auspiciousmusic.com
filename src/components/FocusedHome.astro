@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResponsiveEditorialImage from './ResponsiveEditorialImage.astro';
+
+interface Props { lang: 'de' | 'en'; }
+const { lang } = Astro.props;
+const de = lang === 'de';
+const planner = de ? '/tools/eventmusik-planer/' : '/en/tools/event-music-planner/';
+const copy = de ? {
+  title: 'Auspicious Music — Musik für Trauung und Event planen',
+  description: 'Ein kostenloser Musikplaner für Trauung, Trauerfeier und Event: Anlass und Wirkung wählen, passende Repertoire-Ideen erhalten und mit Kim-Marie abstimmen.',
+  kicker: 'Musikplanung für echte Abläufe',
+  h1: 'Musik, die zu eurem Moment passt.',
+  intro: 'Wählt Anlass, Spielmomente und gewünschte Wirkung. Der Planer schlägt passende Titel aus dem gepflegten Repertoire vor und ordnet sie einem konkreten Moment zu.',
+  primary: 'Musikempfehlungen erhalten', secondary: 'Repertoire ansehen', occasionLabel: 'Direkt mit einem Anlass starten',
+  occasions: [['Hochzeit / Trauung', 'hochzeit'], ['Sektempfang', 'sektempfang'], ['Trauerfeier', 'trauerfeier'], ['Dinner', 'dinner'], ['Firmenevent', 'firmenevent'], ['Geburtstag', 'geburtstag']],
+  howKicker: 'So funktioniert es', howTitle: 'Drei Entscheidungen. Ein brauchbarer Vorschlag.',
+  steps: [['01', 'Anlass und Momente', 'Was findet statt und an welchen Stellen soll Musik tragen?'], ['02', 'Rahmen und Wirkung', 'Ort, Datum, drinnen oder draußen, begleitend oder im Mittelpunkt.'], ['03', 'Empfehlungen und Ablauf', 'Drei begründete Titelideen, ein Ablauf und offene Fragen für die Abstimmung.']],
+  focusKicker: 'Wofür die Seite da ist', focusTitle: 'Planung zuerst. Buchung dort, wo sie hingehört.',
+  focusText: 'Auspicious Music hilft bei der Vorbereitung: Musikmomente erkennen, Repertoire eingrenzen und offene Fragen sichtbar machen. Verfügbarkeit, konkrete Fassung, Besetzung und Preis bestätigt Kim-Marie Borger auf ihrer eigenen Website.',
+  focusAction: 'Mehr über Kim-Maries Rolle', pathsTitle: 'Die wichtigsten Einstiege',
+  paths: [['Hochzeitsmusik planen', 'Einzug, Ringtausch oder Unterschrift und Auszug in eine klare Reihenfolge bringen.', '/eventmusik/hochzeit/'], ['Musik für eine Trauerfeier', 'Wenige persönliche Stücke behutsam mit Ort, Worten und Abschied verbinden.', '/eventmusik/trauerfeier/'], ['Repertoire nach Anlass', 'Titel nicht als endlose Liste, sondern nach Funktion und Anlass durchsuchen.', '/repertoire/'], ['Viola verstehen', 'Klang, Rolle und Grenzen der Viola bei Anlass und Aufnahme einordnen.', '/viola/']],
+  disclosure: 'Kim-Marie Borger ist die heutige musikalische Fachperson dieses Projekts. Matthias Ramahi ist Herausgeber. Auspicious Music ist ein neues redaktionelles Projekt und keine Fortsetzung des früheren Betreibers.',
+} : {
+  title: 'Auspicious Music — Plan music for ceremonies and events',
+  description: 'A free music planner for ceremonies and events: choose the occasion and desired effect, receive repertoire suggestions and prepare the conversation with Kim-Marie.',
+  kicker: 'Music planning for real running orders', h1: 'Music that fits the moment.',
+  intro: 'Choose the occasion, musical moments and desired character. The planner recommends titles from the maintained repertoire and connects each idea to a specific moment.',
+  primary: 'Get music suggestions', secondary: 'See the repertoire', occasionLabel: 'Start with an occasion',
+  occasions: [['Wedding ceremony', 'hochzeit'], ['Drinks reception', 'sektempfang'], ['Funeral / memorial', 'trauerfeier'], ['Dinner', 'dinner'], ['Corporate event', 'firmenevent'], ['Birthday', 'geburtstag']],
+  howKicker: 'How it works', howTitle: 'Three decisions. One useful proposal.',
+  steps: [['01', 'Occasion and moments', 'What is happening, and where should live music carry the moment?'], ['02', 'Setting and character', 'Place, date, indoor or outdoor, background or featured.'], ['03', 'Suggestions and running order', 'Three reasoned title ideas, a running order and the questions still open.']],
+  focusKicker: 'What this site does', focusTitle: 'Plan here. Confirm the booking at the source.',
+  focusText: 'Auspicious Music helps prepare the decision: identify musical moments, narrow the repertoire and surface open questions. Kim-Marie Borger confirms availability, exact version, line-up and price on her own website.',
+  focusAction: 'Understand Kim-Marie’s role', pathsTitle: 'The useful routes',
+  paths: [['Event-music planner', 'Build suggestions around a real occasion and running order.', '/en/tools/event-music-planner/'], ['Wedding ceremony guide', 'Plan cues, flexible timings and practical conditions for a ceremony.', '/music-for-media/planning-live-viola-for-a-wedding-ceremony/'], ['Viola and strings', 'Understand register, role and practical limits.', '/viola/'], ['Recording strings', 'Prepare room, placement and repeatable recording decisions.', '/recording/']],
+  disclosure: 'Kim-Marie Borger is the current musical expert for this project. Matthias Ramahi is the publisher. Auspicious Music is a new editorial project, not a continuation of the former operator.',
+};
+---
+
+<BaseLayout title={copy.title} description={copy.description} canonicalPath={de ? '/' : '/en/'} lang={lang} headerOverDark={true} alternatePath={de ? '/en/' : '/'}>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href="/assets/story-viola-back-1200.avif" imagesrcset="/assets/story-viola-back-800.avif 800w, /assets/story-viola-back-1200.avif 1200w, /assets/story-viola-back-1376.avif 1376w" imagesizes="100vw" type="image/avif" fetchpriority="high" />
+    <style is:global>
+      @layer components {
+        .focus-home { background: var(--canvas); }
+        .focus-hero { position: relative; min-height: min(49rem, calc(100svh - 1.25rem)); margin-top: calc(-1 * var(--header-h)); padding-top: var(--header-h); overflow: hidden; background: var(--stage); color: var(--stage-text); }
+        .focus-hero__media, .focus-hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .focus-hero__media img { object-fit: cover; object-position: center; filter: saturate(.72) contrast(1.08) brightness(.52); }
+        .focus-hero::after { content: ''; position: absolute; inset: 0; background: rgba(9,10,14,.76); }
+        .focus-hero__inner { position: relative; z-index: 1; display: grid; align-content: center; min-height: min(49rem, calc(100svh - 1.25rem)); padding-block: clamp(5rem, 11vh, 8rem) clamp(2.5rem, 7vh, 4.5rem); }
+        .focus-hero__copy { max-width: 50rem; }
+        .focus-hero .kicker { color: var(--ember-on-dark); }
+        .focus-hero h1 { max-width: 12ch; margin-top: 1rem; font-size: clamp(3rem, 1.7rem + 4.7vw, 6.1rem); line-height: .98; letter-spacing: 0; }
+        .focus-hero__intro { max-width: 63ch; margin-top: 1.35rem; color: #c8cbd0; font-size: clamp(1.05rem, .98rem + .3vw, 1.25rem); line-height: 1.65; }
+        .focus-hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.8rem; }
+        .focus-hero .btn--quiet { border-color: rgba(255,255,255,.28); color: #fff; }
+        .occasion-start { margin-top: clamp(2.5rem, 7vh, 4.5rem); padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.2); }
+        .occasion-start > p { color: #aeb2b9; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+        .occasion-start ul { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .8rem; }
+        .occasion-start a { display: inline-flex; align-items: center; min-height: 42px; padding: .55rem .8rem; border: 1px solid rgba(255,255,255,.24); border-radius: 4px; color: #fff; font-size: .88rem; text-decoration: none; }
+        .occasion-start a:hover { border-color: var(--ember-on-dark); color: var(--ember-on-dark); }
+        .focus-band { padding-block: clamp(4rem, 8vw, 7rem); }
+        .focus-how { background: #f3f4f5; border-bottom: 1px solid #d9dce0; }
+        .focus-head { max-width: 54rem; }
+        .focus-head h2 { margin-top: .8rem; font-size: clamp(2rem, 1.5rem + 2vw, 3.6rem); letter-spacing: 0; }
+        .focus-steps { display: grid; gap: 0; margin-top: 2.5rem; border-block: 1px solid #cfd3d7; }
+        @media (min-width: 780px) { .focus-steps { grid-template-columns: repeat(3, 1fr); } }
+        .focus-step { display: grid; grid-template-columns: 2.4rem 1fr; gap: .8rem; padding: 1.4rem 1rem 1.4rem 0; }
+        .focus-step + .focus-step { border-top: 1px solid #cfd3d7; }
+        @media (min-width: 780px) { .focus-step + .focus-step { border-top: 0; border-left: 1px solid #cfd3d7; padding-left: 1.4rem; } }
+        .focus-step__n { color: #8f1d35; font: 700 .8rem/1.4 var(--font-mono); }
+        .focus-step h3 { font-size: 1.1rem; letter-spacing: 0; }
+        .focus-step p { margin-top: .35rem; color: #5d646c; font-size: .93rem; line-height: 1.55; }
+        .focus-split { display: grid; gap: 2.5rem 5rem; align-items: center; }
+        @media (min-width: 900px) { .focus-split { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } }
+        .focus-split__media { overflow: hidden; border-radius: 4px; border: 1px solid #d0d4d8; }
+        .focus-split__media img { aspect-ratio: 16/10; object-fit: cover; }
+        .focus-split h2 { margin-top: .8rem; font-size: clamp(2rem, 1.5rem + 2vw, 3.4rem); letter-spacing: 0; }
+        .focus-split p:not(.kicker) { margin-top: 1.1rem; color: #525960; line-height: 1.7; }
+        .focus-split a { display: inline-block; margin-top: 1.3rem; color: #8f1d35; font-weight: 700; }
+        .focus-paths { background: #fff; border-block: 1px solid #d9dce0; }
+        .focus-paths h2 { font-size: clamp(2rem, 1.6rem + 1.5vw, 3rem); letter-spacing: 0; }
+        .focus-path-list { margin-top: 2rem; border-top: 1px solid #bfc4c9; }
+        .focus-path-list a { display: grid; gap: .4rem 2rem; padding: 1.3rem 0; border-bottom: 1px solid #d9dce0; text-decoration: none; }
+        @media (min-width: 740px) { .focus-path-list a { grid-template-columns: minmax(14rem, .65fr) minmax(0, 1fr) auto; align-items: center; } }
+        .focus-path-list h3 { font-size: 1.1rem; letter-spacing: 0; }
+        .focus-path-list p { color: #60676e; font-size: .94rem; }
+        .focus-path-list span { color: #8f1d35; font-weight: 700; }
+        .focus-disclosure { background: var(--stage); color: #c4c7cd; padding-block: 2rem; }
+        .focus-disclosure p { max-width: 78rem; font-size: .88rem; line-height: 1.6; }
+        @media (max-width: 620px) { .focus-hero { min-height: auto; } .focus-hero__inner { min-height: 44rem; padding-top: 5.5rem; } .focus-hero::after { background: rgba(9,10,14,.79); } .focus-hero h1 { font-size: clamp(2.65rem, 13vw, 4rem); } .focus-hero__actions .btn { flex: 1 1 100%; } .occasion-start ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); } .occasion-start a { justify-content: center; text-align: center; } }
+      }
+    </style>
+  </Fragment>
+  <main id="content" class="focus-home">
+    <section class="focus-hero" aria-labelledby="focus-home-title">
+      <ResponsiveEditorialImage class="focus-hero__media" asset="story-viola-back" priority={true} sizes="100vw" alt={de ? 'Viola in einem ruhigen Aufnahmeraum' : 'Viola in a quiet recording room'} />
+      <div class="shell focus-hero__inner"><div class="focus-hero__copy"><p class="kicker">{copy.kicker}</p><h1 id="focus-home-title">{copy.h1}</h1><p class="focus-hero__intro">{copy.intro}</p><div class="focus-hero__actions"><a class="btn btn--primary" href={planner}>{copy.primary}</a><a class="btn btn--quiet" href="/repertoire/">{copy.secondary}</a></div></div><nav class="occasion-start" aria-label={copy.occasionLabel}><p>{copy.occasionLabel}</p><ul>{copy.occasions.map(([label, slug]) => <li><a href={`${planner}?${de ? 'anlass' : 'occasion'}=${slug}`}>{label}</a></li>)}</ul></nav></div>
+    </section>
+    <section class="focus-band focus-how"><div class="shell"><div class="focus-head"><p class="kicker">{copy.howKicker}</p><h2>{copy.howTitle}</h2></div><ol class="focus-steps">{copy.steps.map(([number, title, text]) => <li class="focus-step"><span class="focus-step__n">{number}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></div></section>
+    <section class="focus-band"><div class="shell focus-split"><figure class="focus-split__media"><ResponsiveEditorialImage asset="hero-portrait" sizes="(min-width: 900px) 42vw, 100vw" alt={de ? 'Redaktionelle Darstellung einer gespannten Saite auf einem Metallsteg' : 'Editorial image of a tensioned string on a metal bridge'} /></figure><div><p class="kicker">{copy.focusKicker}</p><h2>{copy.focusTitle}</h2><p>{copy.focusText}</p><a href="/about/">{copy.focusAction} →</a></div></div></section>
+    <section class="focus-band focus-paths"><div class="shell"><h2>{copy.pathsTitle}</h2><ul class="focus-path-list">{copy.paths.map(([title, text, href]) => <li><a href={href}><h3>{title}</h3><p>{text}</p><span aria-hidden="true">→</span></a></li>)}</ul></div></section>
+    <aside class="focus-disclosure"><div class="shell"><p>{copy.disclosure}</p></div></aside>
+  </main>
+</BaseLayout>

@@ -42,7 +42,6 @@ export const siteStrategy = {
         { href: '/tools/wunschstueck-check/', label: 'Wunschstück prüfen', note: 'Fassung und offene Fragen' },
         { href: '/eventmusik/sektempfang/', label: 'Sektempfang', note: 'Leicht und gesprächsfreundlich' },
         { href: '/eventmusik/dinner/', label: 'Dinner', note: 'Zwischen Gängen und Reden' },
-        { href: '/eventmusik/unterricht/', label: 'Unterricht', note: 'Ziel, Werk und Übeplan' },
       ],
     },
     {
@@ -61,9 +60,8 @@ export const siteStrategy = {
   englishNavigation: [
     { href: '/en/', label: 'English home' },
     { href: '/en/tools/event-music-planner/', label: 'Event planner' },
-    { href: '/resources/', label: 'Technical library' },
-    { href: '/ableton/', label: 'Ableton' },
-    { href: '/music-production/', label: 'Production' },
-    { href: '/sound-design/', label: 'Sound design' },
+    { href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', label: 'Wedding ceremony' },
+    { href: '/recording/', label: 'Recording strings' },
+    { href: '/about/', label: 'About' },
   ],
 } as const;

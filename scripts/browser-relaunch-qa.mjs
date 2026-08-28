@@ -18,7 +18,7 @@ const browser = await chromium.launch({
 });
 const failures = [];
 const observations = [];
-const routes = ['/', '/viola/', '/viola/viola-oder-violine/', '/eventmusik/', '/eventmusik/live-streicher-draussen/', '/eventmusik/hochzeit/', '/eventmusik/trauerfeier/', '/eventmusik/firmenevent/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/en/tools/event-music-planner/', '/tools/wunschstueck-check/', '/tools/streicheraufnahme-briefing/', '/resources/', '/download/', '/services/'];
+const routes = ['/', '/en/', '/viola/', '/viola/viola-oder-violine/', '/eventmusik/', '/eventmusik/live-streicher-draussen/', '/eventmusik/hochzeit/', '/eventmusik/trauerfeier/', '/eventmusik/firmenevent/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/en/tools/event-music-planner/', '/tools/wunschstueck-check/', '/tools/streicheraufnahme-briefing/', '/download/', '/services/'];
 
 async function inspect(route, viewport) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
@@ -69,22 +69,23 @@ await planner.locator('[data-location="Köln"]').click();
 await planner.locator('input[name="dateExact"]').fill('2026-09-10');
 await planner.locator('input[name="setting"][value="indoor"]').check();
 await planner.locator('[data-next]').click();
-if ((await planner.locator('input[name="moments"]:checked').count()) < 3 || (await planner.locator('input[name="pieces"]:checked').count()) !== 3) failures.push('planner defaults: expected selected moments and three repertoire starters');
-await planner.locator('.optional-details summary').click();
+if ((await planner.locator('input[name="moments"]:checked').count()) < 3 || (await planner.locator('input[name="pieces"]').count()) !== 0) failures.push('planner defaults: expected selected moments and no user-selected repertoire');
+await planner.locator('input[name="character"][value="warm"]').check();
 await planner.locator('textarea[name="wishes"]').fill('Warm, persönlich, genaue Fassung noch offen.');
 await planner.locator('[data-create]').click();
+await planner.waitForTimeout(700);
 const generated = await planner.locator('[data-result]').innerText();
-for (const expected of ['Dein Musikplan', 'Hochzeit / Trauung', '10.09.2026', 'Köln', 'Ablauf', 'Einzug', 'Repertoire', 'A Thousand Years', 'Noch zu klären']) {
+  for (const expected of ['Drei Vorschläge für deinen Ablauf', 'Hochzeit / Trauung', '10.09.2026', 'Köln', 'Ablauf', 'Einzug', 'Unsere Vorschläge', 'A Thousand Years', 'VORGESCHLAGEN FÜR', 'Noch zu klären']) {
   if (!generated.includes(expected)) failures.push(`planner generation: missing ${expected}`);
 }
-const plannerState = await planner.evaluate(() => ({ overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, resultVisible: !document.querySelector('[data-result]')?.hidden, workbenchHidden: document.querySelector('[data-workbench]')?.hidden }));
-if (plannerState.overflow > 1 || !plannerState.resultVisible || !plannerState.workbenchHidden) failures.push(`planner result state: ${JSON.stringify(plannerState)}`);
+const plannerState = await planner.evaluate(() => ({ overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, resultVisible: !document.querySelector('[data-result]')?.hidden, workbenchHidden: document.querySelector('[data-workbench]')?.hidden, resultTop: document.querySelector('[data-result]')?.getBoundingClientRect().top }));
+if (plannerState.overflow > 1 || !plannerState.resultVisible || !plannerState.workbenchHidden || plannerState.resultTop < 60 || plannerState.resultTop > 130) failures.push(`planner result state: ${JSON.stringify(plannerState)}`);
+if (await planner.locator('[data-result-pieces] > li').count() !== 3) failures.push('planner recommendations: expected exactly three generated suggestions');
+if ((await planner.locator('[data-contact]').getAttribute('href')) !== 'https://kim-marie-borger.com/#kontakt') failures.push('planner contact: verified Kim-Marie contact target missing');
 await planner.screenshot({ path: path.join(output, 'relaunch-planner-mobile.png'), fullPage: true });
 await planner.locator('[data-edit]').click();
 if (await planner.locator('[data-step="3"]').isHidden()) failures.push('planner edit: step 3 did not reopen');
 await planner.locator('[data-create]').click();
-await planner.locator('[data-restart]').click();
-if (await planner.locator('input[name="occasion"]:checked').count()) failures.push('planner reset: occasion was not cleared');
 for (const error of plannerErrors) failures.push(`planner runtime: ${error}`);
 await planner.close();
 
@@ -110,7 +111,8 @@ await englishPlanner.locator('input[name="setting"][value="outdoor"]').check();
 await englishPlanner.locator('[data-next]').click();
 await englishPlanner.locator('[data-create]').click();
 const englishOutput = await englishPlanner.locator('[data-result]').innerText();
-for (const expected of ['Your music plan', 'Wedding ceremony', '12/10/2026', 'Cambridge', 'Running order', 'Repertoire', 'Still to clarify']) if (!englishOutput.includes(expected)) failures.push(`english planner generation: missing ${expected}`);
+for (const expected of ['Three suggestions for your running order', 'Wedding ceremony', '12/10/2026', 'Cambridge', 'Running order', 'Our suggestions', 'SUGGESTED FOR', 'Still to clarify']) if (!englishOutput.includes(expected)) failures.push(`english planner generation: missing ${expected}`);
+if (await englishPlanner.locator('[data-result-pieces] > li').count() !== 3) failures.push('english planner recommendations: expected exactly three generated suggestions');
 for (const error of englishErrors) failures.push(`english planner runtime: ${error}`);
 await englishPlanner.close();
 const songCheck = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
@@ -199,5 +201,5 @@ if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exitCode = 1;
 } else {
-  console.log(`Relaunch browser QA passed: ${routes.length} routes at 1440px, 390px and 320px, plus planner, requested-song and recording-brief validation, generation and reset.`);
+  console.log(`Relaunch browser QA passed: ${routes.length} routes at 1440px, 390px and 320px, plus recommendation planner, requested-song and recording-brief validation.`);
 }

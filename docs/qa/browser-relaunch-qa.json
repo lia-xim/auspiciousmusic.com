@@ -1,8 +1,9 @@
 {
-  "baseUrl": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-22T23:44:43.182Z",
+  "baseUrl": "http://localhost:4321",
+  "checkedAt": "2026-08-28T16:16:16.173Z",
   "routes": [
     "/",
+    "/en/",
     "/viola/",
     "/viola/viola-oder-violine/",
     "/eventmusik/",
@@ -16,7 +17,6 @@
     "/en/tools/event-music-planner/",
     "/tools/wunschstueck-check/",
     "/tools/streicheraufnahme-briefing/",
-    "/resources/",
     "/download/",
     "/services/"
   ],
@@ -24,11 +24,22 @@
     {
       "route": "/",
       "viewport": "1440x900",
-      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "title": "Auspicious Music — Musik für Trauung und Event planen",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5885,
+      "bodyLength": 2483,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/en/",
+      "viewport": "1440x900",
+      "title": "Auspicious Music — Plan music for ceremonies and events",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 2197,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -39,7 +50,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3061,
+      "bodyLength": 3132,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -50,7 +61,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 6161,
+      "bodyLength": 6207,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -61,7 +72,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2876,
+      "bodyLength": 2844,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -72,7 +83,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5867,
+      "bodyLength": 5920,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -83,7 +94,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2501,
+      "bodyLength": 2547,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -94,7 +105,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2458,
+      "bodyLength": 2504,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -105,7 +116,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2356,
+      "bodyLength": 2402,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -116,40 +127,40 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2885,
+      "bodyLength": 2931,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/recording/",
       "viewport": "1440x900",
-      "title": "Recording — Auspicious Music",
+      "title": "Viola und Streicher aufnehmen — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4669,
+      "bodyLength": 3879,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/tools/eventmusik-planer/",
       "viewport": "1440x900",
-      "title": "Eventmusik planen — Auspicious Music",
+      "title": "Musikempfehlungen für dein Event — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1608,
+      "bodyLength": 1493,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/en/tools/event-music-planner/",
       "viewport": "1440x900",
-      "title": "Plan event music — Auspicious Music",
+      "title": "Music suggestions for your event — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1584,
+      "bodyLength": 1360,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -160,7 +171,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3817,
+      "bodyLength": 3863,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -171,18 +182,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3270,
-      "emptyLinks": 0,
-      "unlabeledFields": 0
-    },
-    {
-      "route": "/resources/",
-      "viewport": "1440x900",
-      "title": "Music Planning and Recording Resources — Auspicious Music",
-      "h1": 1,
-      "main": 1,
-      "overflow": 0,
-      "bodyLength": 3204,
+      "bodyLength": 3316,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -193,7 +193,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2298,
+      "bodyLength": 2216,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -204,18 +204,29 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1785,
+      "bodyLength": 1703,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/",
       "viewport": "390x844",
-      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "title": "Auspicious Music — Musik für Trauung und Event planen",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5824,
+      "bodyLength": 2420,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/en/",
+      "viewport": "390x844",
+      "title": "Auspicious Music — Plan music for ceremonies and events",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 2112,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -226,7 +237,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3000,
+      "bodyLength": 3069,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -237,7 +248,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 6100,
+      "bodyLength": 6144,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -248,7 +259,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2815,
+      "bodyLength": 2781,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -259,7 +270,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5806,
+      "bodyLength": 5857,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -270,7 +281,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2440,
+      "bodyLength": 2484,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -281,7 +292,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2397,
+      "bodyLength": 2441,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -292,7 +303,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2295,
+      "bodyLength": 2339,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -303,40 +314,40 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2824,
+      "bodyLength": 2868,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/recording/",
       "viewport": "390x844",
-      "title": "Recording — Auspicious Music",
+      "title": "Viola und Streicher aufnehmen — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4608,
+      "bodyLength": 3816,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/tools/eventmusik-planer/",
       "viewport": "390x844",
-      "title": "Eventmusik planen — Auspicious Music",
+      "title": "Musikempfehlungen für dein Event — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1527,
+      "bodyLength": 1408,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/en/tools/event-music-planner/",
       "viewport": "390x844",
-      "title": "Plan event music — Auspicious Music",
+      "title": "Music suggestions for your event — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1492,
+      "bodyLength": 1248,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -347,7 +358,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3756,
+      "bodyLength": 3800,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -358,18 +369,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3209,
-      "emptyLinks": 0,
-      "unlabeledFields": 0
-    },
-    {
-      "route": "/resources/",
-      "viewport": "390x844",
-      "title": "Music Planning and Recording Resources — Auspicious Music",
-      "h1": 1,
-      "main": 1,
-      "overflow": 0,
-      "bodyLength": 3135,
+      "bodyLength": 3253,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -380,7 +380,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2229,
+      "bodyLength": 2131,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -391,18 +391,29 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1716,
+      "bodyLength": 1618,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/",
       "viewport": "320x900",
-      "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+      "title": "Auspicious Music — Musik für Trauung und Event planen",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5824,
+      "bodyLength": 2417,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/en/",
+      "viewport": "320x900",
+      "title": "Auspicious Music — Plan music for ceremonies and events",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 2109,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -413,7 +424,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3000,
+      "bodyLength": 3066,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -424,7 +435,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 6100,
+      "bodyLength": 6141,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -435,7 +446,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2815,
+      "bodyLength": 2778,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -446,7 +457,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5806,
+      "bodyLength": 5854,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -457,7 +468,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2440,
+      "bodyLength": 2481,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -468,7 +479,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2397,
+      "bodyLength": 2438,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -479,7 +490,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2295,
+      "bodyLength": 2336,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -490,40 +501,40 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2824,
+      "bodyLength": 2865,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/recording/",
       "viewport": "320x900",
-      "title": "Recording — Auspicious Music",
+      "title": "Viola und Streicher aufnehmen — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4608,
+      "bodyLength": 3813,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/tools/eventmusik-planer/",
       "viewport": "320x900",
-      "title": "Eventmusik planen — Auspicious Music",
+      "title": "Musikempfehlungen für dein Event — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1524,
+      "bodyLength": 1405,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
     {
       "route": "/en/tools/event-music-planner/",
       "viewport": "320x900",
-      "title": "Plan event music — Auspicious Music",
+      "title": "Music suggestions for your event — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1489,
+      "bodyLength": 1245,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -534,7 +545,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3756,
+      "bodyLength": 3797,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -545,18 +556,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3209,
-      "emptyLinks": 0,
-      "unlabeledFields": 0
-    },
-    {
-      "route": "/resources/",
-      "viewport": "320x900",
-      "title": "Music Planning and Recording Resources — Auspicious Music",
-      "h1": 1,
-      "main": 1,
-      "overflow": 0,
-      "bodyLength": 3135,
+      "bodyLength": 3250,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -567,7 +567,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2229,
+      "bodyLength": 2128,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -578,12 +578,12 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1716,
+      "bodyLength": 1615,
       "emptyLinks": 0,
       "unlabeledFields": 0
     }
   ],
-  "plannerOutput": "Dein Musikplan\n\nDer Ablauf ist jetzt kompakt genug für die nächste Abstimmung.\n\nPlan bearbeiten\nAnlass\nHochzeit / Trauung\nDatum\n10.09.2026\nOrt oder Region\nKöln\nRolle der Musik\nBegleitend\nAblauf\nAnkunft der Gäste\nRuhige Musik, die auch bei verspäteter Ankunft flexibel weiterlaufen kann.\nEinzug\nStartsignal und Endpunkt mit Trauzeug:innen oder Zeremonieleitung abstimmen.\nRingtausch, Ja-Wort oder Unterschrift\nEine kürzbare oder wiederholbare Fassung einplanen.\nAuszug\nEin deutliches, tragfähiges Ende für Bewegung und Applaus wählen.\nRepertoire\nA Thousand Years\nPerfect\nAll of Me\nNoch zu klären\nWer gibt Einzug und Auszug live frei?\nGibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?\nWelche Wunschstücke sind unverzichtbar und welche nur Inspiration?\n\nDieser Plan bestätigt weder Termin, Besetzung, Fassung, Notenlage, Arrangement, Rechte, Preis noch Buchung. Das wird direkt mit Kim-Marie geklärt.\n\nKopieren\nTXT laden\nNeu beginnen\nE-Mail vorbereiten",
+  "plannerOutput": "Drei Vorschläge für deinen Ablauf\n\nJeder Titel ist einem gewählten Moment zugeordnet. Die konkrete Fassung bleibt Teil der persönlichen Abstimmung.\n\nAuswahl ändern\nAnlass\nHochzeit / Trauung\nDatum\n10.09.2026\nOrt oder Region\nKöln\nRolle der Musik\nBegleitend\nUnsere Vorschläge\nA Thousand Years\nVORGESCHLAGEN FÜR: EINZUG\nAus dem Repertoire für Hochzeit / Trauung, priorisiert nach „Warm“ und deinen gewählten Spielmomenten.\nPerfect\nVORGESCHLAGEN FÜR: AUSZUG\nAus dem Repertoire für Hochzeit / Trauung, priorisiert nach „Warm“ und deinen gewählten Spielmomenten.\nAll of Me\nVORGESCHLAGEN FÜR: RINGTAUSCH, JA-WORT ODER UNTERSCHRIFT\nAus dem Repertoire für Hochzeit / Trauung, priorisiert nach „Warm“ und deinen gewählten Spielmomenten.\nAblauf\nAnkunft der Gäste\nRuhige Musik, die auch bei verspäteter Ankunft flexibel weiterlaufen kann.\nEinzug\nStartsignal und Endpunkt mit Trauzeug:innen oder Zeremonieleitung abstimmen.\nRingtausch, Ja-Wort oder Unterschrift\nEine kürzbare oder wiederholbare Fassung einplanen.\nAuszug\nEin deutliches, tragfähiges Ende für Bewegung und Applaus wählen.\nNoch zu klären\nWer gibt Einzug und Auszug live frei?\nGibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?\nWelche Wunschstücke sind unverzichtbar und welche nur Inspiration?\n\nDie Vorschläge beruhen auf Anlass, Moment und gewünschter Wirkung. Sie bestätigen weder Termin, Besetzung, konkrete Fassung, Notenlage, Arrangement, Rechte, Preis noch Buchung.\n\nPlan kopieren\nE-Mail mit Plan öffnen\nPlan kopieren & Kontakt öffnen",
   "requestedSongOutput": "Bereit für die musikalische Prüfung\n\nPerfect\nTitel\nPerfect\nFassung\nEd Sheeran, studio version\nAnlass\nHochzeit / Trauung\nSpielmoment\nAnkunft der Gäste\nWiedererkennung\nvor allem die Melodie\nMelodie ohne Gesang\nvermutlich ja\nGewünschte Form\nflexible, gekürzte Fassung\nVorlauf\nmehr als sechs Wochen\nPersönlicher Kern\nDie Melodie verbindet das Paar mit einem gemeinsamen Moment.\nIm Gespräch klären\nWer gibt am Spielmoment das Start- und Endsignal?\nSind Veranstaltungsmeldung, Setlist und weitere Rechtefragen auf Veranstalterseite geklärt?\n\nGrenze: Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Rechte, Preis oder Buchung.",
   "recordingBriefOutput": "Dokumentarfilm Cue 04\nProjekt / Cue\nDokumentarfilm Cue 04\nFunktion\nSolistische Melodie\nWirkung und Kontext\nEine warme Mittellage soll den Übergang tragen, ohne die Sprache zu verdecken.\nStartreferenz\n00:42 nach Sprecherpause\nTempo / Raster\nReferenzmix, aber kein Click\nArtikulation / Phrasierung\nGebunden, ruhiger Bogen, wenig Vibrato.\nVarianten\nHauptfassung plus freieres Ende.\nLieferumfang\nVollständige Takes plus markierte Favoriten\nProjektformat\n48 kHz / 24 Bit\nDateibenennung\nprojekt_cue_stimme_take\nÜbergabe / Review\nReview am 24. August durch Schnitt.\nTechnische Bedingungen\nTrockene Hauptspur plus Referenzbearbeitung.\nOffene Fragen\nSind Noten, Arrangement, Aufnahme und spätere Nutzung für den konkreten Zweck geklärt?\n\nGrenze: Dieses Werkzeug bestätigt weder Spielbarkeit, Termin, Preis, Rechte, Besetzung noch technische Machbarkeit.",
   "failures": []

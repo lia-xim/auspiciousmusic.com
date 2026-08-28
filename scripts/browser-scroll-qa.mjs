@@ -47,10 +47,10 @@ for (const [label, viewport] of [
     overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     revealCount: document.querySelectorAll('[data-reveal]').length,
     hiddenRevealCount: document.querySelectorAll('[data-reveal].will-reveal').length,
-    visiblePortalCount: [...document.querySelectorAll('.topic-card')].filter((element) => getComputedStyle(element).opacity !== '0').length,
-    visibleArticleCount: [...document.querySelectorAll('.index li')].filter((element) => getComputedStyle(element).opacity !== '0').length,
+    visibleStepCount: [...document.querySelectorAll('.focus-step')].filter((element) => getComputedStyle(element).opacity !== '0').length,
+    visiblePathCount: [...document.querySelectorAll('.focus-path-list li')].filter((element) => getComputedStyle(element).opacity !== '0').length,
   }));
-  if (metrics.overflow > 1 || metrics.hiddenRevealCount > 0 || metrics.visiblePortalCount < 4 || metrics.visibleArticleCount < 4) {
+  if (metrics.overflow > 1 || metrics.hiddenRevealCount > 0 || metrics.visibleStepCount !== 3 || metrics.visiblePathCount !== 4) {
     failures.push(`homepage ${label}: unexpected metrics ${JSON.stringify(metrics)}`);
   }
   for (const error of errors) failures.push(`homepage ${label}: ${error}`);
@@ -63,7 +63,7 @@ const articlePage = await browser.newPage({ viewport: { width: 390, height: 844 
 const articleErrors = [];
 articlePage.on('pageerror', (error) => articleErrors.push(`pageerror: ${error.message}`));
 articlePage.on('console', (message) => { if (message.type() === 'error') articleErrors.push(`console: ${message.text()}`); });
-await articlePage.goto(`${baseUrl}/music-production/ableton-project-handoff/`, { waitUntil: 'networkidle' });
+await articlePage.goto(`${baseUrl}/music-for-media/planning-live-viola-for-a-wedding-ceremony/`, { waitUntil: 'networkidle' });
 await scrollThrough(articlePage);
 const articleMetrics = await articlePage.evaluate(() => ({
   overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -89,5 +89,5 @@ if (failures.length) {
   failures.forEach((failure) => console.error(`- ${failure}`));
   process.exitCode = 1;
 } else {
-  console.log('Scroll QA passed: homepage reveals on desktop/mobile and the representative article remains readable on mobile.');
+  console.log('Scroll QA passed: focused homepage sections render on desktop/mobile and the representative wedding guide remains readable on mobile.');
 }

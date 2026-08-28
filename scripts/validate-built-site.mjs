@@ -7,11 +7,13 @@ const distRoot = path.join(projectRoot, 'dist');
 const failures = [];
 const indexableMode = process.env.SITE_INDEXABLE === 'true';
 const routeRegistry = JSON.parse(await readFile(path.join(projectRoot, 'src', 'data', 'migrated-pages.json'), 'utf8'));
+const indexPolicy = JSON.parse(await readFile(path.join(projectRoot, 'src', 'data', 'index-policy.json'), 'utf8'));
 const vercelConfig = JSON.parse(await readFile(path.join(projectRoot, 'vercel.json'), 'utf8'));
 const rewrittenRoutes = new Set((vercelConfig.rewrites ?? []).map((rewrite) => rewrite.source));
 const permanentlyNoindex = new Set([
   '/404/',
   '/410/',
+  ...indexPolicy.noindexArchivePaths,
   ...routeRegistry
     .filter((record) => record.internal || record.indexable === false)
     .map((record) => record.route),

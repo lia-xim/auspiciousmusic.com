@@ -1,37 +1,16 @@
 [
   {
     "route": "/",
-    "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
-    "description": "Unabhängige Entscheidungshilfe für Viola, Eventmusik, Repertoireplanung und Aufnahme mit Kim-Marie Borger als heutiger musikalischer Fachperson.",
-    "h1": "Viola und Eventmusik verständlich planen.",
+    "title": "Auspicious Music — Musik für Trauung und Event planen",
+    "description": "Ein kostenloser Musikplaner für Trauung, Trauerfeier und Event mit begründeten Repertoire-Ideen.",
+    "h1": "Musik, die zu eurem Moment passt.",
     "internal": false
   },
   {
     "route": "/en/",
-    "title": "Auspicious Music in English — Event planning and strings",
-    "description": "The English entry to the event-music planner and selected technical guides about strings, recording and music production.",
-    "h1": "Plan the music. Understand the string decision.",
-    "internal": false
-  },
-  {
-    "route": "/music-production/",
-    "title": "Music Production — Auspicious Music",
-    "description": "Session architecture, collaboration and delivery for projects that need to remain understandable.",
-    "h1": "Music Production",
-    "internal": false
-  },
-  {
-    "route": "/ableton/",
-    "title": "Ableton Live — Auspicious Music",
-    "description": "File management, Sampler and controller workflows grounded in official behavior.",
-    "h1": "Ableton Live",
-    "internal": false
-  },
-  {
-    "route": "/sound-design/",
-    "title": "Sound Design — Auspicious Music",
-    "description": "Sampling and playable-instrument workflows that document the source and transformation.",
-    "h1": "Sound Design",
+    "title": "Auspicious Music — Plan music for ceremonies and events",
+    "description": "A free music planner for ceremonies and events with reasoned repertoire suggestions.",
+    "h1": "Music that fits the moment.",
     "internal": false
   },
   {
@@ -39,48 +18,6 @@
     "title": "Viola und Streicher aufnehmen — Auspicious Music",
     "description": "Raumbewusste, wiederholbare Aufnahmepläne für Viola und akustische Streicher.",
     "h1": "Viola und Streicher aufnehmen",
-    "internal": false
-  },
-  {
-    "route": "/music-for-media/",
-    "title": "Music for Media & Events — Auspicious Music",
-    "description": "Briefing, rights and live-performance planning for films and ceremonies.",
-    "h1": "Music for Media & Events",
-    "internal": false
-  },
-  {
-    "route": "/resources/",
-    "title": "Music Planning and Recording Resources — Auspicious Music",
-    "description": "A local ceremony planner, practical music calculators and rights-aware legacy records.",
-    "h1": "Resources",
-    "internal": false
-  },
-  {
-    "route": "/resources/tools/",
-    "title": "Music Planning Tools and Calculators — Auspicious Music",
-    "description": "A local ceremony brief planner and practical music calculators. No sign-up and no upload.",
-    "h1": "Tools",
-    "internal": false
-  },
-  {
-    "route": "/resources/glossary/",
-    "title": "Glossary — Auspicious Music",
-    "description": "Terms as this publication uses them, across production, Ableton, sound design, recording and music for media.",
-    "h1": "Glossary",
-    "internal": false
-  },
-  {
-    "route": "/ableton/midi-fighter-twister-review/",
-    "title": "MIDI Fighter Twister Mapping Design for Ableton — Auspicious Music",
-    "description": "A controller-mapping method that does not pretend an unfinished hardware review exists.",
-    "h1": "MIDI Fighter Twister in Ableton: design the mapping before the knobs",
-    "internal": false
-  },
-  {
-    "route": "/sound-design/sampled-instruments/building-a-sampled-instrument/",
-    "title": "Build a Small Sampled Instrument in Ableton Live — Auspicious Music",
-    "description": "A conservative Sampler workflow for roots, dynamics, edits, zones and round robins.",
-    "h1": "Build a small sampled instrument in Ableton Live without losing the source",
     "internal": false
   },
   {
@@ -119,13 +56,6 @@
     "internal": false
   },
   {
-    "route": "/contribute/",
-    "title": "Pitch a guide — Auspicious Music",
-    "description": "How to propose a guest guide for Auspicious Music: what the publication accepts, what it declines, and how the editorial review works.",
-    "h1": "Pitch a guide",
-    "internal": false
-  },
-  {
     "route": "/contact/",
     "title": "Contact — Auspicious Music",
     "description": "How to reach the editorial desk, report a correction, or raise a rights question.",
@@ -154,41 +84,6 @@
     "internal": false
   },
   {
-    "route": "/resources/tools/delay-and-reverb/",
-    "title": "Delay and Reverb Time Calculator — Auspicious Music",
-    "description": "Delay times in milliseconds and hertz for every note division at any tempo, straight, dotted and triplet, plus reverb pre-delay and decay starting points.",
-    "h1": "Delay and Reverb Time Calculator",
-    "internal": false
-  },
-  {
-    "route": "/resources/tools/note-frequency/",
-    "title": "Note and Frequency Calculator — Auspicious Music",
-    "description": "Convert between note names, MIDI numbers and frequencies at any concert pitch, and read the cents deviation of any frequency you enter.",
-    "h1": "Note and Frequency Calculator",
-    "internal": false
-  },
-  {
-    "route": "/resources/tools/sample-pitch/",
-    "title": "Sample Pitch and Rate Calculator — Auspicious Music",
-    "description": "What transposing a sample does to its playback rate, its length and its tempo, including sample-rate mismatch in semitones.",
-    "h1": "Sample Pitch and Rate Calculator",
-    "internal": false
-  },
-  {
-    "route": "/journal/",
-    "title": "Journal — Auspicious Music",
-    "description": "All published guides with topic, method and reading time.",
-    "h1": "Journal",
-    "internal": false
-  },
-  {
-    "route": "/music-production/ableton-project-handoff/",
-    "title": "An Ableton Project Handoff That Another Computer Can Open — Auspicious Music",
-    "description": "Collect media, expose plug-in dependencies, print safety stems and make the next decision obvious.",
-    "h1": "An Ableton project handoff that another computer can actually open",
-    "internal": false
-  },
-  {
     "route": "/recording/acoustic-instruments/viola-microphone-placement/",
     "title": "Viola-Mikrofonposition: drei Startpunkte — Auspicious Music",
     "description": "Nahe, ausgewogene und raumbewusste Mikrofonpositionen vergleichen, ohne einen Universalabstand zu behaupten.",
@@ -207,13 +102,6 @@
     "title": "Planning Live Viola for a Wedding Ceremony — Auspicious Music",
     "description": "Define musical moments, flexible timings, cues and practical conditions.",
     "h1": "Planning live viola for a wedding ceremony",
-    "internal": false
-  },
-  {
-    "route": "/music-for-media/music-clearance-for-small-film-projects/",
-    "title": "Music Clearance for a Small Film — Auspicious Music",
-    "description": "Identify the work, recording, media, territory, term and evidence before delivery.",
-    "h1": "Music clearance for a small film before edit lock",
     "internal": false
   },
   {
@@ -239,16 +127,16 @@
   },
   {
     "route": "/tools/eventmusik-planer/",
-    "title": "Eventmusik planen — Auspicious Music",
-    "description": "In drei kurzen Schritten einen Musikplan mit Anlass, Datum, Ort, Ablauf und Repertoire-Ideen erstellen.",
-    "h1": "Eventmusik planen",
+    "title": "Musikempfehlungen für dein Event — Auspicious Music",
+    "description": "In drei kurzen Schritten drei begründete Repertoire-Ideen mit passenden Spielmomenten erhalten.",
+    "h1": "Musikempfehlungen für dein Event",
     "internal": false
   },
   {
     "route": "/en/tools/event-music-planner/",
-    "title": "Plan event music — Auspicious Music",
-    "description": "Build an event-music plan in three short steps, covering occasion, date, place, running order and repertoire ideas.",
-    "h1": "Plan event music",
+    "title": "Music suggestions for your event — Auspicious Music",
+    "description": "Get three reasoned repertoire ideas with suitable musical moments in three short steps.",
+    "h1": "Music suggestions for your event",
     "internal": false
   },
   {
@@ -298,13 +186,6 @@
     "title": "Geburtstag: Viola-Musik planen — Auspicious Music",
     "description": "Ablauf und Repertoire-Ideen fuer Geburtstag mit Kim-Marie Borger.",
     "h1": "Geburtstag musikalisch planen",
-    "internal": false
-  },
-  {
-    "route": "/eventmusik/unterricht/",
-    "title": "Unterricht: Viola-Musik planen — Auspicious Music",
-    "description": "Ablauf und Repertoire-Ideen fuer Unterricht mit Kim-Marie Borger.",
-    "h1": "Unterricht musikalisch planen",
     "internal": false
   },
   {

@@ -2,6 +2,7 @@
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import { siteStrategy } from '../data/site-strategy';
+import { isSearchLanding } from '../data/index-policy';
 
 interface Props {
   title: string;
@@ -36,7 +37,8 @@ const {
 } = Astro.props;
 
 const siteIndexable = import.meta.env.SITE_INDEXABLE === 'true';
-const robots = siteIndexable && !noindex ? 'index,follow,max-image-preview:large' : 'noindex,nofollow,noarchive';
+const effectiveNoindex = noindex || !isSearchLanding(canonicalPath);
+const robots = siteIndexable && !effectiveNoindex ? 'index,follow,max-image-preview:large' : 'noindex,nofollow,noarchive';
 const site = Astro.site ?? new URL('https://www.auspiciousmusic.com/');
 const canonical = new URL(canonicalPath, site);
 const alternate = alternatePath ? new URL(alternatePath, site) : undefined;
@@ -101,7 +103,7 @@ const identitySchema = {
     <link rel="stylesheet" href="/assets/inter.css" />
     <link rel="stylesheet" href="/assets/system.css" />
     <link rel="stylesheet" href="/assets/strategy.css" />
-    <meta name="theme-color" content={headerOverDark ? '#0d0f16' : '#f1eee6'} />
+    <meta name="theme-color" content={headerOverDark ? '#0d0f16' : '#f4f5f6'} />
     <meta property="og:type" content={contentType} />
     <meta property="og:site_name" content="Auspicious Music" />
     <meta property="og:locale" content={locale} />
