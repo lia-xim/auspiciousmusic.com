@@ -63,6 +63,11 @@ const {
       .expert-motif { min-block-size: 17rem; display: grid; place-items: center; border-block: 1px solid var(--stage-line); color: var(--stage-muted); }
       .expert-motif svg { inline-size: min(100%, 26rem); block-size: auto; }
       .expert-motif figcaption { margin-top: 0.9rem; font: 500 var(--t-meta)/1.5 var(--font-mono); color: var(--stage-muted); }
+      .expert-motif--text { display: block; min-block-size: 0; padding-block: 1.25rem; }
+      .expert-motif--text > p { color: var(--accent-on-dark); font: 600 var(--t-meta)/1.4 var(--font-mono); text-transform: uppercase; }
+      .expert-motif--text ol { counter-reset: hero-facts; margin-top: .6rem; }
+      .expert-motif--text li { counter-increment: hero-facts; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: .7rem; padding-block: .75rem; border-top: 1px solid var(--stage-line); color: var(--stage-text); line-height: 1.45; }
+      .expert-motif--text li::before { content: counter(hero-facts, decimal-leading-zero); color: var(--stage-muted); font: 500 var(--t-meta)/1.5 var(--font-mono); }
       .decision-list { counter-reset: decisions; border-top: 1px solid var(--line-strong); }
       .decision-list li { counter-increment: decisions; display: grid; grid-template-columns: 3rem minmax(0, 1fr) auto; gap: 1rem 1.5rem; align-items: start; padding-block: 1.4rem; border-bottom: 1px solid var(--line); }
       .decision-list li::before { content: counter(decisions, decimal-leading-zero); font: 500 var(--t-meta)/1.5 var(--font-mono); color: var(--ember); }

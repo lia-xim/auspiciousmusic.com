@@ -155,11 +155,10 @@ const toolSchema = {
             <li><strong>Musikalische Identität:</strong> Eine klare Melodie lässt sich anders reduzieren als ein Titel, der vor allem von Stimme, Beat oder Produktion lebt.</li>
             <li><strong>Funktion im Ablauf:</strong> Einzug, stiller Moment und Auszug brauchen unterschiedliche Länge, Energie und Endpunkte.</li>
             <li><strong>Vorlauf:</strong> Ein neues Arrangement braucht Prüfung und Vorbereitung. Der Check erfindet dafür keine pauschale Frist.</li>
-            <li><strong>Rechte getrennt betrachten:</strong> Musikalische Eignung ersetzt keine Klärung der öffentlichen Nutzung, Noten, Aufnahme oder Videoverwendung.</li>
+            <li><strong>Aufnahme und Veröffentlichung getrennt betrachten:</strong> Dieser Check betrifft die musikalische Vorbereitung. Ein Mitschnitt, Livestream oder veröffentlichtes Video braucht eine eigene Abstimmung.</li>
           </ul>
           <div class="source-list">
             <p><a href="https://kim-marie-borger.com/ratgeber/wunschmusik-hochzeit/" rel="noopener external">Kim Marie Borger: Wunschmusik bei der Hochzeit</a><span>Aktuelle Fachgrundlage zu Melodie, Länge, Anlass und Arrangement. Kims Website und diese Publikation gehören zum selben Projektportfolio; der Link ist keine unabhängige Empfehlung.</span></p>
-            <p><a href="https://www.gema.de/de/musiknutzer/veranstaltungen" rel="noopener external">GEMA: Veranstaltungen mit Musik</a><span>Offizielle Orientierung für Veranstalter zur öffentlichen Musiknutzung und Setlist. Keine individuelle Rechtsberatung.</span></p>
           </div>
         </div>
       </div>
@@ -226,7 +225,6 @@ const toolSchema = {
           if (lead === 'short') { caution = true; questions.push('Gibt es bei knappem Vorlauf ein vorhandenes Repertoirestück als belastbare Alternative?'); }
           if (lead === 'unknown') questions.push('Welches Datum setzt den realen Vorbereitungsrahmen?');
           questions.push('Wer gibt am Spielmoment das Start- und Endsignal?');
-          questions.push('Sind Veranstaltungsmeldung, Setlist und weitere Rechtefragen auf Veranstalterseite geklärt?');
 
           const needsClarification = !version || recognition === 'unknown' || melody === 'unknown' || length === 'unknown' || lead === 'unknown';
           const status = caution ? 'Alternative gleich mitprüfen' : needsClarification ? 'Prüfbrief zuerst schärfen' : 'Bereit für die musikalische Prüfung';
@@ -234,8 +232,8 @@ const toolSchema = {
             ['Titel', song], ['Fassung', version || 'Noch nicht benannt'], ['Anlass', occasionLabel], ['Spielmoment', momentLabel],
             ['Wiedererkennung', labels.recognition[recognition]], ['Melodie ohne Gesang', labels.melody[melody]], ['Gewünschte Form', labels.length[length]], ['Vorlauf', labels.lead[lead]], ['Persönlicher Kern', meaning || 'Noch nicht beschrieben'],
           ];
-          brief = ['AUSPICIOUS MUSIC — WUNSCHSTÜCK-PRÜFBRIEF', `Status: ${status}`, '', ...rows.map(([label, value]) => `${label}: ${value}`), '', 'IM GESPRAECH KLAEREN', ...questions.map((question) => `- ${question}`), '', 'Hinweis: Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Rechte, Preis oder Buchung.'].join('\n');
-          result.innerHTML = `<div class="song-result"><p class="song-status">${escapeHtml(status)}</p><h2>${escapeHtml(song)}</h2><dl>${rows.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl><div><h3>Im Gespräch klären</h3><ul>${questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul></div><p class="song-result__notice"><strong>Grenze:</strong> Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Rechte, Preis oder Buchung.</p></div>`;
+          brief = ['AUSPICIOUS MUSIC — WUNSCHSTÜCK-PRÜFBRIEF', `Status: ${status}`, '', ...rows.map(([label, value]) => `${label}: ${value}`), '', 'IM GESPRAECH KLAEREN', ...questions.map((question) => `- ${question}`), '', 'Hinweis: Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Preis oder Buchung.'].join('\n');
+          result.innerHTML = `<div class="song-result"><p class="song-status">${escapeHtml(status)}</p><h2>${escapeHtml(song)}</h2><dl>${rows.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl><div><h3>Im Gespräch klären</h3><ul>${questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul></div><p class="song-result__notice"><strong>Grenze:</strong> Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Preis oder Buchung.</p></div>`;
           state.textContent = status;
           copy.disabled = false;
           email.disabled = false;

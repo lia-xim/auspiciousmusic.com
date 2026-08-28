@@ -62,11 +62,11 @@ const plannerFoundation = await planner.evaluate(() => ({
   alternateDefault: document.querySelector('link[rel="alternate"][hreflang="x-default"]')?.getAttribute('href'),
   languageHref: document.querySelector('.header-language')?.getAttribute('href'),
   activeStep: document.querySelector('[data-step-button][aria-current="step"]')?.getAttribute('data-step-button'),
+  dateMode: document.querySelector('input[name="dateMode"]:checked')?.value,
 }));
-if (plannerFoundation.selects !== 0 || plannerFoundation.locations !== 49 || plannerFoundation.dateTypes !== 3 || plannerFoundation.htmlLang !== 'de' || plannerFoundation.activeStep !== '2' || plannerFoundation.languageHref !== '/en/tools/event-music-planner/' || !plannerFoundation.alternateEn?.endsWith('/en/tools/event-music-planner/') || !plannerFoundation.alternateDefault?.endsWith('/tools/eventmusik-planer/')) failures.push(`planner foundation: ${JSON.stringify(plannerFoundation)}`);
+if (plannerFoundation.selects !== 0 || plannerFoundation.locations !== 49 || plannerFoundation.dateTypes !== 3 || plannerFoundation.htmlLang !== 'de' || plannerFoundation.activeStep !== '2' || plannerFoundation.dateMode !== 'open' || plannerFoundation.languageHref !== '/en/tools/event-music-planner/' || !plannerFoundation.alternateEn?.endsWith('/en/tools/event-music-planner/') || !plannerFoundation.alternateDefault?.endsWith('/tools/eventmusik-planer/')) failures.push(`planner foundation: ${JSON.stringify(plannerFoundation)}`);
 await planner.locator('#planner-location').fill('Köl');
 await planner.locator('[data-location="Köln"]').click();
-await planner.locator('input[name="dateExact"]').fill('2026-09-10');
 await planner.locator('input[name="setting"][value="indoor"]').check();
 await planner.locator('[data-next]').click();
 if ((await planner.locator('input[name="moments"]:checked').count()) < 3 || (await planner.locator('input[name="pieces"]').count()) !== 0) failures.push('planner defaults: expected selected moments and no user-selected repertoire');
@@ -74,11 +74,9 @@ await planner.locator('input[name="character"][value="warm"]').check();
 await planner.locator('textarea[name="wishes"]').fill('Warm, persönlich, genaue Fassung noch offen.');
 await planner.locator('[data-create]').click();
 await planner.waitForTimeout(700);
-if (await planner.locator('.result-details').getAttribute('open') !== null) failures.push('planner result: supporting details should start collapsed');
 const plannerState = await planner.evaluate(() => ({ overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, resultVisible: !document.querySelector('[data-result]')?.hidden, workbenchHidden: document.querySelector('[data-workbench]')?.hidden, resultTop: document.querySelector('[data-result]')?.getBoundingClientRect().top }));
-await planner.locator('.result-details summary').click();
 const generated = await planner.locator('[data-result]').innerText();
-  for (const expected of ['Drei Vorschläge für deinen Ablauf', 'Hochzeit / Trauung', '10.09.2026', 'Köln', 'Ablauf', 'Einzug', 'Unsere Vorschläge', 'A Thousand Years', 'VORGESCHLAGEN FÜR', 'Noch zu klären']) {
+for (const expected of ['Drei Vorschläge für deinen Ablauf', 'Hochzeit / Trauung', 'Noch offen', 'Köln', 'Ablauf und offene Punkte', 'Ablauf', 'Einzug', 'Unsere Vorschläge', 'A Thousand Years', 'VORGESCHLAGEN FÜR', 'Noch zu klären']) {
   if (!generated.includes(expected)) failures.push(`planner generation: missing ${expected}`);
 }
 if (plannerState.overflow > 1 || !plannerState.resultVisible || !plannerState.workbenchHidden || plannerState.resultTop < 60 || plannerState.resultTop > 130) failures.push(`planner result state: ${JSON.stringify(plannerState)}`);
@@ -109,11 +107,11 @@ await englishPlanner.locator('input[name="occasion"][value="hochzeit"]').check()
 await englishPlanner.locator('[data-next]').click();
 await englishPlanner.locator('#planner-location').fill('Cambridge');
 if (!/individually/i.test(await englishPlanner.locator('[data-location-state]').innerText())) failures.push('english planner: custom location state missing');
+await englishPlanner.locator('input[name="dateMode"][value="exact"]').check();
 await englishPlanner.locator('input[name="dateExact"]').fill('2026-10-12');
 await englishPlanner.locator('input[name="setting"][value="outdoor"]').check();
 await englishPlanner.locator('[data-next]').click();
 await englishPlanner.locator('[data-create]').click();
-await englishPlanner.locator('.result-details summary').click();
 const englishOutput = await englishPlanner.locator('[data-result]').innerText();
 for (const expected of ['Three suggestions for your running order', 'Wedding ceremony', '12/10/2026', 'Cambridge', 'Running order', 'Our suggestions', 'SUGGESTED FOR', 'Still to clarify']) if (!englishOutput.includes(expected)) failures.push(`english planner generation: missing ${expected}`);
 if (await englishPlanner.locator('[data-result-pieces] > li').count() !== 3) failures.push('english planner recommendations: expected exactly three generated suggestions');

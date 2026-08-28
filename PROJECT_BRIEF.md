@@ -16,6 +16,21 @@ It is a modern successor on a historic domain, not a continuation of the former 
 6. Connect relevant visitors to Kim-Marie Borger's current official contact section without duplicating her commercial booking pages or unsupported service claims.
 7. Preserve only exact, legitimate historic references with transparent rights and availability notes.
 
+## Product shape
+
+Auspicious Music is a tool-first planning product, not a single-tool microsite and not a general music magazine.
+
+The primary journey is:
+
+1. Start with an occasion or open the planner directly.
+2. Receive three reasoned repertoire suggestions, a visible running order and the questions still worth discussing.
+3. Explore repertoire or prepare one requested piece only when that solves the visitor's next decision.
+4. Copy the reviewed plan and continue to Kim-Marie Borger's official contact section for the personal check.
+
+The occasion pages explain only what materially changes between wedding, reception, funeral, dinner, corporate event and birthday. The viola pages explain instrument-specific choices. Recording remains a smaller specialist branch for musicians and producers; it must not compete with the event-planning journey on the homepage.
+
+The planner is deliberately low-friction. A date is optional and defaults to "not decided". Supporting running-order details remain visible in the result. Generic event-law, GEMA, photography, videography, Ableton and broad production topics do not belong in the primary journey.
+
 ## Core routes
 
 - `/viola/`
