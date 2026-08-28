@@ -81,3 +81,11 @@ Each new indexable URL has one primary job, a self-canonical, unique title/descr
 - Focused browser QA: PASS on 17 central routes at 1440, 390 and 320 pixels, including occasion suggestions, planner, requested-song and recording-brief interactions. Full QA: PASS on 60 routes and 128 route/viewport checks, including Axe, keyboard navigation, 200%/400% reflow, forced colors, reduced motion, site search and console errors.
 - Local Chromium timing sample after warm dev-server startup: observed LCP ranged from 172 to 376 ms on the homepage, wedding page and planner at 390 and 1440 pixels. The transfer total from this development run is not a production payload measurement because Astro's development toolbar and modules dominate it.
 - Search Console access for `sc-domain:auspiciousmusic.com`: **NOT PROVEN**. The available signed-in account reported no access to the property, so no sitemap submission or property change was attempted.
+
+### Production proof
+
+- Commit `5df2ffa` was pushed to `origin/main` and deployed as Vercel production deployment `dpl_8xpuNeo1K7ff8SxcNRchhTfXc5gZ` (`READY`). `www.auspiciousmusic.com` serves this build.
+- All 30 live sitemap URLs returned `200`. The feed returned German language metadata and six indexable article URLs; no noindex archive article was present.
+- Live focused QA passed 17 routes at 1440, 390 and 320 pixels plus occasion, planner, requested-song and recording-brief interactions. Full production QA passed 59 routes and 126 route/viewport checks with Axe, keyboard/mobile navigation, 200%/400% reflow, forced colors, reduced motion, search and console checks.
+- Apex returned permanent `308` to `www` while preserving path and query. The former ceremony-planner URL returned permanent `308` to the current planner while preserving its query. Unknown paths returned `404`; `/410/` returned `410` with `X-Robots-Tag: noindex, nofollow, noarchive`.
+- Production responses retained CSP, HSTS, COOP, CORP, frame protection, MIME-sniffing protection, permissions policy and strict-origin referrer policy.
