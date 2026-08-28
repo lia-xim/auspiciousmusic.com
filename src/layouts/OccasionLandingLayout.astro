@@ -1,7 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import ResponsiveEditorialImage from '../components/ResponsiveEditorialImage.astro';
-import type { OccasionProfile } from '../data/repertoire';
+import { youtubeSearchUrl, type OccasionProfile } from '../data/repertoire';
 
 interface Props { profile: OccasionProfile; }
 const { profile } = Astro.props;
@@ -46,10 +46,13 @@ const itemListSchema = {
         .occasion-repertoire { display: grid; gap: 2.25rem 4rem; }
         @media (min-width: 820px) { .occasion-repertoire { grid-template-columns: minmax(16rem, .7fr) minmax(0, 1.3fr); } }
         .piece-list { border-top: 1px solid var(--line-strong); }
-        .piece-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .75rem 1.5rem; align-items: baseline; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+        .piece-list li { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: .75rem 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+        .piece-play { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 1px solid var(--ink); border-radius: 50%; color: var(--ink); text-decoration: none; }
+        .piece-play:hover { background: var(--ink); color: var(--surface-bright); }
+        .piece-play svg { width: .85rem; height: .85rem; margin-left: .12rem; }
         .piece-list strong { font-size: 1.05rem; }
         .piece-list span { max-width: 34ch; color: var(--muted); font-size: .9rem; text-align: right; }
-        @media (max-width: 560px) { .piece-list li { grid-template-columns: 1fr; } .piece-list span { text-align: left; } }
+        @media (max-width: 560px) { .piece-list li { grid-template-columns: 2.4rem 1fr; } .piece-list span { grid-column: 2; text-align: left; } }
         .occasion-questions { display: grid; gap: 1px; border-block: 1px solid var(--line); background: var(--line); }
         @media (min-width: 720px) { .occasion-questions { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
         .occasion-questions li { padding: 1.35rem; background: var(--canvas); color: var(--ink-soft); line-height: 1.6; }
@@ -98,7 +101,7 @@ const itemListSchema = {
           <p>Diese Titel sind ein Ausgangspunkt. Verfügbarkeit, konkrete Fassung, Notenlage, Arrangement-Aufwand und Termin werden direkt mit Kim-Marie geklärt. Ein eigener Titel lässt sich vorher im <a href="/tools/wunschstueck-check/">Wunschstück-Check</a> als Prüfbrief vorbereiten.</p>
         </div>
         <ul class="piece-list">
-          {profile.pieces.map((piece) => <li><strong>{piece.title}</strong>{piece.clarificationDe && <span>{piece.clarificationDe}</span>}</li>)}
+          {profile.pieces.map((piece) => <li><a class="piece-play" href={youtubeSearchUrl(piece.title)} target="_blank" rel="noopener noreferrer external" aria-label={`${piece.title} auf YouTube suchen und anhören`} title="Auf YouTube suchen und anhören"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5Z" fill="currentColor"/></svg></a><strong>{piece.title}</strong>{piece.clarificationDe && <span>{piece.clarificationDe}</span>}</li>)}
         </ul>
       </div>
     </section>

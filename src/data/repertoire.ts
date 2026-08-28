@@ -6,6 +6,9 @@ export interface RepertoirePiece {
   moments?: number[];
 }
 
+export const youtubeSearchUrl = (title: string) =>
+  `https://www.youtube.com/results?search_query=${encodeURIComponent(`${title} Viola`)}`;
+
 export interface OccasionMoment {
   de: string;
   en: string;
