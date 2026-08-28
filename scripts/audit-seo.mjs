@@ -8,6 +8,7 @@ const site = 'https://www.auspiciousmusic.com';
 const indexableMode = process.env.SITE_INDEXABLE === 'true';
 const failures = [];
 const warnings = [];
+const indexPolicy = JSON.parse(await readFile(path.join(root, 'src/data/index-policy.json'), 'utf8'));
 
 const vercelConfig = JSON.parse(await readFile(path.join(root, 'vercel.json'), 'utf8'));
 const highLevelRouting = ['rewrites', 'redirects', 'headers', 'cleanUrls', 'trailingSlash']
@@ -192,8 +193,11 @@ if (indexableMode && !/^User-agent: \*\r?\nAllow: \/\r?\nSitemap: /m.test(robots
 if (!indexableMode && !/^User-agent: \*\r?\nDisallow: \/\r?\n?$/m.test(robotsText)) failures.push('robots.txt: preview mode does not disallow crawling');
 
 const rss = await readFile(path.join(dist, 'rss.xml'), 'utf8');
-if (!rss.includes('rel="self"') || !rss.includes('<language>en</language>')) {
+if (!rss.includes('rel="self"') || !rss.includes('<language>de</language>')) {
   failures.push('rss.xml: missing self link or language');
+}
+for (const route of indexPolicy.noindexArchivePaths) {
+  if (rss.includes(`<link>${new URL(route, site).href}</link>`)) failures.push(`rss.xml: noindex route included: ${route}`);
 }
 if (rss.includes('<pubDate>') && !rss.includes('<lastBuildDate>')) {
   failures.push('rss.xml: dated items require lastBuildDate');

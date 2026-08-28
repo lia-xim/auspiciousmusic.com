@@ -1,6 +1,6 @@
 {
-  "implementation": "http://localhost:4321",
-  "checkedAt": "2026-08-28T18:07:44.674Z",
+  "implementation": "http://127.0.0.1:4322",
+  "checkedAt": "2026-08-28T20:18:33.161Z",
   "uniqueRoutesChecked": 60,
   "routeViewportChecks": 128,
   "observations": [

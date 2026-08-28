@@ -11,17 +11,17 @@ const columns = de ? [
   { title: 'Rechtliches', links: [['Impressum', '/legal/'], ['Datenschutz', '/privacy/'], ['Barrierefreiheit', '/accessibility/'], ['Sitemap', '/sitemap/']] },
 ] : [
   { title: 'Plan an event', links: [['English event-music planner', '/en/tools/event-music-planner/'], ['English overview', '/en/']] },
-  { title: 'Music planning', links: [['Wedding ceremony guide', '/music-for-media/planning-live-viola-for-a-wedding-ceremony/'], ['Viola and strings', '/viola/'], ['Recording strings', '/recording/']] },
-  { title: 'Publication', links: [['About this project', '/about/'], ['History and ownership', '/about/history-and-relaunch/']] },
+  { title: 'Music planning', links: [['Wedding ceremony guide', '/music-for-media/planning-live-viola-for-a-wedding-ceremony/'], ['Viola (German)', '/viola/'], ['Recording strings (German)', '/recording/']] },
+  { title: 'Publication', links: [['About this project (German)', '/about/'], ['History and ownership (German)', '/about/history-and-relaunch/']] },
   { title: 'Legal', links: [['Legal notice (German)', '/legal/'], ['Privacy (German)', '/privacy/'], ['Accessibility (German)', '/accessibility/']] },
 ];
 const description = de
-  ? 'Unabhängige Entscheidungshilfe für Viola, Eventmusik, Repertoire und Aufnahme. Kim-Marie Borger ist die heutige musikalische Fachperson.'
-  : 'A focused English entry into the Auspicious Music event-planning and strings guides.';
+  ? 'Musik für Hochzeit, Trauerfeier und Event auswählen, anhören und als Ablauf für die persönliche Abstimmung vorbereiten.'
+  : 'Choose music for a ceremony or event, listen to the suggestions and prepare a running order for personal review.';
 const boundary = de
   ? 'Neues redaktionelles Projekt. Keine Verbindung zum früheren Betreiber.'
   : 'New editorial project. No connection to the former operator.';
-const brandSubtitle = de ? 'Viola & Streicher' : 'Viola & Strings Lab';
+const brandSubtitle = de ? 'Musikplanung & Viola' : 'Music Planning & Viola';
 ---
 <footer class="site-footer" data-od-id="footer">
   <div class="shell">
@@ -32,3 +32,10 @@ const brandSubtitle = de ? 'Viola & Streicher' : 'Viola & Strings Lab';
     <div class="footer-base"><span>© 2026 Matthias Ramahi · Auspicious Music</span><span>{boundary}</span></div>
   </div>
 </footer>
+
+<style>
+  @media (max-width: 720px) {
+    .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 1.25rem; }
+    .footer-grid > :first-child { grid-column: 1 / -1; }
+  }
+</style>

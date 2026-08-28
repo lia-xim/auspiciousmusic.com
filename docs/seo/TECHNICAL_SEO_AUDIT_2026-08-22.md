@@ -2,7 +2,7 @@
 
 ## Scope and launch status
 
-This audit covers the live, indexable `https://www.auspiciousmusic.com/` property and the local Astro repository. The accepted project assignment remains the Auspicious Music Strings Lab with Kim-Marie Borger as the named current viola expert and Matthias Ramahi as operator and publisher. The site is a transparent successor project, not a continuation of the former operator or catalogue.
+This audit covers the live, indexable `https://www.auspiciousmusic.com/` property and the local Astro repository. The accepted project assignment remains a German-first music-planning publication with Kim-Marie Borger as the named current viola expert and Matthias Ramahi as operator and publisher. The site is a transparent successor project, not a continuation of the former operator or catalogue.
 
 No DNS change, paid data-provider call, copied archive content, historic media publication, or blanket legacy redirect is part of this change.
 
@@ -70,3 +70,14 @@ Each new indexable URL has one primary job, a self-canonical, unique title/descr
 - Enforced CSP and HSTS remain present.
 - Final Lighthouse 13.4.1 on the live homepage: mobile 99 performance / 100 accessibility / 100 best practices / 100 SEO, LCP 1.8 s, CLS 0 and TBT 100 ms; desktop 100/100/100/100, LCP 0.5 s, CLS 0.001 and TBT 20 ms. The desktop CLI emitted a Windows temp-directory `EPERM` only during cleanup after writing the complete JSON report.
 - Google Search Console authentication and sitemap submission remain **NOT PROVEN**. No authenticated session was available and no submission was attempted.
+
+## Positioning and crawl-consistency update - 2026-08-28
+
+- Unified the visible product name as `Musikplanung & Viola`; removed the obsolete `Strings Lab` wording from current navigation, schema inputs, the about page and the legacy download-status boundary.
+- Reordered the German navigation around occasions first and removed the duplicate planner menu item because the planner remains the primary header action. English navigation now marks links to German-only pages explicitly.
+- Rewrote `/about/` around the actual user journey: occasion page, three suggestions, running order, open questions and personal review. Recording is documented as a smaller specialist branch.
+- Corrected `rss.xml` to German and restricted it to the same indexable article policy used by the sitemap. A regression test now fails if a noindex archive route enters the feed.
+- `SITE_INDEXABLE=true pnpm check` and `pnpm check:indexable`: PASS. 88 Astro files, zero diagnostics; 58 HTML pages and 104 output files validated; 30 public sitemap URLs; maximum click depth 2.
+- Focused browser QA: PASS on 17 central routes at 1440, 390 and 320 pixels, including occasion suggestions, planner, requested-song and recording-brief interactions. Full QA: PASS on 60 routes and 128 route/viewport checks, including Axe, keyboard navigation, 200%/400% reflow, forced colors, reduced motion, site search and console errors.
+- Local Chromium timing sample after warm dev-server startup: observed LCP ranged from 172 to 376 ms on the homepage, wedding page and planner at 390 and 1440 pixels. The transfer total from this development run is not a production payload measurement because Astro's development toolbar and modules dominate it.
+- Search Console access for `sc-domain:auspiciousmusic.com`: **NOT PROVEN**. The available signed-in account reported no access to the property, so no sitemap submission or property change was attempted.

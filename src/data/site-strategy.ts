@@ -1,7 +1,7 @@
 export const siteStrategy = {
   name: 'Auspicious Music',
-  subtitle: 'Viola & Strings Lab',
-  purpose: 'Eine praktische Fachseite für Viola, Eventmusik, Repertoireentscheidungen und Aufnahme.',
+  subtitle: 'Musikplanung & Viola',
+  purpose: 'Musik für Hochzeit, Trauerfeier und Event auswählen, anhören und für die persönliche Abstimmung vorbereiten.',
   expert: {
     name: 'Kim-Marie Borger',
     role: 'Viola-Expertin und ausübende Musikerin',
@@ -13,16 +13,6 @@ export const siteStrategy = {
   },
   navigation: [
     {
-      href: '/viola/',
-      label: 'Viola',
-      children: [
-        { href: '/viola/', label: 'Viola im Einsatz', note: 'Klang, Rolle und Praxis' },
-        { href: '/viola/viola-oder-violine/', label: 'Viola oder Violine?', note: 'Register und Wirkung entscheiden' },
-        { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Mikrofonposition', note: 'Leitfaden · 9 Min.' },
-        { href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', label: 'Live oder Sample-Bibliothek?', note: 'Entscheidungshilfe · 8 Min.' },
-      ],
-    },
-    {
       href: '/eventmusik/',
       label: 'Anlässe',
       children: [
@@ -32,6 +22,16 @@ export const siteStrategy = {
         { href: '/eventmusik/trauerfeier/', label: 'Trauerfeier', note: 'Abschied behutsam planen' },
         { href: '/eventmusik/firmenevent/', label: 'Firmenevent', note: 'Empfang, Dinner, Highlight' },
         { href: '/eventmusik/geburtstag/', label: 'Geburtstag', note: 'Überraschung oder Empfang' },
+      ],
+    },
+    {
+      href: '/viola/',
+      label: 'Viola',
+      children: [
+        { href: '/viola/', label: 'Viola im Einsatz', note: 'Klang, Rolle und Praxis' },
+        { href: '/viola/viola-oder-violine/', label: 'Viola oder Violine?', note: 'Register und Wirkung entscheiden' },
+        { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Mikrofonposition', note: 'Leitfaden · 9 Min.' },
+        { href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', label: 'Live oder Sample-Bibliothek?', note: 'Entscheidungshilfe · 8 Min.' },
       ],
     },
     {
@@ -54,14 +54,12 @@ export const siteStrategy = {
         { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Viola-Mikrofonposition', note: 'Leitfaden · 9 Min.' },
       ],
     },
-    { href: '/tools/eventmusik-planer/', label: 'Planer' },
     { href: '/about/', label: 'Über uns' },
   ],
   englishNavigation: [
-    { href: '/en/', label: 'English home' },
-    { href: '/en/tools/event-music-planner/', label: 'Event planner' },
     { href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', label: 'Wedding ceremony' },
-    { href: '/recording/', label: 'Recording strings' },
-    { href: '/about/', label: 'About' },
+    { href: '/recording/', label: 'Recording strings · DE' },
+    { href: '/viola/', label: 'Viola · DE' },
+    { href: '/about/', label: 'About · DE' },
   ],
 } as const;

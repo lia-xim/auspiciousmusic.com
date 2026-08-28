@@ -1,6 +1,6 @@
 {
-  "baseUrl": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-28T18:12:13.035Z",
+  "baseUrl": "http://127.0.0.1:4322",
+  "checkedAt": "2026-08-28T20:20:21.061Z",
   "routes": [
     "/",
     "/en/",
@@ -28,7 +28,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3417,
+      "bodyLength": 3399,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -39,7 +39,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3138,
+      "bodyLength": 3190,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -50,7 +50,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2378,
+      "bodyLength": 2360,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -61,7 +61,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 6207,
+      "bodyLength": 6189,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -72,7 +72,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2270,
+      "bodyLength": 2252,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -83,7 +83,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5920,
+      "bodyLength": 5902,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -94,7 +94,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3760,
+      "bodyLength": 3742,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -105,7 +105,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3814,
+      "bodyLength": 3796,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -116,7 +116,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3554,
+      "bodyLength": 3536,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -127,7 +127,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2362,
+      "bodyLength": 2344,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -138,7 +138,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3879,
+      "bodyLength": 3861,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -149,7 +149,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1493,
+      "bodyLength": 1475,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -160,7 +160,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1360,
+      "bodyLength": 1412,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -171,7 +171,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3767,
+      "bodyLength": 3749,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -182,7 +182,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3316,
+      "bodyLength": 3298,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -193,7 +193,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2216,
+      "bodyLength": 2283,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -204,7 +204,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1703,
+      "bodyLength": 1755,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -215,7 +215,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3354,
+      "bodyLength": 3343,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -226,7 +226,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3053,
+      "bodyLength": 3111,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -237,7 +237,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2315,
+      "bodyLength": 2304,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -248,7 +248,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 6144,
+      "bodyLength": 6133,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -259,7 +259,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2207,
+      "bodyLength": 2196,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -270,7 +270,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5857,
+      "bodyLength": 5846,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -281,7 +281,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3697,
+      "bodyLength": 3686,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -292,7 +292,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3751,
+      "bodyLength": 3740,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -303,7 +303,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3491,
+      "bodyLength": 3480,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -314,7 +314,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2299,
+      "bodyLength": 2288,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -325,7 +325,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3816,
+      "bodyLength": 3805,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -336,7 +336,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1408,
+      "bodyLength": 1397,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -347,7 +347,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1248,
+      "bodyLength": 1306,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -358,7 +358,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3704,
+      "bodyLength": 3693,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -369,7 +369,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3253,
+      "bodyLength": 3242,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -377,72 +377,6 @@
       "route": "/download/",
       "viewport": "390x844",
       "title": "Legacy resource status — Auspicious Music",
-      "h1": 1,
-      "main": 1,
-      "overflow": 0,
-      "bodyLength": 2131,
-      "emptyLinks": 0,
-      "unlabeledFields": 0
-    },
-    {
-      "route": "/services/",
-      "viewport": "390x844",
-      "title": "From brief to booking — Auspicious Music",
-      "h1": 1,
-      "main": 1,
-      "overflow": 0,
-      "bodyLength": 1618,
-      "emptyLinks": 0,
-      "unlabeledFields": 0
-    },
-    {
-      "route": "/",
-      "viewport": "320x900",
-      "title": "Musik für Hochzeit, Trauerfeier & Event planen | Auspicious Music",
-      "h1": 1,
-      "main": 1,
-      "overflow": 0,
-      "bodyLength": 3351,
-      "emptyLinks": 0,
-      "unlabeledFields": 0
-    },
-    {
-      "route": "/en/",
-      "viewport": "320x900",
-      "title": "Auspicious Music — Plan music for ceremonies and events",
-      "h1": 1,
-      "main": 1,
-      "overflow": 0,
-      "bodyLength": 3050,
-      "emptyLinks": 0,
-      "unlabeledFields": 0
-    },
-    {
-      "route": "/viola/",
-      "viewport": "320x900",
-      "title": "Viola für Zeremonie, Event und Aufnahme — Auspicious Music",
-      "h1": 1,
-      "main": 1,
-      "overflow": 0,
-      "bodyLength": 2312,
-      "emptyLinks": 0,
-      "unlabeledFields": 0
-    },
-    {
-      "route": "/viola/viola-oder-violine/",
-      "viewport": "320x900",
-      "title": "Viola oder Violine für Live-Musik? — Auspicious Music",
-      "h1": 1,
-      "main": 1,
-      "overflow": 0,
-      "bodyLength": 6141,
-      "emptyLinks": 0,
-      "unlabeledFields": 0
-    },
-    {
-      "route": "/eventmusik/",
-      "viewport": "320x900",
-      "title": "Musik für Hochzeit, Trauerfeier und Event — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
@@ -451,13 +385,79 @@
       "unlabeledFields": 0
     },
     {
+      "route": "/services/",
+      "viewport": "390x844",
+      "title": "From brief to booking — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 1676,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/",
+      "viewport": "320x900",
+      "title": "Musik für Hochzeit, Trauerfeier & Event planen | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 3340,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/en/",
+      "viewport": "320x900",
+      "title": "Auspicious Music — Plan music for ceremonies and events",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 3108,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/viola/",
+      "viewport": "320x900",
+      "title": "Viola für Zeremonie, Event und Aufnahme — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 2301,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/viola/viola-oder-violine/",
+      "viewport": "320x900",
+      "title": "Viola oder Violine für Live-Musik? — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 6130,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/",
+      "viewport": "320x900",
+      "title": "Musik für Hochzeit, Trauerfeier und Event — Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 2193,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
       "route": "/eventmusik/live-streicher-draussen/",
       "viewport": "320x900",
       "title": "Live-Streicher draußen planen — Auspicious Music",
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5854,
+      "bodyLength": 5843,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -468,7 +468,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3694,
+      "bodyLength": 3683,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -479,7 +479,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3748,
+      "bodyLength": 3737,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -490,7 +490,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3488,
+      "bodyLength": 3477,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -501,7 +501,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2296,
+      "bodyLength": 2285,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -512,7 +512,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3813,
+      "bodyLength": 3802,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -523,7 +523,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1405,
+      "bodyLength": 1394,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -534,7 +534,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1245,
+      "bodyLength": 1303,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -545,7 +545,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3701,
+      "bodyLength": 3690,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -556,7 +556,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3250,
+      "bodyLength": 3239,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -567,7 +567,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2128,
+      "bodyLength": 2201,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -578,7 +578,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1615,
+      "bodyLength": 1673,
       "emptyLinks": 0,
       "unlabeledFields": 0
     }
