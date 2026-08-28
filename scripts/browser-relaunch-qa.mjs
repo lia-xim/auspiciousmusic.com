@@ -26,7 +26,7 @@ async function inspect(route, viewport) {
   page.on('pageerror', (error) => errors.push(`pageerror: ${error.message}`));
   page.on('console', (message) => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
   const response = await page.goto(new URL(route, baseUrl).href, { waitUntil: 'networkidle' });
-  const metrics = await page.evaluate(() => ({
+  const metrics = await page.evaluate((mobile) => ({
     title: document.title,
     h1: document.querySelectorAll('h1').length,
     main: document.querySelectorAll('main').length,
@@ -34,11 +34,18 @@ async function inspect(route, viewport) {
     bodyLength: document.body.innerText.trim().length,
     emptyLinks: [...document.querySelectorAll('a[href], button')].filter((node) => !node.textContent?.trim() && !node.getAttribute('aria-label') && !node.getAttribute('aria-labelledby')).length,
     unlabeledFields: [...document.querySelectorAll('input:not([type="hidden"]), select, textarea')].filter((node) => !node.closest('label') && !document.querySelector(`label[for="${CSS.escape(node.id)}"]`) && !node.getAttribute('aria-label')).length,
-  }));
+    smallPrimaryTargets: mobile ? [...document.querySelectorAll('.btn, .icon-btn, .header-language, .occasion-start a, .quick-options span, .quick-result__play, .music-row__play, .piece-play, .recommendation-play, .occasion-locations button, .occasion-locations summary, .planner-progress button, .option, .location-list button')]
+      .filter((node) => { const rect = node.getBoundingClientRect(); return rect.width > 0 && rect.height > 0 && (rect.width < 44 || rect.height < 44); })
+      .map((node) => `${node.tagName}.${node.className}:${Math.round(node.getBoundingClientRect().width)}x${Math.round(node.getBoundingClientRect().height)}`) : [],
+    smallFieldText: mobile ? [...document.querySelectorAll('input:not([type="hidden"]), select, textarea')]
+      .filter((node) => node.getBoundingClientRect().width > 0 && Number.parseFloat(getComputedStyle(node).fontSize) < 16)
+      .map((node) => `${node.tagName}.${node.className}:${getComputedStyle(node).fontSize}`) : [],
+  }), viewport.width <= 390);
   if ((response?.status() ?? 500) >= 400) failures.push(`${route} at ${viewport.width}px: HTTP ${response?.status()}`);
   if (!metrics.title || metrics.h1 !== 1 || metrics.main !== 1 || metrics.bodyLength < 120) failures.push(`${route} at ${viewport.width}px: structural metrics ${JSON.stringify(metrics)}`);
   if (metrics.overflow > 1) failures.push(`${route} at ${viewport.width}px: horizontal overflow ${metrics.overflow}px`);
   if (metrics.emptyLinks || metrics.unlabeledFields) failures.push(`${route} at ${viewport.width}px: accessibility metrics ${JSON.stringify(metrics)}`);
+  if (metrics.smallPrimaryTargets.length || metrics.smallFieldText.length) failures.push(`${route} at ${viewport.width}px: mobile ergonomics ${JSON.stringify(metrics)}`);
   for (const error of errors) failures.push(`${route} at ${viewport.width}px: ${error}`);
   observations.push({ route, viewport: `${viewport.width}x${viewport.height}`, ...metrics });
   await page.close();
@@ -87,11 +94,13 @@ for (const slug of ['hochzeit', 'sektempfang', 'trauerfeier', 'dinner', 'firmene
   const locationState = await page.evaluate(() => ({
     choices: document.querySelectorAll('[data-occasion-locations] [data-location-start]').length,
     regionHeading: [...document.querySelectorAll('[data-occasion-locations] h3')].some((heading) => heading.textContent?.trim() === 'Regionen'),
-    cityHeading: [...document.querySelectorAll('[data-occasion-locations] h3')].some((heading) => heading.textContent?.trim() === 'Städte'),
+    cityDisclosure: Boolean(document.querySelector('[data-location-cities]:not([open])')),
     names: [...document.querySelectorAll('[data-location-start]')].map((button) => button.textContent?.trim()),
   }));
-  if (locationState.choices !== 49 || !locationState.regionHeading || !locationState.cityHeading || !locationState.names.includes('Düsseldorf') || !locationState.names.includes('Nordrhein-Westfalen')) failures.push(`occasion locations ${slug}: ${JSON.stringify(locationState)}`);
+  if (locationState.choices !== 49 || !locationState.regionHeading || !locationState.cityDisclosure || !locationState.names.includes('Düsseldorf') || !locationState.names.includes('Nordrhein-Westfalen')) failures.push(`occasion locations ${slug}: ${JSON.stringify(locationState)}`);
   if (slug === 'hochzeit') {
+    await page.locator('[data-location-cities] summary').click();
+    if ((await page.locator('[data-location-cities]').getAttribute('open')) === null) failures.push('occasion locations: city disclosure did not open');
     await page.getByRole('button', { name: 'Düsseldorf', exact: true }).click();
     await page.waitForURL((url) => url.pathname === '/tools/eventmusik-planer/' && url.searchParams.get('anlass') === 'hochzeit' && url.searchParams.get('ort') === 'Düsseldorf');
     await page.waitForLoadState('networkidle');

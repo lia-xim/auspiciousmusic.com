@@ -1,6 +1,6 @@
 {
-  "baseUrl": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-28T22:43:02.483Z",
+  "baseUrl": "http://127.0.0.1:4322",
+  "checkedAt": "2026-08-28T23:04:05.368Z",
   "routes": [
     "/",
     "/en/",
@@ -33,7 +33,9 @@
       "overflow": 0,
       "bodyLength": 3407,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/en/",
@@ -44,7 +46,9 @@
       "overflow": 0,
       "bodyLength": 3190,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/viola/",
@@ -55,7 +59,9 @@
       "overflow": 0,
       "bodyLength": 2368,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/viola/viola-oder-violine/",
@@ -66,7 +72,9 @@
       "overflow": 0,
       "bodyLength": 6197,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/",
@@ -77,7 +85,9 @@
       "overflow": 0,
       "bodyLength": 2260,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/live-streicher-draussen/",
@@ -88,7 +98,9 @@
       "overflow": 0,
       "bodyLength": 5910,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/hochzeit/",
@@ -97,9 +109,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4789,
+      "bodyLength": 4400,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/sektempfang/",
@@ -108,9 +122,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4646,
+      "bodyLength": 4257,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/trauerfeier/",
@@ -119,9 +135,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4846,
+      "bodyLength": 4457,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/dinner/",
@@ -130,9 +148,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4596,
+      "bodyLength": 4207,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/firmenevent/",
@@ -141,9 +161,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4575,
+      "bodyLength": 4186,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/geburtstag/",
@@ -152,9 +174,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4704,
+      "bodyLength": 4315,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/repertoire/",
@@ -165,7 +189,9 @@
       "overflow": 0,
       "bodyLength": 2352,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/recording/",
@@ -176,7 +202,9 @@
       "overflow": 0,
       "bodyLength": 3869,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/tools/eventmusik-planer/",
@@ -187,7 +215,9 @@
       "overflow": 0,
       "bodyLength": 1483,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/en/tools/event-music-planner/",
@@ -198,7 +228,9 @@
       "overflow": 0,
       "bodyLength": 1412,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/tools/wunschstueck-check/",
@@ -209,7 +241,9 @@
       "overflow": 0,
       "bodyLength": 3757,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/tools/streicheraufnahme-briefing/",
@@ -220,7 +254,9 @@
       "overflow": 0,
       "bodyLength": 3306,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/download/",
@@ -231,7 +267,9 @@
       "overflow": 0,
       "bodyLength": 2283,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/services/",
@@ -242,7 +280,9 @@
       "overflow": 0,
       "bodyLength": 1755,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/",
@@ -253,7 +293,9 @@
       "overflow": 0,
       "bodyLength": 3343,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/en/",
@@ -264,7 +306,9 @@
       "overflow": 0,
       "bodyLength": 3111,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/viola/",
@@ -275,7 +319,9 @@
       "overflow": 0,
       "bodyLength": 2304,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/viola/viola-oder-violine/",
@@ -286,7 +332,9 @@
       "overflow": 0,
       "bodyLength": 6133,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/",
@@ -297,7 +345,9 @@
       "overflow": 0,
       "bodyLength": 2196,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/live-streicher-draussen/",
@@ -308,7 +358,9 @@
       "overflow": 0,
       "bodyLength": 5846,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/hochzeit/",
@@ -317,9 +369,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4725,
+      "bodyLength": 4336,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/sektempfang/",
@@ -328,9 +382,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4582,
+      "bodyLength": 4193,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/trauerfeier/",
@@ -339,9 +395,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4782,
+      "bodyLength": 4393,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/dinner/",
@@ -350,9 +408,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4532,
+      "bodyLength": 4143,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/firmenevent/",
@@ -361,9 +421,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4511,
+      "bodyLength": 4122,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/geburtstag/",
@@ -372,9 +434,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4640,
+      "bodyLength": 4251,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/repertoire/",
@@ -385,7 +449,9 @@
       "overflow": 0,
       "bodyLength": 2288,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/recording/",
@@ -396,7 +462,9 @@
       "overflow": 0,
       "bodyLength": 3805,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/tools/eventmusik-planer/",
@@ -407,7 +475,9 @@
       "overflow": 0,
       "bodyLength": 1397,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/en/tools/event-music-planner/",
@@ -418,7 +488,9 @@
       "overflow": 0,
       "bodyLength": 1306,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/tools/wunschstueck-check/",
@@ -429,7 +501,9 @@
       "overflow": 0,
       "bodyLength": 3693,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/tools/streicheraufnahme-briefing/",
@@ -440,7 +514,9 @@
       "overflow": 0,
       "bodyLength": 3242,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/download/",
@@ -451,7 +527,9 @@
       "overflow": 0,
       "bodyLength": 2204,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/services/",
@@ -462,7 +540,9 @@
       "overflow": 0,
       "bodyLength": 1676,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/",
@@ -473,7 +553,9 @@
       "overflow": 0,
       "bodyLength": 3340,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/en/",
@@ -484,7 +566,9 @@
       "overflow": 0,
       "bodyLength": 3108,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/viola/",
@@ -495,7 +579,9 @@
       "overflow": 0,
       "bodyLength": 2301,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/viola/viola-oder-violine/",
@@ -506,7 +592,9 @@
       "overflow": 0,
       "bodyLength": 6130,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/",
@@ -517,7 +605,9 @@
       "overflow": 0,
       "bodyLength": 2193,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/live-streicher-draussen/",
@@ -528,7 +618,9 @@
       "overflow": 0,
       "bodyLength": 5843,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/hochzeit/",
@@ -537,9 +629,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4722,
+      "bodyLength": 4333,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/sektempfang/",
@@ -548,9 +642,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4579,
+      "bodyLength": 4190,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/trauerfeier/",
@@ -559,9 +655,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4779,
+      "bodyLength": 4390,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/dinner/",
@@ -570,9 +668,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4529,
+      "bodyLength": 4140,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/firmenevent/",
@@ -581,9 +681,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4508,
+      "bodyLength": 4119,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/eventmusik/geburtstag/",
@@ -592,9 +694,11 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 4637,
+      "bodyLength": 4248,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/repertoire/",
@@ -605,7 +709,9 @@
       "overflow": 0,
       "bodyLength": 2285,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/recording/",
@@ -616,7 +722,9 @@
       "overflow": 0,
       "bodyLength": 3802,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/tools/eventmusik-planer/",
@@ -627,7 +735,9 @@
       "overflow": 0,
       "bodyLength": 1394,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/en/tools/event-music-planner/",
@@ -638,7 +748,9 @@
       "overflow": 0,
       "bodyLength": 1303,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/tools/wunschstueck-check/",
@@ -649,7 +761,9 @@
       "overflow": 0,
       "bodyLength": 3690,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/tools/streicheraufnahme-briefing/",
@@ -660,7 +774,9 @@
       "overflow": 0,
       "bodyLength": 3239,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/download/",
@@ -671,7 +787,9 @@
       "overflow": 0,
       "bodyLength": 2201,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     },
     {
       "route": "/services/",
@@ -682,7 +800,9 @@
       "overflow": 0,
       "bodyLength": 1673,
       "emptyLinks": 0,
-      "unlabeledFields": 0
+      "unlabeledFields": 0,
+      "smallPrimaryTargets": [],
+      "smallFieldText": []
     }
   ],
   "plannerOutput": "Drei Vorschläge für deinen Ablauf\n\nZuerst die Musik: drei Titel, ihr passender Moment und der Grund für die Empfehlung.\n\nAuswahl ändern\nAnlass\nHochzeit / Trauung\nDatum (optional)\nNoch offen\nOrt oder Region\nKöln\nRolle der Musik\nBegleitend\nUnsere Vorschläge\n01\nCan’t Help Falling in Love\nWARUM PASST ES?\nWarm und nahbar; passend für einen persönlichen Moment, ohne ihn zu überladen.\nVORGESCHLAGEN FÜR\nAnkunft der Gäste\n02\nA Thousand Years\nWARUM PASST ES?\nWarm und nahbar; passend für einen persönlichen Moment, ohne ihn zu überladen.\nVORGESCHLAGEN FÜR\nRingtausch, Ja-Wort oder Unterschrift\n03\nAll of Me\nWARUM PASST ES?\nWarm und nahbar; passend für einen persönlichen Moment, ohne ihn zu überladen.\nVORGESCHLAGEN FÜR\nRingtausch, Ja-Wort oder Unterschrift\nAblauf und offene Punkte\nAblauf\nAnkunft der Gäste\nRuhige Musik, die auch bei verspäteter Ankunft flexibel weiterlaufen kann.\nRingtausch, Ja-Wort oder Unterschrift\nEine kürzbare oder wiederholbare Fassung einplanen.\nNoch zu klären\nWer gibt Einzug und Auszug live frei?\nGibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?\nWelche Wunschstücke sind unverzichtbar und welche nur Inspiration?\n\nDie Vorschläge beruhen auf Anlass, Moment und gewünschter Wirkung. Sie bestätigen weder Termin, Besetzung, konkrete Fassung, Notenlage, Arrangement, Rechte, Preis noch Buchung.\n\nPlan kopieren\nPlan kopieren & Kontakt öffnen",

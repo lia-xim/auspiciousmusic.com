@@ -25,10 +25,12 @@ const cities = plannerLocations.filter((location) => location.kind === 'city');
         </ul>
       </div>
       <div>
-        <h3>Städte</h3>
-        <ul class="occasion-locations__grid">
-          {cities.map((location) => <li><button type="button" data-location-start={location.label}>{location.label}</button></li>)}
-        </ul>
+        <details class="occasion-locations__cities" data-location-cities>
+          <summary><span>Städte</span><span>{cities.length} Orte</span></summary>
+          <ul class="occasion-locations__grid">
+            {cities.map((location) => <li><button type="button" data-location-start={location.label}>{location.label}</button></li>)}
+          </ul>
+        </details>
       </div>
     </div>
   </div>
@@ -45,15 +47,23 @@ const cities = plannerLocations.filter((location) => location.kind === 'city');
   .occasion-locations__choices h3 { margin-bottom: .65rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
   .occasion-locations__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .occasion-locations__grid--regions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .occasion-locations__grid button { width: 100%; min-height: 42px; padding: .6rem .75rem; border: 0; border-radius: 0; background: #fff; color: var(--ink); font: 650 .82rem/1.25 var(--font-sans); text-align: left; cursor: pointer; }
+  .occasion-locations__grid button { width: 100%; min-height: 44px; padding: .65rem .75rem; border: 0; border-radius: 0; background: #fff; color: var(--ink); font: 650 .84rem/1.25 var(--font-sans); text-align: left; cursor: pointer; }
   .occasion-locations__grid button:hover { background: #f2e8ea; color: #8f1d35; }
   .occasion-locations__grid button:focus-visible { position: relative; z-index: 1; outline: 3px solid #8f1d35; outline-offset: -3px; }
+  .occasion-locations__cities { border: 1px solid var(--line); background: #fff; }
+  .occasion-locations__cities summary { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem; color: var(--ink); font-size: .82rem; font-weight: 750; text-transform: uppercase; letter-spacing: .08em; cursor: pointer; list-style: none; }
+  .occasion-locations__cities summary::-webkit-details-marker { display: none; }
+  .occasion-locations__cities summary span:last-child { color: var(--muted); font-size: .75rem; letter-spacing: 0; text-transform: none; }
+  .occasion-locations__cities summary::after { content: '+'; flex: none; color: #8f1d35; font-size: 1.2rem; font-weight: 500; }
+  .occasion-locations__cities[open] summary::after { content: '−'; }
+  .occasion-locations__cities .occasion-locations__grid { border: 0; border-top: 1px solid var(--line); }
   @media (min-width: 940px) {
     .occasion-locations__layout { grid-template-columns: minmax(18rem, .65fr) minmax(0, 1.35fr); }
   }
   @media (max-width: 700px) {
     .occasion-locations h2 { font-size: 2.2rem; }
     .occasion-locations__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .occasion-locations__choices { gap: 1rem; }
   }
   @media (max-width: 360px) {
     .occasion-locations__grid { grid-template-columns: 1fr; }

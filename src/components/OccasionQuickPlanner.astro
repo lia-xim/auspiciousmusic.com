@@ -134,7 +134,7 @@ const plannerData = {
   .quick-options { display: flex; flex-wrap: wrap; gap: .55rem; }
   .quick-options label { position: relative; cursor: pointer; }
   .quick-options input { position: absolute; opacity: 0; pointer-events: none; }
-  .quick-options span { display: inline-flex; align-items: center; min-height: 42px; padding: .55rem .8rem; border: 1px solid var(--line-strong); background: var(--surface-bright); color: var(--ink-soft); font-size: .88rem; line-height: 1.25; }
+  .quick-options span { display: inline-flex; align-items: center; min-height: 44px; padding: .6rem .8rem; border: 1px solid var(--line-strong); background: var(--surface-bright); color: var(--ink-soft); font-size: .88rem; line-height: 1.25; }
   .quick-options input:checked + span { border-color: #8f1d35; background: #8f1d35; color: #fff; }
   .quick-options input:focus-visible + span { outline: 3px solid #d7b66e; outline-offset: 2px; }
   .quick-planner__result { padding: clamp(1.5rem, 4vw, 2.5rem); }
@@ -159,5 +159,6 @@ const plannerData = {
     [data-quick-results] li { grid-template-columns: 2rem 2.5rem minmax(0, 1fr); padding-block: 1rem; }
     [data-quick-results] li > p { grid-column: 2 / -1; }
     .quick-planner__next .btn { width: 100%; justify-content: center; }
+    .quick-result__play { width: 2.75rem; height: 2.75rem; }
   }
 </style>
