@@ -85,3 +85,20 @@ The 22 August DataForSEO run cost 0.075924 USD. It identified `/download/` as th
 ## Next measurement gate
 
 After launch, submit the canonical sitemap in Search Console, inspect the German core routes, all seven occasion pages and the planner, and monitor newly discovered legacy paths. Measure planner starts, completed plans and qualified outbound enquiry actions separately from bookings. Expand the event-music, repertoire or recording cluster only from real query evidence, reader questions and publishable first-hand material.
+
+## Query and page ownership (28 August 2026)
+
+Search Console performance data for `kim-marie-borger.com` is currently **NOT PROVEN**: the authenticated account available during the review had no access to that property. The terms below therefore come from the published Kim-Marie site taxonomy and metadata, not from reported clicks, impressions or positions.
+
+| Topic family | Kim-Marie Borger owns | Auspicious Music owns | Auspicious landing page title |
+| --- | --- | --- | --- |
+| Wedding | performer, Live-Viola, booking and local service intent | running order, repertoire choice and preparation | `Hochzeitsmusik planen: Einzug, Trauung & Auszug` |
+| Funeral | performer, availability, booking and local service intent | selecting pieces and placing them in the farewell sequence | `Trauermusik auswählen: Beerdigung & Trauerfeier` |
+| Drinks reception | current live-music offer and performance enquiry | reception phases, conversation-friendly role and repertoire choice | `Musik zum Sektempfang planen: Ablauf & Stücke` |
+| Dinner | current performance offer | music blocks around courses, speeches and transitions | `Dinnermusik planen: Hochzeit, Reden & Ausklang` |
+| Corporate event | performer, live-music service and local intent | programme role, cues, reception and dinner planning | `Musik fürs Firmenevent planen: Empfang & Dinner` |
+| Birthday | performer and private-event enquiry | surprise, reception, gift and closing sequence | `Geburtstagsmusik planen: Überraschung & Empfang` |
+
+This is deliberate overlap at the topic level, not duplicate page intent. Auspicious Music must not create `buchen`, `Musikerin`, `Live-Viola + Stadt` or other commercial/local fan-out pages that compete with Kim-Marie's current offer. Each occasion page may link to its matching Kim-Marie service page when that is the reader's next step, but the shared publisher relationship must be disclosed in the same context.
+
+When authenticated Search Console page-query data becomes available, validate the table at page × query level over a comparable period. Change a title only when impressions and the intended page job support the change; do not infer cannibalization merely because both domains appear for the same broad topic.

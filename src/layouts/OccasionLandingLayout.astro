@@ -88,6 +88,8 @@ const pageSchema = {
         .occasion-handoff { align-self: center; padding: 1.5rem; border-left: 2px solid #a81f42; background: #202328; }
         .occasion-handoff p { color: #cdd0d2; line-height: 1.65; }
         .occasion-handoff .btn { width: 100%; justify-content: center; margin-top: 1.2rem; }
+        .occasion-handoff__service { display: inline-block; margin-top: 1rem; color: #f2efe8; font-weight: 700; text-underline-offset: .2em; }
+        .occasion-handoff__service:hover { color: #d7b66e; }
         .occasion-handoff small { display: block; margin-top: .8rem; color: #aeb2b6; line-height: 1.5; }
       }
     </style>
@@ -153,7 +155,8 @@ const pageSchema = {
         <aside class="occasion-handoff">
           <p>Im vollständigen Planer ergänzt ihr Ort, Rahmen und Besetzung. Danach lässt sich der Plan kopieren und Kim-Maries Kontaktseite direkt öffnen.</p>
           <a class="btn btn--primary" href={plannerHref}>Plan für {profile.labelDe} erstellen</a>
-          <small>Der Planer bestätigt weder Termin noch Preis. Kim-Marie prüft Anfrage, Fassung und Verfügbarkeit persönlich.</small>
+          <a class="occasion-handoff__service" href={profile.expertServiceUrl} rel="noopener external">{profile.expertServiceLabelDe}</a>
+          <small>Der Planer bestätigt weder Termin noch Preis. Kim-Marie prüft Anfrage, Fassung und Verfügbarkeit persönlich. Auspicious Music und die verlinkte Angebotsseite werden im Projektportfolio desselben Herausgebers betreut; der Link ist keine unabhängige Empfehlung.</small>
         </aside>
       </div>
     </section>

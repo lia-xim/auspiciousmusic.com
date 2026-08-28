@@ -1,6 +1,6 @@
 {
-  "implementation": "http://127.0.0.1:4322",
-  "checkedAt": "2026-08-28T20:47:23.434Z",
+  "implementation": "http://127.0.0.1:4327",
+  "checkedAt": "2026-08-28T21:17:52.937Z",
   "uniqueRoutesChecked": 60,
   "routeViewportChecks": 128,
   "observations": [
@@ -329,42 +329,42 @@
     {
       "route": "/eventmusik/hochzeit/",
       "status": 200,
-      "title": "Hochzeitsmusik für Trauung, Einzug & Auszug | Auspicious Music",
+      "title": "Hochzeitsmusik planen: Einzug, Trauung & Auszug | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/sektempfang/",
       "status": 200,
-      "title": "Musik zum Sektempfang: Live-Musik planen | Auspicious Music",
+      "title": "Musik zum Sektempfang planen: Ablauf & Stücke | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/trauerfeier/",
       "status": 200,
-      "title": "Trauermusik für Beerdigung & Trauerfeier | Auspicious Music",
+      "title": "Trauermusik auswählen: Beerdigung & Trauerfeier | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/dinner/",
       "status": 200,
-      "title": "Dinnermusik für Hochzeit & Event planen | Auspicious Music",
+      "title": "Dinnermusik planen: Hochzeit, Reden & Ausklang | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/firmenevent/",
       "status": 200,
-      "title": "Live-Musik für Firmenevent & Empfang | Auspicious Music",
+      "title": "Musik fürs Firmenevent planen: Empfang & Dinner | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/geburtstag/",
       "status": 200,
-      "title": "Live-Musik zum Geburtstag planen | Auspicious Music",
+      "title": "Geburtstagsmusik planen: Überraschung & Empfang | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -749,42 +749,42 @@
     {
       "route": "/eventmusik/hochzeit/",
       "status": 200,
-      "title": "Hochzeitsmusik für Trauung, Einzug & Auszug | Auspicious Music",
+      "title": "Hochzeitsmusik planen: Einzug, Trauung & Auszug | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/sektempfang/",
       "status": 200,
-      "title": "Musik zum Sektempfang: Live-Musik planen | Auspicious Music",
+      "title": "Musik zum Sektempfang planen: Ablauf & Stücke | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/trauerfeier/",
       "status": 200,
-      "title": "Trauermusik für Beerdigung & Trauerfeier | Auspicious Music",
+      "title": "Trauermusik auswählen: Beerdigung & Trauerfeier | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/dinner/",
       "status": 200,
-      "title": "Dinnermusik für Hochzeit & Event planen | Auspicious Music",
+      "title": "Dinnermusik planen: Hochzeit, Reden & Ausklang | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/firmenevent/",
       "status": 200,
-      "title": "Live-Musik für Firmenevent & Empfang | Auspicious Music",
+      "title": "Musik fürs Firmenevent planen: Empfang & Dinner | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/geburtstag/",
       "status": 200,
-      "title": "Live-Musik zum Geburtstag planen | Auspicious Music",
+      "title": "Geburtstagsmusik planen: Überraschung & Empfang | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
