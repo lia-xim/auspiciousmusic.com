@@ -1,6 +1,6 @@
 {
-  "baseUrl": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-28T20:24:51.771Z",
+  "baseUrl": "http://127.0.0.1:4322",
+  "checkedAt": "2026-08-28T20:44:10.603Z",
   "routes": [
     "/",
     "/en/",
@@ -28,7 +28,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3399,
+      "bodyLength": 3407,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -50,7 +50,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2360,
+      "bodyLength": 2368,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -61,7 +61,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 6189,
+      "bodyLength": 6197,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -72,7 +72,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2252,
+      "bodyLength": 2260,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -83,7 +83,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 5902,
+      "bodyLength": 5910,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -94,7 +94,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3742,
+      "bodyLength": 3750,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -105,7 +105,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3796,
+      "bodyLength": 3804,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -116,7 +116,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3536,
+      "bodyLength": 3544,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -127,7 +127,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 2344,
+      "bodyLength": 2352,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -138,7 +138,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3861,
+      "bodyLength": 3869,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -149,7 +149,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 1475,
+      "bodyLength": 1483,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -171,7 +171,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3749,
+      "bodyLength": 3757,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -182,7 +182,7 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3298,
+      "bodyLength": 3306,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -583,7 +583,7 @@
       "unlabeledFields": 0
     }
   ],
-  "plannerOutput": "Drei Vorschläge für deinen Ablauf\n\nZuerst die Musik: drei Titel, ihr passender Moment und der Grund für die Empfehlung.\n\nAuswahl ändern\nAnlass\nHochzeit / Trauung\nDatum (optional)\nNoch offen\nOrt oder Region\nKöln\nRolle der Musik\nBegleitend\nUnsere Vorschläge\n01\nA Thousand Years\nWARUM PASST ES?\nWarm und nahbar; passend für einen persönlichen Moment, ohne ihn zu überladen.\nVORGESCHLAGEN FÜR\nEinzug\n02\nPerfect\nWARUM PASST ES?\nWarm und nahbar; passend für einen persönlichen Moment, ohne ihn zu überladen.\nVORGESCHLAGEN FÜR\nAuszug\n03\nAll of Me\nWARUM PASST ES?\nWarm und nahbar; passend für einen persönlichen Moment, ohne ihn zu überladen.\nVORGESCHLAGEN FÜR\nRingtausch, Ja-Wort oder Unterschrift\nAblauf und offene Punkte\nAblauf\nAnkunft der Gäste\nRuhige Musik, die auch bei verspäteter Ankunft flexibel weiterlaufen kann.\nEinzug\nStartsignal und Endpunkt mit Trauzeug:innen oder Zeremonieleitung abstimmen.\nRingtausch, Ja-Wort oder Unterschrift\nEine kürzbare oder wiederholbare Fassung einplanen.\nAuszug\nEin deutliches, tragfähiges Ende für Bewegung und Applaus wählen.\nNoch zu klären\nWer gibt Einzug und Auszug live frei?\nGibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?\nWelche Wunschstücke sind unverzichtbar und welche nur Inspiration?\n\nDie Vorschläge beruhen auf Anlass, Moment und gewünschter Wirkung. Sie bestätigen weder Termin, Besetzung, konkrete Fassung, Notenlage, Arrangement, Rechte, Preis noch Buchung.\n\nPlan kopieren\nPlan kopieren & Kontakt öffnen",
+  "plannerOutput": "Drei Vorschläge für deinen Ablauf\n\nZuerst die Musik: drei Titel, ihr passender Moment und der Grund für die Empfehlung.\n\nAuswahl ändern\nAnlass\nHochzeit / Trauung\nDatum (optional)\nNoch offen\nOrt oder Region\nKöln\nRolle der Musik\nBegleitend\nUnsere Vorschläge\n01\nCan’t Help Falling in Love\nWARUM PASST ES?\nWarm und nahbar; passend für einen persönlichen Moment, ohne ihn zu überladen.\nVORGESCHLAGEN FÜR\nAnkunft der Gäste\n02\nA Thousand Years\nWARUM PASST ES?\nWarm und nahbar; passend für einen persönlichen Moment, ohne ihn zu überladen.\nVORGESCHLAGEN FÜR\nRingtausch, Ja-Wort oder Unterschrift\n03\nAll of Me\nWARUM PASST ES?\nWarm und nahbar; passend für einen persönlichen Moment, ohne ihn zu überladen.\nVORGESCHLAGEN FÜR\nRingtausch, Ja-Wort oder Unterschrift\nAblauf und offene Punkte\nAblauf\nAnkunft der Gäste\nRuhige Musik, die auch bei verspäteter Ankunft flexibel weiterlaufen kann.\nRingtausch, Ja-Wort oder Unterschrift\nEine kürzbare oder wiederholbare Fassung einplanen.\nNoch zu klären\nWer gibt Einzug und Auszug live frei?\nGibt es für draußen einen trockenen, schattigen Platz und einen belastbaren Plan B?\nWelche Wunschstücke sind unverzichtbar und welche nur Inspiration?\n\nDie Vorschläge beruhen auf Anlass, Moment und gewünschter Wirkung. Sie bestätigen weder Termin, Besetzung, konkrete Fassung, Notenlage, Arrangement, Rechte, Preis noch Buchung.\n\nPlan kopieren\nPlan kopieren & Kontakt öffnen",
   "requestedSongOutput": "Bereit für die musikalische Prüfung\n\nPerfect\nTitel\nPerfect\nFassung\nEd Sheeran, studio version\nAnlass\nHochzeit / Trauung\nSpielmoment\nAnkunft der Gäste\nWiedererkennung\nvor allem die Melodie\nMelodie ohne Gesang\nvermutlich ja\nGewünschte Form\nflexible, gekürzte Fassung\nVorlauf\nmehr als sechs Wochen\nPersönlicher Kern\nDie Melodie verbindet das Paar mit einem gemeinsamen Moment.\nIm Gespräch klären\nWer gibt am Spielmoment das Start- und Endsignal?\n\nGrenze: Dieser Check bestätigt weder musikalische Machbarkeit noch Fassung, Arrangement, Notenlage, Termin, Preis oder Buchung.",
   "recordingBriefOutput": "Dokumentarfilm Cue 04\nProjekt / Cue\nDokumentarfilm Cue 04\nFunktion\nSolistische Melodie\nWirkung und Kontext\nEine warme Mittellage soll den Übergang tragen, ohne die Sprache zu verdecken.\nStartreferenz\n00:42 nach Sprecherpause\nTempo / Raster\nReferenzmix, aber kein Click\nArtikulation / Phrasierung\nGebunden, ruhiger Bogen, wenig Vibrato.\nVarianten\nHauptfassung plus freieres Ende.\nLieferumfang\nVollständige Takes plus markierte Favoriten\nProjektformat\n48 kHz / 24 Bit\nDateibenennung\nprojekt_cue_stimme_take\nÜbergabe / Review\nReview am 24. August durch Schnitt.\nTechnische Bedingungen\nTrockene Hauptspur plus Referenzbearbeitung.\nOffene Fragen\nSind Noten, Arrangement, Aufnahme und spätere Nutzung für den konkreten Zweck geklärt?\n\nGrenze: Dieses Werkzeug bestätigt weder Spielbarkeit, Termin, Preis, Rechte, Besetzung noch technische Machbarkeit.",
   "failures": []

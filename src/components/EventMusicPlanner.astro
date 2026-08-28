@@ -409,8 +409,22 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         app.querySelector('[data-edit]').addEventListener('click', () => { result.hidden = true; workbench.hidden = false; setStep(3); });
         app.querySelector('[data-copy]').addEventListener('click', async (event) => { try { await navigator.clipboard.writeText(briefText); const button = event.currentTarget; button.textContent = copy.copied; setTimeout(() => { button.textContent = copy.copyAction; }, 1500); } catch { /* TXT remains available. */ } });
         app.querySelector('[data-contact]').addEventListener('click', async () => { try { await navigator.clipboard.writeText(briefText); } catch { /* The contact page still opens. */ } });
-        const requested = new URLSearchParams(location.search).get(lang === 'de' ? 'anlass' : 'occasion') || new URLSearchParams(location.search).get('anlass');
-        if (requested && bySlug[requested]) { const radio = form.querySelector(`input[name="occasion"][value="${CSS.escape(requested)}"]`); if (radio) { radio.checked = true; renderProfileChoices(); setStep(2); } }
+        const query = new URLSearchParams(location.search);
+        const handoff = new URLSearchParams(location.hash.slice(1));
+        const requested = query.get(lang === 'de' ? 'anlass' : 'occasion') || query.get('anlass');
+        if (requested && bySlug[requested]) {
+          const radio = form.querySelector(`input[name="occasion"][value="${CSS.escape(requested)}"]`);
+          if (radio) {
+            radio.checked = true;
+            renderProfileChoices();
+            const requestedMoments = (handoff.get('momente') || handoff.get('moments') || '').split(',').map(Number).filter((value) => Number.isInteger(value) && value >= 0 && value < profile().moments.length);
+            if (requestedMoments.length) form.querySelectorAll('input[name="moments"]').forEach((input) => input.checked = requestedMoments.includes(Number(input.value)));
+            const requestedCharacter = handoff.get('wirkung') || handoff.get('character');
+            const characterInput = requestedCharacter ? form.querySelector(`input[name="character"][value="${CSS.escape(requestedCharacter)}"]`) : null;
+            if (characterInput instanceof HTMLInputElement) characterInput.checked = true;
+            setStep(2);
+          }
+        }
         renderLocations(); updateDateFields(); updateSummary();
       })();
     </script>

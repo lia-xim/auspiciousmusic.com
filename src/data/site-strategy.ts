@@ -17,11 +17,13 @@ export const siteStrategy = {
       label: 'Anlässe',
       children: [
         { href: '/eventmusik/', label: 'Alle Anlässe', note: 'Ablauf, Ort und Repertoire' },
-        { href: '/eventmusik/live-streicher-draussen/', label: 'Live-Streicher draußen', note: 'Schutz, Akustik und Plan B' },
         { href: '/eventmusik/hochzeit/', label: 'Hochzeit / Trauung', note: 'Einzug bis Auszug' },
+        { href: '/eventmusik/sektempfang/', label: 'Sektempfang', note: 'Ankommen und Gratulationen' },
         { href: '/eventmusik/trauerfeier/', label: 'Trauerfeier', note: 'Abschied behutsam planen' },
+        { href: '/eventmusik/dinner/', label: 'Dinner', note: 'Zwischen Gängen und Reden' },
         { href: '/eventmusik/firmenevent/', label: 'Firmenevent', note: 'Empfang, Dinner, Highlight' },
         { href: '/eventmusik/geburtstag/', label: 'Geburtstag', note: 'Überraschung oder Empfang' },
+        { href: '/eventmusik/live-streicher-draussen/', label: 'Live-Streicher draußen', note: 'Schutz, Akustik und Plan B' },
       ],
     },
     {
@@ -40,8 +42,6 @@ export const siteStrategy = {
       children: [
         { href: '/repertoire/', label: 'Repertoire nach Anlass', note: 'Titel und offene Fassungen' },
         { href: '/tools/wunschstueck-check/', label: 'Wunschstück prüfen', note: 'Fassung und offene Fragen' },
-        { href: '/eventmusik/sektempfang/', label: 'Sektempfang', note: 'Leicht und gesprächsfreundlich' },
-        { href: '/eventmusik/dinner/', label: 'Dinner', note: 'Zwischen Gängen und Reden' },
       ],
     },
     {
@@ -54,7 +54,7 @@ export const siteStrategy = {
         { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Viola-Mikrofonposition', note: 'Leitfaden · 9 Min.' },
       ],
     },
-    { href: '/about/', label: 'Über uns' },
+    { href: '/about/', label: 'Über das Projekt' },
   ],
   englishNavigation: [
     { href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', label: 'Wedding ceremony' },

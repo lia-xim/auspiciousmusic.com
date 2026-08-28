@@ -56,7 +56,7 @@ const plannerData = {
     <ol data-quick-results></ol>
     <div class="quick-planner__next">
       <p>Der vollständige Planer ergänzt Ort, Besetzung und offene Absprachen. Das Datum bleibt optional.</p>
-      <a class="btn btn--primary" href={`/tools/eventmusik-planer/?anlass=${profile.slug}`}>Ablauf vollständig planen</a>
+      <a class="btn btn--primary" href={`/tools/eventmusik-planer/?anlass=${profile.slug}`} data-quick-full-plan>Ablauf vollständig planen</a>
     </div>
   </div>
 </section>
@@ -75,7 +75,8 @@ const plannerData = {
     document.querySelectorAll('[data-occasion-quick]').forEach((root) => {
       const dataNode = root.querySelector('[data-quick-data]');
       const result = root.querySelector('[data-quick-results]');
-      if (!(dataNode instanceof HTMLScriptElement) || !(result instanceof HTMLOListElement)) return;
+      const fullPlanLink = root.querySelector('[data-quick-full-plan]');
+      if (!(dataNode instanceof HTMLScriptElement) || !(result instanceof HTMLOListElement) || !(fullPlanLink instanceof HTMLAnchorElement)) return;
       const data = JSON.parse(dataNode.textContent || '{}');
       const momentInputs = [...root.querySelectorAll('input[type="checkbox"]')];
       const characterInputs = [...root.querySelectorAll('input[type="radio"]')];
@@ -83,6 +84,10 @@ const plannerData = {
       const render = () => {
         const chosenMoments = momentInputs.filter((input) => input.checked).map((input) => Number(input.value));
         const character = characterInputs.find((input) => input.checked)?.value || data.defaultCharacter;
+        const plannerUrl = new URL('/tools/eventmusik-planer/', location.origin);
+        plannerUrl.searchParams.set('anlass', data.slug);
+        plannerUrl.hash = new URLSearchParams({ momente: chosenMoments.join(','), wirkung: character }).toString();
+        fullPlanLink.href = `${plannerUrl.pathname}${plannerUrl.search}${plannerUrl.hash}`;
         const ranked = data.pieces.map((piece, index) => {
           const matchingMoments = (piece.moments || []).filter((moment) => chosenMoments.includes(moment));
           const score = matchingMoments.length * 3 + ((piece.characters || []).includes(character) ? 5 : 0) - index / 100;

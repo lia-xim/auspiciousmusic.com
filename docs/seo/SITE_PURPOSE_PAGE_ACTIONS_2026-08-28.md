@@ -8,6 +8,8 @@ Auspicious Music is a German-first, tool-first planning product for ceremony and
 
 Primary journey: occasion -> three recommendations -> visible running order and open questions -> copied plan -> Kim-Marie's contact section.
 
+The occasion-page quick selector passes the chosen moments and character to the full planner through a browser-only URL fragment. Visitors keep their choices without sending those values to the server or entering them a second time.
+
 Non-goals: a broad music magazine, generic event-law or GEMA advice, photography or videography services, city-page fan-out, restored Ableton/download content, or pages created only to hold keywords.
 
 ## Evidence register

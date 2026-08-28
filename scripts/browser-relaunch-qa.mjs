@@ -71,6 +71,11 @@ for (const occasion of [
   for (let index = 1; index < choiceCount; index += 1) await choices.nth(index).uncheck({ force: true });
   await page.locator('[data-occasion-quick] input[type="radio"]').last().check({ force: true });
   if (await page.locator('[data-quick-results] > li').count() !== 3) failures.push(`occasion quick planner ${occasion.slug}: interaction removed results`);
+  const fullPlanHref = await page.locator('[data-quick-full-plan]').getAttribute('href');
+  const selectedCharacter = await page.locator('[data-occasion-quick] input[type="radio"]:checked').inputValue();
+  const fullPlanUrl = new URL(fullPlanHref, baseUrl);
+  const handoff = new URLSearchParams(fullPlanUrl.hash.slice(1));
+  if (fullPlanUrl.pathname !== '/tools/eventmusik-planer/' || fullPlanUrl.searchParams.get('anlass') !== occasion.slug || handoff.get('momente') !== '0' || handoff.get('wirkung') !== selectedCharacter) failures.push(`occasion quick planner ${occasion.slug}: selection handoff missing: ${fullPlanHref}`);
   for (const error of errors) failures.push(`occasion quick planner ${occasion.slug}: ${error}`);
   await page.screenshot({ path: path.join(output, `relaunch-${occasion.slug}-quick-mobile.png`), fullPage: true });
   await page.close();
@@ -80,7 +85,7 @@ const planner = await browser.newPage({ viewport: { width: 390, height: 844 }, d
 const plannerErrors = [];
 planner.on('pageerror', (error) => plannerErrors.push(error.message));
 planner.on('console', (message) => { if (message.type() === 'error') plannerErrors.push(message.text()); });
-await planner.goto(`${baseUrl}/tools/eventmusik-planer/?anlass=hochzeit`, { waitUntil: 'networkidle' });
+await planner.goto(`${baseUrl}/tools/eventmusik-planer/?anlass=hochzeit#momente=0%2C2&wirkung=warm`, { waitUntil: 'networkidle' });
 const plannerFoundation = await planner.evaluate(() => ({
   selects: document.querySelectorAll('[data-planner-app] select').length,
   locations: document.querySelectorAll('[data-location]').length,
@@ -97,7 +102,8 @@ await planner.locator('#planner-location').fill('Köl');
 await planner.locator('[data-location="Köln"]').click();
 await planner.locator('input[name="setting"][value="indoor"]').check();
 await planner.locator('[data-next]').click();
-if ((await planner.locator('input[name="moments"]:checked').count()) < 3 || (await planner.locator('input[name="pieces"]').count()) !== 0) failures.push('planner defaults: expected selected moments and no user-selected repertoire');
+const selectedMomentValues = await planner.locator('input[name="moments"]:checked').evaluateAll((inputs) => inputs.map((input) => input.value));
+if (selectedMomentValues.join(',') !== '0,2' || !(await planner.locator('input[name="character"][value="warm"]').isChecked()) || (await planner.locator('input[name="pieces"]').count()) !== 0) failures.push(`planner handoff: expected moments 0,2 and warm character, got ${selectedMomentValues.join(',')}`);
 await planner.locator('input[name="character"][value="warm"]').check();
 await planner.locator('textarea[name="wishes"]').fill('Warm, persönlich, genaue Fassung noch offen.');
 await planner.locator('[data-create]').click();
