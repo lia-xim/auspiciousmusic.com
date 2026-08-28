@@ -1,0 +1,74 @@
+---
+import { plannerLocations } from '../data/planner-locations';
+import type { OccasionProfile } from '../data/repertoire';
+
+interface Props { profile: OccasionProfile; }
+const { profile } = Astro.props;
+const regions = plannerLocations.filter((location) => location.kind === 'region');
+const cities = plannerLocations.filter((location) => location.kind === 'city');
+---
+
+<section class="band occasion-locations" aria-labelledby={`locations-${profile.slug}`} data-occasion-locations data-occasion={profile.slug}>
+  <div class="shell occasion-locations__layout">
+    <header>
+      <p class="kicker">Ort direkt übernehmen</p>
+      <h2 id={`locations-${profile.slug}`}>{profile.labelDe} in Nordrhein-Westfalen planen</h2>
+      <p>Diese Orte und Regionen gehören zum veröffentlichten Einsatzgebiet von Kim-Marie Borger. Sie bezeichnen mögliche Einsatzorte, keine Niederlassungen. Wählt einen Ort, um ihn zusammen mit dem Anlass in den Musikplaner zu übernehmen.</p>
+      <a href={`/tools/eventmusik-planer/?anlass=${profile.slug}`}>Anderen Ort im Planer eintragen</a>
+    </header>
+
+    <div class="occasion-locations__choices">
+      <div>
+        <h3>Regionen</h3>
+        <ul class="occasion-locations__grid occasion-locations__grid--regions">
+          {regions.map((location) => <li><button type="button" data-location-start={location.label}>{location.label}</button></li>)}
+        </ul>
+      </div>
+      <div>
+        <h3>Städte</h3>
+        <ul class="occasion-locations__grid">
+          {cities.map((location) => <li><button type="button" data-location-start={location.label}>{location.label}</button></li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .occasion-locations { border-block: 1px solid var(--line); background: #f7f8f8; }
+  .occasion-locations__layout { display: grid; gap: 2rem 4rem; align-items: start; }
+  .occasion-locations header { max-width: 34rem; }
+  .occasion-locations h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 3rem; font-weight: 500; letter-spacing: 0; text-wrap: balance; }
+  .occasion-locations header > p:not(.kicker) { margin-top: 1rem; color: var(--ink-soft); line-height: 1.7; }
+  .occasion-locations header > a { display: inline-block; margin-top: 1rem; color: #8f1d35; font-weight: 750; text-underline-offset: .2em; }
+  .occasion-locations__choices { display: grid; gap: 1.6rem; }
+  .occasion-locations__choices h3 { margin-bottom: .65rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+  .occasion-locations__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .occasion-locations__grid--regions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .occasion-locations__grid button { width: 100%; min-height: 42px; padding: .6rem .75rem; border: 0; border-radius: 0; background: #fff; color: var(--ink); font: 650 .82rem/1.25 var(--font-sans); text-align: left; cursor: pointer; }
+  .occasion-locations__grid button:hover { background: #f2e8ea; color: #8f1d35; }
+  .occasion-locations__grid button:focus-visible { position: relative; z-index: 1; outline: 3px solid #8f1d35; outline-offset: -3px; }
+  @media (min-width: 940px) {
+    .occasion-locations__layout { grid-template-columns: minmax(18rem, .65fr) minmax(0, 1.35fr); }
+  }
+  @media (max-width: 700px) {
+    .occasion-locations h2 { font-size: 2.2rem; }
+    .occasion-locations__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 360px) {
+    .occasion-locations__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script is:inline>
+  document.querySelectorAll('[data-occasion-locations]').forEach((root) => {
+    root.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-location-start]');
+      if (!(button instanceof HTMLButtonElement)) return;
+      const plannerUrl = new URL('/tools/eventmusik-planer/', location.origin);
+      plannerUrl.searchParams.set('anlass', root.getAttribute('data-occasion') || '');
+      plannerUrl.searchParams.set('ort', button.dataset.locationStart || '');
+      location.assign(`${plannerUrl.pathname}${plannerUrl.search}`);
+    });
+  });
+</script>

@@ -4,7 +4,8 @@ export interface PlannerLocation {
   kind: 'city' | 'region';
 }
 
-// Active pageKind:local entries in the Kim-Marie Borger site, verified 2026-08-23.
+// Enabled pageKind:local areaServed entries in the Kim-Marie Borger site, verified 2026-08-29.
+// They describe an enquiry area, not offices, confirmed appearances or guaranteed availability.
 export const plannerLocations: PlannerLocation[] = [
   { slug: 'aachen', label: 'Aachen', kind: 'city' },
   { slug: 'bergisch-gladbach', label: 'Bergisch Gladbach', kind: 'city' },

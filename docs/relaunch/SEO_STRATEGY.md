@@ -102,3 +102,9 @@ Search Console performance data for `kim-marie-borger.com` is currently **NOT PR
 This is deliberate overlap at the topic level, not duplicate page intent. Auspicious Music must not create `buchen`, `Musikerin`, `Live-Viola + Stadt` or other commercial/local fan-out pages that compete with Kim-Marie's current offer. Each occasion page may link to its matching Kim-Marie service page when that is the reader's next step, but the shared publisher relationship must be disclosed in the same context.
 
 When authenticated Search Console page-query data becomes available, validate the table at page × query level over a comparable period. Change a title only when impressions and the intended page job support the change; do not infer cannibalization merely because both domains appear for the same broad topic.
+
+## Location selection without city-page fan-out (29 August 2026)
+
+The six occasion landing pages expose the 49 enabled `areaServed` cities and regions from Kim-Marie Borger's published location inventory as planner inputs. They are described as possible enquiry locations, never as offices, confirmed performances or guaranteed availability. Selecting one carries the occasion and location into the existing event-music planner; visitors may still enter any other place for individual review.
+
+No location-specific Auspicious URL is created. The location names remain a shared product input rather than duplicated local landing pages, repeated local claims or a second commercial city-page network competing with Kim-Marie's service site.

@@ -18,7 +18,7 @@ const browser = await chromium.launch({
 });
 const failures = [];
 const observations = [];
-const routes = ['/', '/en/', '/viola/', '/viola/viola-oder-violine/', '/eventmusik/', '/eventmusik/live-streicher-draussen/', '/eventmusik/hochzeit/', '/eventmusik/trauerfeier/', '/eventmusik/firmenevent/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/en/tools/event-music-planner/', '/tools/wunschstueck-check/', '/tools/streicheraufnahme-briefing/', '/download/', '/services/'];
+const routes = ['/', '/en/', '/viola/', '/viola/viola-oder-violine/', '/eventmusik/', '/eventmusik/live-streicher-draussen/', '/eventmusik/hochzeit/', '/eventmusik/sektempfang/', '/eventmusik/trauerfeier/', '/eventmusik/dinner/', '/eventmusik/firmenevent/', '/eventmusik/geburtstag/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/en/tools/event-music-planner/', '/tools/wunschstueck-check/', '/tools/streicheraufnahme-briefing/', '/download/', '/services/'];
 
 async function inspect(route, viewport) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
@@ -78,6 +78,30 @@ for (const occasion of [
   if (fullPlanUrl.pathname !== '/tools/eventmusik-planer/' || fullPlanUrl.searchParams.get('anlass') !== occasion.slug || handoff.get('momente') !== '0' || handoff.get('wirkung') !== selectedCharacter) failures.push(`occasion quick planner ${occasion.slug}: selection handoff missing: ${fullPlanHref}`);
   for (const error of errors) failures.push(`occasion quick planner ${occasion.slug}: ${error}`);
   await page.screenshot({ path: path.join(output, `relaunch-${occasion.slug}-quick-mobile.png`), fullPage: true });
+  await page.close();
+}
+
+for (const slug of ['hochzeit', 'sektempfang', 'trauerfeier', 'dinner', 'firmenevent', 'geburtstag']) {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+  await page.goto(`${baseUrl}/eventmusik/${slug}/`, { waitUntil: 'networkidle' });
+  const locationState = await page.evaluate(() => ({
+    choices: document.querySelectorAll('[data-occasion-locations] [data-location-start]').length,
+    regionHeading: [...document.querySelectorAll('[data-occasion-locations] h3')].some((heading) => heading.textContent?.trim() === 'Regionen'),
+    cityHeading: [...document.querySelectorAll('[data-occasion-locations] h3')].some((heading) => heading.textContent?.trim() === 'Städte'),
+    names: [...document.querySelectorAll('[data-location-start]')].map((button) => button.textContent?.trim()),
+  }));
+  if (locationState.choices !== 49 || !locationState.regionHeading || !locationState.cityHeading || !locationState.names.includes('Düsseldorf') || !locationState.names.includes('Nordrhein-Westfalen')) failures.push(`occasion locations ${slug}: ${JSON.stringify(locationState)}`);
+  if (slug === 'hochzeit') {
+    await page.getByRole('button', { name: 'Düsseldorf', exact: true }).click();
+    await page.waitForURL((url) => url.pathname === '/tools/eventmusik-planer/' && url.searchParams.get('anlass') === 'hochzeit' && url.searchParams.get('ort') === 'Düsseldorf');
+    await page.waitForLoadState('networkidle');
+    const handoff = await page.evaluate(() => ({
+      activeStep: document.querySelector('[data-step-button][aria-current="step"]')?.getAttribute('data-step-button'),
+      location: document.querySelector('#planner-location')?.value,
+      occasion: document.querySelector('input[name="occasion"]:checked')?.value,
+    }));
+    if (handoff.activeStep !== '2' || handoff.location !== 'Düsseldorf' || handoff.occasion !== 'hochzeit') failures.push(`occasion location handoff: ${JSON.stringify(handoff)}`);
+  }
   await page.close();
 }
 
@@ -238,5 +262,5 @@ if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exitCode = 1;
 } else {
-  console.log(`Relaunch browser QA passed: ${routes.length} routes at 1440px, 390px and 320px, plus recommendation planner, requested-song and recording-brief validation.`);
+  console.log(`Relaunch browser QA passed: ${routes.length} routes at 1440px, 390px and 320px, six occasion-location directories and handoff, plus recommendation planner, requested-song and recording-brief validation.`);
 }

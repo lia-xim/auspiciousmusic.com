@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import OccasionQuickPlanner from '../components/OccasionQuickPlanner.astro';
+import OccasionLocations from '../components/OccasionLocations.astro';
 import { youtubeSearchUrl, type OccasionProfile } from '../data/repertoire';
 
 interface Props { profile: OccasionProfile; }
@@ -125,6 +126,8 @@ const pageSchema = {
         </div>
       </div>
     </section>
+
+    {profile.slug !== 'unterricht' && <OccasionLocations profile={profile} />}
 
     <section class="band" id="repertoire" aria-labelledby="repertoire-title">
       <div class="shell occasion-repertoire">

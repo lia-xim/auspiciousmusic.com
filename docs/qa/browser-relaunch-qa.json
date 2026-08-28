@@ -1,6 +1,6 @@
 {
-  "baseUrl": "https://www.auspiciousmusic.com",
-  "checkedAt": "2026-08-28T21:20:51.605Z",
+  "baseUrl": "http://127.0.0.1:4322",
+  "checkedAt": "2026-08-28T22:40:29.051Z",
   "routes": [
     "/",
     "/en/",
@@ -9,8 +9,11 @@
     "/eventmusik/",
     "/eventmusik/live-streicher-draussen/",
     "/eventmusik/hochzeit/",
+    "/eventmusik/sektempfang/",
     "/eventmusik/trauerfeier/",
+    "/eventmusik/dinner/",
     "/eventmusik/firmenevent/",
+    "/eventmusik/geburtstag/",
     "/repertoire/",
     "/recording/",
     "/tools/eventmusik-planer/",
@@ -94,7 +97,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3937,
+      "bodyLength": 4789,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/sektempfang/",
+      "viewport": "1440x900",
+      "title": "Musik zum Sektempfang planen: Ablauf & Stücke | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 4646,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -105,7 +119,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3988,
+      "bodyLength": 4846,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/dinner/",
+      "viewport": "1440x900",
+      "title": "Dinnermusik planen: Hochzeit, Reden & Ausklang | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 4596,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -116,7 +141,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3730,
+      "bodyLength": 4575,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/geburtstag/",
+      "viewport": "1440x900",
+      "title": "Geburtstagsmusik planen: Überraschung & Empfang | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 4704,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -281,7 +317,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3873,
+      "bodyLength": 4725,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/sektempfang/",
+      "viewport": "390x844",
+      "title": "Musik zum Sektempfang planen: Ablauf & Stücke | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 4582,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -292,7 +339,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3924,
+      "bodyLength": 4782,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/dinner/",
+      "viewport": "390x844",
+      "title": "Dinnermusik planen: Hochzeit, Reden & Ausklang | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 4532,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -303,7 +361,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3666,
+      "bodyLength": 4511,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/geburtstag/",
+      "viewport": "390x844",
+      "title": "Geburtstagsmusik planen: Überraschung & Empfang | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 4640,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -468,7 +537,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3870,
+      "bodyLength": 4722,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/sektempfang/",
+      "viewport": "320x900",
+      "title": "Musik zum Sektempfang planen: Ablauf & Stücke | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 4579,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -479,7 +559,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3921,
+      "bodyLength": 4779,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/dinner/",
+      "viewport": "320x900",
+      "title": "Dinnermusik planen: Hochzeit, Reden & Ausklang | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 4529,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
@@ -490,7 +581,18 @@
       "h1": 1,
       "main": 1,
       "overflow": 0,
-      "bodyLength": 3663,
+      "bodyLength": 4508,
+      "emptyLinks": 0,
+      "unlabeledFields": 0
+    },
+    {
+      "route": "/eventmusik/geburtstag/",
+      "viewport": "320x900",
+      "title": "Geburtstagsmusik planen: Überraschung & Empfang | Auspicious Music",
+      "h1": 1,
+      "main": 1,
+      "overflow": 0,
+      "bodyLength": 4637,
       "emptyLinks": 0,
       "unlabeledFields": 0
     },
