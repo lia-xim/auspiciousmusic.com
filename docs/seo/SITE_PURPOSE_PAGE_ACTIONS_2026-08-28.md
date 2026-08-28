@@ -29,17 +29,17 @@ Non-goals: a broad music magazine, generic event-law or GEMA advice, photography
 
 | URL | Primary user job | Role | Action |
 | --- | --- | --- | --- |
-| `/` | Understand the product and choose the next planning step | Product hub | Strengthen with outcomes, occasion routes, tool choice and concise answers |
+| `/` | Understand the product and choose an occasion | Product hub | Keep focused on planner example, outcome and six occasion routes; no recording or tool catalogue |
 | `/en/` | Enter the same product in English | Localized product hub | Keep structurally aligned with German home |
 | `/tools/eventmusik-planer/` | Create three suggestions and a usable running order | Primary tool | Strengthen; optional date, visible full result |
 | `/en/tools/event-music-planner/` | Complete the same planner in English | Localized primary tool | Mirror the German behavior |
 | `/eventmusik/` | Choose an occasion and understand the planning method | Topic hub | Keep and route to planner |
-| `/eventmusik/hochzeit/` | Plan ceremony moments and music choices | Occasion guide | Keep |
-| `/eventmusik/sektempfang/` | Plan flexible reception music | Occasion guide | Keep |
-| `/eventmusik/trauerfeier/` | Prepare music for a farewell with care | Occasion guide | Keep |
-| `/eventmusik/dinner/` | Place music around service and speeches | Occasion guide | Keep |
-| `/eventmusik/firmenevent/` | Separate reception, background and featured music | Occasion guide | Keep |
-| `/eventmusik/geburtstag/` | Prepare surprise, gift or closing music | Occasion guide | Keep |
+| `/eventmusik/hochzeit/` | Select wedding music for ceremony moments | Occasion landing page + quick selector | Keep and measure |
+| `/eventmusik/sektempfang/` | Select light reception music | Occasion landing page + quick selector | Keep and measure |
+| `/eventmusik/trauerfeier/` | Select a small number of pieces for a farewell | Occasion landing page + quick selector | Keep and measure |
+| `/eventmusik/dinner/` | Place dinner music around service and speeches | Occasion landing page + quick selector | Keep and measure |
+| `/eventmusik/firmenevent/` | Separate reception, background and featured music | Occasion landing page + quick selector | Keep and measure |
+| `/eventmusik/geburtstag/` | Prepare surprise, gift or reception music | Occasion landing page + quick selector | Keep and measure |
 | `/eventmusik/live-streicher-draussen/` | Decide shelter, placement and Plan B | Practical guide | Keep |
 | `/repertoire/` | Explore maintained titles by function and occasion | Reference hub | Keep |
 | `/tools/wunschstueck-check/` | Turn one personal title into a musical review brief | Secondary tool | Keep; remove generic legal/GEMA workflow |

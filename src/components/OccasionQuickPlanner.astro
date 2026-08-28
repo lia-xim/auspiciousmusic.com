@@ -1,0 +1,158 @@
+---
+import { youtubeSearchUrl, type OccasionProfile } from '../data/repertoire';
+
+interface Props { profile: OccasionProfile; }
+const { profile } = Astro.props;
+const characters = [
+  ['warm', 'Warm und persönlich'],
+  ['calm', 'Ruhig'],
+  ['bright', 'Leicht und offen'],
+  ['formal', 'Feierlich'],
+  ['modern', 'Modern'],
+] as const;
+const availableCharacters = characters.filter(([value]) => profile.pieces.some((piece) => piece.characters?.includes(value)));
+const plannerData = {
+  slug: profile.slug,
+  moments: profile.moments.map(({ de, guidanceDe }) => ({ de, guidanceDe })),
+  pieces: profile.pieces.map((piece) => ({ ...piece, youtube: youtubeSearchUrl(piece.title) })),
+  defaultCharacter: profile.defaultCharacter,
+};
+---
+
+<section class="quick-planner" data-occasion-quick aria-labelledby={`quick-title-${profile.slug}`}>
+  <script is:inline type="application/json" data-quick-data set:html={JSON.stringify(plannerData)} />
+  <header class="quick-planner__head">
+    <div>
+      <p class="kicker">Schnellauswahl · nur {profile.labelDe}</p>
+      <h2 id={`quick-title-${profile.slug}`}>{profile.plannerTitleDe}</h2>
+    </div>
+    <p>{profile.plannerIntroDe}</p>
+  </header>
+
+  <div class="quick-planner__controls">
+    <fieldset>
+      <legend>Wo soll Musik erklingen?</legend>
+      <div class="quick-options quick-options--moments">
+        {profile.moments.map((moment, index) => (
+          <label><input type="checkbox" name={`quick-moment-${profile.slug}`} value={index} checked /><span>{moment.de}</span></label>
+        ))}
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Wie soll sie wirken?</legend>
+      <div class="quick-options quick-options--characters">
+        {availableCharacters.map(([value, label]) => (
+          <label><input type="radio" name={`quick-character-${profile.slug}`} value={value} checked={value === profile.defaultCharacter} /><span>{label}</span></label>
+        ))}
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="quick-planner__result" aria-live="polite" aria-atomic="true">
+    <div class="quick-planner__result-head">
+      <div><p class="kicker">Aktuelle Auswahl</p><h3>Drei Stücke als Ausgangspunkt</h3></div>
+      <p>Jeder Vorschlag öffnet eine YouTube-Suche in einem neuen Tab.</p>
+    </div>
+    <ol data-quick-results></ol>
+    <div class="quick-planner__next">
+      <p>Der vollständige Planer ergänzt Ort, Besetzung und offene Absprachen. Das Datum bleibt optional.</p>
+      <a class="btn btn--primary" href={`/tools/eventmusik-planer/?anlass=${profile.slug}`}>Ablauf vollständig planen</a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character]);
+    const reasons = {
+      warm: 'warm und persönlich',
+      calm: 'ruhig, mit Platz für den Moment',
+      bright: 'leicht und offen',
+      formal: 'klar und feierlich',
+      modern: 'modern und vertraut',
+    };
+
+    document.querySelectorAll('[data-occasion-quick]').forEach((root) => {
+      const dataNode = root.querySelector('[data-quick-data]');
+      const result = root.querySelector('[data-quick-results]');
+      if (!(dataNode instanceof HTMLScriptElement) || !(result instanceof HTMLOListElement)) return;
+      const data = JSON.parse(dataNode.textContent || '{}');
+      const momentInputs = [...root.querySelectorAll('input[type="checkbox"]')];
+      const characterInputs = [...root.querySelectorAll('input[type="radio"]')];
+
+      const render = () => {
+        const chosenMoments = momentInputs.filter((input) => input.checked).map((input) => Number(input.value));
+        const character = characterInputs.find((input) => input.checked)?.value || data.defaultCharacter;
+        const ranked = data.pieces.map((piece, index) => {
+          const matchingMoments = (piece.moments || []).filter((moment) => chosenMoments.includes(moment));
+          const score = matchingMoments.length * 3 + ((piece.characters || []).includes(character) ? 5 : 0) - index / 100;
+          return { piece, matchingMoments, score, index };
+        }).sort((a, b) => b.score - a.score).slice(0, 3);
+        const usedMoments = new Set();
+
+        result.innerHTML = ranked.map(({ piece, matchingMoments }, index) => {
+          const preferred = matchingMoments.find((moment) => !usedMoments.has(moment));
+          const momentIndex = preferred ?? matchingMoments[0] ?? chosenMoments[index % chosenMoments.length];
+          usedMoments.add(momentIndex);
+          const moment = data.moments[momentIndex];
+          const clarification = piece.clarificationDe ? `<small>${escapeHtml(piece.clarificationDe)}</small>` : '';
+          return `<li>
+            <span class="quick-result__number">${String(index + 1).padStart(2, '0')}</span>
+            <a class="quick-result__play" href="${escapeHtml(piece.youtube)}" target="_blank" rel="noopener noreferrer external" aria-label="${escapeHtml(piece.title)} auf YouTube suchen und anhören" title="Auf YouTube suchen und anhören"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5Z" fill="currentColor"/></svg></a>
+            <div><strong>${escapeHtml(piece.title)}</strong>${clarification}</div>
+            <p><span>Für ${escapeHtml(moment.de)}</span>${escapeHtml(reasons[character] || '')}. ${escapeHtml(moment.guidanceDe)}</p>
+          </li>`;
+        }).join('');
+      };
+
+      momentInputs.forEach((input) => input.addEventListener('change', () => {
+        if (!momentInputs.some((candidate) => candidate.checked)) input.checked = true;
+        render();
+      }));
+      characterInputs.forEach((input) => input.addEventListener('change', render));
+      render();
+    });
+  })();
+</script>
+
+<style is:global>
+  .quick-planner, .quick-planner * { box-sizing: border-box; }
+  .quick-planner { overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface-bright); box-shadow: 0 22px 55px rgb(20 23 28 / .1); }
+  .quick-planner__head { display: grid; gap: 1rem 4rem; padding: clamp(1.5rem, 4vw, 2.5rem); border-bottom: 1px solid var(--line); }
+  @media (min-width: 820px) { .quick-planner__head { grid-template-columns: minmax(16rem, .8fr) minmax(0, 1.2fr); align-items: end; } }
+  .quick-planner__head h2 { margin-top: .5rem; font-family: Georgia, 'Times New Roman', serif; font-size: 2.7rem; font-weight: 500; letter-spacing: 0; }
+  .quick-planner__head > p { max-width: 62ch; color: var(--ink-soft); line-height: 1.65; }
+  .quick-planner__controls { display: grid; gap: 1.5rem 3rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--canvas); }
+  @media (min-width: 880px) { .quick-planner__controls { grid-template-columns: minmax(0, 1.25fr) minmax(16rem, .75fr); } }
+  .quick-planner fieldset { min-width: 0; border: 0; }
+  .quick-planner legend { margin-bottom: .8rem; font-weight: 750; }
+  .quick-options { display: flex; flex-wrap: wrap; gap: .55rem; }
+  .quick-options label { position: relative; cursor: pointer; }
+  .quick-options input { position: absolute; opacity: 0; pointer-events: none; }
+  .quick-options span { display: inline-flex; align-items: center; min-height: 42px; padding: .55rem .8rem; border: 1px solid var(--line-strong); background: var(--surface-bright); color: var(--ink-soft); font-size: .88rem; line-height: 1.25; }
+  .quick-options input:checked + span { border-color: #8f1d35; background: #8f1d35; color: #fff; }
+  .quick-options input:focus-visible + span { outline: 3px solid #d7b66e; outline-offset: 2px; }
+  .quick-planner__result { padding: clamp(1.5rem, 4vw, 2.5rem); }
+  .quick-planner__result-head { display: flex; justify-content: space-between; gap: 1rem 3rem; align-items: end; padding-bottom: 1rem; border-bottom: 1px solid var(--line-strong); }
+  .quick-planner__result-head h3 { margin-top: .4rem; font-size: 1.35rem; letter-spacing: 0; }
+  .quick-planner__result-head > p { max-width: 31ch; color: var(--muted); font-size: .82rem; text-align: right; }
+  [data-quick-results] li { display: grid; grid-template-columns: 2.2rem 2.5rem minmax(11rem, .7fr) minmax(16rem, 1.3fr); gap: .8rem 1rem; align-items: center; min-height: 78px; border-bottom: 1px solid var(--line); }
+  .quick-result__number { color: #8f1d35; font-weight: 750; }
+  .quick-result__play { display: grid; place-items: center; width: 2.35rem; height: 2.35rem; border: 1px solid var(--ink); border-radius: 50%; color: var(--ink); text-decoration: none; }
+  .quick-result__play:hover { background: var(--ink); color: #fff; }
+  .quick-result__play svg { width: .9rem; height: .9rem; margin-left: .12rem; }
+  [data-quick-results] strong { font: 500 1.18rem/1.25 Georgia, 'Times New Roman', serif; }
+  [data-quick-results] small { display: block; margin-top: .25rem; color: var(--muted); font-size: .76rem; }
+  [data-quick-results] p { color: var(--ink-soft); font-size: .88rem; line-height: 1.5; }
+  [data-quick-results] p span { display: block; margin-bottom: .15rem; color: #765a1f; font-size: .7rem; font-weight: 750; text-transform: uppercase; letter-spacing: .08em; }
+  .quick-planner__next { display: flex; justify-content: space-between; align-items: center; gap: 1rem 2rem; padding-top: 1.3rem; }
+  .quick-planner__next p { max-width: 55ch; color: var(--muted); font-size: .88rem; }
+  @media (max-width: 720px) {
+    .quick-planner__head h2 { font-size: 2rem; }
+    .quick-planner__result-head, .quick-planner__next { display: grid; }
+    .quick-planner__result-head > p { max-width: none; text-align: left; }
+    [data-quick-results] li { grid-template-columns: 2rem 2.5rem minmax(0, 1fr); padding-block: 1rem; }
+    [data-quick-results] li > p { grid-column: 2 / -1; }
+    .quick-planner__next .btn { width: 100%; justify-content: center; }
+  }
+</style>

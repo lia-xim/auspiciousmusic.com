@@ -1,16 +1,16 @@
 [
   {
     "route": "/",
-    "title": "Auspicious Music — Musik für Trauung und Event planen",
-    "description": "Ein kostenloser Musikplaner für Trauung, Trauerfeier und Event mit begründeten Repertoire-Ideen.",
+    "title": "Musik für Hochzeit, Trauerfeier & Event planen | Auspicious Music",
+    "description": "Musik für Hochzeit, Trauerfeier und Event auswählen: Anlass und Spielmomente wählen, drei Stücke anhören und einen Ablauf für die Abstimmung vorbereiten.",
     "h1": "Musik, die zu eurem Moment passt.",
     "internal": false
   },
   {
     "route": "/en/",
     "title": "Auspicious Music — Plan music for ceremonies and events",
-    "description": "A free music planner for ceremonies and events with reasoned repertoire suggestions.",
-    "h1": "Music that fits the moment.",
+    "description": "Choose music for a wedding, memorial or event: select the moments, listen to three repertoire suggestions and prepare a running order for personal review.",
+    "h1": "Music that fits your moment.",
     "internal": false
   },
   {
@@ -286,23 +286,23 @@
   },
   {
     "route": "/viola/",
-    "title": "Viola im Einsatz — Auspicious Music",
-    "description": "Praxiswissen zu Viola bei Anlaessen, im Repertoire und in der Aufnahme mit Kim-Marie Borger.",
-    "h1": "Viola im Einsatz",
+    "title": "Viola für Zeremonie, Event und Aufnahme — Auspicious Music",
+    "description": "Viola bei Hochzeit und Event einsetzen, Viola und Violine vergleichen und eine Streicheraufnahme vorbereiten.",
+    "h1": "Viola für Zeremonie, Event und Aufnahme",
     "internal": false
   },
   {
     "route": "/eventmusik/",
-    "title": "Eventmusik planen — Auspicious Music",
-    "description": "Live-Viola fuer Hochzeit, Trauerfeier, Empfang, Dinner, Firmenevent, Geburtstag und Unterricht planen.",
-    "h1": "Eventmusik, die zum Ablauf passt",
+    "title": "Musik für Hochzeit, Trauerfeier und Event — Auspicious Music",
+    "description": "Musik für Hochzeit, Trauerfeier, Sektempfang, Dinner, Firmenevent oder Geburtstag auswählen und einen konkreten Ablauf vorbereiten.",
+    "h1": "Musik für Hochzeit, Trauerfeier und Event",
     "internal": false
   },
   {
     "route": "/repertoire/",
-    "title": "Repertoire nach Anlass — Auspicious Music",
-    "description": "Repertoire-Ideen fuer Live-Viola nach Anlass, Funktion und Machbarkeit.",
-    "h1": "Repertoire nach Anlass",
+    "title": "Repertoire für Hochzeit, Trauerfeier und Event — Auspicious Music",
+    "description": "Viola-Repertoire nach Hochzeit, Sektempfang, Trauerfeier, Dinner, Firmenevent und Geburtstag auswählen und auf YouTube anhören.",
+    "h1": "Repertoire für Hochzeit, Trauerfeier und Event",
     "internal": false
   },
   {
@@ -328,44 +328,44 @@
   },
   {
     "route": "/eventmusik/hochzeit/",
-    "title": "Hochzeit / Trauung: Viola-Musik planen — Auspicious Music",
-    "description": "Ablauf und Repertoire-Ideen fuer Hochzeit / Trauung mit Kim-Marie Borger.",
-    "h1": "Hochzeit / Trauung musikalisch planen",
+    "title": "Hochzeitsmusik für Trauung, Einzug & Auszug | Auspicious Music",
+    "description": "Hochzeitsmusik für freie, kirchliche oder standesamtliche Trauungen auswählen: Spielmomente ordnen, drei Stücke anhören und den Ablauf vorbereiten.",
+    "h1": "Hochzeitsmusik für Trauung, Einzug und Auszug",
     "internal": false
   },
   {
     "route": "/eventmusik/sektempfang/",
-    "title": "Sektempfang: Viola-Musik planen — Auspicious Music",
-    "description": "Ablauf und Repertoire-Ideen fuer Sektempfang mit Kim-Marie Borger.",
-    "h1": "Sektempfang musikalisch planen",
+    "title": "Musik zum Sektempfang: Live-Musik planen | Auspicious Music",
+    "description": "Musik zum Sektempfang auswählen: leichte Stücke für Begrüßung, Gratulationen und Gespräche finden und flexible Musikblöcke vorbereiten.",
+    "h1": "Musik zum Sektempfang auswählen",
     "internal": false
   },
   {
     "route": "/eventmusik/trauerfeier/",
-    "title": "Beerdigung / Trauerfeier: Viola-Musik planen — Auspicious Music",
-    "description": "Ablauf und Repertoire-Ideen fuer Beerdigung / Trauerfeier mit Kim-Marie Borger.",
-    "h1": "Beerdigung / Trauerfeier musikalisch planen",
+    "title": "Trauermusik für Beerdigung & Trauerfeier | Auspicious Music",
+    "description": "Trauermusik für Beerdigung oder Trauerfeier auswählen: persönliche Stücke, Spielmomente und Übergänge behutsam zu einem Ablauf ordnen.",
+    "h1": "Trauermusik für Beerdigung und Trauerfeier",
     "internal": false
   },
   {
     "route": "/eventmusik/dinner/",
-    "title": "Dinner: Viola-Musik planen — Auspicious Music",
-    "description": "Ablauf und Repertoire-Ideen fuer Dinner mit Kim-Marie Borger.",
-    "h1": "Dinner musikalisch planen",
+    "title": "Dinnermusik für Hochzeit & Event planen | Auspicious Music",
+    "description": "Dinnermusik für Hochzeit oder Event auswählen: Live-Musik zwischen Ankommen, Gängen, Reden und Ausklang sinnvoll im Ablauf platzieren.",
+    "h1": "Dinnermusik für Hochzeit und Event planen",
     "internal": false
   },
   {
     "route": "/eventmusik/firmenevent/",
-    "title": "Firmenevent: Viola-Musik planen — Auspicious Music",
-    "description": "Ablauf und Repertoire-Ideen fuer Firmenevent mit Kim-Marie Borger.",
-    "h1": "Firmenevent musikalisch planen",
+    "title": "Live-Musik für Firmenevent & Empfang | Auspicious Music",
+    "description": "Live-Musik für Firmenevent, Empfang oder Dinner planen: Rolle im Programm festlegen, passende Stücke auswählen und Cues vorbereiten.",
+    "h1": "Live-Musik für Firmenevent, Empfang und Dinner",
     "internal": false
   },
   {
     "route": "/eventmusik/geburtstag/",
-    "title": "Geburtstag: Viola-Musik planen — Auspicious Music",
-    "description": "Ablauf und Repertoire-Ideen fuer Geburtstag mit Kim-Marie Borger.",
-    "h1": "Geburtstag musikalisch planen",
+    "title": "Live-Musik zum Geburtstag planen | Auspicious Music",
+    "description": "Live-Musik zum Geburtstag auswählen: Überraschung, Empfang, musikalisches Geschenk oder Abschluss planen und drei passende Stücke anhören.",
+    "h1": "Live-Musik zum Geburtstag auswählen",
     "internal": false
   },
   {

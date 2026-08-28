@@ -27,7 +27,9 @@ The primary journey is:
 3. Explore repertoire or prepare one requested piece only when that solves the visitor's next decision.
 4. Copy the reviewed plan and continue to Kim-Marie Borger's official contact section for the personal check.
 
-The occasion pages explain only what materially changes between wedding, reception, funeral, dinner, corporate event and birthday. The viola pages explain instrument-specific choices. Recording remains a smaller specialist branch for musicians and producers; it must not compete with the event-planning journey on the homepage.
+The six occasion pages each own one natural German search and planning intent. They place a preconfigured, occasion-only quick selector near the top, then explain only what materially changes between wedding, reception, funeral, dinner, corporate event and birthday. Do not create exact-match "planner" URLs without query evidence; strengthen the existing occasion URL first.
+
+The viola pages explain instrument-specific choices. Recording remains a smaller specialist branch for musicians and producers; it stays available through navigation and contextual links but does not compete with the event-planning journey on the homepage.
 
 The planner is deliberately low-friction. A date is optional and defaults to "not decided". Supporting running-order details remain visible in the result. Generic event-law, GEMA, photography, videography, Ableton and broad production topics do not belong in the primary journey.
 

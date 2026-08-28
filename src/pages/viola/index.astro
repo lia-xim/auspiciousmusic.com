@@ -1,23 +1,17 @@
 ---
 import ExpertHubLayout from '../../layouts/ExpertHubLayout.astro';
 const decisions = [
-  { title: 'Viola oder Violine?', text: 'Register, Wiedererkennbarkeit und musikalische Funktion entscheiden mehr als die allgemeine Vorstellung von hell oder warm.', href: '/viola/viola-oder-violine/', label: 'Instrumente vergleichen' },
-  { title: 'Was soll die Viola leisten?', text: 'Eine solistische Linie bei einer Trauung, ein Programmpunkt im Firmenevent und eine exponierte Aufnahmespur brauchen andere Phrasierung, Projektion und Vorbereitung.', href: '/eventmusik/', label: 'Anlässe ansehen' },
-  { title: 'Braucht diese Stimme eine Spielerin?', text: 'Phrasierung, Übergänge und Änderungsrisiko zeigen, wann Live-Viola mehr leistet als eine Sample-Bibliothek.', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', label: 'Live und Sample vergleichen' },
-  { title: 'Wo beginnt das Mikrofon?', text: 'Abstand, Winkel, Höhe und Raumanteil werden zuerst variiert. Bearbeitung ist nicht der Ersatz für eine nachvollziehbare Aufnahmeentscheidung.', href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Zum Mikrofon-Leitfaden' },
-];
-const evidence = [
-  { label: 'Benannte Expertin', text: 'Kim-Marie Borger ist die aktuelle Viola-Expertin dieser Fachseite. Biografie, Aufnahmen und aktuelle Buchungsinformationen bleiben auf ihrer eigenen Website.' },
-  { label: 'Neue, getrennte Arbeit', text: 'Leitfäden, Werkzeuge und künftige Demonstrationen gehören zum heutigen Projekt. Sie werden nicht als Teil des früheren Auspicious-Music-Katalogs dargestellt.' },
-  { label: 'Medien erst nach Rechteprüfung', text: 'Aufnahmen, Fotos, Noten und Arrangements werden erst veröffentlicht, wenn alle notwendigen Nutzungs- und Publikationsrechte dokumentiert sind.' },
+  { title: 'Viola oder Violine?', text: 'Die Viola klingt tiefer und dunkler. Ob das hilft, hängt von Melodie, gewünschter Wirkung und dem übrigen Arrangement ab.', href: '/viola/viola-oder-violine/', label: 'Instrumente vergleichen' },
+  { title: 'Welche Rolle hat die Musik?', text: 'Ein solistischer Einzug, Musik beim Empfang und ein kurzer Programmpunkt verlangen unterschiedliche Lautstärke, Länge und Präsenz.', href: '/eventmusik/', label: 'Anlass auswählen' },
+  { title: 'Live spielen oder aufnehmen?', text: 'Für ein Event zählt der Ablauf vor Ort. In einer Produktion kommen Timing, Varianten, Dateiformat und spätere Bearbeitung hinzu.', href: '/recording/', label: 'Aufnahmebereich öffnen' },
 ];
 const related = [
   { title: 'Viola oder Violine für Live-Musik?', description: 'Nach Register, Melodieführung, Raum und gewünschter Wirkung entscheiden.', href: '/viola/viola-oder-violine/', meta: 'Leitfaden · 7 Min.' },
-  { title: 'Eventmusik nach Anlass', description: 'Von Hochzeit und Trauerfeier bis Dinner, Firmenevent, Geburtstag und Unterricht.', href: '/eventmusik/', meta: '7 Anlassseiten' },
-  { title: 'Repertoire nach Anlass', description: 'Bestätigte Startlisten mit sichtbaren Klärpunkten für genaue Fassungen.', href: '/repertoire/', meta: '42 Nennungen' },
+  { title: 'Eventmusik nach Anlass', description: 'Hochzeit, Trauerfeier, Sektempfang, Dinner, Firmenevent und Geburtstag getrennt planen.', href: '/eventmusik/', meta: '6 Anlassseiten' },
+  { title: 'Repertoire nach Anlass', description: 'Titel anhören und nach Spielmoment und gewünschter Wirkung eingrenzen.', href: '/repertoire/', meta: '40 Titel-Nennungen' },
   { title: 'Eventmusik-Planer', description: 'Ablauf, Repertoire, Cue und praktische Grenzen zu einem nutzbaren Brief verbinden.', href: '/tools/eventmusik-planer/', meta: 'DE / EN · lokal' },
 ];
 ---
-<ExpertHubLayout title="Viola im Einsatz" description="Praxiswissen zu Viola bei Anlässen, im Repertoire und in der Aufnahme mit Kim-Marie Borger als benannter Expertin." canonicalPath="/viola/" kicker="Viola-Fachseite · Kim-Marie Borger" intro="Die Viola ist hier kein dekoratives Etikett. Ausgangspunkt ist ihre konkrete Aufgabe: einen Moment tragen, einen Raum füllen, eine Melodie persönlich formen oder eine Aufnahme nachvollziehbar ergänzen." primary={{ href: '/tools/eventmusik-planer/', label: 'Eventmusik planen' }} secondary={{ href: 'https://kim-marie-borger.com/', label: 'Kim-Marie kennenlernen', external: true }} decisions={decisions} evidence={evidence} related={related} lang="de">
+<ExpertHubLayout title="Viola für Zeremonie, Event und Aufnahme" description="Viola bei Hochzeit und Event einsetzen, Viola und Violine vergleichen und eine Streicheraufnahme vorbereiten." canonicalPath="/viola/" kicker="Viola mit Kim-Marie Borger" intro="Die Viola kann eine Melodie solistisch übernehmen, einen Empfang begleiten oder als einzelne Stimme aufgenommen werden. Welche Lösung passt, entscheidet sich an der musikalischen Rolle und am Ablauf." primary={{ href: '/eventmusik/', label: 'Musik für einen Anlass planen' }} secondary={{ href: 'https://kim-marie-borger.com/', label: 'Kim-Marie kennenlernen', external: true }} decisions={decisions} decisionsTitle="Wofür soll die Viola eingesetzt werden?" decisionsIntro="Die Aufgabe kommt vor der Besetzung." related={related} relatedTitle="Zur passenden Entscheidung" lang="de">
   <aside class="expert-motif expert-motif--text" slot="motif" aria-label="Wofür die Viola eingesetzt wird"><p>Die Viola kann</p><ol><li>einen persönlichen Moment solistisch tragen,</li><li>Gespräche und Übergänge ruhig begleiten,</li><li>eine Aufnahme mit echter Phrasierung ergänzen.</li></ol></aside>
 </ExpertHubLayout>

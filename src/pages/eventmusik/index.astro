@@ -2,17 +2,12 @@
 import ExpertHubLayout from '../../layouts/ExpertHubLayout.astro';
 import { occasionProfiles } from '../../data/repertoire';
 const decisions = [
-  { title: 'Welcher Moment braucht Musik?', text: 'Ankunft, Einzug, Rede, Ritual, Empfang und Ausklang brauchen unterschiedliche Startsignale und flexible Längen.', href: '/tools/eventmusik-planer/', label: 'Momente planen' },
-  { title: 'Was erlaubt Ort und Ablauf?', text: 'Innenraum, Außenfläche, Wege, Aufbau, Schatten, Regenplan, Service und Moderation bestimmen, was praktisch funktioniert.', href: '/eventmusik/live-streicher-draussen/', label: 'Außenauftritt prüfen' },
-  { title: 'Wann wird aus dem Plan eine Anfrage?', text: 'Wenn Anlass, Ort, Spielmomente und musikalische Richtung klar sind, kann Kim-Marie die nächsten Fragen prüfen. Das Datum darf beim ersten Plan noch offen sein.', href: 'https://kim-marie-borger.com/', label: 'Zu Kim-Marie' },
-];
-const evidence = [
-  { label: 'Planung statt Buchungsduplikat', text: 'Auspicious Music strukturiert die Entscheidung. Verfügbarkeit, Preis und Vertrag bleiben im direkten Buchungsprozess mit Kim-Marie.' },
-  { label: 'Repertoire mit Grenzen', text: 'Die Titellisten stammen aus dem für diese Seite bestätigten Anlass-Repertoire. Eine Nennung bestätigt noch keine konkrete Fassung oder ein Arrangement.' },
-  { label: 'Privat im Browser', text: 'Der Eventmusik-Planer speichert und versendet nichts. Du kannst den Plan kopieren und danach bewusst Kim-Maries Kontaktseite öffnen.' },
+  { title: 'Wo soll Musik erklingen?', text: 'Einzug, Unterschrift, Empfang, Rede und Ausklang sind verschiedene Aufgaben. Wählt nur die Momente aus, die in eurem Ablauf vorkommen.', href: '/tools/eventmusik-planer/', label: 'Momente auswählen' },
+  { title: 'Was verändert der Ort?', text: 'Drinnen zählen Wege, Raum und Startzeichen. Draußen kommen Schatten, trockener Standort und ein konkreter Ausweichort hinzu.', href: '/eventmusik/live-streicher-draussen/', label: 'Draußen planen' },
+  { title: 'Was muss vor der Anfrage feststehen?', text: 'Anlass, ungefährer Ort und die gewünschten Musikmomente reichen für den Anfang. Das Datum kann noch offen sein.', href: '/tools/eventmusik-planer/', label: 'Plan beginnen' },
 ];
 const related = occasionProfiles.filter((profile) => profile.slug !== 'unterricht').map((profile) => ({ title: profile.labelDe, description: profile.shortDe, href: `/eventmusik/${profile.slug}/`, meta: `${profile.pieces.length} Repertoire-Ideen` }));
 ---
-<ExpertHubLayout title="Eventmusik, die zum Ablauf passt" description="Live-Viola für Hochzeit, Trauerfeier, Empfang, Dinner, Firmenevent, Geburtstag und Unterricht planen." canonicalPath="/eventmusik/" kicker="Planungshub · Kim-Marie Borger" intro="Gute Eventmusik beginnt nicht mit einer endlosen Titelliste. Sie beginnt mit Anlass, Menschen, Ort, Übergängen und der Frage, was die Musik in jedem Moment leisten soll." primary={{ href: '/tools/eventmusik-planer/', label: 'Eventmusik-Plan erstellen' }} secondary={{ href: 'https://kim-marie-borger.com/', label: 'Kim-Maries Buchungsseite', external: true }} decisions={decisions} evidence={evidence} related={related} lang="de">
+<ExpertHubLayout title="Musik für Hochzeit, Trauerfeier und Event" description="Musik für Hochzeit, Trauerfeier, Sektempfang, Dinner, Firmenevent oder Geburtstag auswählen und einen konkreten Ablauf vorbereiten." canonicalPath="/eventmusik/" kicker="Eventmusik planen" intro="Zuerst wird der Ablauf geklärt, dann die Musik. Wählt den Anlass, grenzt die Spielmomente ein und hört drei Stücke aus dem passenden Repertoire an." primary={{ href: '/tools/eventmusik-planer/', label: 'Musikplan erstellen' }} secondary={{ href: '/repertoire/', label: 'Repertoire ansehen' }} decisions={decisions} decisionsTitle="Drei Fragen vor der Titelauswahl" decisionsIntro="Damit aus Liedwünschen ein Ablauf wird." related={related} relatedTitle="Mit eurem Anlass anfangen" lang="de">
   <aside class="expert-motif expert-motif--text" slot="motif" aria-label="Was ein Musikplan klärt"><p>Ein brauchbarer Musikplan klärt</p><ol><li>welche Momente wirklich Musik brauchen,</li><li>welche Wirkung dort entstehen soll,</li><li>wer Start, Ende und Änderungen koordiniert.</li></ol></aside>
 </ExpertHubLayout>

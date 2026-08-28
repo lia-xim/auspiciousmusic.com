@@ -48,6 +48,34 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
   for (const route of routes) await inspect(route, viewport);
 }
 
+for (const occasion of [
+  { slug: 'hochzeit', h1: 'Hochzeitsmusik für Trauung, Einzug und Auszug', included: 'A Thousand Years', excluded: 'Tears in Heaven' },
+  { slug: 'trauerfeier', h1: 'Trauermusik für Beerdigung und Trauerfeier', included: 'Hallelujah', excluded: 'Perfect' },
+]) {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+  const errors = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+  await page.goto(`${baseUrl}/eventmusik/${occasion.slug}/`, { waitUntil: 'networkidle' });
+  const quickState = await page.evaluate(() => ({
+    h1: document.querySelector('h1')?.textContent?.trim(),
+    selects: document.querySelectorAll('[data-occasion-quick] select').length,
+    results: document.querySelectorAll('[data-quick-results] > li').length,
+    youtube: document.querySelectorAll('[data-quick-results] a[target="_blank"][href*="youtube.com/results"]').length,
+    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  }));
+  const text = await page.locator('[data-occasion-quick]').innerText();
+  if (quickState.h1 !== occasion.h1 || quickState.selects !== 0 || quickState.results !== 3 || quickState.youtube !== 3 || quickState.overflow > 1 || !text.includes(occasion.included) || text.includes(occasion.excluded)) failures.push(`occasion quick planner ${occasion.slug}: ${JSON.stringify(quickState)} ${text}`);
+  const choices = page.locator('[data-occasion-quick] input[type="checkbox"]');
+  const choiceCount = await choices.count();
+  for (let index = 1; index < choiceCount; index += 1) await choices.nth(index).uncheck({ force: true });
+  await page.locator('[data-occasion-quick] input[type="radio"]').last().check({ force: true });
+  if (await page.locator('[data-quick-results] > li').count() !== 3) failures.push(`occasion quick planner ${occasion.slug}: interaction removed results`);
+  for (const error of errors) failures.push(`occasion quick planner ${occasion.slug}: ${error}`);
+  await page.screenshot({ path: path.join(output, `relaunch-${occasion.slug}-quick-mobile.png`), fullPage: true });
+  await page.close();
+}
+
 const planner = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
 const plannerErrors = [];
 planner.on('pageerror', (error) => plannerErrors.push(error.message));

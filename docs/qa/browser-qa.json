@@ -1,13 +1,13 @@
 {
   "implementation": "http://localhost:4321",
-  "checkedAt": "2026-08-28T17:19:33.844Z",
+  "checkedAt": "2026-08-28T18:07:44.674Z",
   "uniqueRoutesChecked": 60,
   "routeViewportChecks": 128,
   "observations": [
     {
       "route": "/",
       "status": 200,
-      "title": "Auspicious Music — Musik für Trauung und Event planen",
+      "title": "Musik für Hochzeit, Trauerfeier & Event planen | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -287,21 +287,21 @@
     {
       "route": "/viola/",
       "status": 200,
-      "title": "Viola im Einsatz — Auspicious Music",
+      "title": "Viola für Zeremonie, Event und Aufnahme — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/",
       "status": 200,
-      "title": "Eventmusik, die zum Ablauf passt — Auspicious Music",
+      "title": "Musik für Hochzeit, Trauerfeier und Event — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/repertoire/",
       "status": 200,
-      "title": "Repertoire nach Anlass — Auspicious Music",
+      "title": "Repertoire für Hochzeit, Trauerfeier und Event — Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -329,49 +329,49 @@
     {
       "route": "/eventmusik/hochzeit/",
       "status": 200,
-      "title": "Hochzeit / Trauung: Viola-Musik planen — Auspicious Music",
+      "title": "Hochzeitsmusik für Trauung, Einzug & Auszug | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/sektempfang/",
       "status": 200,
-      "title": "Sektempfang: Viola-Musik planen — Auspicious Music",
+      "title": "Musik zum Sektempfang: Live-Musik planen | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/trauerfeier/",
       "status": 200,
-      "title": "Beerdigung / Trauerfeier: Viola-Musik planen — Auspicious Music",
+      "title": "Trauermusik für Beerdigung & Trauerfeier | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/dinner/",
       "status": 200,
-      "title": "Dinner: Viola-Musik planen — Auspicious Music",
+      "title": "Dinnermusik für Hochzeit & Event planen | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/firmenevent/",
       "status": 200,
-      "title": "Firmenevent: Viola-Musik planen — Auspicious Music",
+      "title": "Live-Musik für Firmenevent & Empfang | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/geburtstag/",
       "status": 200,
-      "title": "Geburtstag: Viola-Musik planen — Auspicious Music",
+      "title": "Live-Musik zum Geburtstag planen | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/unterricht/",
       "status": 200,
-      "title": "Unterricht: Viola-Musik planen — Auspicious Music",
+      "title": "Viola-Unterricht vorbereiten | Auspicious Music",
       "viewport": "1440x900",
       "axeViolations": 0
     },
@@ -427,7 +427,7 @@
     {
       "route": "/",
       "status": 200,
-      "title": "Auspicious Music — Musik für Trauung und Event planen",
+      "title": "Musik für Hochzeit, Trauerfeier & Event planen | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -707,21 +707,21 @@
     {
       "route": "/viola/",
       "status": 200,
-      "title": "Viola im Einsatz — Auspicious Music",
+      "title": "Viola für Zeremonie, Event und Aufnahme — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/",
       "status": 200,
-      "title": "Eventmusik, die zum Ablauf passt — Auspicious Music",
+      "title": "Musik für Hochzeit, Trauerfeier und Event — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/repertoire/",
       "status": 200,
-      "title": "Repertoire nach Anlass — Auspicious Music",
+      "title": "Repertoire für Hochzeit, Trauerfeier und Event — Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -749,49 +749,49 @@
     {
       "route": "/eventmusik/hochzeit/",
       "status": 200,
-      "title": "Hochzeit / Trauung: Viola-Musik planen — Auspicious Music",
+      "title": "Hochzeitsmusik für Trauung, Einzug & Auszug | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/sektempfang/",
       "status": 200,
-      "title": "Sektempfang: Viola-Musik planen — Auspicious Music",
+      "title": "Musik zum Sektempfang: Live-Musik planen | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/trauerfeier/",
       "status": 200,
-      "title": "Beerdigung / Trauerfeier: Viola-Musik planen — Auspicious Music",
+      "title": "Trauermusik für Beerdigung & Trauerfeier | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/dinner/",
       "status": 200,
-      "title": "Dinner: Viola-Musik planen — Auspicious Music",
+      "title": "Dinnermusik für Hochzeit & Event planen | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/firmenevent/",
       "status": 200,
-      "title": "Firmenevent: Viola-Musik planen — Auspicious Music",
+      "title": "Live-Musik für Firmenevent & Empfang | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/geburtstag/",
       "status": 200,
-      "title": "Geburtstag: Viola-Musik planen — Auspicious Music",
+      "title": "Live-Musik zum Geburtstag planen | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
     {
       "route": "/eventmusik/unterricht/",
       "status": 200,
-      "title": "Unterricht: Viola-Musik planen — Auspicious Music",
+      "title": "Viola-Unterricht vorbereiten | Auspicious Music",
       "viewport": "390x844",
       "axeViolations": 0
     },
@@ -847,7 +847,7 @@
     {
       "route": "/",
       "status": 200,
-      "title": "Auspicious Music — Musik für Trauung und Event planen",
+      "title": "Musik für Hochzeit, Trauerfeier & Event planen | Auspicious Music",
       "viewport": "640x900",
       "axeViolations": 0
     },
@@ -875,7 +875,7 @@
     {
       "route": "/",
       "status": 200,
-      "title": "Auspicious Music — Musik für Trauung und Event planen",
+      "title": "Musik für Hochzeit, Trauerfeier & Event planen | Auspicious Music",
       "viewport": "320x900",
       "axeViolations": 0
     },

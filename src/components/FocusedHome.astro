@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ResponsiveEditorialImage from './ResponsiveEditorialImage.astro';
 import { youtubeSearchUrl } from '../data/repertoire';
 
 interface Props { lang: 'de' | 'en'; }
@@ -8,55 +7,49 @@ const { lang } = Astro.props;
 const de = lang === 'de';
 const planner = de ? '/tools/eventmusik-planer/' : '/en/tools/event-music-planner/';
 const copy = de ? {
-  title: 'Auspicious Music — Musik für Trauung und Event planen',
-  description: 'Ein kostenloser Musikplaner für Trauung, Trauerfeier und Event: Anlass und Wirkung wählen, passende Repertoire-Ideen erhalten und mit Kim-Marie abstimmen.',
+  title: 'Musik für Hochzeit, Trauerfeier & Event planen | Auspicious Music',
+  description: 'Musik für Hochzeit, Trauerfeier und Event auswählen: Anlass und Spielmomente wählen, drei Stücke anhören und einen Ablauf für die Abstimmung vorbereiten.',
   h1: 'Musik, die zu eurem Moment passt.',
-  intro: 'Persönliche Liedempfehlungen für eure Zeremonie oder euer Event.',
+  intro: 'Wählt den Anlass und die Stellen, an denen Musik wirklich gebraucht wird. Ihr bekommt drei passende Stücke und einen Ablauf für die persönliche Abstimmung.',
   primary: 'Musikplan erstellen', occasionLabel: 'Wofür plant ihr Musik?',
   occasions: [['Hochzeit', 'hochzeit'], ['Freie Trauung', 'hochzeit'], ['Kirchliche Trauung', 'hochzeit'], ['Sektempfang', 'sektempfang'], ['Trauerfeier', 'trauerfeier'], ['Konzert & Event', 'firmenevent']],
-  howLabel: 'In 3 Schritten zu eurer Musik',
-  steps: [['Anlass wählen', 'Wählt den Anlass und die gewünschten Momente.'], ['Stimmung & Rahmen', 'Gebt Wirkung, Ort und musikalische Rolle an.'], ['Empfehlungen erhalten', 'Drei Titel werden konkreten Momenten zugeordnet.']],
-  exampleTitle: 'So sehen Empfehlungen aus', exampleNote: 'Beispiel für eine Hochzeit · der Planer berechnet eure persönliche Auswahl.', listen: 'Auf YouTube suchen und anhören', moment: 'Passender Moment', why: 'Warum passt es?',
+  howLabel: 'Drei kurze Entscheidungen',
+  steps: [['Anlass wählen', 'Hochzeit, Trauerfeier, Empfang oder ein anderes Event.'], ['Momente festlegen', 'Nur die Stellen auswählen, an denen Musik Platz hat.'], ['Stücke anhören', 'Drei Titel werden dem Ablauf zugeordnet.']],
+  exampleTitle: 'So sieht eine Auswahl aus', exampleNote: 'Beispiel für eine Trauung · im Planer entsteht eure eigene Auswahl.', listen: 'Auf YouTube suchen und anhören', moment: 'Im Ablauf', why: 'Einordnung',
   examples: [
-    ['A Thousand Years', 'Warm und persönlich – gibt einem feierlichen Einzug Ruhe und Raum.', 'Einzug'],
-    ['Canon in D', 'Klar und festlich – trägt einen bewusst gesetzten Zeremonienmoment.', 'Ringtausch oder Unterschrift'],
-    ['Perfect', 'Modern und nahbar – unterstützt einen leichten, gemeinsamen Auszug.', 'Auszug'],
+    ['A Thousand Years', 'Warm und persönlich; lässt beim Einzug Zeit für den Weg.', 'Einzug'],
+    ['Canon in D', 'Klar und feierlich; die Fassung kann an die Dauer des Moments angepasst werden.', 'Ringtausch oder Unterschrift'],
+    ['Perfect', 'Modern und leicht; markiert den Wechsel von der Zeremonie zum Feiern.', 'Auszug'],
   ],
-  outcomeLabel: 'Was am Ende vorliegt', outcomeTitle: 'Mehr als eine Liste mit Liedtiteln.', outcomeIntro: 'Der Planer soll eine erste Entscheidung erleichtern, nicht vor der Anfrage schon jedes Detail verlangen.',
-  outcomes: [['Drei begründete Vorschläge', 'Jeder Titel wird einem ausgewählten Spielmoment zugeordnet und kurz eingeordnet.'], ['Ein verständlicher Ablauf', 'Ankunft, Einzug, Übergang oder Auszug stehen in einer Reihenfolge, die man gemeinsam besprechen kann.'], ['Die richtigen offenen Fragen', 'Ort, Startsignal, Wunschfassung und praktische Grenzen bleiben sichtbar, ohne die Planung zu blockieren.']],
-  focusLabel: 'Planung und Buchung', focusTitle: 'Hier vorbereiten. Mit Kim-Marie persönlich abstimmen.',
-  focusText: 'Auspicious Music hilft, Musikmomente zu erkennen und passende Titel einzugrenzen. Verfügbarkeit, konkrete Fassung, Besetzung und Preis bestätigt Kim-Marie Borger auf ihrer eigenen Website.',
-  focusAction: 'Kim-Maries Rolle im Projekt', guidesLabel: 'Nach Anlass einsteigen', guidesTitle: 'Was plant ihr gerade?', guidesIntro: 'Die Anlassseiten erklären nur das, was für den jeweiligen Ablauf wirklich anders ist, und führen dann mit passender Vorauswahl in denselben Planer.',
-  guides: [['Hochzeit / Trauung', 'Einzug, Ringtausch, Unterschrift und Auszug ordnen.', '/eventmusik/hochzeit/'], ['Sektempfang', 'Musik als leichte Begleitung zwischen Ankommen und Gesprächen planen.', '/eventmusik/sektempfang/'], ['Trauerfeier', 'Persönliche Stücke behutsam mit Worten und Abschied verbinden.', '/eventmusik/trauerfeier/'], ['Dinner', 'Musik zwischen Service, Reden und ruhigen Übergängen einsetzen.', '/eventmusik/dinner/'], ['Firmenevent', 'Empfang, Hintergrund und einen möglichen Programmpunkt unterscheiden.', '/eventmusik/firmenevent/'], ['Geburtstag', 'Überraschung, Geschenk oder gemeinsamen Abschluss vorbereiten.', '/eventmusik/geburtstag/']],
-  pathsTitle: 'Das passende Werkzeug wählen',
-  paths: [['Eventmusik-Planer', 'Aus Anlass, Rahmen und Wirkung drei Vorschläge mit Ablauf erstellen.', '/tools/eventmusik-planer/'], ['Repertoire nach Anlass', 'Alle gepflegten Titel nach ihrem möglichen Einsatz erkunden.', '/repertoire/'], ['Wunschstück vorbereiten', 'Eine persönliche Idee für die musikalische Prüfung konkretisieren.', '/tools/wunschstueck-check/'], ['Live-Musik draußen', 'Schutz, Standort und Plan B vor der Anfrage prüfen.', '/eventmusik/live-streicher-draussen/']],
-  questionsTitle: 'Kurz beantwortet', questions: [['Muss das Datum schon feststehen?', 'Nein. Ort und Anlass reichen für einen ersten Plan; das Datum kann offen bleiben.'], ['Ist das schon eine Buchungsanfrage?', 'Nein. Der Plan bleibt zunächst in deinem Browser. Erst die Kontaktaktion kopiert ihn und öffnet Kim-Maries Kontaktseite.'], ['Sind die vorgeschlagenen Titel garantiert spielbar?', 'Nein. Titel, genaue Fassung, Arrangement, Besetzung, Termin und Preis werden persönlich geprüft.']],
-  recordingTitle: 'Du planst keine Feier, sondern eine Streicheraufnahme?', recordingText: 'Der kleine Aufnahmebereich behandelt Mikrofonposition, Raum, Live-versus-Sample und ein sauberes Aufnahmebriefing. Er bleibt bewusst ein Nebenbereich.', recordingAction: 'Zum Aufnahmebereich',
+  outcomeLabel: 'Was der Planer erledigt', outcomeTitle: 'Eine kleine Auswahl, die man besprechen kann.', outcomeIntro: 'Für den ersten Schritt braucht ihr weder ein festes Datum noch einen vollständig geplanten Tagesablauf.',
+  outcomes: [['Drei Stücke', 'Nicht das ganze Repertoire, sondern drei Vorschläge für die gewählten Momente.'], ['Ein Ablauf', 'Die Stücke stehen dort, wo sie eingesetzt werden könnten.'], ['Offene Punkte', 'Was noch mit Location und Musikerin geklärt werden muss, bleibt im Plan.']],
+  guidesLabel: 'Direkt mit dem Anlass starten', guidesTitle: 'Jeder Ablauf braucht eine andere Auswahl.', guidesIntro: 'Auf jeder Anlassseite steht die passende Schnellauswahl direkt oben. Hochzeitsmusik wird nicht mit Trauermusik oder Dinner-Repertoire vermischt.',
+  guides: [['Hochzeitsmusik', 'Musik für Einzug, Ringtausch, Unterschrift und Auszug auswählen.', '/eventmusik/hochzeit/'], ['Musik zum Sektempfang', 'Leichte Stücke für Ankommen, Gratulationen und Gespräche finden.', '/eventmusik/sektempfang/'], ['Trauermusik', 'Wenige persönliche Stücke für Beginn, Erinnerung und Abschied ordnen.', '/eventmusik/trauerfeier/'], ['Dinnermusik', 'Musik zwischen Ankommen, Gängen, Reden und Ausklang platzieren.', '/eventmusik/dinner/'], ['Musik fürs Firmenevent', 'Empfang, Hintergrund und hervorgehobenen Programmpunkt trennen.', '/eventmusik/firmenevent/'], ['Musik zum Geburtstag', 'Überraschung, musikalisches Geschenk oder Empfang vorbereiten.', '/eventmusik/geburtstag/']],
+  handoffTitle: 'Der Plan ist die Vorbereitung, nicht die Buchung.',
+  handoffText: 'Kim-Marie Borger prüft anschließend persönlich, ob Termin, Titel, Fassung und Besetzung passen. Aus dem Planer führt ein direkter Weg zu ihrer Kontaktseite.',
+  handoffAction: 'Musikplan beginnen',
   disclosure: 'Kim-Marie Borger ist die heutige musikalische Fachperson dieses Projekts. Matthias Ramahi ist Herausgeber. Auspicious Music ist ein neues redaktionelles Projekt und keine Fortsetzung des früheren Betreibers.',
 } : {
   title: 'Auspicious Music — Plan music for ceremonies and events',
-  description: 'A free music planner for ceremonies and events: choose the occasion and desired effect, receive repertoire suggestions and prepare the conversation with Kim-Marie.',
-  h1: 'Music that fits your moment.', intro: 'Personal song suggestions for your ceremony or event.',
+  description: 'Choose music for a wedding, memorial or event: select the moments, listen to three repertoire suggestions and prepare a running order for personal review.',
+  h1: 'Music that fits your moment.', intro: 'Choose the occasion and the moments that need music. The planner returns three pieces and a running order for personal review.',
   primary: 'Create a music plan', occasionLabel: 'What are you planning music for?',
   occasions: [['Wedding', 'hochzeit'], ['Independent ceremony', 'hochzeit'], ['Church ceremony', 'hochzeit'], ['Drinks reception', 'sektempfang'], ['Funeral / memorial', 'trauerfeier'], ['Concert & event', 'firmenevent']],
-  howLabel: 'Your music in 3 steps',
-  steps: [['Choose the occasion', 'Select the event and the moments that need music.'], ['Set mood & context', 'Add character, place and the role of the music.'], ['Receive suggestions', 'Three titles are matched to specific moments.']],
-  exampleTitle: 'What a recommendation looks like', exampleNote: 'Wedding example · the planner calculates your personal selection.', listen: 'Search and listen on YouTube', moment: 'Suitable moment', why: 'Why it fits',
+  howLabel: 'Three short decisions',
+  steps: [['Choose the occasion', 'Wedding, memorial, reception or another event.'], ['Choose the moments', 'Keep only the points where music has a role.'], ['Listen to three pieces', 'Each title is assigned to the running order.']],
+  exampleTitle: 'What a selection looks like', exampleNote: 'Wedding example · the planner creates your own selection.', listen: 'Search and listen on YouTube', moment: 'In the running order', why: 'Why it is here',
   examples: [
-    ['A Thousand Years', 'Warm and personal, leaving calm space for a ceremonial entrance.', 'Entrance'],
-    ['Canon in D', 'Clear and formal, supporting a deliberately placed ceremony moment.', 'Rings, vows or signing'],
-    ['Perfect', 'Modern and approachable, supporting a light shared exit.', 'Exit'],
+    ['A Thousand Years', 'Warm and personal, with enough time for the entrance.', 'Entrance'],
+    ['Canon in D', 'Clear and formal; the version can be fitted to the length of the moment.', 'Rings, vows or signing'],
+    ['Perfect', 'Modern and light, marking the change from ceremony to celebration.', 'Exit'],
   ],
-  outcomeLabel: 'What you receive', outcomeTitle: 'More than a list of song titles.', outcomeIntro: 'The planner should make the first decision easier, not demand every detail before an enquiry can begin.',
-  outcomes: [['Three reasoned suggestions', 'Each title is matched to a selected musical moment and briefly explained.'], ['A readable running order', 'Arrival, entrance, transition and exit form a sequence that can be reviewed together.'], ['The right open questions', 'Place, cues, requested version and practical limits remain visible without blocking the plan.']],
-  focusLabel: 'Planning and booking', focusTitle: 'Prepare here. Confirm personally with Kim-Marie.',
-  focusText: 'Auspicious Music helps identify musical moments and narrow down suitable titles. Kim-Marie Borger confirms availability, exact version, line-up and price on her own website.',
-  focusAction: 'Kim-Marie’s role in the project', guidesLabel: 'Start with the occasion', guidesTitle: 'What are you planning?', guidesIntro: 'The German occasion guides cover what materially changes in each running order. The English planner uses the same recommendation model without duplicating every page.',
-  guides: [['Wedding ceremony', 'Shape entrance, signing, reflection and exit around useful cues.', '/music-for-media/planning-live-viola-for-a-wedding-ceremony/'], ['Drinks reception', 'Use the planner for light music around arrival and conversation.', '/en/tools/event-music-planner/?occasion=sektempfang'], ['Funeral or memorial', 'Prepare personal pieces and quiet transitions with care.', '/en/tools/event-music-planner/?occasion=trauerfeier'], ['Dinner', 'Place music around service, speeches and quieter transitions.', '/en/tools/event-music-planner/?occasion=dinner'], ['Corporate event', 'Separate reception, background music and a featured moment.', '/en/tools/event-music-planner/?occasion=firmenevent'], ['Birthday', 'Prepare a surprise, musical gift or shared closing moment.', '/en/tools/event-music-planner/?occasion=geburtstag']],
-  pathsTitle: 'Choose the right next step',
-  paths: [['Event-music planner', 'Turn occasion, context and character into three suggestions and a running order.', '/en/tools/event-music-planner/'], ['Repertoire by occasion', 'Explore the maintained titles and their possible roles.', '/repertoire/'], ['Prepare a requested piece', 'Turn a personal idea into a clearer musical review brief.', '/tools/wunschstueck-check/'], ['Outdoor live music', 'Review shelter, placement and a workable Plan B.', '/eventmusik/live-streicher-draussen/']],
-  questionsTitle: 'Quick answers', questions: [['Does the date have to be fixed?', 'No. The place and occasion are enough for a first plan; the date can remain undecided.'], ['Is this already a booking enquiry?', 'No. The plan stays in your browser until you choose to copy it and open Kim-Marie’s contact page.'], ['Are the suggested pieces guaranteed?', 'No. The title, exact version, arrangement, line-up, date and price still need personal review.']],
-  recordingTitle: 'Planning a string recording instead of an event?', recordingText: 'The focused recording section covers microphone position, room choices, live versus sampled strings and a practical recording brief.', recordingAction: 'Open the recording section',
+  outcomeLabel: 'What the planner does', outcomeTitle: 'A small selection you can actually discuss.', outcomeIntro: 'You do not need a fixed date or a finished event schedule to begin.',
+  outcomes: [['Three pieces', 'Three suggestions for the chosen moments, not the whole repertoire.'], ['One running order', 'Each piece is placed where it could work.'], ['Open questions', 'Anything that still needs review with the venue and musician remains visible.']],
+  guidesLabel: 'Start with the occasion', guidesTitle: 'Each running order needs a different selection.', guidesIntro: 'The German occasion pages have their own quick selectors. The English planner uses the same occasion-specific repertoire without duplicating unfinished translations.',
+  guides: [['Wedding music', 'Plan the entrance, signing, reflection and exit.', '/en/tools/event-music-planner/?occasion=hochzeit'], ['Drinks reception', 'Find light music for arrivals, congratulations and conversation.', '/en/tools/event-music-planner/?occasion=sektempfang'], ['Funeral or memorial', 'Place a small number of personal pieces around the farewell.', '/en/tools/event-music-planner/?occasion=trauerfeier'], ['Dinner music', 'Fit music around arrival, courses, speeches and the closing.', '/en/tools/event-music-planner/?occasion=dinner'], ['Corporate event music', 'Separate reception, background and featured moments.', '/en/tools/event-music-planner/?occasion=firmenevent'], ['Birthday music', 'Prepare a surprise, musical gift or reception.', '/en/tools/event-music-planner/?occasion=geburtstag']],
+  handoffTitle: 'The plan prepares the enquiry. It is not a booking.',
+  handoffText: 'Kim-Marie Borger personally reviews the date, titles, version and line-up. The planner provides a direct path to her contact page.',
+  handoffAction: 'Start a music plan',
   disclosure: 'Kim-Marie Borger is the current musical expert for this project. Matthias Ramahi is the publisher. Auspicious Music is a new editorial project, not a continuation of the former operator.',
 };
 ---
@@ -119,21 +112,6 @@ const copy = de ? {
         .focus-outcome-list h3 { margin-top: .75rem; font-size: 1.08rem; letter-spacing: 0; }
         .focus-outcome-list p { margin-top: .45rem; color: #5d646b; font-size: .91rem; line-height: 1.6; }
         .focus-band { padding-block: clamp(3.5rem, 7vw, 6rem); }
-        .focus-split { display: grid; gap: 2.5rem 5rem; align-items: center; }
-        @media (min-width: 900px) { .focus-split { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } }
-        .focus-split__media { overflow: hidden; border-radius: 2px; border: 1px solid #d0d4d8; }
-        .focus-split__media img { aspect-ratio: 16/10; object-fit: cover; }
-        .focus-split h2 { margin-top: .7rem; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 1.5rem + 1.7vw, 3.25rem); font-weight: 500; letter-spacing: 0; }
-        .focus-split p:not(.kicker) { margin-top: 1rem; color: #525960; line-height: 1.7; }
-        .focus-split a { display: inline-block; margin-top: 1.2rem; color: #8f1d35; font-weight: 700; }
-        .focus-paths { background: #f4f5f6; border-block: 1px solid #d9dce0; }
-        .focus-paths h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 1.6rem + 1.2vw, 2.8rem); font-weight: 500; letter-spacing: 0; }
-        .focus-path-list { margin-top: 1.5rem; border-top: 1px solid #bfc4c9; }
-        .focus-path-list a { display: grid; gap: .4rem 2rem; padding: 1.2rem 0; border-bottom: 1px solid #d9dce0; text-decoration: none; }
-        @media (min-width: 740px) { .focus-path-list a { grid-template-columns: minmax(14rem, .65fr) minmax(0, 1fr) auto; align-items: center; } }
-        .focus-path-list h3 { font-size: 1.05rem; letter-spacing: 0; }
-        .focus-path-list p { color: #60676e; font-size: .91rem; }
-        .focus-path-list span { color: #8f1d35; font-weight: 700; }
         .focus-guides { background: #fff; }
         .focus-guide-list { display: grid; margin-top: 2rem; border-top: 1px solid #c5c9cd; }
         @media (min-width: 760px) { .focus-guide-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -144,19 +122,12 @@ const copy = de ? {
         .focus-guide-list h3 { font-size: 1.02rem; letter-spacing: 0; }
         .focus-guide-list p { grid-column: 2; color: #60676e; font-size: .9rem; line-height: 1.55; }
         .focus-guide-list .guide-arrow { color: #8f1d35; }
-        .focus-questions { background: #fff; }
-        .focus-questions > .shell > h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 1.55rem + 1.3vw, 3rem); font-weight: 500; letter-spacing: 0; }
-        .focus-question-list { margin-top: 1.6rem; border-top: 1px solid #bcc1c6; }
-        .focus-question-list div { display: grid; gap: .45rem 3rem; padding-block: 1.25rem; border-bottom: 1px solid #d9dce0; }
-        @media (min-width: 760px) { .focus-question-list div { grid-template-columns: minmax(15rem, .8fr) minmax(0, 1.2fr); } }
-        .focus-question-list dt { font-weight: 700; }
-        .focus-question-list dd { color: #5d646b; line-height: 1.6; }
-        .focus-recording { background: #17191d; color: #f2efe8; }
-        .focus-recording__inner { display: grid; gap: 1rem 3rem; align-items: center; }
-        @media (min-width: 820px) { .focus-recording__inner { grid-template-columns: minmax(18rem, .8fr) minmax(0, 1.2fr) auto; } }
-        .focus-recording h2 { color: inherit; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.7rem, 1.35rem + .9vw, 2.4rem); font-weight: 500; letter-spacing: 0; }
-        .focus-recording p { color: #c5c8cc; line-height: 1.65; }
-        .focus-recording a { color: #e2c47d; font-weight: 700; white-space: nowrap; }
+        .focus-handoff { background: #17191d; color: #f2efe8; }
+        .focus-handoff__inner { display: grid; gap: 1rem 3rem; align-items: center; }
+        @media (min-width: 820px) { .focus-handoff__inner { grid-template-columns: minmax(18rem, .8fr) minmax(0, 1.2fr) auto; } }
+        .focus-handoff h2 { color: inherit; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.7rem, 1.35rem + .9vw, 2.4rem); font-weight: 500; letter-spacing: 0; }
+        .focus-handoff p { color: #c5c8cc; line-height: 1.65; }
+        .focus-handoff .btn { min-width: 12rem; justify-content: center; }
         .focus-disclosure { background: #0d0f11; color: #c4c7cd; padding-block: 1.6rem; }
         .focus-disclosure p { max-width: 78rem; font-size: .82rem; line-height: 1.55; }
         @media (max-width: 800px) {
@@ -192,7 +163,7 @@ const copy = de ? {
           <p class="focus-hero__intro">{copy.intro}</p>
           <div class="focus-hero__actions"><a class="btn btn--primary" href={planner}>{copy.primary}<span aria-hidden="true">→</span></a></div>
         </div>
-        <nav class="occasion-start" aria-label={copy.occasionLabel}><p>{copy.occasionLabel}</p><ul>{copy.occasions.map(([label, slug], index) => <li><a data-number={String(index + 1).padStart(2, '0')} href={`${planner}?${de ? 'anlass' : 'occasion'}=${slug}`}>{label}</a></li>)}</ul></nav>
+        <nav class="occasion-start" aria-label={copy.occasionLabel}><p>{copy.occasionLabel}</p><ul>{copy.occasions.map(([label, slug], index) => <li><a data-number={String(index + 1).padStart(2, '0')} href={de ? `/eventmusik/${slug}/` : `${planner}?occasion=${slug}`}>{label}</a></li>)}</ul></nav>
       </div>
     </section>
 
@@ -202,11 +173,8 @@ const copy = de ? {
 
     <section class="focus-outcomes" aria-labelledby="focus-outcomes-title"><div class="shell"><header class="focus-section-head"><div><p class="kicker">{copy.outcomeLabel}</p><h2 id="focus-outcomes-title">{copy.outcomeTitle}</h2></div><p>{copy.outcomeIntro}</p></header><ol class="focus-outcome-list">{copy.outcomes.map(([title, text], index) => <li><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></div></section>
 
-    <section class="focus-band"><div class="shell focus-split"><figure class="focus-split__media"><ResponsiveEditorialImage asset="hero-portrait" sizes="(min-width: 900px) 42vw, 100vw" alt={de ? 'Redaktionelle Darstellung einer gespannten Saite auf einem Metallsteg' : 'Editorial image of a tensioned string on a metal bridge'} /></figure><div><p class="kicker">{copy.focusLabel}</p><h2>{copy.focusTitle}</h2><p>{copy.focusText}</p><a href="/about/">{copy.focusAction} →</a></div></div></section>
     <section class="focus-band focus-guides" aria-labelledby="focus-guides-title"><div class="shell"><header class="focus-section-head"><div><p class="kicker">{copy.guidesLabel}</p><h2 id="focus-guides-title">{copy.guidesTitle}</h2></div><p>{copy.guidesIntro}</p></header><ol class="focus-guide-list">{copy.guides.map(([title, text, href], index) => <li><a href={href}><span class="guide-number">{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{text}</p></div><span class="guide-arrow" aria-hidden="true">→</span></a></li>)}</ol></div></section>
-    <section class="focus-band focus-paths"><div class="shell"><h2>{copy.pathsTitle}</h2><ul class="focus-path-list">{copy.paths.map(([title, text, href]) => <li><a href={href}><h3>{title}</h3><p>{text}</p><span aria-hidden="true">→</span></a></li>)}</ul></div></section>
-    <section class="focus-band focus-questions" aria-labelledby="focus-questions-title"><div class="shell"><h2 id="focus-questions-title">{copy.questionsTitle}</h2><dl class="focus-question-list">{copy.questions.map(([question, answer]) => <div><dt>{question}</dt><dd>{answer}</dd></div>)}</dl></div></section>
-    <section class="focus-band focus-recording" aria-labelledby="focus-recording-title"><div class="shell focus-recording__inner"><h2 id="focus-recording-title">{copy.recordingTitle}</h2><p>{copy.recordingText}</p><a href="/recording/">{copy.recordingAction} →</a></div></section>
+    <section class="focus-band focus-handoff" aria-labelledby="focus-handoff-title"><div class="shell focus-handoff__inner"><h2 id="focus-handoff-title">{copy.handoffTitle}</h2><p>{copy.handoffText}</p><a class="btn btn--primary" href={planner}>{copy.handoffAction}</a></div></section>
     <aside class="focus-disclosure"><div class="shell"><p>{copy.disclosure}</p></div></aside>
   </main>
 </BaseLayout>
