@@ -10,7 +10,7 @@ It is a modern successor on a historic domain, not a continuation of the former 
 
 1. Help visitors turn an occasion into a usable event-music plan with moments, cues, practical limits and repertoire ideas.
 2. Maintain one source-backed repertoire inventory by occasion rather than duplicating title lists across pages.
-3. Support German and English inside the planner while keeping German as the primary editorial language.
+3. Keep every German-first user journey consistently German. Provide English through `/en/`, the English planner and a curated technical library; do not create automatic translation duplicates.
 4. Open a prefilled email draft to Kim-Marie only after the visitor has reviewed the plan. The site never sends or stores the enquiry itself.
 5. Explain viola and string decisions through musical function and practical constraints.
 6. Connect relevant visitors to Kim-Marie Borger's current official site without duplicating her commercial booking pages or unsupported service claims.
@@ -30,6 +30,8 @@ It is a modern successor on a historic domain, not a continuation of the former 
 - `/repertoire/`
 - `/recording/`
 - `/tools/eventmusik-planer/`
+- `/en/`
+- `/en/tools/event-music-planner/`
 - `/about/history-and-relaunch/`
 
 `/tools/ceremony-planner/` permanently redirects to `/tools/eventmusik-planer/`.

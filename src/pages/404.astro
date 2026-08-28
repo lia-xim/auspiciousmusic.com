@@ -3,10 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title={"Page not found — Auspicious Music"}
-  description={"Independent music production and creative audio publication."}
+  title={"Seite nicht gefunden — Auspicious Music"}
+  description={"Die angeforderte Adresse gehört nicht zur heutigen Auspicious-Music-Publikation."}
   canonicalPath={"/404/"}
-  lang={"en"}
+  lang={"de"}
   noindex={true}
   loadStringField={false}
   headerOverDark={true}
@@ -89,38 +89,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <main id="content">
   <section class="err" data-od-id="error-404">
     <div class="shell">
-      <p class="err__code">HTTP 404<br>Not found</p>
+      <p class="err__code">HTTP 404<br>Nicht gefunden</p>
 
-      <h1>That address does not exist here</h1>
+      <h1>Diese Adresse gibt es hier nicht</h1>
 
       <p class="lede err__lede">
-        It may have been a page on the previous site that was not carried over, or the
-        link may simply be wrong. Either way, you are not being redirected somewhere
-        you did not ask for.
+        Vielleicht gehörte die Adresse zur früheren Website oder der Link ist fehlerhaft.
+        Wir leiten dich nicht pauschal auf eine unpassende Seite weiter.
       </p>
 
-      <form class="search" role="search" action="#" method="get">
-        <label for="q">Search the publication</label>
+      <form class="search" role="search" action="/search/" method="get">
+        <label for="q">Auspicious Music durchsuchen</label>
         <div class="search__row">
-          <input id="q" name="q" type="search" placeholder="Sampler, viola, Max for Live…"
+          <input id="q" name="q" type="search" placeholder="Viola, Hochzeit, Mikrofon…"
                  aria-describedby="q-help" autocomplete="off">
-          <button class="btn btn--primary" type="submit">Search</button>
+          <button class="btn btn--primary" type="submit">Suchen</button>
         </div>
         <p class="search__help" id="q-help">
-          Searches titles and body text across guides, hub pages and archive entries.
+          Durchsucht Titel und Beschreibungen der Leitfäden, Themenbereiche und Archivhinweise.
         </p>
       </form>
 
       <nav class="paths" aria-labelledby="paths-title">
-        <h2 id="paths-title">Or start from a topic</h2>
+        <h2 id="paths-title">Oder bei einem Thema beginnen</h2>
         <ul>
-          <li><a href="/music-production/"><strong>Production</strong><span>Workflow, arrangement, project discipline</span></a></li>
-          <li><a href="/ableton/"><strong>Ableton</strong><span>Live, Max for Live, controllers</span></a></li>
-          <li><a href="/sound-design/"><strong>Sound Design</strong><span>Sampling, synthesis, sampled instruments</span></a></li>
-          <li><a href="/recording/"><strong>Recording</strong><span>Home studio, acoustic instruments, strings</span></a></li>
-          <li><a href="/music-for-media/"><strong>Music for Media</strong><span>Licensing, film and video, ceremonies</span></a></li>
-          <li><a href="/resources/tools/"><strong>Tools</strong><span>Delay times, note frequencies, sample transposition</span></a></li>
-          <li><a href="/download/"><strong>Archive and downloads</strong><span>Historic resources and their status</span></a></li>
+          <li><a href="/tools/eventmusik-planer/"><strong>Eventmusik-Planer</strong><span>Ablauf, Momente und praktische Fragen</span></a></li>
+          <li><a href="/eventmusik/"><strong>Anlässe</strong><span>Hochzeit, Empfang, Trauerfeier und weitere Formate</span></a></li>
+          <li><a href="/repertoire/"><strong>Repertoire</strong><span>Titel nach Funktion und Machbarkeit einordnen</span></a></li>
+          <li><a href="/viola/"><strong>Viola</strong><span>Klang, Rolle und praktische Entscheidung</span></a></li>
+          <li><a href="/recording/"><strong>Aufnahme</strong><span>Raum, Mikrofon und wiederholbare Vergleiche</span></a></li>
         </ul>
       </nav>
     </div>

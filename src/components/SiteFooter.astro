@@ -2,23 +2,33 @@
 interface Props { lang?: 'de' | 'en'; }
 const { lang = 'de' } = Astro.props;
 const de = lang === 'de';
-const c = de ? {
-  description: 'Eine neue unabhängige Fachseite für Viola, Eventmusik, Repertoire und Aufnahme mit Kim-Marie Borger.', occasions: 'Anlässe', wedding: 'Hochzeit', reception: 'Sektempfang', funeral: 'Trauerfeier', corporate: 'Firmenevent', birthday: 'Geburtstag', planning: 'Planen', planner: 'Eventmusik-Planer', repertoire: 'Repertoire nach Anlass', corrections: 'Rechte & Korrekturen', topics: 'Fachthemen', recording: 'Aufnahme', lessons: 'Unterricht', publication: 'Publikation', about: 'Über die Seite', people: 'Expertin & Herausgeber', rules: 'Redaktionelle Regeln', history: 'Geschichte & Neustart', legal: 'Rechtliches', imprint: 'Impressum', privacy: 'Datenschutz', accessibility: 'Barrierefreiheit', sitemap: 'Sitemap', boundary: 'Neue unabhängige Fachseite mit Kim-Marie Borger. Keine Verbindung zum früheren Betreiber.'
-} : {
-  description: 'An independent new reference for viola, event music, repertoire and recording with Kim-Marie Borger.', occasions: 'Events', wedding: 'Wedding', reception: 'Drinks reception', funeral: 'Funeral / memorial', corporate: 'Corporate event', birthday: 'Birthday', planning: 'Planning', planner: 'Event-music planner', repertoire: 'Repertoire by occasion', corrections: 'Rights & corrections', topics: 'Topics', recording: 'Recording', lessons: 'Lessons', publication: 'Publication', about: 'About this site', people: 'Expert & publisher', rules: 'Editorial policy', history: 'History & relaunch', legal: 'Legal', imprint: 'Legal notice', privacy: 'Privacy', accessibility: 'Accessibility', sitemap: 'Sitemap', boundary: 'Independent new publication with Kim-Marie Borger. No connection to the former operator.'
-};
-const plannerHref = de ? '/tools/eventmusik-planer/' : '/en/tools/event-music-planner/';
+const homePath = de ? '/' : '/en/';
+const columns = de ? [
+  { title: 'Anlässe', links: [['Hochzeit', '/eventmusik/hochzeit/'], ['Sektempfang', '/eventmusik/sektempfang/'], ['Trauerfeier', '/eventmusik/trauerfeier/'], ['Dinner', '/eventmusik/dinner/'], ['Firmenevent', '/eventmusik/firmenevent/'], ['Geburtstag', '/eventmusik/geburtstag/']] },
+  { title: 'Planen', links: [['Eventmusik-Planer', '/tools/eventmusik-planer/'], ['Repertoire nach Anlass', '/repertoire/'], ['Wunschstück prüfen', '/tools/wunschstueck-check/']] },
+  { title: 'Fachthemen', links: [['Viola', '/viola/'], ['Aufnahme', '/recording/'], ['Live oder Sample-Bibliothek?', '/sound-design/when-to-record-strings-instead-of-using-a-library/'], ['Unterricht', '/eventmusik/unterricht/']] },
+  { title: 'Über Auspicious Music', links: [['Aufgabe und Rollen', '/about/'], ['Fachperson und Herausgeber', '/authors/'], ['Redaktionelle Regeln', '/about/editorial-policy/'], ['Geschichte und Neustart', '/about/history-and-relaunch/']] },
+  { title: 'Rechtliches', links: [['Impressum', '/legal/'], ['Datenschutz', '/privacy/'], ['Barrierefreiheit', '/accessibility/'], ['Sitemap', '/sitemap/']] },
+] : [
+  { title: 'Plan an event', links: [['English event-music planner', '/en/tools/event-music-planner/'], ['English overview', '/en/']] },
+  { title: 'Technical library', links: [['Resource hub', '/resources/'], ['Music tools', '/resources/tools/'], ['Music production', '/music-production/'], ['Sound design', '/sound-design/'], ['Music for media', '/music-for-media/']] },
+  { title: 'Publication', links: [['Journal', '/journal/'], ['Contribute', '/contribute/'], ['History and ownership (German)', '/about/history-and-relaunch/']] },
+  { title: 'Legal', links: [['Legal notice (German)', '/legal/'], ['Privacy (German)', '/privacy/'], ['Accessibility (German)', '/accessibility/']] },
+];
+const description = de
+  ? 'Unabhängige Entscheidungshilfe für Viola, Eventmusik, Repertoire und Aufnahme. Kim-Marie Borger ist die heutige musikalische Fachperson.'
+  : 'A curated English entry into the independent Auspicious Music technical library and event-music planner.';
+const boundary = de
+  ? 'Neues redaktionelles Projekt. Keine Verbindung zum früheren Betreiber.'
+  : 'New editorial project. No connection to the former operator.';
+const brandSubtitle = de ? 'Viola & Streicher' : 'Viola & Strings Lab';
 ---
 <footer class="site-footer" data-od-id="footer">
   <div class="shell">
     <div class="footer-grid">
-      <div><a class="brand" href="/"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".42"/></svg><span>Auspicious Music<small class="brand__sub">Viola &amp; Strings Lab</small></span></a><p style="font-size:var(--t-ui-sm);color:var(--stage-muted);margin-top:1rem;max-width:30ch;line-height:1.6">{c.description}</p></div>
-      <div><h2>{c.occasions}</h2><ul><li><a href="/eventmusik/hochzeit/">{c.wedding}</a></li><li><a href="/eventmusik/sektempfang/">{c.reception}</a></li><li><a href="/eventmusik/trauerfeier/">{c.funeral}</a></li><li><a href="/eventmusik/dinner/">Dinner</a></li><li><a href="/eventmusik/firmenevent/">{c.corporate}</a></li><li><a href="/eventmusik/geburtstag/">{c.birthday}</a></li></ul></div>
-      <div><h2>{c.planning}</h2><ul><li><a href={plannerHref}>{c.planner}</a></li><li><a href="/repertoire/">{c.repertoire}</a></li><li><a href="/contact/">{c.corrections}</a></li></ul></div>
-      <div><h2>{c.topics}</h2><ul><li><a href="/viola/">Viola</a></li><li><a href="/recording/">{c.recording}</a></li><li><a href="/eventmusik/unterricht/">{c.lessons}</a></li><li><a href="/journal/">Journal</a></li></ul></div>
-      <div><h2>{c.publication}</h2><ul><li><a href="/about/">{c.about}</a></li><li><a href="/authors/">{c.people}</a></li><li><a href="/about/editorial-policy/">{c.rules}</a></li><li><a href="/about/history-and-relaunch/">{c.history}</a></li></ul></div>
-      <div><h2>{c.legal}</h2><ul><li><a href="/legal/">{c.imprint}</a></li><li><a href="/privacy/">{c.privacy}</a></li><li><a href="/accessibility/">{c.accessibility}</a></li><li><a href="/sitemap/">{c.sitemap}</a></li></ul></div>
+      <div><a class="brand" href={homePath}><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12C5.7 4 8.3 4 12 12C15.7 20 18.3 20 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 12C5.7 16 8.3 16 12 12C15.7 8 18.3 8 22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".42"/></svg><span>Auspicious Music<small class="brand__sub">{brandSubtitle}</small></span></a><p style="font-size:var(--t-ui-sm);color:var(--stage-muted);margin-top:1rem;max-width:32ch;line-height:1.6">{description}</p></div>
+      {columns.map((column) => <div><h2>{column.title}</h2><ul>{column.links.map(([label, href]) => <li><a href={href}>{label}</a></li>)}</ul></div>)}
     </div>
-    <div class="footer-base"><span>© 2026 Matthias Ramahi · Auspicious Music</span><span>{c.boundary}</span></div>
+    <div class="footer-base"><span>© 2026 Matthias Ramahi · Auspicious Music</span><span>{boundary}</span></div>
   </div>
 </footer>

@@ -16,6 +16,7 @@ interface Props {
   section?: string;
   headerOverDark?: boolean;
   alternatePath?: string;
+  languagePath?: string;
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   section,
   headerOverDark = false,
   alternatePath,
+  languagePath,
 } = Astro.props;
 
 const siteIndexable = import.meta.env.SITE_INDEXABLE === 'true';
@@ -42,6 +44,9 @@ const alternateLang = lang === 'de' ? 'en' : 'de';
 const xDefault = alternate ? (lang === 'de' ? canonical : alternate) : undefined;
 const image = new URL('/assets/hero-portrait-928.jpg', site);
 const locale = lang === 'de' ? 'de_DE' : 'en_US';
+const socialImageAlt = lang === 'de'
+  ? 'Redaktionelle Auspicious-Music-Illustration mit Metallblock und gespannter Saite'
+  : 'Auspicious Music editorial illustration of a metal block and a tensioned string';
 const publisherId = new URL('/authors/#matthias-ramahi', site).href;
 const expertId = new URL('/authors/#kim-marie-borger', site).href;
 const identitySchema = {
@@ -107,7 +112,7 @@ const identitySchema = {
     <meta property="og:image" content={image} />
     <meta property="og:image:width" content="928" />
     <meta property="og:image:height" content="742" />
-    <meta property="og:image:alt" content="Auspicious Music editorial illustration of a metal block and a tensioned string" />
+    <meta property="og:image:alt" content={socialImageAlt} />
     {contentType === 'article' && published && <meta property="article:published_time" content={published} />}
     {contentType === 'article' && updated && <meta property="article:modified_time" content={updated} />}
     {contentType === 'article' && section && <meta property="article:section" content={section} />}
@@ -115,12 +120,12 @@ const identitySchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
-    <meta name="twitter:image:alt" content="Auspicious Music editorial illustration of a metal block and a tensioned string" />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(identitySchema)} />
     <slot name="head" />
   </head>
   <body>
-    <SiteHeader currentPath={Astro.url.pathname} overDark={headerOverDark} lang={lang === 'en' ? 'en' : 'de'} alternatePath={alternatePath} />
+    <SiteHeader currentPath={Astro.url.pathname} overDark={headerOverDark} lang={lang === 'en' ? 'en' : 'de'} alternatePath={alternatePath} languagePath={languagePath} />
     <slot />
     <SiteFooter lang={lang === 'en' ? 'en' : 'de'} />
     <script is:inline src="/assets/motion.js" defer></script>

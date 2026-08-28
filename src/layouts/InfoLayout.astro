@@ -1,7 +1,14 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 interface Props { title: string; description: string; canonicalPath: string; kicker?: string; lede: string; lang?: string; noindex?: boolean; }
-const { title, description, canonicalPath, kicker = 'Publication', lede, lang = 'en', noindex = false } = Astro.props;
+const { title, description, canonicalPath, kicker, lede, lang = 'en', noindex = false } = Astro.props;
+const de = lang === 'de';
+const displayKicker = kicker ?? (de ? 'Publikation' : 'Publication');
+const aside = de ? {
+  label: 'Links zur Publikation', about: 'Über Auspicious Music', authors: 'Fachperson und Herausgeber', policy: 'Redaktionelle Regeln', history: 'Geschichte und Neustart', contact: 'Kontakt',
+} : {
+  label: 'Publication links', about: 'About', authors: 'Expert and publisher', policy: 'Editorial policy', history: 'History and relaunch', contact: 'Contact',
+};
 ---
 <BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang={lang} noindex={noindex}>
   <Fragment slot="head"><style is:global>
@@ -36,7 +43,7 @@ const { title, description, canonicalPath, kicker = 'Publication', lede, lang = 
     }
   </style></Fragment>
   <main id="content">
-    <header class="info-head"><div class="shell"><p class="kicker">{kicker}</p><h1>{title}</h1><p class="lede">{lede}</p></div></header>
-    <section class="band"><div class="shell info-grid"><div class="info-prose"><slot /></div><aside class="info-aside" aria-label="Publication links"><h2>Auspicious Music</h2><ul><li><a href="/about/">About</a></li><li><a href="/authors/">Author</a></li><li><a href="/about/editorial-policy/">Editorial policy</a></li><li><a href="/about/history-and-relaunch/">History &amp; relaunch</a></li><li><a href="/contact/">Contact</a></li></ul></aside></div></section>
+    <header class="info-head"><div class="shell"><p class="kicker">{displayKicker}</p><h1>{title}</h1><p class="lede">{lede}</p></div></header>
+    <section class="band"><div class="shell info-grid"><div class="info-prose"><slot /></div><aside class="info-aside" aria-label={aside.label}><h2>Auspicious Music</h2><ul><li><a href="/about/">{aside.about}</a></li><li><a href="/authors/">{aside.authors}</a></li><li><a href="/about/editorial-policy/">{aside.policy}</a></li><li><a href="/about/history-and-relaunch/">{aside.history}</a></li><li><a href="/contact/">{aside.contact}</a></li></ul></aside></div></section>
   </main>
 </BaseLayout>

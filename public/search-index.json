@@ -1,9 +1,16 @@
 [
   {
     "route": "/",
-    "title": "Auspicious Music Strings Lab — Viola, events and recording",
-    "description": "A new expert resource for viola, live strings, event-music planning, repertoire decisions and recording with Kim-Marie Borger.",
-    "h1": "Make musical decisions before they become production problems.",
+    "title": "Auspicious Music — Viola, Eventmusik und Repertoire",
+    "description": "Unabhängige Entscheidungshilfe für Viola, Eventmusik, Repertoireplanung und Aufnahme mit Kim-Marie Borger als heutiger musikalischer Fachperson.",
+    "h1": "Viola und Eventmusik verständlich planen.",
+    "internal": false
+  },
+  {
+    "route": "/en/",
+    "title": "Auspicious Music in English — Event planning and strings",
+    "description": "The English entry to the event-music planner and selected technical guides about strings, recording and music production.",
+    "h1": "Plan the music. Understand the string decision.",
     "internal": false
   },
   {
@@ -29,9 +36,9 @@
   },
   {
     "route": "/recording/",
-    "title": "Recording — Auspicious Music",
-    "description": "Room-aware, repeatable recording plans for acoustic instruments.",
-    "h1": "Recording",
+    "title": "Viola und Streicher aufnehmen — Auspicious Music",
+    "description": "Raumbewusste, wiederholbare Aufnahmepläne für Viola und akustische Streicher.",
+    "h1": "Viola und Streicher aufnehmen",
     "internal": false
   },
   {
@@ -78,16 +85,16 @@
   },
   {
     "route": "/recording/acoustic-instruments/recording-viola-at-home/",
-    "title": "A Repeatable Plan for Recording Viola at Home — Auspicious Music",
-    "description": "Prepare the room, compare fair takes and archive material you can judge tomorrow.",
-    "h1": "A repeatable plan for recording viola at home",
+    "title": "Viola zuhause nachvollziehbar aufnehmen — Auspicious Music",
+    "description": "Raum vorbereiten, Positionen fair vergleichen und Material sichern, das sich auch morgen noch beurteilen lässt.",
+    "h1": "Viola zuhause nachvollziehbar aufnehmen",
     "internal": false
   },
   {
     "route": "/about/",
-    "title": "About — Auspicious Music",
-    "description": "What Auspicious Music publishes, who writes it, and how to reach the publication.",
-    "h1": "About Auspicious Music",
+    "title": "Über Auspicious Music",
+    "description": "Aufgabe, Rollen, Beleggrenzen und neue Herausgeberschaft des Auspicious Music Viola & Strings Lab.",
+    "h1": "Über Auspicious Music",
     "internal": false
   },
   {
@@ -99,16 +106,16 @@
   },
   {
     "route": "/about/editorial-policy/",
-    "title": "Editorial Policy — Auspicious Music",
-    "description": "How this publication tests, sources, discloses and corrects — including its position on AI assistance.",
-    "h1": "Editorial policy",
+    "title": "Redaktionelle Regeln — Auspicious Music",
+    "description": "Wie Auspicious Music Belege kennzeichnet, Beziehungen offenlegt und Fehler korrigiert.",
+    "h1": "Redaktionelle Regeln",
     "internal": false
   },
   {
     "route": "/authors/",
-    "title": "Authors — Auspicious Music",
-    "description": "Who writes and reviews here, and the rule this publication applies to bylines.",
-    "h1": "Authors",
+    "title": "Fachperson und Herausgeber — Auspicious Music",
+    "description": "Die heutige Viola-Fachperson und der verantwortliche Herausgeber mit klar getrennten Rollen.",
+    "h1": "Fachperson und Herausgeber",
     "internal": false
   },
   {
@@ -183,16 +190,16 @@
   },
   {
     "route": "/recording/acoustic-instruments/viola-microphone-placement/",
-    "title": "Viola Microphone Placement — Auspicious Music",
-    "description": "Compare three microphone positions without pretending one distance works everywhere.",
-    "h1": "Viola microphone placement: three useful starting positions",
+    "title": "Viola-Mikrofonposition: drei Startpunkte — Auspicious Music",
+    "description": "Nahe, ausgewogene und raumbewusste Mikrofonpositionen vergleichen, ohne einen Universalabstand zu behaupten.",
+    "h1": "Viola-Mikrofonposition: drei sinnvolle Startpunkte",
     "internal": false
   },
   {
     "route": "/sound-design/when-to-record-strings-instead-of-using-a-library/",
-    "title": "When to Record Strings Instead of Using a Library — Auspicious Music",
-    "description": "Decide by phrasing, transition, revision risk and the musical role of the layer.",
-    "h1": "When to record a string part instead of using a library",
+    "title": "Live-Streicher oder Sample-Library? — Auspicious Music",
+    "description": "Nach musikalischer Funktion, Phrasierung, Übergängen und Änderungsrisiko entscheiden.",
+    "h1": "Wann Live-Streicher mehr leisten als eine Sample-Bibliothek",
     "internal": false
   },
   {

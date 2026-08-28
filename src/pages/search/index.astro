@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Search — Auspicious Music"
-  description="Search the guides, tools, archive notes, and publication pages on Auspicious Music."
+  title="Suche — Auspicious Music"
+  description="Leitfäden, Werkzeuge, Archivhinweise und Informationsseiten auf Auspicious Music durchsuchen."
   canonicalPath="/search/"
   noindex={true}
 >
@@ -12,23 +12,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <section class="pg-head">
       <div class="shell">
         <nav class="crumbs" aria-label="Breadcrumb">
-          <ol><li><a href="/">Home</a></li><li>Search</li></ol>
+          <ol><li><a href="/">Startseite</a></li><li>Suche</li></ol>
         </nav>
-        <h1>Search the publication</h1>
-        <p class="lede">Find guides, calculators, archive notes, and publication information. Search runs locally in your browser.</p>
+        <h1>Auspicious Music durchsuchen</h1>
+        <p class="lede">Finde Leitfäden, Planungswerkzeuge, Archivhinweise und Angaben zur Publikation. Die Suche läuft lokal im Browser.</p>
       </div>
     </section>
 
     <section class="band band--tight">
       <div class="shell search-shell">
         <form class="search-form" role="search" data-site-search>
-          <label for="site-search">Search</label>
+          <label for="site-search">Suchbegriff</label>
           <div class="search-row">
-            <input id="site-search" name="q" type="search" autocomplete="off" placeholder="Sampler, viola, Max for Live…" />
-            <button class="btn btn--primary" type="submit">Search</button>
+            <input id="site-search" name="q" type="search" autocomplete="off" placeholder="Viola, Hochzeit, Mikrofon…" />
+            <button class="btn btn--primary" type="submit">Suchen</button>
           </div>
         </form>
-        <p class="search-status" data-search-status role="status" aria-live="polite">Type a word or phrase to search.</p>
+        <p class="search-status" data-search-status role="status" aria-live="polite">Gib ein Wort oder eine Wortgruppe ein.</p>
         <ol class="search-results" data-search-results></ol>
       </div>
     </section>

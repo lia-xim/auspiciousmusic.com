@@ -22,7 +22,7 @@ The site must earn visibility through useful decisions, tools and first-hand evi
 ## Information architecture
 
 ```text
-Home (German-first)
+Home (German-first, reciprocal language alternate with `/en/`)
 ├── Viola
 ├── Event music
 │   ├── Wedding / ceremony
@@ -33,17 +33,22 @@ Home (German-first)
 │   ├── Birthday
 │   └── Lessons
 ├── Repertoire by occasion
-├── Event-music planner (DE / EN)
+├── Event-music planner (DE)
 ├── Recording
-├── Resources
-│   ├── Planner and calculators
-│   ├── Glossary
-│   └── Rights-aware legacy records
 └── Publication
     ├── About, authors and editorial policy
     ├── History and relaunch
     └── Contact and legal pages
+
+English entry (`/en/`)
+├── Event-music planner (EN, reciprocal alternate with DE planner)
+└── Curated English technical library
+    ├── Music production and Ableton
+    ├── Sound design and music for media
+    └── Technical browser tools
 ```
+
+German navigation does not send readers into English editorial pages without an explicit language cue. English technical routes keep their established URLs; moving them merely to create a language folder would add migration risk without creating user value. `hreflang` is emitted only for true localized counterparts: `/` ↔ `/en/` and the two planner routes. Other language buttons lead to the relevant language home without falsely declaring page equivalence.
 
 Photography and videography are not standalone clusters. They may be mentioned only when they are a real adjacent production need, never as an implied current service or as a reconstruction of old `/photo.html` and `/video.html` pages.
 
@@ -54,6 +59,7 @@ Photography and videography are not standalone clusters. They may be mentioned o
 | `/`, `/viola/`, `/eventmusik/`, `/repertoire/`, `/recording/` | Index after production gate | Current expert-reference core |
 | `/eventmusik/{hochzeit,sektempfang,trauerfeier,dinner,firmenevent,geburtstag,unterricht}/` | Index after production gate | Distinct informational planning entry points leading into one shared tool |
 | `/tools/eventmusik-planer/` | Index after production gate | Distinct bilingual planning utility, local-only |
+| `/en/`, `/en/tools/event-music-planner/` | Index after production gate | Defined English entry and genuine localized planner counterpart |
 | Current articles and relevant calculators | Index after production gate | Useful supporting tasks |
 | `/download/` | Permanent noindex | Status page receives the dominant spam backlink cluster |
 | `/services/` | Permanent noindex | Thin bridge to Kim-Marie's authoritative current site |

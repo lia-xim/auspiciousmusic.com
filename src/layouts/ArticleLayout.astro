@@ -85,6 +85,8 @@ const labels = lang === 'de' ? {
   editorial: 'Editorial status', sourceBased: 'Source-based guide', noPlacement: 'No paid placement', corrections: 'Corrections',
   continue: 'Continue reading', next: 'Next', related: 'Related guides',
 };
+const breadcrumbLabel = lang === 'de' ? 'Brotkrumen-Navigation' : 'Breadcrumb';
+const articleInfoLabel = lang === 'de' ? 'Informationen zum Leitfaden' : 'Article information';
 ---
 
 <BaseLayout
@@ -151,7 +153,7 @@ const labels = lang === 'de' ? {
   <main id="content">
     <header class="article-head">
       <div class="shell article-head__inner">
-        <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">{labels.home}</a></li><li><a href={sectionPath}>{section}</a></li><li>{title}</li></ol></nav>
+        <nav class="crumbs" aria-label={breadcrumbLabel}><ol><li><a href="/">{labels.home}</a></li><li><a href={sectionPath}>{section}</a></li><li>{title}</li></ol></nav>
         <p class="kicker" style="margin-top:2rem">{section}</p>
         <h1>{title}</h1>
         <p class="lede">{description}</p>
@@ -177,7 +179,7 @@ const labels = lang === 'de' ? {
             </section>
           )}
         </article>
-        <aside class="article-aside" aria-label="Article information">
+        <aside class="article-aside" aria-label={articleInfoLabel}>
           <section><h2>{labels.editorial}</h2><ul><li>{labels.sourceBased}</li><li>{labels.noPlacement}</li><li>{labels.corrections}: <a href="mailto:info@matthiasramahi.de">info@matthiasramahi.de</a></li></ul></section>
           <section><h2>{labels.continue}</h2><ul>{related.map((item) => <li><a href={item.href}>{item.title}</a></li>)}</ul></section>
         </aside>

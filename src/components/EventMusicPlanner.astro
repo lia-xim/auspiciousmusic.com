@@ -82,7 +82,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         .planner-workbench { display: grid; min-height: 34rem; }
         @media (min-width: 1000px) { .planner-workbench { grid-template-columns: minmax(0, 1.55fr) minmax(19rem, .75fr); } }
         .planner-form { min-width: 0; padding: clamp(1.2rem, 3vw, 2.25rem); }
-        .planner-step[hidden], .planner-result[hidden], [data-date-fields][hidden], [data-other-occasion][hidden] { display: none; }
+        .planner-workbench[hidden], .planner-step[hidden], .planner-result[hidden], [data-date-fields][hidden], [data-other-occasion][hidden] { display: none !important; }
         .planner-step__head { margin-bottom: 1.4rem; }
         .planner-step__head h2 { font-size: clamp(1.5rem, 1.25rem + .8vw, 2rem); }
         .planner-step__head p { max-width: 55ch; margin-top: .35rem; color: #68717b; }

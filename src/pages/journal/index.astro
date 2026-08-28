@@ -7,14 +7,21 @@ const sceneItems = await fetchSceneItems();
 const builtOn = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date());
 const itemDate = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
 
+const englishRoutes = new Set([
+  '/music-production/ableton-project-handoff/',
+  '/sound-design/sampled-instruments/building-a-sampled-instrument/',
+  '/ableton/midi-fighter-twister-review/',
+  '/music-for-media/planning-live-viola-for-a-wedding-ceremony/',
+  '/music-for-media/music-clearance-for-small-film-projects/',
+]);
+const englishArticles = articles.filter((article) => englishRoutes.has(article.href));
 const paths = [
   {
-    title: 'From a quiet room to a playable instrument',
-    why: 'One instrument, one domestic room — prepared, recorded, then mapped into something you can play.',
+    title: 'Build and deliver a playable instrument',
+    why: 'Map a small instrument conservatively, then hand the project to another computer without hidden dependencies.',
     steps: [
-      { title: 'A repeatable plan for recording viola at home', href: '/recording/acoustic-instruments/recording-viola-at-home/', minutes: 9 },
-      { title: 'Viola microphone placement: three starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', minutes: 9 },
       { title: 'Build a small sampled instrument in Ableton Live', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', minutes: 10 },
+      { title: 'An Ableton project handoff another computer can open', href: '/music-production/ableton-project-handoff/', minutes: 8 },
     ],
   },
   {
@@ -23,14 +30,6 @@ const paths = [
     steps: [
       { title: 'An Ableton project handoff another computer can open', href: '/music-production/ableton-project-handoff/', minutes: 8 },
       { title: 'Music clearance for a small film before edit lock', href: '/music-for-media/music-clearance-for-small-film-projects/', minutes: 8 },
-    ],
-  },
-  {
-    title: 'Strings, decided deliberately',
-    why: 'Whether a performer belongs on the layer — and what the live version demands when they do.',
-    steps: [
-      { title: 'When to record a string part instead of using a library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', minutes: 8 },
-      { title: 'Planning live viola for a wedding ceremony', href: '/music-for-media/planning-live-viola-for-a-wedding-ceremony/', minutes: 7 },
     ],
   },
 ];
@@ -116,12 +115,12 @@ const pathMinutes = (p: typeof paths[number]) => p.steps.reduce((sum, s) => sum 
     }
   </style></Fragment>
   <main id="content">
-    <header class="journal-head"><div class="shell"><p class="kicker">Article index</p><h1>Journal</h1><p class="lede">Eight focused guides form the first editorial release. They are current work and are not backdated to imitate the domain’s earlier publication history.</p><div class="staff" style="--staff-node-x:34%;margin-top:clamp(2rem,4vw,3rem)" aria-hidden="true"></div></div></header>
+    <header class="journal-head"><div class="shell"><p class="kicker">English article index</p><h1>Technical journal</h1><p class="lede">This index contains the current English technical guides. German-first event, repertoire and viola guidance lives in the main navigation and is not mixed into this list.</p><div class="staff" style="--staff-node-x:34%;margin-top:clamp(2rem,4vw,3rem)" aria-hidden="true"></div></div></header>
 
     <section class="band band-surface" aria-labelledby="paths-title">
       <div class="shell">
         <div class="section-head">
-          <div><p class="kicker">Reading paths</p><h2 id="paths-title">Three ways through the eight guides</h2></div>
+          <div><p class="kicker">Reading paths</p><h2 id="paths-title">Two useful sequences</h2></div>
           <p>Each path is a real sequence of work, not a category — read in order and the later guides inherit the earlier decisions.</p>
         </div>
         <div class="jpaths">
@@ -149,7 +148,7 @@ const pathMinutes = (p: typeof paths[number]) => p.steps.reduce((sum, s) => sum 
         <div class="section-head">
           <div><p class="kicker">Everything published</p><h2 id="all-title">The complete index</h2></div>
         </div>
-        <ul class="journal-list">{articles.map((article) => <li><a href={article.href}><h2>{article.title}</h2><p>{article.description}</p><span class="meta">{article.section} · {article.minutes} min</span></a></li>)}</ul>
+        <ul class="journal-list">{englishArticles.map((article) => <li><a href={article.href}><h2>{article.title}</h2><p>{article.description}</p><span class="meta">{article.section} · {article.minutes} min</span></a></li>)}</ul>
       </div>
     </section>
 

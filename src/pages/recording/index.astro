@@ -3,7 +3,7 @@ import HubLayout from '../../layouts/HubLayout.astro';
 const articles = [
   { title: 'Viola-Mikrofonposition: drei sinnvolle Startpunkte', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Vergleiche eine ausgewogene, eine nahe und eine raumbewusste Position, ohne einen Universalabstand zu behaupten.', meta: '9 min', answers: 'Wo beginnt das Mikrofon, bevor überhaupt ein EQ arbeitet?' },
   { title: 'Viola zuhause reproduzierbar aufnehmen', href: '/recording/acoustic-instruments/recording-viola-at-home/', description: 'Raum vorbereiten, Aufbau markieren, faire Vergleiche aufnehmen und eine verständliche Übergabe sichern.', meta: '9 min', answers: 'Wie entstehen Takes, die sich morgen noch fair beurteilen lassen?' },
-  { title: 'Wann Live-Streicher mehr leisten als eine Library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Sessionzeit dort einsetzen, wo eine Spielerin musikalische Information ergänzt.', meta: '8 min', label: 'Entscheidungshilfe', answers: 'Ergänzt eine Spielerin hier musikalische Information oder nur Aufwand?' },
+  { title: 'Wann Live-Streicher mehr leisten als eine Sample-Bibliothek', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Aufnahmezeit dort einsetzen, wo eine Spielerin musikalische Information ergänzt.', meta: '8 Min.', label: 'Entscheidungshilfe', answers: 'Ergänzt eine Spielerin hier musikalische Information oder nur Aufwand?' },
 ];
 const principles = [
   { title: 'Position ist eine Variable', text: 'Abstand, Winkel, Höhe und Richtcharakteristik notieren, damit ein Ergebnis wiederholbar bleibt.' },
@@ -13,23 +13,14 @@ const principles = [
 const situations = [
   { lead: 'Erste Session mit einem Streichinstrument in einem unbehandelten Raum.', outcome: 'Raum vorbereiten, Aufbau markieren und Vergleiche so fair aufnehmen, dass sie morgen noch tragen.', href: '/recording/acoustic-instruments/recording-viola-at-home/', linkLabel: 'Sessionplan' },
   { lead: 'Das Mikrofon steht — aber wo genau?', outcome: 'Drei Startpositionen mit sichtbaren Kompromissen statt eines angeblich richtigen Abstands.', href: '/recording/acoustic-instruments/viola-microphone-placement/', linkLabel: 'Positionsleitfaden' },
-  { lead: 'Spielerin aufnehmen oder zur Library greifen — noch offen.', outcome: 'Vor der Session nach Phrasierung, Übergängen und Änderungsrisiko entscheiden.', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', linkLabel: 'Entscheidungshilfe' },
-  { lead: 'Ein Ton dröhnt immer lauter als alle anderen.', outcome: 'Frequenz und Wellenlänge des Tons bestimmen — der erste Schritt zum Verständnis einer Raummode.', href: '/resources/tools/note-frequency/', linkLabel: 'Rechner' },
+  { lead: 'Spielerin aufnehmen oder zur Sample-Bibliothek greifen — noch offen.', outcome: 'Vor der Aufnahme nach Phrasierung, Übergängen und Änderungsrisiko entscheiden.', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', linkLabel: 'Entscheidungshilfe' },
   { lead: 'Die Stimme braucht ein klares Briefing, bevor aufgenommen wird.', outcome: 'Funktion, Timing, Varianten, Format und Dateibenennung zu einem belastbaren Aufnahmebrief ordnen.', href: '/tools/streicheraufnahme-briefing/', linkLabel: 'Aufnahmebrief erstellen' },
 ];
 const tools = [
   { title: 'Streicheraufnahme-Briefing', href: '/tools/streicheraufnahme-briefing/', io: 'Brief → TXT', note: 'Funktion, Timing, Takes, Projektformat und offene Fragen lokal im Browser ordnen.' },
-  { title: 'Note & Frequenz', href: '/resources/tools/note-frequency/', io: 'Note ⇄ Hz · wavelength', note: 'Frequenzen, Cent-Abweichung und Wellenlängen — hilfreich, wenn eine Raumdimension auffällig reagiert.' },
-];
-const terms = [
-  { term: 'Proximity effect', def: 'Die Bassanhebung eines gerichteten Mikrofons bei geringem Abstand — ein Klangfaktor, sobald er bewusst ist.', href: '/resources/glossary/#proximity-effect' },
-  { term: 'Room mode', def: 'Eine stehende Welle, deren Länge zu einer Raumdimension passt und einzelne Töne positionsabhängig verstärkt.', href: '/resources/glossary/#room-mode' },
-  { term: 'Gain staging', def: 'Pegel an jeder Stufe so setzen, dass nichts clippt und später nichts im Rauschen untergeht.', href: '/resources/glossary/#gain-staging' },
-  { term: 'Headroom', def: 'Der Abstand zwischen der lautesten Signalstelle und dem Clippingpunkt.', href: '/resources/glossary/#headroom' },
-  { term: 'Bit depth', def: 'Wie fein Amplitude gespeichert wird — 24 Bit erlaubt praxistaugliche Sicherheitsreserven.', href: '/resources/glossary/#bit-depth' },
 ];
 ---
-<HubLayout title="Recording" description="Raumbewusste, wiederholbare Aufnahmepläne für akustische Instrumente — mit Streichern und fairen Vergleichsmethoden als Ausgangspunkt." canonicalPath="/recording/" kicker="Aufnahme-Hub" intro="Auch ein kleiner Raum kann brauchbare Aufnahmen ermöglichen, wenn der Aufbau als nachvollziehbarer Versuch statt als Rezept behandelt wird. Diese Seiten machen Variablen sichtbar und vermeiden Produkturteile ohne eigenen Test." articles={articles} principles={principles} situations={situations} tools={tools} terms={terms} lang="de">
+<HubLayout title="Viola und Streicher aufnehmen" description="Raumbewusste, wiederholbare Aufnahmepläne für akustische Instrumente — mit Streichern und fairen Vergleichsmethoden als Ausgangspunkt." canonicalPath="/recording/" kicker="Aufnahme-Wissen" intro="Auch ein kleiner Raum kann brauchbare Aufnahmen ermöglichen, wenn der Aufbau als nachvollziehbarer Versuch statt als Rezept behandelt wird. Diese Seiten machen Variablen sichtbar und vermeiden Produkturteile ohne eigenen Test." articles={articles} principles={principles} situations={situations} tools={tools} lang="de">
   <figure class="hub-motif" slot="motif">
     <svg viewBox="0 0 360 240" fill="none" aria-hidden="true">
       <!-- instrument body, abstracted -->
@@ -41,14 +32,14 @@ const terms = [
       <path d="M252 224 A 236 236 0 0 0 252 6" stroke="currentColor" stroke-opacity="0.22" stroke-dasharray="3 5" />
       <!-- microphone positions -->
       <circle cx="128" cy="112" r="5" style="fill:var(--ember-bright)" />
-      <text x="120" y="94" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" style="fill:var(--ember-on-dark)">CLOSE</text>
+      <text x="120" y="94" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" style="fill:var(--ember-on-dark)">NAH</text>
       <circle cx="188" cy="96" r="5" fill="currentColor" fill-opacity="0.6" />
-      <text x="176" y="78" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">BLEND</text>
+      <text x="176" y="78" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">AUSGEWOGEN</text>
       <circle cx="266" cy="72" r="5" fill="currentColor" fill-opacity="0.6" />
-      <text x="256" y="54" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">ROOM</text>
+      <text x="256" y="54" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1" fill="currentColor" fill-opacity="0.6">RAUM</text>
       <!-- the variables written down -->
-      <text x="204" y="196" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">DISTANCE · ANGLE</text>
-      <text x="204" y="212" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">HEIGHT · PATTERN</text>
+      <text x="204" y="196" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">ABSTAND · WINKEL</text>
+      <text x="204" y="212" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1" fill="currentColor" fill-opacity="0.55">HÖHE · CHARAKTERISTIK</text>
     </svg>
     <figcaption>Schema: drei Startpositionen mit notierten Variablen. Keine Messkurve.</figcaption>
   </figure>

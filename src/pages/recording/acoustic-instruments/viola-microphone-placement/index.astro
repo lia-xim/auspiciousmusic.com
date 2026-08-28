@@ -1,66 +1,62 @@
 ---
 import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
-
 const sources = [
-  { label: 'DPA Microphones: How to mic a violin', href: 'https://www.dpamicrophones.com/mic-university/how-to-mic/how-to-mic-a-violin/', note: 'manufacturer guidance on radiation, distance and close-miking trade-offs' },
-  { label: 'Shure: Microphone Techniques for Recording', href: 'https://www.shure.com/en-US/docs/education/Microphone-Techniques-for-Recording', note: 'general placement and room guidance' },
+  { label: 'DPA Microphones: How to mic a violin', href: 'https://www.dpamicrophones.com/mic-university/how-to-mic/how-to-mic-a-violin/', note: 'Herstellerhinweise zu Abstrahlung, Abstand und Nahmikrofonierung' },
+  { label: 'Shure: Microphone Techniques for Recording', href: 'https://www.shure.com/en-US/docs/education/Microphone-Techniques-for-Recording', note: 'Grundlagen zu Mikrofonposition und Raum' },
 ];
 const related = [
-  { title: 'A repeatable plan for recording viola at home', href: '/recording/acoustic-instruments/recording-viola-at-home/', description: 'Turn placement tests into a session you can repeat and compare.' },
-  { title: 'When to record a string part instead of using a library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'A practical decision framework for live performance, samples and hybrid arrangements.' },
+  { title: 'Viola zuhause nachvollziehbar aufnehmen', href: '/recording/acoustic-instruments/recording-viola-at-home/', description: 'Aus Positionstests eine wiederholbare Session machen.' },
+  { title: 'Live-Streicher oder Sample-Bibliothek?', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Nach musikalischer Funktion, Übergängen und Änderungsrisiko entscheiden.' },
 ];
 ---
-
 <ArticleLayout
-  title="Viola microphone placement: three useful starting positions"
-  description="A source-based way to compare close, bridge-area and room-aware microphone positions without pretending that one distance works in every room."
+  title="Viola-Mikrofonposition: drei sinnvolle Startpunkte"
+  description="Nahe, ausgewogene und raumbewusste Mikrofonpositionen vergleichen, ohne einen Universalabstand für jeden Raum zu behaupten."
   canonicalPath="/recording/acoustic-instruments/viola-microphone-placement/"
-  section="Recording"
+  section="Aufnahme"
   sectionPath="/recording/"
-  readingTime="9 min read"
-  method="This is a source-based placement guide, not a microphone shoot-out. The starting positions come from manufacturer education material and basic acoustic principles. No microphone is declared a winner, and no unrecorded sound example is implied."
+  readingTime="9 Min. Lesezeit"
+  method="Dieser quellenbasierte Leitfaden ist kein Mikrofonvergleich. Die Startpositionen folgen Herstellerinformationen und akustischen Grundprinzipien. Kein Mikrofon wird zum Sieger erklärt und kein unaufgenommenes Hörbeispiel angedeutet."
   sources={sources}
   related={related}
+  lang="de"
 >
-  <p>A viola is not a point source. The bridge, top plate, f-holes, strings and the room all contribute, and they do not radiate every frequency in the same direction. That is why moving a microphone by twenty centimetres can change more than swapping one competent condenser for another.</p>
+  <p>Eine Viola ist keine punktförmige Schallquelle. Steg, Decke, F-Löcher, Saiten und Raum tragen zum Signal bei und strahlen Frequenzen unterschiedlich ab. Deshalb kann eine Bewegung des Mikrofons um zwanzig Zentimeter mehr verändern als der Wechsel zwischen zwei geeigneten Kondensatormikrofonen.</p>
+  <p>Die hilfreiche Frage lautet nicht: „Wo muss das Viola-Mikrofon stehen?“ Sie lautet: <em>Welchen Kompromiss braucht dieser Raum, diese Spielerin und dieses Arrangement?</em></p>
 
-  <p>The useful question is not “Where should a viola microphone go?” It is: <em>which compromise do you need for this room, this player and this arrangement?</em> Start with three clearly different positions, record the same passage, and choose by function rather than by how impressive one isolated note sounds.</p>
-
-  <h2>Before moving the microphone</h2>
-  <p>Make the comparison fair. Mark the player’s chair, keep the music stand in the same place, disable automatic gain and record every pass at the same resolution. Ask for a short passage that contains a sustained note, an attack-heavy phrase, a low string and a change of bow direction. A single long note hides too much.</p>
+  <h2>Vor dem Verschieben: faire Bedingungen schaffen</h2>
+  <p>Markiere die Position der Spielerin, lasse den Notenständer stehen, deaktiviere automatische Pegelregelung und nimm alle Durchgänge mit derselben Auflösung auf. Die Testpassage sollte einen gehaltenen Ton, deutliche Ansätze, eine tiefe Saite und Bogenwechsel enthalten.</p>
   <ul>
-    <li>Leave enough headroom for the loudest bow stroke.</li>
-    <li>Keep the microphone pattern unchanged between tests.</li>
-    <li>Listen level-matched. Louder almost always sounds better for the wrong reason.</li>
-    <li>Evaluate in the arrangement as well as solo. The brightest take may be the easiest to place under dialogue; it may also be tiring on its own.</li>
+    <li>Lasse Reserve für den lautesten Bogenstrich.</li>
+    <li>Verändere die Richtcharakteristik zwischen den Tests nicht.</li>
+    <li>Vergleiche auf gleicher Lautheit. Lauter wirkt sonst fast immer besser.</li>
+    <li>Beurteile die Aufnahme sowohl solo als auch im Arrangement.</li>
   </ul>
 
-  <h2>Position 1: above and in front of the instrument</h2>
-  <p>Place the microphone roughly 60–100 cm away, above the instrument and angled toward the bridge area. This is the broadest starting point: far enough for the parts of the instrument to begin blending, close enough that a domestic room does not completely take over.</p>
-  <p>Move higher if bow noise dominates. Move farther away if the result feels narrow or pinned to one part of the body. Move closer only after checking that the room, not the instrument, is the actual problem. Distance changes the direct-to-room balance; angle changes which parts of the radiation pattern reach the capsule.</p>
-  <p>This position often makes sense for exposed solo lines and small arrangements where the viola needs body as well as articulation. It demands a reasonably quiet room.</p>
+  <h2>Position 1: oberhalb und vor dem Instrument</h2>
+  <p>Stelle das Mikrofon ungefähr 60 bis 100 cm entfernt oberhalb und vor die Viola und richte es grob zum Stegbereich. Das ist ein breiter Startpunkt: weit genug, damit sich Anteile des Instruments verbinden, und nah genug, damit ein Wohnraum nicht vollständig übernimmt.</p>
+  <p>Gehe höher, wenn Bogengeräusche dominieren. Vergrößere den Abstand, wenn der Klang eng oder auf eine einzelne Stelle fixiert wirkt. Abstand verändert das Verhältnis von Direktschall zu Raum; Winkel verändert, welche Teile der Abstrahlung die Kapsel erreichen.</p>
 
-  <h2>Position 2: closer to the bridge area</h2>
-  <p>For separation, bring the microphone closer and aim around the bridge rather than directly into an f-hole. DPA’s educational material describes the bridge area as a place that captures both soundboard contribution and bow “bite”, while warning that close positions can become harsh. Treat that warning as part of the method.</p>
-  <p>A close position is useful when the room is noisy, when other musicians are playing nearby, or when the part must remain precise in a dense production. It also magnifies small movements. If the player turns, the tone can change; if a directional microphone moves closer, proximity effect may add low-frequency weight.</p>
-  <p>Do not repair an over-close recording by immediately adding a large reverb. First compare a slightly greater distance. Artificial space can add decay, but it cannot recreate the exact spectral blend that never reached the microphone.</p>
+  <h2>Position 2: näher am Stegbereich</h2>
+  <p>Für stärkere Trennung rückt das Mikrofon näher und zielt eher auf den Stegbereich als direkt in ein F-Loch. Dort verbinden sich Körperanteil und Ansprache, allerdings können nahe Positionen scharf werden.</p>
+  <p>Diese Position hilft bei einem lauten Raum, gleichzeitig spielenden Musikern oder einem präzisen Part in dichter Produktion. Sie verstärkt zugleich kleine Bewegungen. Bei gerichteten Mikrofonen kann im Nahbereich zusätzlich der Bass durch den Nahbesprechungseffekt zunehmen.</p>
+  <p>Repariere eine zu nahe Aufnahme nicht sofort mit großem Hall. Vergleiche zuerst etwas mehr Abstand. Künstlicher Raum kann Nachhall ergänzen, aber nicht die spektrale Mischung nachbilden, die das Mikrofon nie erreicht hat.</p>
 
-  <h2>Position 3: a room-aware alternative</h2>
-  <p>If the room sounds useful, place the microphone 1.2–2 m away at roughly instrument height or a little above it. This is not automatically the “natural” position. It is a vote for the room. Reflections, low-frequency build-up and background noise become part of the recording.</p>
-  <p>Walk the room while the player performs. If one location gives a balanced instrument to your ears, put the microphone near that location and adjust from there. A rigid distance chart cannot account for a low ceiling, a hard side wall or an open doorway.</p>
+  <h2>Position 3: den Raum bewusst einbeziehen</h2>
+  <p>Wenn der Raum nützlich klingt, kann das Mikrofon etwa 1,2 bis 2 m entfernt auf Instrumentenhöhe oder leicht darüber stehen. Das ist nicht automatisch „natürlicher“, sondern eine bewusste Entscheidung für Reflexionen, Raumresonanzen und Hintergrundgeräusche.</p>
+  <p>Gehe während des Spiels durch den Raum. Wo das Instrument ausgewogen klingt, kann ein neuer Startpunkt liegen. Eine feste Abstandstabelle kennt weder niedrige Decken noch harte Seitenwände oder offene Türen.</p>
 
-  <h2>What to listen for</h2>
+  <h2>Typische Symptome und erste Schritte</h2>
   <table>
-    <thead><tr><th>Symptom</th><th>Likely cause</th><th>First move</th></tr></thead>
+    <thead><tr><th>Symptom</th><th>Mögliche Ursache</th><th>Erster Schritt</th></tr></thead>
     <tbody>
-      <tr><td>Scratchy attacks, little body</td><td>Too close or too directly aimed at bow/bridge</td><td>Move back 15–30 cm or change angle</td></tr>
-      <tr><td>Boxy low mids</td><td>Room mode, wall reflection or f-hole emphasis</td><td>Change position before EQ</td></tr>
-      <tr><td>Beautiful solo tone, disappears in mix</td><td>Too much room or too little articulation</td><td>Blend a closer take or shorten distance</td></tr>
-      <tr><td>Tone changes during phrase</td><td>Player movement at a close distance</td><td>Increase distance or use a stable mount</td></tr>
+      <tr><td>Kratzige Ansätze, wenig Körper</td><td>Zu nah oder zu direkt auf Bogen/Steg</td><td>15 bis 30 cm zurück oder Winkel ändern</td></tr>
+      <tr><td>Topfige untere Mitten</td><td>Raummode, Wandreflexion oder F-Loch-Betonung</td><td>Position vor dem EQ ändern</td></tr>
+      <tr><td>Schöner Soloklang, verschwindet im Mix</td><td>Zu viel Raum oder zu wenig Artikulation</td><td>Näheren Take ergänzen oder Abstand verkürzen</td></tr>
+      <tr><td>Klang wandert in der Phrase</td><td>Bewegung bei kurzem Abstand</td><td>Abstand vergrößern oder stabiler befestigen</td></tr>
     </tbody>
   </table>
 
-  <h2>Choose the position by the job</h2>
-  <p>For a documentary underscore, articulation and low noise may matter more than an expansive solo sound. For a recital video, the room and visual distance may be part of the performance. For a sample library, consistency across notes and dynamics matters more than one flattering phrase.</p>
-  <p>Keep the losing takes. Name them with distance, angle and pattern. The value of a microphone test is not proving that one position is universally right; it is giving you a map you can return to when the arrangement changes.</p>
+  <h2>Die Position nach ihrer Aufgabe wählen</h2>
+  <p>Unter Sprache können Artikulation und niedriger Geräuschpegel wichtiger sein als ein großer Soloklang. Bei einem Konzertvideo kann der Raum Teil der Aufführung sein. Für ein Sample-Instrument zählt Konsistenz über Tonhöhen und Dynamik hinweg. Bewahre auch die nicht gewählten Takes auf und benenne Abstand, Winkel und Richtcharakteristik. Der Test soll keine universelle Wahrheit beweisen, sondern eine Karte für spätere Entscheidungen liefern.</p>
 </ArticleLayout>

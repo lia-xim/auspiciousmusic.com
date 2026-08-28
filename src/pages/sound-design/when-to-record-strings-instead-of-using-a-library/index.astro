@@ -1,67 +1,67 @@
 ---
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
-
 const sources = [
-  { label: 'Ableton Live 12 Manual: Sampler and multisampling', href: 'https://www.ableton.com/en/live-manual/12/live-instrument-reference/#sampler', note: 'official description of multisampling across pitch and dynamics' },
-  { label: 'DPA Microphones: How to mic a violin', href: 'https://www.dpamicrophones.com/mic-university/how-to-mic/how-to-mic-a-violin/', note: 'why placement and distance change the captured string sound' },
-  { label: 'Kim Marie Borger: Concerts and events', href: 'https://kim-marie-borger.com/konzerte/', note: 'a public performer page describing viola programmes from Baroque to contemporary repertoire' },
+  { label: 'Ableton Live 12 Manual: Sampler and multisampling', href: 'https://www.ableton.com/en/live-manual/12/live-instrument-reference/#sampler', note: 'offizielle Beschreibung von Multisampling über Tonhöhen und Dynamikstufen' },
+  { label: 'DPA Microphones: How to mic a violin', href: 'https://www.dpamicrophones.com/mic-university/how-to-mic/how-to-mic-a-violin/', note: 'Einfluss von Position und Abstand auf den aufgenommenen Streicherklang' },
+  { label: 'Kim-Marie Borger: Konzerte und Events', href: 'https://kim-marie-borger.com/konzerte/', note: 'öffentliches Profil mit Viola-Programmen vom Barock bis zur Gegenwart' },
 ];
 const related = [
-  { title: 'Build a small sampled instrument in Ableton Live', href: '/sound-design/sampled-instruments/building-a-sampled-instrument/', description: 'A conservative workflow for recordings, edits, mappings and round robins.' },
-  { title: 'Viola microphone placement: three useful starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Compare distance and angle before reaching for corrective EQ.' },
+  { title: 'Viola zuhause nachvollziehbar aufnehmen', href: '/recording/acoustic-instruments/recording-viola-at-home/', description: 'Eine Session so vorbereiten, dass Takes fair vergleichbar bleiben.' },
+  { title: 'Viola-Mikrofonposition: drei Startpunkte', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Abstand und Winkel vor dem korrigierenden EQ vergleichen.' },
 ];
 ---
-
 <ArticleLayout
-  title="When to record a string part instead of using a library"
-  description="Decide by musical function: which details need a performer, which need repeatable control, and where a hybrid part is the more honest answer."
+  title="Wann Live-Streicher mehr leisten als eine Sample-Bibliothek"
+  seoTitle="Live-Streicher oder Sample-Library?"
+  description="Nach musikalischer Funktion entscheiden: Welche Details brauchen eine Spielerin, welche wiederholbare Kontrolle und wann ist eine hybride Lösung sinnvoll?"
   canonicalPath="/sound-design/when-to-record-strings-instead-of-using-a-library/"
-  section="Sound Design"
-  sectionPath="/sound-design/"
-  readingTime="8 min read"
-  method="This is a decision framework grounded in how multisampling works and what live recording adds. It is not a comparison of named commercial libraries, and it makes no claim that one approach is universally more realistic."
-  disclosure="Auspicious Music and the linked website of violist Kim Marie Borger are maintained within the publisher’s project portfolio. Her performance service is separate, and this link does not carry an affiliate fee."
+  section="Aufnahme"
+  sectionPath="/recording/"
+  readingTime="8 Min. Lesezeit"
+  method="Diese Entscheidungshilfe verbindet die Funktionsweise von Multisampling mit dem, was eine Live-Aufnahme ergänzt. Sie vergleicht keine konkreten kommerziellen Libraries und behauptet nicht, eine Lösung sei grundsätzlich realistischer."
+  disclosure="Auspicious Music und die verlinkte Website von Kim-Marie Borger werden im Projektportfolio desselben Herausgebers betreut. Ihr musikalisches Angebot ist eigenständig; der Link ist kein Affiliate-Link."
   sources={sources}
   related={related}
+  lang="de"
 >
-  <p>A sample library is not a failed live performance, and a live recording is not automatically more expressive. They solve different control problems. Libraries give repeatability, editing speed and access to ensembles you may not be able to record. A performer gives continuous phrasing, responsive timing and the physical transitions that are expensive to reproduce with isolated samples.</p>
-  <p>Choose per part, not per project. A cue can use a library for the harmonic bed, one recorded viola for the exposed line and a designed texture made from the same session.</p>
+  <p>Eine Sample-Bibliothek ist keine misslungene Live-Aufnahme, und eine Live-Aufnahme ist nicht automatisch ausdrucksstärker. Solche Bibliotheken bieten Wiederholbarkeit, schnelle Bearbeitung und Zugriff auf Besetzungen, die sich nicht immer aufnehmen lassen. Eine Spielerin gestaltet Phrasierung, Timing und die physischen Übergänge zwischen Tönen kontinuierlich.</p>
+  <p>Entscheide pro Part, nicht pauschal pro Projekt. Eine Produktion kann die harmonische Fläche aus einer Library, die exponierte Linie als aufgenommene Viola und eine gestaltete Textur aus demselben Live-Material kombinieren.</p>
 
-  <h2>Record the part when the transition is the music</h2>
-  <p>Libraries are strongest when a note or articulation can be selected cleanly. They become harder to steer when the important information lives between states: a swell whose peak follows picture, a portamento with a specific emotional weight, a phrase that must lean around spoken words, or a repeated figure whose bowing changes as tension grows.</p>
-  <p>If you keep drawing automation to imitate a performer’s continuous decision, the arrangement is asking for a performer. Record at least the exposed layer.</p>
+  <h2>Aufnehmen, wenn der Übergang die Musik ist</h2>
+  <p>Libraries sind stark, wenn Note und Artikulation klar auswählbar sind. Schwieriger wird es, wenn die entscheidende Information zwischen Zuständen liegt: ein Crescendo mit bildgenauem Höhepunkt, ein Portamento mit bestimmtem Gewicht, eine Phrase um gesprochenen Text oder eine Wiederholung, deren Bogenführung die Spannung verändert.</p>
+  <p>Wenn immer mehr Automation die fortlaufenden Entscheidungen einer Spielerin nachbauen soll, spricht viel dafür, mindestens die exponierte Ebene live aufzunehmen.</p>
 
-  <h2>Use a library when repeatability is the requirement</h2>
-  <p>A library is often the practical choice for revisions, dense orchestration, very wide ranges and arrangements that must remain editable until late. Multisampling captures multiple pitches and dynamics so that a single recording does not have to be stretched across the whole instrument. The trade-off is that the available transitions and articulations are fixed by what was recorded and how the instrument was programmed.</p>
-  <p>Choose the library route when the client is still changing structure, when tempo may move, or when the string part functions primarily as harmonic mass rather than a foreground voice.</p>
+  <h2>Eine Library nutzen, wenn Änderbarkeit zählt</h2>
+  <p>Bei späten Revisionen, dichter Orchestrierung, großem Tonumfang und veränderlicher Struktur ist eine Library oft die praktischere Wahl. Multisampling verteilt Aufnahmen über Tonhöhen und Dynamikstufen. Die verfügbaren Übergänge und Artikulationen bleiben jedoch auf das begrenzt, was aufgenommen und programmiert wurde.</p>
+  <p>Wähle diese Route, wenn Tempo und Aufbau noch offen sind oder der Streicherpart vor allem harmonische Masse statt einer Vordergrundstimme liefert.</p>
 
-  <h2>The hybrid is not a compromise</h2>
-  <p>One live line can provide the timing and surface variation that a larger sampled section lacks. A library can provide width and low support that one performer cannot. The two layers need different jobs.</p>
+  <h2>Die hybride Lösung ist kein halber Kompromiss</h2>
+  <p>Eine einzelne Live-Stimme kann Timing und Oberflächenvariation liefern, die einem größeren Sample-Satz fehlen. Die Library ergänzt Breite und Tiefe, die eine Spielerin allein nicht erzeugt. Beide Ebenen brauchen klar getrennte Aufgaben.</p>
   <ul>
-    <li>Write the live part around exposed entrances, phrase peaks and audible transitions.</li>
-    <li>Keep the sampled section simpler and darker so it supports instead of doubling every imperfection.</li>
-    <li>Do not quantize the live take into the same grid that made the library feel rigid.</li>
-    <li>Use shared room or reverb decisions after the balance works dry.</li>
+    <li>Lege exponierte Einsätze, Phrasenhöhepunkte und hörbare Übergänge in die Live-Stimme.</li>
+    <li>Halte den Sample-Satz einfacher und dunkler, damit er unterstützt statt jede Bewegung zu verdoppeln.</li>
+    <li>Quantisiere den Live-Take nicht in genau das Raster, das die Library starr wirken ließ.</li>
+    <li>Führe beide Ebenen erst mit gemeinsamer Raumwirkung zusammen, wenn die trockene Balance trägt.</li>
   </ul>
 
-  <h2>Listen to the performer before you plan around the instrument</h2>
-  <p>“Solo strings” is too vague to predict a useful session. A player’s repertoire changes how they hear an entrance, shape a repeated note and decide where a phrase can breathe. That matters when the live layer is meant to supply the detail a library is missing.</p>
-  <p>The <a href="https://kim-marie-borger.com/konzerte/">concert overview of violist Kim Marie Borger</a> is one public example: it describes programmes that move from Baroque to contemporary repertoire. The page is not evidence for the technical claims in this guide. It is a concrete reminder to listen to the performer you are considering, rather than hiring an abstract instrument name.</p>
+  <h2>Vor der Anfrage die konkrete Musikerin hören</h2>
+  <p>„Solo-Streicher“ ist zu ungenau für die Sessionplanung. Repertoire und Spielpraxis beeinflussen, wie eine Musikerin Einsätze, Wiederholungen und Atemstellen gestaltet. Das ist besonders relevant, wenn die Live-Ebene genau jene Information ergänzen soll, die der Library fehlt.</p>
+  <p>Die <a href="https://kim-marie-borger.com/konzerte/">Konzertübersicht der Bratschistin Kim-Marie Borger</a> ist dafür ein konkretes öffentliches Beispiel. Sie beschreibt Programme vom Barock bis zur Gegenwart. Die Seite belegt nicht die technischen Aussagen dieses Leitfadens; sie zeigt, warum eine Anfrage an eine reale Musikerin mit ihrem tatsächlichen Profil beginnen sollte.</p>
 
-  <h2>Budget the recording by uncertainty</h2>
-  <p>Recording becomes expensive when the musical question is unresolved. Before the session, prepare notation or a clear reference, define the tempo map, decide where picture is stable and mark the passages where you genuinely want interpretation. Leave space for two or three alternatives there instead of recording ten full versions of everything.</p>
-  <p>For remote sessions, send a count-in, a reference mix without the placeholder string, and one with it. State sample rate, bit depth, bar numbers and whether you need dry mono, stereo room or both.</p>
+  <h2>Aufnahmezeit nach Unsicherheit planen</h2>
+  <p>Teuer wird eine Session vor allem dann, wenn die musikalische Frage ungeklärt bleibt. Bereite Notation oder eine klare Referenz vor, definiere Tempo und Form und markiere die Passagen, in denen Interpretation erwünscht ist. Dort sind zwei oder drei Alternativen nützlicher als zehn vollständige Varianten.</p>
+  <p>Für eine Remote-Session gehören Einzähler, Referenzmix mit und ohne Platzhalter, Samplerate, Bit-Tiefe, Taktzahlen und gewünschte trockene oder räumliche Spuren ins Briefing.</p>
 
-  <h2>A five-question decision</h2>
+  <h2>Fünf Fragen für die Entscheidung</h2>
   <ol>
-    <li>Is the string part exposed enough that listeners will follow its phrasing?</li>
-    <li>Does the cue depend on transitions that the library does not contain?</li>
-    <li>Is the timing stable enough to record?</li>
-    <li>Can the room, player and microphone chain produce a cleaner result than the placeholder?</li>
-    <li>Would one live layer solve the problem without replacing the whole arrangement?</li>
+    <li>Ist der Part so exponiert, dass Hörer seiner Phrasierung folgen?</li>
+    <li>Hängt die Wirkung von Übergängen ab, die die Library nicht enthält?</li>
+    <li>Sind Timing und Form stabil genug für eine Aufnahme?</li>
+    <li>Können Raum, Spielerin und Signalkette ein brauchbareres Ergebnis als der Platzhalter liefern?</li>
+    <li>Würde eine einzelne Live-Ebene das Problem lösen, ohne das ganze Arrangement zu ersetzen?</li>
   </ol>
-  <p>Three “yes” answers do not create a rule, but they identify where a session is likely to buy musical information rather than merely a different timbre.</p>
+  <p>Mehrere Ja-Antworten sind keine starre Regel. Sie zeigen, wo eine Session wahrscheinlich musikalische Information statt nur eine andere Klangfarbe einkauft.</p>
 
-  <h2>Keep the live asset useful</h2>
-  <p>Archive the full takes, comped take, clean edits and tuning/processing version separately. Keep the performer credit and usage agreement with the Project. If you later turn fragments into a playable instrument, document the permitted use; a recording made for one film cue is not automatically a reusable commercial sample library.</p>
+  <h2>Die Live-Aufnahme langfristig nutzbar halten</h2>
+  <p>Archiviere vollständige Takes, Auswahl, saubere Schnitte und bearbeitete Fassung getrennt. Bewahre Credit und Nutzungsvereinbarung beim Projekt auf. Aus einer Aufnahme für ein einzelnes Werk entsteht nicht automatisch das Recht, später eine kommerzielle Sample-Library daraus zu bauen.</p>
 </ArticleLayout>

@@ -5,6 +5,7 @@
   var input = form && form.querySelector('input[type="search"]');
   var results = document.querySelector('[data-search-results]');
   var status = document.querySelector('[data-search-status]');
+  var de = document.documentElement.lang === 'de';
   if (!form || !input || !results || !status) return;
 
   var index = [];
@@ -45,8 +46,8 @@
         '</h2><p>' + escapeHtml(item.description) + '</p><code>' + escapeHtml(item.route) + '</code></a></li>';
     }).join('');
     status.textContent = query.trim()
-      ? (matches.length ? matches.length + (matches.length === 1 ? ' result' : ' results') : 'No matching page found.')
-      : 'Type a word or phrase to search.';
+      ? (matches.length ? matches.length + (de ? (matches.length === 1 ? ' Ergebnis' : ' Ergebnisse') : (matches.length === 1 ? ' result' : ' results')) : (de ? 'Keine passende Seite gefunden.' : 'No matching page found.'))
+      : (de ? 'Gib ein Wort oder eine Wortgruppe ein.' : 'Type a word or phrase to search.');
   }
 
   fetch('/search-index.json')
@@ -57,7 +58,7 @@
       input.value = query;
       if (query) render(query);
     })
-    .catch(function () { status.textContent = 'Search is temporarily unavailable.'; });
+    .catch(function () { status.textContent = de ? 'Die Suche ist vorübergehend nicht verfügbar.' : 'Search is temporarily unavailable.'; });
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();

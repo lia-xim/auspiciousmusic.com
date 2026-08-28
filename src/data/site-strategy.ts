@@ -18,8 +18,8 @@ export const siteStrategy = {
       children: [
         { href: '/viola/', label: 'Viola im Einsatz', note: 'Klang, Rolle und Praxis' },
         { href: '/viola/viola-oder-violine/', label: 'Viola oder Violine?', note: 'Register und Wirkung entscheiden' },
-        { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Mikrofonposition', note: 'Guide · 9 min · EN' },
-        { href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', label: 'Live-Streicher oder Library?', note: 'Entscheidungshilfe · EN' },
+        { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Mikrofonposition', note: 'Leitfaden · 9 Min.' },
+        { href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', label: 'Live oder Sample-Bibliothek?', note: 'Entscheidungshilfe · 8 Min.' },
       ],
     },
     {
@@ -49,23 +49,21 @@ export const siteStrategy = {
       href: '/recording/',
       label: 'Aufnahme',
       children: [
-        { href: '/recording/', label: 'Recording-Hub', note: 'Viola, Raum und Mikrofon' },
+        { href: '/recording/', label: 'Aufnahme-Wissen', note: 'Viola, Raum und Mikrofon' },
         { href: '/tools/streicheraufnahme-briefing/', label: 'Aufnahmebrief erstellen', note: 'Browserlokales Werkzeug · DE' },
-        { href: '/recording/acoustic-instruments/recording-viola-at-home/', label: 'Viola zuhause aufnehmen', note: 'Guide · 9 min · EN' },
-        { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Viola-Mikrofonposition', note: 'Guide · 9 min · EN' },
+        { href: '/recording/acoustic-instruments/recording-viola-at-home/', label: 'Viola zuhause aufnehmen', note: 'Leitfaden · 9 Min.' },
+        { href: '/recording/acoustic-instruments/viola-microphone-placement/', label: 'Viola-Mikrofonposition', note: 'Leitfaden · 9 Min.' },
       ],
     },
     { href: '/tools/eventmusik-planer/', label: 'Planer' },
-    {
-      href: '/resources/',
-      label: 'Wissen',
-      children: [
-        { href: '/resources/', label: 'Wissensbereich', note: 'Tools, Guides und Archiv' },
-        { href: '/resources/tools/', label: 'Musik-Tools', note: 'Laufen lokal im Browser' },
-        { href: '/journal/', label: 'Journal', note: 'Quellenbasierte Guides' },
-        { href: '/about/', label: 'Über diese Seite', note: 'Expertise und Verantwortliche' },
-        { href: '/about/history-and-relaunch/', label: 'Geschichte & Neustart', note: 'Transparente neue Eigentümerschaft' },
-      ],
-    },
+    { href: '/about/', label: 'Über uns' },
+  ],
+  englishNavigation: [
+    { href: '/en/', label: 'English home' },
+    { href: '/en/tools/event-music-planner/', label: 'Event planner' },
+    { href: '/resources/', label: 'Technical library' },
+    { href: '/ableton/', label: 'Ableton' },
+    { href: '/music-production/', label: 'Production' },
+    { href: '/sound-design/', label: 'Sound design' },
   ],
 } as const;

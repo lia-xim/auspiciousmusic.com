@@ -1,61 +1,59 @@
 ---
 import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
-
 const sources = [
-  { label: 'DPA Microphones: How to mic a violin', href: 'https://www.dpamicrophones.com/mic-university/how-to-mic/how-to-mic-a-violin/', note: 'placement trade-offs and complex radiation behavior' },
-  { label: 'Shure: Microphone Techniques for Recording', href: 'https://www.shure.com/en-US/docs/education/Microphone-Techniques-for-Recording', note: 'general recording and placement principles' },
+  { label: 'DPA Microphones: How to mic a violin', href: 'https://www.dpamicrophones.com/mic-university/how-to-mic/how-to-mic-a-violin/', note: 'Hinweise zu Position, Abstand und komplexer Schallabstrahlung' },
+  { label: 'Shure: Microphone Techniques for Recording', href: 'https://www.shure.com/en-US/docs/education/Microphone-Techniques-for-Recording', note: 'Grundlagen zu Aufnahme und Mikrofonposition' },
 ];
 const related = [
-  { title: 'Viola microphone placement: three useful starting positions', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Compare distance, angle and room contribution deliberately.' },
-  { title: 'When to record strings instead of using a library', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Decide which musical details justify a live session.' },
+  { title: 'Viola-Mikrofonposition: drei sinnvolle Startpunkte', href: '/recording/acoustic-instruments/viola-microphone-placement/', description: 'Abstand, Winkel und Raumanteil bewusst vergleichen.' },
+  { title: 'Wann Live-Streicher mehr leisten als eine Sample-Bibliothek', href: '/sound-design/when-to-record-strings-instead-of-using-a-library/', description: 'Entscheiden, welche musikalischen Details eine Live-Aufnahme rechtfertigen.' },
 ];
 ---
-
 <ArticleLayout
-  title="A repeatable plan for recording viola at home"
-  description="Prepare the room, compare three positions, name the takes and leave with material you can judge tomorrow — without invented microphone tests."
+  title="Viola zuhause nachvollziehbar aufnehmen"
+  description="Raum vorbereiten, drei Positionen fair vergleichen, Takes verständlich benennen und Material sichern, das sich auch morgen noch beurteilen lässt."
   canonicalPath="/recording/acoustic-instruments/recording-viola-at-home/"
-  section="Recording"
+  section="Aufnahme"
   sectionPath="/recording/"
-  readingTime="9 min read"
-  method="This is a source-based session plan. It does not present fabricated audio examples, photographs or measured microphone results. Use the procedure to create your own level-matched evidence in your room."
+  readingTime="9 Min. Lesezeit"
+  method="Dieser quellenbasierte Sessionplan erfindet keine Mikrofontests, Messwerte oder Hörbeispiele. Er beschreibt ein Verfahren, mit dem du in deinem Raum eigene, auf gleicher Lautheit vergleichbare Aufnahmen erzeugst."
   sources={sources}
   related={related}
+  lang="de"
 >
-  <p>Home recording advice often begins with a microphone model. The room and the position usually make the larger decision first. A modest microphone in a stable, quiet position gives you something you can compare. An expensive microphone moved between takes does not.</p>
+  <p>Ratschläge für Heimaufnahmen beginnen oft beim Mikrofonmodell. Für den ersten brauchbaren Vergleich entscheiden Raum und Position meistens stärker. Ein einfaches Mikrofon an einer stabil dokumentierten Stelle liefert verwertbare Evidenz. Ein teures Mikrofon, das zwischen den Takes unbemerkt wandert, tut das nicht.</p>
 
-  <h2>Prepare a room, not a vocal booth</h2>
-  <p>A viola needs some distance for its radiating parts to blend. Surrounding it with absorbers at arm’s length can remove useful high-frequency life while leaving low-mid room problems untouched. Begin by controlling the strongest early reflections: a bare wall beside the instrument, a hard floor and a low ceiling.</p>
-  <p>Use ordinary, safe materials only where they will not fall toward the player or instrument. Turn off avoidable noise sources. Record thirty seconds of room tone before deciding the room is quiet.</p>
+  <h2>Den Raum vorbereiten, ohne eine enge Kabine zu bauen</h2>
+  <p>Eine Viola braucht etwas Abstand, damit sich ihre verschiedenen abstrahlenden Flächen im Mikrofonsignal verbinden. Direkt um das Instrument gestellte Absorber können nützliche Höhen dämpfen, während Probleme im unteren Mittenbereich bestehen bleiben. Beginne mit starken frühen Reflexionen: einer kahlen Seitenwand, einem harten Boden oder einer niedrigen Decke.</p>
+  <p>Schalte vermeidbare Geräuschquellen aus und nimm vor der Session mindestens dreißig Sekunden Raumton auf. Sichere jedes Material so, dass es weder Spielerin noch Instrument gefährden kann.</p>
 
-  <h2>Mark the performance position</h2>
-  <p>Put small tape marks at the chair or standing position and microphone stand. Note capsule height, distance and angle in the take name or session log. DPA’s guidance stresses that bowed-string radiation is complex and placement needs experimentation. Repeatability makes that experimentation useful.</p>
+  <h2>Spiel- und Mikrofonposition markieren</h2>
+  <p>Markiere Stuhl oder Standposition und das Stativ. Notiere Kapselhöhe, Abstand und Winkel im Sessionprotokoll. Herstellerhinweise betonen die komplexe Abstrahlung von Streichinstrumenten und die Notwendigkeit, Positionen auszuprobieren. Erst Wiederholbarkeit macht dieses Ausprobieren aussagekräftig.</p>
 
-  <h2>Record three deliberately different passes</h2>
+  <h2>Drei bewusst unterschiedliche Durchgänge aufnehmen</h2>
   <ol>
-    <li><strong>Blended:</strong> 60–100 cm away, above and in front, aimed toward the bridge area.</li>
-    <li><strong>Close:</strong> shorter distance for isolation and articulation, monitored for harshness and movement.</li>
-    <li><strong>Room-aware:</strong> farther back where the instrument sounds balanced to your ears, only if the room is quiet enough.</li>
+    <li><strong>Ausgewogen:</strong> etwa 60 bis 100 cm entfernt, oberhalb und vor dem Instrument, grob zum Stegbereich gerichtet.</li>
+    <li><strong>Nah:</strong> kürzerer Abstand für Trennung und Artikulation, mit besonderer Aufmerksamkeit für Schärfe und Bewegungen.</li>
+    <li><strong>Raumbewusst:</strong> weiter entfernt an einer Stelle, an der das Instrument im Raum ausgewogen klingt, sofern der Raum leise genug ist.</li>
   </ol>
-  <p>Use the same passage and preamp setting unless one position clips. Include low strings, a sustained phrase and clear attacks. Do not change strings, bow, chair or room treatment between passes.</p>
+  <p>Spiele dieselbe Passage mit gleichem Vorverstärkerpegel. Sie sollte tiefe Saiten, gehaltene Töne, deutliche Ansätze und Bogenwechsel enthalten. Saiten, Bogen, Stuhl und Raumbehandlung bleiben zwischen den Durchgängen gleich.</p>
 
-  <h2>Leave headroom for the bow, not only the rehearsal</h2>
-  <p>Set gain from the loudest section you expect. A player may deliver more level on the final take than during a quick sound check. Digital headroom is cheap; clipped transients are not repairable.</p>
-  <p>Monitor with closed headphones at a moderate level. Listen for clipping, traffic, chair noise and cable movement. Tone decisions are better made later on speakers and level-matched headphones.</p>
+  <h2>Reserve für den lautesten Bogenstrich lassen</h2>
+  <p>Stelle den Pegel mit der lautesten zu erwartenden Passage ein. Im eigentlichen Take kann mehr Lautstärke entstehen als beim kurzen Soundcheck. Digitale Reserve kostet wenig; übersteuerte Transienten lassen sich nicht reparieren.</p>
+  <p>Kontrolliere mit geschlossenen Kopfhörern bei moderater Lautstärke auf Übersteuerung, Verkehr, Stuhl- und Kabelgeräusche. Die Klangentscheidung fällt später auf gleicher Abhörlautstärke und möglichst zusätzlich über Lautsprecher.</p>
 
-  <h2>Name takes so the evidence survives</h2>
-  <p>Use a structure such as <code>piece_section_position_take</code>: <code>cueA_theme_close_T03</code>. Keep a short note for distance and angle. Mark musical observations separately from technical ones. “Best emotion, chair squeak at 00:18” is more useful than five stars.</p>
+  <h2>Takes so benennen, dass der Vergleich erhalten bleibt</h2>
+  <p>Eine Struktur wie <code>stueck_abschnitt_position_take</code> hält die Information zusammen, zum Beispiel <code>cueA_thema_nah_T03</code>. Notiere Abstand und Winkel. Trenne musikalische von technischen Beobachtungen: „stärkste Phrase, Stuhlgeräusch bei 00:18“ hilft mehr als fünf Sterne.</p>
 
-  <h2>Comp first, process second</h2>
-  <p>Choose phrases by performance before adding EQ and reverb. Edit on quiet boundaries or use short crossfades. Preserve the full takes. Then make a processing copy and address only problems you can name.</p>
+  <h2>Zuerst auswählen, dann bearbeiten</h2>
+  <p>Wähle Phrasen nach Spiel und Ausdruck, bevor EQ und Hall Unterschiede verdecken. Bewahre die vollständigen Takes auf und erstelle für Bearbeitung eine Kopie.</p>
   <ul>
-    <li>High-pass only as far as the arrangement allows; do not remove the instrument’s body by default.</li>
-    <li>Use narrow cuts for persistent room resonances only after checking another placement.</li>
-    <li>De-ess-style dynamic control can sometimes soften isolated bow brightness more transparently than a broad static cut.</li>
-    <li>Add room or reverb after the dry balance makes musical sense.</li>
+    <li>Setze einen Hochpass nur so weit, wie es das Arrangement erlaubt.</li>
+    <li>Prüfe bei stehenden Resonanzen zuerst eine andere Position, bevor du schmalbandig absenkst.</li>
+    <li>Behandle einzelne scharfe Bogenanteile möglichst dynamisch statt mit einer breiten dauerhaften Absenkung.</li>
+    <li>Füge Raum oder Hall erst hinzu, wenn die trockene Balance musikalisch funktioniert.</li>
   </ul>
 
-  <h2>Archive a clean handoff</h2>
-  <p>Keep full-resolution original takes, the comp, a processed version and a brief session note. Export from a common start point if the part will move to another DAW. A future mix engineer needs the dry recording and the intended sound, not only one irreversible file.</p>
-  <p>The session succeeds when you can reopen it next month, rebuild the chain and understand why one position was chosen. That is a stronger standard than whether the first recording sounded “professional” in isolation.</p>
+  <h2>Eine saubere Übergabe archivieren</h2>
+  <p>Bewahre Originaltakes in voller Auflösung, Auswahl, bearbeitete Fassung und eine kurze Sessionnotiz auf. Für die Übergabe in eine andere DAW beginnen alle Exporte am selben Zeitpunkt. Der Erfolg ist nicht, dass der erste Take isoliert „professionell“ klingt. Er besteht darin, die Session später öffnen, die Entscheidung verstehen und den Aufbau wiederholen zu können.</p>
 </ArticleLayout>

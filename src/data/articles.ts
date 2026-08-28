@@ -25,17 +25,17 @@ export const articles = [
     minutes: 8,
   },
   {
-    title: 'Viola microphone placement: three useful starting positions',
-    description: 'Compare close, bridge-area and room-aware microphone positions without pretending one distance works everywhere.',
+    title: 'Viola-Mikrofonposition: drei sinnvolle Startpunkte',
+    description: 'Nahe, ausgewogene und raumbewusste Positionen vergleichen, ohne einen Universalabstand zu behaupten.',
     href: '/recording/acoustic-instruments/viola-microphone-placement/',
-    section: 'Recording',
+    section: 'Aufnahme',
     minutes: 9,
   },
   {
-    title: 'A repeatable plan for recording viola at home',
-    description: 'Prepare the room, compare fair takes and leave with material you can still judge tomorrow.',
+    title: 'Viola zuhause nachvollziehbar aufnehmen',
+    description: 'Raum vorbereiten, faire Takes vergleichen und Material sichern, das sich morgen noch beurteilen lässt.',
     href: '/recording/acoustic-instruments/recording-viola-at-home/',
-    section: 'Recording',
+    section: 'Aufnahme',
     minutes: 9,
   },
   {
@@ -46,10 +46,10 @@ export const articles = [
     minutes: 10,
   },
   {
-    title: 'When to record a string part instead of using a library',
-    description: 'Decide by phrasing, transition, revision risk and the musical role of the layer.',
+    title: 'Wann Live-Streicher mehr leisten als eine Sample-Bibliothek',
+    description: 'Nach Phrasierung, Übergängen, Änderungsrisiko und musikalischer Funktion entscheiden.',
     href: '/sound-design/when-to-record-strings-instead-of-using-a-library/',
-    section: 'Sound Design',
+    section: 'Aufnahme',
     minutes: 8,
   },
   {
