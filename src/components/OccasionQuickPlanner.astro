@@ -56,7 +56,7 @@ const plannerData = {
     <ol data-quick-results></ol>
     <div class="quick-planner__next">
       <p>Der vollständige Planer ergänzt Ort, Besetzung und offene Absprachen. Das Datum bleibt optional.</p>
-      <a class="btn btn--primary" href={`/tools/eventmusik-planer/?anlass=${profile.slug}`} data-quick-full-plan>Ablauf vollständig planen</a>
+      <a class="btn btn--primary" href={`/tools/eventmusik-planer/?anlass=${profile.slug}`} data-quick-full-plan data-analytics-event="quick-planner-open-full" data-analytics-occasion={profile.slug}>Ablauf vollständig planen</a>
     </div>
   </div>
 </section>
@@ -103,7 +103,7 @@ const plannerData = {
           const clarification = piece.clarificationDe ? `<small>${escapeHtml(piece.clarificationDe)}</small>` : '';
           return `<li>
             <span class="quick-result__number">${String(index + 1).padStart(2, '0')}</span>
-            <a class="quick-result__play" href="${escapeHtml(piece.youtube)}" target="_blank" rel="noopener noreferrer external" aria-label="${escapeHtml(piece.title)} auf YouTube suchen und anhören" title="Auf YouTube suchen und anhören"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5Z" fill="currentColor"/></svg></a>
+            <a class="quick-result__play" href="${escapeHtml(piece.youtube)}" target="_blank" rel="noopener noreferrer external" aria-label="${escapeHtml(piece.title)} auf YouTube suchen und anhören" title="Auf YouTube suchen und anhören" data-analytics-event="quick-recommendation-listen" data-analytics-piece="${escapeHtml(piece.title)}" data-analytics-occasion="${escapeHtml(data.slug)}"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5Z" fill="currentColor"/></svg></a>
             <div><strong>${escapeHtml(piece.title)}</strong>${clarification}</div>
             <p><span>Für ${escapeHtml(moment.de)}</span>${escapeHtml(reasons[character] || '')}. ${escapeHtml(moment.guidanceDe)}</p>
           </li>`;
@@ -113,8 +113,9 @@ const plannerData = {
       momentInputs.forEach((input) => input.addEventListener('change', () => {
         if (!momentInputs.some((candidate) => candidate.checked)) input.checked = true;
         render();
+        window.trackAnalytics?.('quick-planner-adjusted', { occasion: data.slug, control: 'moment', moment_count: momentInputs.filter((candidate) => candidate.checked).length });
       }));
-      characterInputs.forEach((input) => input.addEventListener('change', render));
+      characterInputs.forEach((input) => input.addEventListener('change', () => { render(); window.trackAnalytics?.('quick-planner-adjusted', { occasion: data.slug, control: 'character', character: input.value }); }));
       render();
     });
   })();

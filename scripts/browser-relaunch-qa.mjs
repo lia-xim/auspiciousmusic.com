@@ -19,9 +19,10 @@ const browser = await chromium.launch({
 const failures = [];
 const observations = [];
 const routes = ['/', '/en/', '/viola/', '/viola/viola-oder-violine/', '/eventmusik/', '/eventmusik/live-streicher-draussen/', '/eventmusik/hochzeit/', '/eventmusik/sektempfang/', '/eventmusik/trauerfeier/', '/eventmusik/dinner/', '/eventmusik/firmenevent/', '/eventmusik/geburtstag/', '/repertoire/', '/recording/', '/tools/eventmusik-planer/', '/en/tools/event-music-planner/', '/tools/wunschstueck-check/', '/tools/streicheraufnahme-briefing/', '/download/', '/services/'];
+const dnt = { DNT: '1' };
 
 async function inspect(route, viewport) {
-  const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport, deviceScaleFactor: 1, extraHTTPHeaders: dnt });
   const errors = [];
   page.on('pageerror', (error) => errors.push(`pageerror: ${error.message}`));
   page.on('console', (message) => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
@@ -40,12 +41,25 @@ async function inspect(route, viewport) {
     smallFieldText: mobile ? [...document.querySelectorAll('input:not([type="hidden"]), select, textarea')]
       .filter((node) => node.getBoundingClientRect().width > 0 && Number.parseFloat(getComputedStyle(node).fontSize) < 16)
       .map((node) => `${node.tagName}.${node.className}:${getComputedStyle(node).fontSize}`) : [],
+    analytics: (() => {
+      const script = document.querySelector('script[src="https://analytics.contextter.com/script.js"]');
+      return script ? {
+        website: script.getAttribute('data-website-id'),
+        domains: script.getAttribute('data-domains'),
+        excludeSearch: script.getAttribute('data-exclude-search'),
+        excludeHash: script.getAttribute('data-exclude-hash'),
+        doNotTrack: script.getAttribute('data-do-not-track'),
+        performance: script.getAttribute('data-performance'),
+        helper: typeof window.trackAnalytics,
+      } : null;
+    })(),
   }), viewport.width <= 390);
   if ((response?.status() ?? 500) >= 400) failures.push(`${route} at ${viewport.width}px: HTTP ${response?.status()}`);
   if (!metrics.title || metrics.h1 !== 1 || metrics.main !== 1 || metrics.bodyLength < 120) failures.push(`${route} at ${viewport.width}px: structural metrics ${JSON.stringify(metrics)}`);
   if (metrics.overflow > 1) failures.push(`${route} at ${viewport.width}px: horizontal overflow ${metrics.overflow}px`);
   if (metrics.emptyLinks || metrics.unlabeledFields) failures.push(`${route} at ${viewport.width}px: accessibility metrics ${JSON.stringify(metrics)}`);
   if (metrics.smallPrimaryTargets.length || metrics.smallFieldText.length) failures.push(`${route} at ${viewport.width}px: mobile ergonomics ${JSON.stringify(metrics)}`);
+  if (!metrics.analytics || metrics.analytics.website !== 'e9631720-29b7-4778-bdd8-5835d93319c7' || metrics.analytics.domains !== 'auspiciousmusic.com,www.auspiciousmusic.com' || metrics.analytics.excludeSearch !== 'true' || metrics.analytics.excludeHash !== 'true' || metrics.analytics.doNotTrack !== 'true' || metrics.analytics.performance !== 'true' || metrics.analytics.helper !== 'function') failures.push(`${route} at ${viewport.width}px: analytics configuration ${JSON.stringify(metrics.analytics)}`);
   for (const error of errors) failures.push(`${route} at ${viewport.width}px: ${error}`);
   observations.push({ route, viewport: `${viewport.width}x${viewport.height}`, ...metrics });
   await page.close();
@@ -59,7 +73,7 @@ for (const occasion of [
   { slug: 'hochzeit', h1: 'Hochzeitsmusik für Trauung, Einzug und Auszug', included: 'A Thousand Years', excluded: 'Tears in Heaven' },
   { slug: 'trauerfeier', h1: 'Trauermusik für Beerdigung und Trauerfeier', included: 'Hallelujah', excluded: 'Perfect' },
 ]) {
-  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, extraHTTPHeaders: dnt });
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
@@ -89,7 +103,7 @@ for (const occasion of [
 }
 
 for (const slug of ['hochzeit', 'sektempfang', 'trauerfeier', 'dinner', 'firmenevent', 'geburtstag']) {
-  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, extraHTTPHeaders: dnt });
   await page.goto(`${baseUrl}/eventmusik/${slug}/`, { waitUntil: 'networkidle' });
   const locationState = await page.evaluate(() => ({
     choices: document.querySelectorAll('[data-occasion-locations] [data-location-start]').length,
@@ -114,11 +128,18 @@ for (const slug of ['hochzeit', 'sektempfang', 'trauerfeier', 'dinner', 'firmene
   await page.close();
 }
 
-const planner = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+const planner = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, extraHTTPHeaders: dnt });
 const plannerErrors = [];
 planner.on('pageerror', (error) => plannerErrors.push(error.message));
 planner.on('console', (message) => { if (message.type() === 'error') plannerErrors.push(message.text()); });
 await planner.goto(`${baseUrl}/tools/eventmusik-planer/?anlass=hochzeit#momente=0%2C2&wirkung=warm`, { waitUntil: 'networkidle' });
+const privacyProbe = await planner.evaluate(() => {
+  window.__qaAnalytics = [];
+  window.umami = { track: (...args) => window.__qaAnalytics.push(args) };
+  window.trackAnalytics('privacy-probe', { safe: 'yes', location: 'must-not-leave-browser', date: 'must-not-leave-browser' });
+  return window.__qaAnalytics[0];
+});
+if (privacyProbe?.[0] !== 'privacy-probe' || privacyProbe?.[1]?.safe !== 'yes' || privacyProbe?.[1]?.location || privacyProbe?.[1]?.date) failures.push(`analytics privacy filter: ${JSON.stringify(privacyProbe)}`);
 const plannerFoundation = await planner.evaluate(() => ({
   selects: document.querySelectorAll('[data-planner-app] select').length,
   locations: document.querySelectorAll('[data-location]').length,
@@ -150,14 +171,20 @@ if (plannerState.overflow > 1 || !plannerState.resultVisible || !plannerState.wo
 if (await planner.locator('[data-result-pieces] > li').count() !== 3) failures.push('planner recommendations: expected exactly three generated suggestions');
 if (await planner.locator('[data-result-pieces] a[target="_blank"][href*="youtube.com/results"]').count() !== 3) failures.push('planner recommendations: expected one external YouTube search link per suggestion');
 if ((await planner.locator('[data-contact]').getAttribute('href')) !== 'https://kim-marie-borger.com/#kontakt') failures.push('planner contact: verified Kim-Marie contact target missing');
+await planner.locator('[data-result-pieces] a').first().evaluate((node) => node.addEventListener('click', (event) => event.preventDefault(), { capture: true, once: true }));
+await planner.locator('[data-result-pieces] a').first().click();
+await planner.locator('[data-contact]').evaluate((node) => node.addEventListener('click', (event) => event.preventDefault(), { capture: true, once: true }));
+await planner.locator('[data-contact]').click();
 await planner.screenshot({ path: path.join(output, 'relaunch-planner-mobile.png'), fullPage: true });
 await planner.locator('[data-edit]').click();
 if (await planner.locator('[data-step="3"]').isHidden()) failures.push('planner edit: step 3 did not reopen');
 await planner.locator('[data-create]').click();
+const plannerAnalytics = await planner.evaluate(() => window.__qaAnalytics.map(([name, data]) => ({ name, data })));
+for (const expected of ['planner-location-selected', 'planner-step-complete', 'planner-plan-created', 'planner-recommendation-listen', 'planner-contact-open', 'planner-result-edit']) if (!plannerAnalytics.some((event) => event.name === expected)) failures.push(`planner analytics: missing ${expected}`);
 for (const error of plannerErrors) failures.push(`planner runtime: ${error}`);
 await planner.close();
 
-const englishPlanner = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+const englishPlanner = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, extraHTTPHeaders: dnt });
 const englishErrors = [];
 englishPlanner.on('pageerror', (error) => englishErrors.push(error.message));
 englishPlanner.on('console', (message) => { if (message.type() === 'error') englishErrors.push(message.text()); });
@@ -185,11 +212,12 @@ if (await englishPlanner.locator('[data-result-pieces] > li').count() !== 3) fai
 if (await englishPlanner.locator('[data-result-pieces] a[target="_blank"][href*="youtube.com/results"]').count() !== 3) failures.push('english planner recommendations: expected one external YouTube search link per suggestion');
 for (const error of englishErrors) failures.push(`english planner runtime: ${error}`);
 await englishPlanner.close();
-const songCheck = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+const songCheck = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, extraHTTPHeaders: dnt });
 const songErrors = [];
 songCheck.on('pageerror', (error) => songErrors.push(error.message));
 songCheck.on('console', (message) => { if (message.type() === 'error') songErrors.push(message.text()); });
 await songCheck.goto(baseUrl + '/tools/wunschstueck-check/', { waitUntil: 'networkidle' });
+await songCheck.evaluate(() => { window.__qaAnalytics = []; window.umami = { track: (...args) => window.__qaAnalytics.push(args) }; });
 await songCheck.locator('[data-song-form] button[type="submit"]').click();
 if (!/pflichtfelder/i.test(await songCheck.locator('[data-song-error]').innerText())) failures.push('requested-song validation: required-field message missing');
 await songCheck.locator('#song-name').fill('Perfect');
@@ -215,14 +243,17 @@ const songState = await songCheck.evaluate(() => ({
 if (songState.copyDisabled || songState.emailDisabled || songState.plannerHref !== '/tools/eventmusik-planer/?anlass=hochzeit' || songState.overflow > 1) failures.push('requested-song state: ' + JSON.stringify(songState));
 await songCheck.locator('[data-reset]').click();
 if (await songCheck.locator('#song-name').inputValue()) failures.push('requested-song reset: title was not cleared');
+const songAnalytics = await songCheck.evaluate(() => window.__qaAnalytics.map(([name]) => name));
+for (const expected of ['requested-song-brief-created', 'requested-song-reset']) if (!songAnalytics.includes(expected)) failures.push(`requested-song analytics: missing ${expected}`);
 for (const error of songErrors) failures.push('requested-song runtime: ' + error);
 await songCheck.close();
 
-const recordingBrief = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+const recordingBrief = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, extraHTTPHeaders: dnt });
 const recordingErrors = [];
 recordingBrief.on('pageerror', (error) => recordingErrors.push(error.message));
 recordingBrief.on('console', (message) => { if (message.type() === 'error') recordingErrors.push(message.text()); });
 await recordingBrief.goto(baseUrl + '/tools/streicheraufnahme-briefing/', { waitUntil: 'networkidle' });
+await recordingBrief.evaluate(() => { window.__qaAnalytics = []; window.umami = { track: (...args) => window.__qaAnalytics.push(args) }; });
 await recordingBrief.locator('[data-record-form] button[type="submit"]').click();
 if (!/pflichtfelder/i.test(await recordingBrief.locator('[data-record-error]').innerText())) failures.push('recording brief validation: required-field message missing');
 await recordingBrief.locator('#record-project').fill('Dokumentarfilm Cue 04');
@@ -249,6 +280,8 @@ const recordingState = await recordingBrief.evaluate(() => ({
 if (recordingState.copyDisabled || recordingState.downloadDisabled || recordingState.overflow > 1) failures.push('recording brief state: ' + JSON.stringify(recordingState));
 await recordingBrief.locator('[data-record-reset]').click();
 if (await recordingBrief.locator('#record-project').inputValue()) failures.push('recording brief reset: project was not cleared');
+const recordingAnalytics = await recordingBrief.evaluate(() => window.__qaAnalytics.map(([name]) => name));
+for (const expected of ['recording-brief-created', 'recording-brief-reset']) if (!recordingAnalytics.includes(expected)) failures.push(`recording brief analytics: missing ${expected}`);
 for (const error of recordingErrors) failures.push('recording brief runtime: ' + error);
 await recordingBrief.close();
 
@@ -256,7 +289,7 @@ for (const [name, route, viewport] of [
   ['relaunch-home-desktop.png', '/', { width: 1440, height: 900 }],
   ['relaunch-home-mobile.png', '/', { width: 390, height: 844 }],
 ]) {
-  const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport, deviceScaleFactor: 1, extraHTTPHeaders: dnt });
   await page.goto(new URL(route, baseUrl).href, { waitUntil: 'networkidle' });
   await page.screenshot({ path: path.join(output, name), fullPage: true });
   await page.close();

@@ -237,6 +237,14 @@ const toolSchema = {
           state.textContent = status;
           copy.disabled = false;
           email.disabled = false;
+          window.trackAnalytics?.('requested-song-brief-created', {
+            occasion: occasion.value || 'other',
+            recognition,
+            melody,
+            requested_length: length,
+            lead_time: lead,
+            outcome: caution ? 'alternative' : needsClarification ? 'clarify' : 'ready',
+          });
         }
 
         occasion.addEventListener('change', renderMoments);
@@ -249,7 +257,7 @@ const toolSchema = {
         });
         copy.addEventListener('click', async () => {
           if (!brief) return;
-          try { await navigator.clipboard.writeText(brief); copy.textContent = 'Kopiert'; }
+          try { await navigator.clipboard.writeText(brief); window.trackAnalytics?.('requested-song-brief-copied', { occasion: occasion.value || 'other' }); copy.textContent = 'Kopiert'; }
           catch { error.textContent = 'Kopieren ist in diesem Browser nicht verfügbar.'; }
           window.setTimeout(() => { copy.textContent = 'Kopieren'; }, 1600);
         });
@@ -262,9 +270,11 @@ const toolSchema = {
           copy.disabled = true;
           email.disabled = true;
           renderMoments();
+          window.trackAnalytics?.('requested-song-reset');
         });        email.addEventListener('click', () => {
           if (!brief) return;
           const song = String(new FormData(form).get('song') || '').trim();
+          window.trackAnalytics?.('requested-song-email-open', { occasion: occasion.value || 'other' });
           window.location.href = `mailto:kim-marie.borger@t-online.de?subject=${encodeURIComponent(`Wunschstück-Prüfung: ${song}`)}&body=${encodeURIComponent(brief)}`;
         });
         renderMoments();

@@ -162,11 +162,18 @@ const toolSchema = {
           result.innerHTML = `<div class="record-result"><h2>${escapeHtml(read(data, 'project'))}</h2><dl>${rows.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl><div><h3>Offene Fragen</h3><ul>${questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}</ul></div><p><strong>Grenze:</strong> Dieses Werkzeug bestätigt weder Spielbarkeit, Termin, Preis, Rechte, Besetzung noch technische Machbarkeit.</p></div>`;
           state.textContent = `${questions.length} offene ${questions.length === 1 ? 'Frage' : 'Fragen'}`;
           copy.disabled = false; download.disabled = false;
+          window.trackAnalytics?.('recording-brief-created', {
+            role: read(data, 'role'),
+            tempo_mode: read(data, 'tempo'),
+            delivery: read(data, 'takes'),
+            format: read(data, 'format'),
+            question_count: questions.length,
+          });
           if (matchMedia('(max-width: 1039px)').matches) output.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
-        copy.addEventListener('click', async () => { if (!brief) return; try { await navigator.clipboard.writeText(brief); copy.textContent = 'Kopiert'; } catch { error.textContent = 'Kopieren ist in diesem Browser nicht verfügbar.'; } window.setTimeout(() => { copy.textContent = 'Kopieren'; }, 1600); });
-        download.addEventListener('click', () => { if (!brief) return; const url = URL.createObjectURL(new Blob([brief], { type: 'text/plain;charset=utf-8' })); const link = document.createElement('a'); link.href = url; link.download = 'streicheraufnahme-briefing.txt'; link.click(); URL.revokeObjectURL(url); });
-        reset.addEventListener('click', () => { form.reset(); brief = ''; error.textContent = ''; state.textContent = 'Noch nicht erstellt'; copy.disabled = true; download.disabled = true; result.innerHTML = '<p class="record-output__empty">Nach dem Ausfüllen erscheint hier ein kompakter Arbeitsbrief mit bestätigten Angaben und offenen Fragen.</p>'; });
+        copy.addEventListener('click', async () => { if (!brief) return; try { await navigator.clipboard.writeText(brief); window.trackAnalytics?.('recording-brief-copied'); copy.textContent = 'Kopiert'; } catch { error.textContent = 'Kopieren ist in diesem Browser nicht verfügbar.'; } window.setTimeout(() => { copy.textContent = 'Kopieren'; }, 1600); });
+        download.addEventListener('click', () => { if (!brief) return; window.trackAnalytics?.('recording-brief-downloaded'); const url = URL.createObjectURL(new Blob([brief], { type: 'text/plain;charset=utf-8' })); const link = document.createElement('a'); link.href = url; link.download = 'streicheraufnahme-briefing.txt'; link.click(); URL.revokeObjectURL(url); });
+        reset.addEventListener('click', () => { form.reset(); brief = ''; error.textContent = ''; state.textContent = 'Noch nicht erstellt'; copy.disabled = true; download.disabled = true; result.innerHTML = '<p class="record-output__empty">Nach dem Ausfüllen erscheint hier ein kompakter Arbeitsbrief mit bestätigten Angaben und offenen Fragen.</p>'; window.trackAnalytics?.('recording-brief-reset'); });
       })();
     </script>
   </Fragment>

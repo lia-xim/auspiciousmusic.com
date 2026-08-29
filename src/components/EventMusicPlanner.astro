@@ -249,7 +249,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
           <dl class="result-overview" data-result-overview></dl>
           <div class="result-grid"><section class="result-section"><h3 class="sr-only">{copy.shortlist}</h3><ol class="repertoire-result" data-result-pieces></ol></section><section class="result-details" aria-labelledby={`result-details-${lang}`}><h3 id={`result-details-${lang}`}>{copy.details}</h3><div class="result-support"><section class="result-section"><h3>{copy.flow}</h3><ol class="timeline" data-result-flow></ol></section><section class="result-section"><h3>{copy.questions}</h3><ul class="questions-result" data-result-questions></ul></section></div></section></div>
           <p class="result-boundary">{copy.boundary}</p>
-          <div class="result-actions"><button class="btn btn--quiet" type="button" data-copy>{copy.copyAction}</button><a class="btn btn--primary" href="https://kim-marie-borger.com/#kontakt" target="_blank" rel="noopener" data-contact>{copy.contact}</a></div>
+          <div class="result-actions"><button class="btn btn--quiet" type="button" data-copy>{copy.copyAction}</button><a class="btn btn--primary" href="https://kim-marie-borger.com/#kontakt" target="_blank" rel="noopener" data-contact data-analytics-event="planner-contact-open" data-analytics-language={lang}>{copy.contact}</a></div>
         </section>
       </section>
     </div>
@@ -279,6 +279,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         if (!(form instanceof HTMLFormElement) || !(workbench instanceof HTMLElement) || !(result instanceof HTMLElement) || !(error instanceof HTMLElement) || !(momentsRoot instanceof HTMLElement) || !(locationInput instanceof HTMLInputElement) || !(locationList instanceof HTMLElement) || !(locationState instanceof HTMLElement) || !(nextButton instanceof HTMLButtonElement) || !(backButton instanceof HTMLButtonElement) || !(createButton instanceof HTMLButtonElement)) return;
         let step = 1;
         let briefText = '';
+        const track = (name, data = {}) => window.trackAnalytics?.(name, data);
         const normalize = (value) => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
         const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
         const checked = (name) => form.querySelector(`input[name="${name}"]:checked`);
@@ -383,7 +384,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
             const clarification = lang === 'de' ? piece.clarificationDe : piece.clarificationEn;
             const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(`${piece.title} Viola`)}`;
             const detail = clarification ? `${reason} ${clarification}` : reason;
-            return `<li><span class="recommendation-number">${String(index + 1).padStart(2, '0')}</span><a class="recommendation-play" href="${escapeHtml(youtubeUrl)}" target="_blank" rel="noopener noreferrer external" aria-label="${escapeHtml(`${piece.title}: ${copy.listen}`)}" title="${escapeHtml(copy.listen)}"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5Z" fill="currentColor"/></svg></a><strong class="recommendation-title">${escapeHtml(piece.title)}</strong><span class="recommendation-detail"><small>${escapeHtml(copy.why)}</small><span>${escapeHtml(detail)}</span></span><span class="recommendation-detail"><small>${escapeHtml(copy.forMoment)}</small><span>${escapeHtml(momentLabel)}</span></span></li>`;
+            return `<li><span class="recommendation-number">${String(index + 1).padStart(2, '0')}</span><a class="recommendation-play" href="${escapeHtml(youtubeUrl)}" target="_blank" rel="noopener noreferrer external" aria-label="${escapeHtml(`${piece.title}: ${copy.listen}`)}" title="${escapeHtml(copy.listen)}" data-analytics-event="planner-recommendation-listen" data-analytics-piece="${escapeHtml(piece.title)}" data-analytics-occasion="${escapeHtml(checkedValue('occasion'))}"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5Z" fill="currentColor"/></svg></a><strong class="recommendation-title">${escapeHtml(piece.title)}</strong><span class="recommendation-detail"><small>${escapeHtml(copy.why)}</small><span>${escapeHtml(detail)}</span></span><span class="recommendation-detail"><small>${escapeHtml(copy.forMoment)}</small><span>${escapeHtml(momentLabel)}</span></span></li>`;
           }).join('') || `<li>${escapeHtml(copy.noPieces)}</li>`;
           const questions = selected ? (lang === 'de' ? selected.questionsDe : selected.questionsEn) : [];
           app.querySelector('[data-result-questions]').innerHTML = questions.map((question) => `<li>${escapeHtml(question)}</li>`).join('');
@@ -391,6 +392,17 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
           briefText = [lang === 'de' ? 'MUSIKPLAN ZUR ABSTIMMUNG' : 'MUSIC PLAN FOR REVIEW', '', ...overview.map(([label, value]) => `${label}: ${value}`), `${copy.setting}: ${checkedLabel('setting')}`, `${copy.sound}: ${checkedLabel('sound')}`, `${copy.refine}: ${checkedLabel('character')}`, '', copy.flow.toUpperCase(), ...moments.map((moment, index) => `${index + 1}. ${lang === 'de' ? moment.de : moment.en} — ${lang === 'de' ? moment.guidanceDe : moment.guidanceEn}`), '', copy.shortlist.toUpperCase(), ...(pieces.length ? pieces.map(({ piece, momentIndex }) => `- ${piece.title} — ${copy.forMoment}: ${lang === 'de' ? selected?.moments[momentIndex]?.de : selected?.moments[momentIndex]?.en}`) : [`- ${copy.noPieces}`]), '', `${copy.wishes}: ${wishes}`, '', copy.questions.toUpperCase(), ...questions.map((question) => `- ${question}`), '', copy.boundary].join('\n');
           workbench.hidden = true;
           result.hidden = false;
+          track('planner-plan-created', {
+            occasion: checkedValue('occasion'),
+            date_mode: checkedValue('dateMode'),
+            location_type: locations.some((location) => normalize(location.label) === normalize(locationInput.value.trim())) ? 'directory' : 'custom',
+            setting: checkedValue('setting'),
+            role: checkedValue('role'),
+            sound: checkedValue('sound'),
+            character: checkedValue('character'),
+            moment_count: moments.length,
+            language: lang,
+          });
           result.focus({ preventScroll: true });
           requestAnimationFrame(() => result.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }));
         }
@@ -402,13 +414,13 @@ const schema = { '@context': 'https://schema.org', '@type': 'WebApplication', na
         });
         form.addEventListener('input', updateSummary);
         locationInput.addEventListener('input', renderLocations);
-        locationList.addEventListener('click', (event) => { const button = event.target.closest('[data-location]'); if (!button) return; locationInput.value = button.dataset.location || ''; renderLocations(); updateSummary(); });
-        nextButton.addEventListener('click', () => { const message = validateStep(step); if (message) { error.textContent = message; return; } setStep(step + 1); });
-        backButton.addEventListener('click', () => setStep(step - 1));
+        locationList.addEventListener('click', (event) => { const button = event.target.closest('[data-location]'); if (!button) return; locationInput.value = button.dataset.location || ''; renderLocations(); updateSummary(); const selected = locations.find((location) => location.label === button.dataset.location); track('planner-location-selected', { location_type: selected?.kind || 'directory', occasion: checkedValue('occasion'), language: lang }); });
+        nextButton.addEventListener('click', () => { const message = validateStep(step); if (message) { error.textContent = message; track('planner-step-validation', { step, language: lang }); return; } track('planner-step-complete', { step, occasion: checkedValue('occasion'), language: lang }); setStep(step + 1); });
+        backButton.addEventListener('click', () => { track('planner-step-back', { step, language: lang }); setStep(step - 1); });
         app.querySelectorAll('[data-step-button]').forEach((button) => button.addEventListener('click', () => { const target = Number(button.getAttribute('data-step-button')); if (target <= step) setStep(target); }));
         form.addEventListener('submit', (event) => { event.preventDefault(); const message = validateStep(3); if (message) { error.textContent = message; return; } createBrief(); });
-        app.querySelector('[data-edit]').addEventListener('click', () => { result.hidden = true; workbench.hidden = false; setStep(3); });
-        app.querySelector('[data-copy]').addEventListener('click', async (event) => { try { await navigator.clipboard.writeText(briefText); const button = event.currentTarget; button.textContent = copy.copied; setTimeout(() => { button.textContent = copy.copyAction; }, 1500); } catch { /* TXT remains available. */ } });
+        app.querySelector('[data-edit]').addEventListener('click', () => { track('planner-result-edit', { occasion: checkedValue('occasion'), language: lang }); result.hidden = true; workbench.hidden = false; setStep(3); });
+        app.querySelector('[data-copy]').addEventListener('click', async (event) => { try { await navigator.clipboard.writeText(briefText); track('planner-plan-copied', { occasion: checkedValue('occasion'), language: lang }); const button = event.currentTarget; button.textContent = copy.copied; setTimeout(() => { button.textContent = copy.copyAction; }, 1500); } catch { /* TXT remains available. */ } });
         app.querySelector('[data-contact]').addEventListener('click', async () => { try { await navigator.clipboard.writeText(briefText); } catch { /* The contact page still opens. */ } });
         const query = new URLSearchParams(location.search);
         const handoff = new URLSearchParams(location.hash.slice(1));

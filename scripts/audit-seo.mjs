@@ -119,7 +119,12 @@ for (const file of htmlFiles) {
   if (!match(html, /<meta\s+property="og:description"\s+content="([^"]+)"/i)) failures.push(`${route}: missing og:description`);
   if (!match(html, /<meta\s+property="og:image"\s+content="([^"]+)"/i)) failures.push(`${route}: missing og:image`);
   if (!match(html, /<meta\s+name="twitter:card"\s+content="([^"]+)"/i)) failures.push(`${route}: missing twitter card`);
-  if (/<(?:script|img)\b[^>]+src="https?:\/\//i.test(html) || /<link\b[^>]+rel="stylesheet"[^>]+href="https?:\/\//i.test(html)) {
+  const remoteAssets = [
+    ...html.matchAll(/<(?:script|img)\b[^>]+src="https?:\/\/[^\"]+"[^>]*>/gi),
+    ...html.matchAll(/<link\b[^>]+rel="stylesheet"[^>]+href="https?:\/\/[^\"]+"[^>]*>/gi),
+  ].map((entry) => entry[0]);
+  const unexpectedRemoteAssets = remoteAssets.filter((tag) => !/<script\b[^>]+src="https:\/\/analytics\.contextter\.com\/script\.js"/i.test(tag));
+  if (unexpectedRemoteAssets.length) {
     failures.push(`${route}: remote executable, image or stylesheet asset detected`);
   }
   if (/\b(?:TODO|FIXME|lorem ipsum|your email|example\.com)\b/i.test(html)) failures.push(`${route}: unresolved placeholder marker`);

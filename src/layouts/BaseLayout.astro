@@ -124,6 +124,17 @@ const identitySchema = {
     <meta name="twitter:image" content={image} />
     <meta name="twitter:image:alt" content={socialImageAlt} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(identitySchema)} />
+    <script
+      is:inline
+      defer
+      src="https://analytics.contextter.com/script.js"
+      data-website-id="e9631720-29b7-4778-bdd8-5835d93319c7"
+      data-domains="auspiciousmusic.com,www.auspiciousmusic.com"
+      data-exclude-search="true"
+      data-exclude-hash="true"
+      data-do-not-track="true"
+      data-performance="true"
+    ></script>
     <slot name="head" />
   </head>
   <body>
@@ -131,6 +142,7 @@ const identitySchema = {
     <slot />
     <SiteFooter lang={lang === 'en' ? 'en' : 'de'} />
     <script is:inline src="/assets/motion.js" defer></script>
+    <script is:inline src="/assets/analytics.js" defer></script>
     {loadStringField && <script is:inline src="/assets/string.js" defer></script>}
     <slot name="scripts" />
   </body>
