@@ -170,7 +170,18 @@ for (const expected of ['Drei Vorschläge für deinen Ablauf', 'Hochzeit / Trauu
 if (plannerState.overflow > 1 || !plannerState.resultVisible || !plannerState.workbenchHidden || plannerState.resultTop < 60 || plannerState.resultTop > 130) failures.push(`planner result state: ${JSON.stringify(plannerState)}`);
 if (await planner.locator('[data-result-pieces] > li').count() !== 3) failures.push('planner recommendations: expected exactly three generated suggestions');
 if (await planner.locator('[data-result-pieces] a[target="_blank"][href*="youtube.com/results"]').count() !== 3) failures.push('planner recommendations: expected one external YouTube search link per suggestion');
-if ((await planner.locator('[data-contact]').getAttribute('href')) !== 'https://kim-marie-borger.com/#kontakt') failures.push('planner contact: verified Kim-Marie contact target missing');
+const plannerContactHref = await planner.locator('[data-contact]').getAttribute('href');
+const plannerContact = plannerContactHref ? new URL(plannerContactHref) : null;
+if (
+  !plannerContact
+  || plannerContact.origin !== 'https://kim-marie-borger.com'
+  || plannerContact.pathname !== '/'
+  || plannerContact.hash !== '#kontakt'
+  || plannerContact.searchParams.get('utm_source') !== 'auspiciousmusic'
+  || plannerContact.searchParams.get('utm_medium') !== 'referral'
+  || plannerContact.searchParams.get('utm_campaign') !== 'eventmusik-planer'
+  || plannerContact.searchParams.get('utm_content') !== 'planner-result'
+) failures.push('planner contact: verified Kim-Marie contact target or campaign attribution missing');
 await planner.locator('[data-result-pieces] a').first().evaluate((node) => node.addEventListener('click', (event) => event.preventDefault(), { capture: true, once: true }));
 await planner.locator('[data-result-pieces] a').first().click();
 await planner.locator('[data-contact]').evaluate((node) => node.addEventListener('click', (event) => event.preventDefault(), { capture: true, once: true }));

@@ -1,5 +1,6 @@
 ---
 import ExpertHubLayout from '../../layouts/ExpertHubLayout.astro';
+import AudioSampleList from '../../components/AudioSampleList.astro';
 import { occasionProfiles } from '../../data/repertoire';
 const decisions = [
   { title: 'Mit dem Spielmoment anfangen', text: 'Ein Einzug braucht einen erkennbaren Beginn. Beim Empfang muss die Musik Gespräche zulassen. Für einen Abschied zählt oft der persönliche Bezug.', href: '/tools/eventmusik-planer/', label: 'Momente auswählen' },
@@ -8,6 +9,7 @@ const decisions = [
 ];
 const related = occasionProfiles.filter((profile) => profile.slug !== 'unterricht').map((profile) => ({ title: profile.labelDe, description: profile.pieces.map((piece) => piece.title).slice(0, 3).join(' · '), href: `/eventmusik/${profile.slug}/`, meta: `${profile.pieces.length} Titel` }));
 ---
-<ExpertHubLayout title="Repertoire für Hochzeit, Trauerfeier und Event" description="Viola-Repertoire nach Hochzeit, Sektempfang, Trauerfeier, Dinner, Firmenevent und Geburtstag auswählen und auf YouTube anhören." canonicalPath="/repertoire/" kicker="Repertoire nach Anlass" intro="Die Listen sind nach Anlass getrennt, weil derselbe Titel nicht automatisch für jeden Moment passt. Öffnet zuerst den Anlass; dort könnt ihr Stücke anhören und drei Vorschläge direkt dem Ablauf zuordnen." primary={{ href: '/tools/eventmusik-planer/', label: 'Repertoire im Planer nutzen' }} secondary={{ href: '/tools/wunschstueck-check/', label: 'Eigenes Wunschstück vorbereiten' }} decisions={decisions} decisionsTitle="So wird aus einem Titel eine brauchbare Idee" decisionsIntro="Moment, Fassung und Besetzung gehören zusammen." related={related} relatedTitle="Repertoire nach Anlass öffnen" lang="de">
+<ExpertHubLayout title="Repertoire für Hochzeit, Trauerfeier und Event" description="Viola-Repertoire nach Hochzeit, Sektempfang, Trauerfeier, Dinner, Firmenevent und Geburtstag auswählen und fünf echte Viola-Hörproben anhören." canonicalPath="/repertoire/" kicker="Repertoire nach Anlass" intro="Die Listen sind nach Anlass getrennt, weil derselbe Titel nicht automatisch für jeden Moment passt. Fünf echte Viola-Aufnahmen zeigen Kim-Maries Klang; in den Anlassseiten ordnet ihr Titel anschließend dem Ablauf zu." primary={{ href: '#hoerproben', label: 'Viola-Hörproben anhören' }} secondary={{ href: '/tools/eventmusik-planer/', label: 'Repertoire im Planer nutzen' }} decisions={decisions} decisionsTitle="So wird aus einem Titel eine brauchbare Idee" decisionsIntro="Moment, Fassung und Besetzung gehören zusammen." related={related} relatedTitle="Repertoire nach Anlass öffnen" lang="de">
   <aside class="expert-motif expert-motif--text" slot="motif" aria-label="Wie Repertoire ausgewählt wird"><p>Zu einem Titel gehören</p><ol><li>der Anlass und sein konkreter Moment,</li><li>die gewünschte Wirkung im Raum,</li><li>die genaue Fassung und persönliche Prüfung.</li></ol></aside>
+  <AudioSampleList slot="evidence" />
 </ExpertHubLayout>

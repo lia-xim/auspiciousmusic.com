@@ -1,0 +1,70 @@
+---
+import { audioSamples } from '../data/audio-samples';
+
+interface Props {
+  id?: string;
+  surface?: string;
+}
+
+const { id = 'hoerproben', surface = 'repertoire' } = Astro.props;
+---
+
+<section class="audio-evidence" id={id} aria-labelledby={`${id}-title`}>
+  <div class="audio-evidence__intro">
+    <p class="kicker">Echte Viola-Aufnahmen</p>
+    <h2 id={`${id}-title`}>Fünf Hörproben von Kim-Marie Borger</h2>
+    <p>Hier hört ihr die Viola tatsächlich, nicht nur eine Suchversion des Titels. Die Ausschnitte zeigen Kim-Maries Spiel und dienen als Klangreferenz. Ob ein Stück für euren Moment, die gewünschte Länge und eine konkrete Fassung passt, wird weiterhin persönlich geprüft.</p>
+  </div>
+  <ol class="audio-samples">
+    {audioSamples.map((sample, index) => (
+      <li id={`sample-${sample.src.split('/').at(-1)?.replace('.mp3', '')}`}>
+        <span class="audio-samples__number">{String(index + 1).padStart(2, '0')}</span>
+        <div class="audio-samples__copy">
+          <h3>{sample.title}</h3>
+          <p>{sample.composer} · {sample.category} · {sample.duration}</p>
+        </div>
+        <audio
+          controls
+          controlslist="nodownload noplaybackrate"
+          disableRemotePlayback
+          preload="none"
+          src={sample.src}
+          data-audio-sample
+          data-piece={sample.title}
+          data-surface={surface}
+          aria-label={`Hörprobe: ${sample.title}, gespielt von Kim-Marie Borger`}
+        >Ihr Browser unterstützt die Audiowiedergabe nicht.</audio>
+      </li>
+    ))}
+  </ol>
+  <p class="audio-evidence__credit">Viola und Aufnahme: Kim-Marie Borger. Kompositionen und zugrunde liegende Werke verbleiben bei den jeweiligen Rechteinhaberinnen und Rechteinhabern. Die Hörproben sind keine Zusage zu Arrangement, Termin oder Verfügbarkeit.</p>
+</section>
+
+<style>
+  .audio-evidence { padding-block: clamp(3rem, 6vw, 5rem); scroll-margin-top: calc(var(--header-h) + 1rem); }
+  .audio-evidence__intro { display: grid; gap: .7rem 4rem; }
+  @media (min-width: 820px) {
+    .audio-evidence__intro { grid-template-columns: minmax(18rem, .78fr) minmax(0, 1.22fr); align-items: end; }
+    .audio-evidence__intro .kicker { grid-column: 1; }
+    .audio-evidence__intro h2 { grid-column: 1; }
+    .audio-evidence__intro > p:last-child { grid-column: 2; grid-row: 1 / span 2; }
+  }
+  .audio-evidence h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 1.55rem + 1.3vw, 3rem); font-weight: 500; letter-spacing: 0; }
+  .audio-evidence__intro > p:last-child { max-width: 62ch; color: var(--ink-soft); line-height: 1.65; }
+  .audio-samples { margin-top: 2rem; border-top: 1px solid var(--line-strong); }
+  .audio-samples li { display: grid; grid-template-columns: 2.4rem minmax(12rem, .9fr) minmax(18rem, 1.1fr); gap: 1rem; align-items: center; min-height: 82px; padding-block: .8rem; border-bottom: 1px solid var(--line); }
+  .audio-samples__number { color: var(--ember); font: 600 var(--t-meta)/1.5 var(--font-mono); }
+  .audio-samples h3 { font: 500 1.12rem/1.25 Georgia, 'Times New Roman', serif; letter-spacing: 0; }
+  .audio-samples p { margin-top: .25rem; color: var(--muted); font-size: .8rem; line-height: 1.4; }
+  .audio-samples audio { display: block; width: 100%; min-width: 0; height: 42px; }
+  .audio-evidence__credit { max-width: 84ch; margin-top: 1rem; color: var(--muted); font-size: .78rem; line-height: 1.55; }
+  @media (max-width: 700px) {
+    .audio-samples li { grid-template-columns: 2rem minmax(0, 1fr); gap: .5rem .75rem; padding-block: 1rem; }
+    .audio-samples audio { grid-column: 2; margin-top: .35rem; }
+  }
+  @media (max-width: 380px) {
+    .audio-samples li { grid-template-columns: 1fr; }
+    .audio-samples__number { display: none; }
+    .audio-samples audio { grid-column: 1; }
+  }
+</style>

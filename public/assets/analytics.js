@@ -71,4 +71,30 @@
     if (!(event.target instanceof HTMLFormElement)) return;
     if (event.target.matches('[role="search"], .search-row')) track('site-search-submit');
   });
+
+  const audioProgress = new WeakMap();
+  document.addEventListener('play', (event) => {
+    const audio = event.target;
+    if (!(audio instanceof HTMLAudioElement) || !audio.matches('[data-audio-sample]')) return;
+    track('audio-sample-play', { piece: audio.dataset.piece || 'unknown', surface: audio.dataset.surface || 'unknown' });
+  }, true);
+
+  document.addEventListener('timeupdate', (event) => {
+    const audio = event.target;
+    if (!(audio instanceof HTMLAudioElement) || !audio.matches('[data-audio-sample]') || !Number.isFinite(audio.duration) || audio.duration <= 0) return;
+    const reached = audioProgress.get(audio) || new Set();
+    const percent = Math.floor((audio.currentTime / audio.duration) * 100);
+    [25, 50, 75].forEach((milestone) => {
+      if (percent < milestone || reached.has(milestone)) return;
+      reached.add(milestone);
+      track('audio-sample-progress', { piece: audio.dataset.piece || 'unknown', surface: audio.dataset.surface || 'unknown', progress: milestone });
+    });
+    audioProgress.set(audio, reached);
+  }, true);
+
+  document.addEventListener('ended', (event) => {
+    const audio = event.target;
+    if (!(audio instanceof HTMLAudioElement) || !audio.matches('[data-audio-sample]')) return;
+    track('audio-sample-complete', { piece: audio.dataset.piece || 'unknown', surface: audio.dataset.surface || 'unknown' });
+  }, true);
 })();

@@ -35,6 +35,7 @@ const {
   relatedTitle,
   lang = 'de',
 } = Astro.props;
+const hasEvidence = Astro.slots.has('evidence');
 ---
 <BaseLayout title={`${title} — Auspicious Music`} description={description} canonicalPath={canonicalPath} lang={lang} headerOverDark={true}>
   <Fragment slot="head"><style is:global>
@@ -111,6 +112,7 @@ const {
         </ol>
       </div>
     </section>
+    {hasEvidence && <section class="band"><div class="shell"><slot name="evidence" /></div></section>}
     <section class="band band-surface" aria-labelledby="related-title">
       <div class="shell">
         <div class="section-head"><h2 id="related-title">{relatedTitle}</h2></div>
