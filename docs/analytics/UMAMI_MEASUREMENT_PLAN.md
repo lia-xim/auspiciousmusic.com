@@ -43,7 +43,7 @@ Never send dates, exact locations, query strings, URL fragments, free text, cont
 
 ## Retention
 
-Analytics rows for this website ID are retained for 14 months. A daily server-side job deletes older event, event-data, session-data, replay, revenue and session rows for this website only. Saved report definitions are configuration and remain in place. Other Umami websites are outside this job.
+Analytics rows are retained for a maximum of 24 months. One daily server-side job applies this limit consistently to every website in the shared Umami instance and deletes older event, event-data, session-data, replay, revenue and session rows. Saved report definitions are configuration and remain in place.
 
 ## Review cadence
 
