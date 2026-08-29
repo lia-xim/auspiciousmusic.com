@@ -39,12 +39,22 @@
       "permanent": true
     },
     {
+      "source": "/download/the-spy-guitar/",
+      "destination": "/legacy/the-spy-guitar/",
+      "permanent": true
+    },
+    {
       "source": "/news/introducing-the-spy-guitar",
       "destination": "/legacy/the-spy-guitar/",
       "permanent": true
     },
     {
       "source": "/download/bang-my-twister-new-m4l-device-for-changing-banks-on-midi-fighter-twister",
+      "destination": "/legacy/bang-my-twister/",
+      "permanent": true
+    },
+    {
+      "source": "/download/bang-my-twister-new-m4l-device-for-changing-banks-on-midi-fighter-twister/",
       "destination": "/legacy/bang-my-twister/",
       "permanent": true
     },
@@ -119,6 +129,14 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/download/licenses/(.*)",
+      "destination": "/api/gone"
+    },
+    {
+      "source": "/download/hc/(.*)",
+      "destination": "/api/gone"
+    },
     {
       "source": "/410/",
       "destination": "/api/gone"
