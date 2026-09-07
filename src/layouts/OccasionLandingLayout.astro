@@ -8,27 +8,56 @@ interface Props { profile: OccasionProfile; }
 const { profile } = Astro.props;
 const plannerHref = `/tools/eventmusik-planer/?anlass=${profile.slug}`;
 const showQuickPlanner = profile.slug !== 'unterricht' && profile.pieces.length >= 3;
+const site = Astro.site ?? new URL('https://www.auspiciousmusic.com/');
+const canonicalUrl = new URL(`/eventmusik/${profile.slug}/`, site).href;
+const websiteId = new URL('/#website', site).href;
+const repertoireId = `${canonicalUrl}#repertoire-list`;
+const breadcrumbId = `${canonicalUrl}#breadcrumb`;
+const pieceRows = profile.pieces.map((piece) => ({
+  ...piece,
+  momentLabels: (piece.moments ?? [])
+    .map((momentIndex) => profile.moments[momentIndex]?.de)
+    .filter((label): label is string => Boolean(label)),
+}));
 const pageSchema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
       name: profile.h1De,
       description: profile.seoDescriptionDe,
       inLanguage: 'de',
-      mainEntity: { '@type': 'ItemList', name: `Musik für ${profile.labelDe}`, numberOfItems: profile.pieces.length },
+      isPartOf: { '@id': websiteId },
+      breadcrumb: { '@id': breadcrumbId },
+      mainEntity: { '@id': repertoireId },
     },
     {
       '@type': 'ItemList',
+      '@id': repertoireId,
       name: `Repertoire für ${profile.labelDe}`,
-      itemListElement: profile.pieces.map((piece, index) => ({ '@type': 'ListItem', position: index + 1, name: piece.title })),
+      description: `Kuratierte Stückideen mit möglichen Spielmomenten für ${profile.labelDe}.`,
+      numberOfItems: pieceRows.length,
+      itemListElement: pieceRows.map((piece, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Thing',
+          name: piece.title,
+          ...(piece.momentLabels.length > 0
+            ? { description: `Mögliche Spielmomente: ${piece.momentLabels.join(', ')}` }
+            : {}),
+        },
+      })),
     },
     {
       '@type': 'BreadcrumbList',
+      '@id': breadcrumbId,
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://www.auspiciousmusic.com/' },
         { '@type': 'ListItem', position: 2, name: 'Eventmusik', item: 'https://www.auspiciousmusic.com/eventmusik/' },
-        { '@type': 'ListItem', position: 3, name: profile.labelDe },
+        { '@type': 'ListItem', position: 3, name: profile.labelDe, item: canonicalUrl },
       ],
     },
   ],
@@ -70,14 +99,18 @@ const pageSchema = {
         .occasion-repertoire { display: grid; gap: 2rem 4rem; }
         @media (min-width: 840px) { .occasion-repertoire { grid-template-columns: minmax(17rem, .7fr) minmax(0, 1.3fr); } }
         .occasion-repertoire header p { max-width: 42ch; margin-top: .8rem; color: var(--ink-soft); line-height: 1.65; }
+        .occasion-repertoire__guide { display: inline-block; margin-top: 1rem; color: #8f1d35; font-weight: 750; text-underline-offset: .2em; }
         .piece-list { border-top: 1px solid var(--line-strong); }
         .piece-list li { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: .75rem 1rem; align-items: center; min-height: 64px; border-bottom: 1px solid var(--line); }
         .piece-play { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 1px solid var(--ink); border-radius: 50%; color: var(--ink); text-decoration: none; }
         .piece-play:hover { background: var(--ink); color: #fff; }
         .piece-play svg { width: .85rem; height: .85rem; margin-left: .12rem; }
         .piece-list strong { font: 500 1.08rem/1.25 Georgia, 'Times New Roman', serif; }
-        .piece-list span { max-width: 34ch; color: var(--muted); font-size: .8rem; text-align: right; }
-        @media (max-width: 560px) { .piece-list li { grid-template-columns: 2.75rem 1fr; padding-block: .7rem; } .piece-play { width: 2.75rem; height: 2.75rem; } .piece-list span { grid-column: 2; text-align: left; } }
+        .piece-list__meta { display: grid; gap: .2rem; max-width: 40ch; text-align: right; }
+        .piece-list__moments { color: var(--ink-soft); font-size: .82rem; line-height: 1.4; }
+        .piece-list__moments strong { font: inherit; font-weight: 750; }
+        .piece-list__note { color: var(--muted); font-size: .76rem; line-height: 1.4; }
+        @media (max-width: 560px) { .piece-list li { grid-template-columns: 2.75rem 1fr; padding-block: .7rem; } .piece-play { width: 2.75rem; height: 2.75rem; } .piece-list__meta { grid-column: 2; text-align: left; } }
         .occasion-close { background: #17191d; color: #f2efe8; }
         .occasion-close__grid { display: grid; gap: 2rem 4rem; }
         @media (min-width: 840px) { .occasion-close__grid { grid-template-columns: minmax(0, 1fr) minmax(18rem, .72fr); } }
@@ -135,13 +168,19 @@ const pageSchema = {
           <p class="kicker">Anhören und eingrenzen</p>
           <h2 id="repertoire-title">Repertoire für {profile.labelDe}</h2>
           <p>Die Links öffnen jeweils eine YouTube-Suche. Die genaue Fassung, Spielbarkeit und ein mögliches Arrangement werden erst in der persönlichen Abstimmung bestätigt.</p>
+          {profile.slug !== 'unterricht' && <a class="occasion-repertoire__guide" href="/repertoire/">Auswahlprinzipien im Repertoire-Hub ansehen</a>}
         </header>
         <ul class="piece-list">
-          {profile.pieces.map((piece) => (
+          {pieceRows.map((piece) => (
             <li>
               <a class="piece-play" href={youtubeSearchUrl(piece.title)} target="_blank" rel="noopener noreferrer external" aria-label={`${piece.title} auf YouTube suchen und anhören`} title="Auf YouTube suchen und anhören"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5Z" fill="currentColor" /></svg></a>
               <strong>{piece.title}</strong>
-              {piece.clarificationDe && <span>{piece.clarificationDe}</span>}
+              {(piece.momentLabels.length > 0 || piece.clarificationDe) && (
+                <span class="piece-list__meta">
+                  {piece.momentLabels.length > 0 && <span class="piece-list__moments"><strong>Mögliche Spielmomente:</strong> {piece.momentLabels.join(' · ')}</span>}
+                  {piece.clarificationDe && <small class="piece-list__note">{piece.clarificationDe}</small>}
+                </span>
+              )}
             </li>
           ))}
         </ul>

@@ -109,9 +109,9 @@
   },
   {
     "route": "/recording/acoustic-instruments/recording-viola-at-home/",
-    "title": "Viola zuhause nachvollziehbar aufnehmen — Auspicious Music",
-    "description": "Raum vorbereiten, Positionen fair vergleichen und Material sichern, das sich auch morgen noch beurteilen lässt.",
-    "h1": "Viola zuhause nachvollziehbar aufnehmen",
+    "title": "Viola aufnehmen: Mikrofon, Raum & Sessionplan — Auspicious Music",
+    "description": "Viola zuhause aufnehmen: Raum und Mikrofon vorbereiten, drei Positionen fair vergleichen, Pegel setzen und Takes nachvollziehbar sichern.",
+    "h1": "Viola zuhause aufnehmen: Raum, Mikrofon und Sessionplan",
     "internal": false
   },
   {
@@ -258,9 +258,9 @@
   },
   {
     "route": "/recording/acoustic-instruments/viola-microphone-placement/",
-    "title": "Viola-Mikrofonposition: drei Startpunkte — Auspicious Music",
-    "description": "Nahe, ausgewogene und raumbewusste Mikrofonpositionen vergleichen, ohne einen Universalabstand zu behaupten.",
-    "h1": "Viola-Mikrofonposition: drei sinnvolle Startpunkte",
+    "title": "Viola mikrofonieren: 3 Mikrofonpositionen — Auspicious Music",
+    "description": "Viola aufnehmen und das Mikrofon sinnvoll positionieren: drei Startpunkte für Nahaufnahme, ausgewogenen Klang und bewussten Raumanteil.",
+    "h1": "Viola mikrofonieren: drei Positionen für die Aufnahme",
     "internal": false
   },
   {
@@ -328,58 +328,58 @@
   },
   {
     "route": "/eventmusik/hochzeit/",
-    "title": "Hochzeitsmusik für Trauung, Einzug & Auszug | Auspicious Music",
+    "title": "Hochzeitsmusik planen: Einzug, Trauung & Auszug | Auspicious Music",
     "description": "Hochzeitsmusik für freie, kirchliche oder standesamtliche Trauungen auswählen: Spielmomente ordnen, drei Stücke anhören und den Ablauf vorbereiten.",
     "h1": "Hochzeitsmusik für Trauung, Einzug und Auszug",
     "internal": false
   },
   {
     "route": "/eventmusik/sektempfang/",
-    "title": "Musik zum Sektempfang: Live-Musik planen | Auspicious Music",
+    "title": "Musik zum Sektempfang planen: Ablauf & Stücke | Auspicious Music",
     "description": "Musik zum Sektempfang auswählen: leichte Stücke für Begrüßung, Gratulationen und Gespräche finden und flexible Musikblöcke vorbereiten.",
     "h1": "Musik zum Sektempfang auswählen",
     "internal": false
   },
   {
     "route": "/eventmusik/trauerfeier/",
-    "title": "Trauermusik für Beerdigung & Trauerfeier | Auspicious Music",
+    "title": "Trauermusik auswählen: Beerdigung & Trauerfeier | Auspicious Music",
     "description": "Trauermusik für Beerdigung oder Trauerfeier auswählen: persönliche Stücke, Spielmomente und Übergänge behutsam zu einem Ablauf ordnen.",
     "h1": "Trauermusik für Beerdigung und Trauerfeier",
     "internal": false
   },
   {
     "route": "/eventmusik/dinner/",
-    "title": "Dinnermusik für Hochzeit & Event planen | Auspicious Music",
+    "title": "Dinnermusik planen: Hochzeit, Reden & Ausklang | Auspicious Music",
     "description": "Dinnermusik für Hochzeit oder Event auswählen: Live-Musik zwischen Ankommen, Gängen, Reden und Ausklang sinnvoll im Ablauf platzieren.",
     "h1": "Dinnermusik für Hochzeit und Event planen",
     "internal": false
   },
   {
     "route": "/eventmusik/firmenevent/",
-    "title": "Live-Musik für Firmenevent & Empfang | Auspicious Music",
+    "title": "Musik fürs Firmenevent planen: Empfang & Dinner | Auspicious Music",
     "description": "Live-Musik für Firmenevent, Empfang oder Dinner planen: Rolle im Programm festlegen, passende Stücke auswählen und Cues vorbereiten.",
     "h1": "Live-Musik für Firmenevent, Empfang und Dinner",
     "internal": false
   },
   {
     "route": "/eventmusik/geburtstag/",
-    "title": "Live-Musik zum Geburtstag planen | Auspicious Music",
+    "title": "Geburtstagsmusik planen: Überraschung & Empfang | Auspicious Music",
     "description": "Live-Musik zum Geburtstag auswählen: Überraschung, Empfang, musikalisches Geschenk oder Abschluss planen und drei passende Stücke anhören.",
     "h1": "Live-Musik zum Geburtstag auswählen",
     "internal": false
   },
   {
     "route": "/eventmusik/unterricht/",
-    "title": "Unterricht: Viola-Musik planen — Auspicious Music",
-    "description": "Ablauf und Repertoire-Ideen fuer Unterricht mit Kim-Marie Borger.",
-    "h1": "Unterricht musikalisch planen",
+    "title": "Viola-Unterricht vorbereiten | Auspicious Music",
+    "description": "Ziele, Vorerfahrung und Repertoirewünsche für ein erstes Gespräch über Viola-Unterricht ordnen.",
+    "h1": "Viola-Unterricht vorbereiten",
     "internal": false
   },
   {
     "route": "/viola/viola-oder-violine/",
-    "title": "Viola oder Violine für Live-Musik? — Auspicious Music",
-    "description": "Entscheidungshilfe nach Klanglage, Melodieführung, Raum, Besetzung und gewünschter Wirkung.",
-    "h1": "Viola oder Violine für Live-Musik?",
+    "title": "Viola oder Violine: Klang, Größe & Einsatz — Auspicious Music",
+    "description": "Viola (Bratsche) und Violine (Geige) im Vergleich: Unterschiede bei Stimmung, Größe, Klang, Register und Einsatz für Live-Musik und Aufnahme.",
+    "h1": "Viola oder Violine: Unterschiede bei Klang und Einsatz",
     "internal": false
   },
   {

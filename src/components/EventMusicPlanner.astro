@@ -23,8 +23,8 @@ const otherProfile = {
 const eventProfiles = occasionProfiles.filter((profile) => profile.slug !== 'unterricht');
 const plannerData = [...eventProfiles.map(({ slug, labelDe, labelEn, moments, questionsDe, questionsEn, pieces }) => ({ slug, labelDe, labelEn, moments, questionsDe, questionsEn, pieces })), otherProfile];
 const copy = de ? {
-  title: 'Musikempfehlungen für dein Event', description: 'Erhalte in drei kurzen Schritten drei begründete Repertoire-Ideen mit passenden Spielmomenten und einem kompakten Ablauf.',
-  intro: 'Anlass und Wirkung auswählen. Der Planer macht daraus echte Vorschläge statt nur deine Eingaben zu wiederholen.', privacy: 'Bleibt in diesem Browser. Keine Anmeldung, Speicherung oder automatische Anfrage.',
+  title: 'Eventmusik planen: drei Stücke und ein Ablauf', description: 'Plane Musik für Hochzeit, Trauerfeier, Sektempfang oder Event: Wähle Spielmomente und Wirkung, höre drei passende Stücke und erstelle einen Ablauf.',
+  intro: 'Plane Musik für Hochzeit, Trauerfeier, Sektempfang oder ein anderes Event. Du wählst Anlass, Spielmomente und Wirkung; der Eventmusik-Planer ordnet drei passende Stücke einem Ablauf zu.', privacy: 'Bleibt in diesem Browser. Keine Anmeldung, Speicherung oder automatische Anfrage.',
   steps: ['Anlass', 'Rahmen', 'Wirkung'], stepLabel: 'Schritt', chooseOccasion: 'Was planst du?', chooseOccasionNote: 'Wähle den Rahmen, der deinem Termin am nächsten kommt.', other: 'Anderer Anlass', otherLabel: 'Anlass kurz benennen',
   frame: 'Wo findet es statt?', frameNote: 'Der Ort hilft bei der Einordnung. Ein Datum kannst du angeben, musst du aber noch nicht kennen.', date: 'Datum (optional)', exact: 'Festes Datum', period: 'Zeitraum', openDate: 'Noch offen', from: 'Von', until: 'Bis',
   location: 'Ort oder Region', locationPlaceholder: 'Ort eingeben oder unten auswählen', supported: 'Veröffentlichte Einsatzorte und Regionen', supportedNote: '49 veröffentlichte Einsatzorte und Regionen. Ein anderer Ort bleibt möglich und wird individuell geprüft.', otherLocation: 'Anderen Ort übernehmen',

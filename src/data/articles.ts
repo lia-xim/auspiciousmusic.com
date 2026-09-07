@@ -1,12 +1,12 @@
 export const articles = [
   {
-    title: 'Viola oder Violine für Live-Musik?',
-    description: 'Nach Klanglage, Melodieführung, Raum, Besetzung und gewünschter Wirkung entscheiden.',
+    title: 'Viola oder Violine: Unterschiede bei Klang und Einsatz',
+    description: 'Viola (Bratsche) und Violine (Geige) nach Stimmung, Größe, Klang, Register und Einsatz vergleichen.',
     href: '/viola/viola-oder-violine/',
     section: 'Viola',
-    minutes: 7,
+    minutes: 8,
     published: '2026-08-22',
-    updated: '2026-08-22',
+    updated: '2026-08-31',
   },
   {
     title: 'Live-Streicher draußen planen',
@@ -25,18 +25,22 @@ export const articles = [
     minutes: 8,
   },
   {
-    title: 'Viola-Mikrofonposition: drei sinnvolle Startpunkte',
-    description: 'Nahe, ausgewogene und raumbewusste Positionen vergleichen, ohne einen Universalabstand zu behaupten.',
+    title: 'Viola mikrofonieren: drei Positionen für die Aufnahme',
+    description: 'Drei Startpunkte für Nahaufnahme, ausgewogenen Klang und bewussten Raumanteil vergleichen.',
     href: '/recording/acoustic-instruments/viola-microphone-placement/',
     section: 'Aufnahme',
     minutes: 9,
+    published: '2026-08-11',
+    updated: '2026-08-31',
   },
   {
-    title: 'Viola zuhause nachvollziehbar aufnehmen',
-    description: 'Raum vorbereiten, faire Takes vergleichen und Material sichern, das sich morgen noch beurteilen lässt.',
+    title: 'Viola zuhause aufnehmen: Raum, Mikrofon und Sessionplan',
+    description: 'Raum und Mikrofon vorbereiten, drei Positionen fair vergleichen und Takes nachvollziehbar sichern.',
     href: '/recording/acoustic-instruments/recording-viola-at-home/',
     section: 'Aufnahme',
     minutes: 9,
+    published: '2026-08-11',
+    updated: '2026-08-31',
   },
   {
     title: 'Build a small sampled instrument in Ableton Live without losing the source',

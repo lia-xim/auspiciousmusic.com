@@ -89,6 +89,15 @@ for (const entry of sitemapEntries) {
 const pages = new Map();
 const titleOwners = new Map();
 const descriptionOwners = new Map();
+const occasionRoutes = new Set([
+  '/eventmusik/hochzeit/',
+  '/eventmusik/sektempfang/',
+  '/eventmusik/trauerfeier/',
+  '/eventmusik/dinner/',
+  '/eventmusik/firmenevent/',
+  '/eventmusik/geburtstag/',
+  '/eventmusik/unterricht/',
+]);
 
 for (const file of htmlFiles) {
   const html = await readFile(file, 'utf8');
@@ -154,6 +163,16 @@ for (const file of htmlFiles) {
       if (articleSchema?.datePublished) {
         const sitemapEntry = sitemapEntries.find((entry) => new URL(entry.url).pathname === route);
         if (!sitemapEntry?.lastmod) failures.push(`${route}: dated article missing sitemap lastmod`);
+      }
+    }
+    if (occasionRoutes.has(route)) {
+      if (!types.has('WebPage') || !types.has('ItemList') || !types.has('BreadcrumbList')) {
+        failures.push(`${route}: occasion page missing WebPage, ItemList or BreadcrumbList schema`);
+      }
+      const repertoireSchema = schemas.find((node) => node?.['@type'] === 'ItemList');
+      const items = repertoireSchema?.itemListElement;
+      if (!Array.isArray(items) || items.length === 0 || repertoireSchema.numberOfItems !== items.length) {
+        failures.push(`${route}: occasion repertoire schema does not match its visible item count`);
       }
     }
 
