@@ -42,7 +42,7 @@ async function inspect(route, viewport) {
       .filter((node) => node.getBoundingClientRect().width > 0 && Number.parseFloat(getComputedStyle(node).fontSize) < 16)
       .map((node) => `${node.tagName}.${node.className}:${getComputedStyle(node).fontSize}`) : [],
     analytics: (() => {
-      const script = document.querySelector('script[src="https://analytics.contextter.com/script.js"]');
+      const script = document.querySelector('script[src="https://analytics.crawlfoundry.com/script.js"]');
       return script ? {
         website: script.getAttribute('data-website-id'),
         domains: script.getAttribute('data-domains'),
