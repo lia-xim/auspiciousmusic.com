@@ -18,7 +18,7 @@
     "audit:seo": "node scripts/audit-seo.mjs"
   },
   "dependencies": {
-    "astro": "^7.2.1"
+    "astro": "^7.2.8"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
